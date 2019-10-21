@@ -1,0 +1,19 @@
+
+<div class="container">
+    <div class="row shadow rounded m-2 p-2">
+        <div  *ngIf="img"  class="col-12 p-1 blockForImg">
+                <img src="{{img?.url }} " (click)="getRandomImg()" >
+        </div>
+        <button class="btn btn-primary myBtn" (click)="getRandomImg()" >Случайная картинка</button>
+    </div>
+
+    <div  class="row shadow rounded  m-2 p-2">
+        <div *ngIf="users" class="col-12 ">
+                <p>Имя: {{users?.name }}</p>
+                <p>Возраст:</p>
+                <p>Стаж:</p>
+                <p>Предпочтения:</p>
+        </div>
+        <button class="btn btn-primary myBtn" (click)="getRandomUser()" >Случайный drunker </button>
+    </div>
+</div>
