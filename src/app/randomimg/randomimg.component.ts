@@ -21,14 +21,14 @@ export class RandomimgComponent implements OnInit {
   getRandomImg() {
 
     this.httpService.getRandomImg().subscribe((data: RandomImg) => this.img = data);
-
+    this.users = null;
   }
 
   getRandomUser() {
-
     this.httpService.getRandomUser().subscribe((data: User) => this.users = data);
+    this.img = null;
   }
   click() {
-    console.log(111)
+    console.log(111);
   }
 }

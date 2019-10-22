@@ -4,17 +4,17 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LaraApiComponent } from './lara-api/lara-api.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlkousersComponent } from './alkousers/alkousers.component';
 import { RandomimgComponent } from './randomimg/randomimg.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LaraApiComponent,
     AlkousersComponent,
-    RandomimgComponent
+    RandomimgComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

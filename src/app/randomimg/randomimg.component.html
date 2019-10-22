@@ -4,16 +4,16 @@
         <div  *ngIf="img"  class="col-12 p-1 blockForImg">
                 <img src="{{img?.url }} " (click)="getRandomImg()" >
         </div>
-        <button class="btn btn-primary myBtn" (click)="getRandomImg()" >Случайная картинка</button>
+        <button class="btn btn-primary myBtn" (click)="getRandomImg()" >random picture</button>
     </div>
 
     <div  class="row shadow rounded  m-2 p-2">
         <div *ngIf="users" class="col-12 ">
-                <p>Имя: {{users?.name }}</p>
-                <p>Возраст:</p>
-                <p>Стаж:</p>
-                <p>Предпочтения:</p>
+                <p>Name: {{users?.name }}</p>
+                <p>Age:</p>
+                <p>job-age:</p>
+                <p>favorite:</p>
         </div>
-        <button class="btn btn-primary myBtn" (click)="getRandomUser()" >Случайный drunker </button>
+        <button class="btn btn-primary myBtn" (click)="getRandomUser()" >random drunker </button>
     </div>
 </div>
