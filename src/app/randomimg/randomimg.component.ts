@@ -15,7 +15,7 @@ export class RandomimgComponent implements OnInit {
   img: RandomImg;
   users: User;
   ngOnInit() {
-    this.getRandomImg();
+    // this.getRandomImg();
   }
 
   getRandomImg() {

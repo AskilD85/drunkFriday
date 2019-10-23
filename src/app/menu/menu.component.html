@@ -1,14 +1,14 @@
-<div id="nav-trigger" class="nav-trigger open" (click)="click()">
+<div id="nav-trigger" class="nav-trigger open" (click)="navToggle()">
     <span class="line"></span>
     <span class="line"></span>
     <span class="line"></span>
 </div>
   <nav id="nav" class="out">
     <ul>
-      <li><span class="nav-label">Home</span></li>
-      <li><span class="nav-label">About</span></li>
-      <li><span class="nav-label">Work</span></li>
-      <li><span class="nav-label">Blog</span></li>
-      <li><span class="nav-label">Contact</span></li>
+      <li (click)="navToggle()"><span class="nav-label"><a  href="#">Home</a></span></li>
+      <li (click)="navToggle()"><span class="nav-label"><a  href="#">About</a></span></li>
+      <li (click)="navToggle()"><span class="nav-label"><a  href="#">Work</a></span></li>
+      <li (click)="navToggle()"><span class="nav-label"><a  href="#">Blog</a></span></li>
+      <li (click)="navToggle()"><span class="nav-label"><a  href="#">Contact</a></span></li>
     </ul>
   </nav>

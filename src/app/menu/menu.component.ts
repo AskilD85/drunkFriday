@@ -12,27 +12,27 @@ export class MenuComponent implements OnInit {
 
 
   // selected elements
-  const navTrigger = document.getElementById('nav-trigger');
-  const nav = document.getElementById('nav');
-  const header = document.getElementById('header');
-  const heading = document.getElementById('heading');
-  const labels = document.getElementsByClassName('nav-label');
-
+   navTrigger = document.getElementById('nav-trigger');
+   nav = document.getElementById('nav');
+   header = document.getElementById('header');
+   heading = document.getElementById('heading');
+   labels = document.getElementsByClassName('nav-label');
+    test = document.getElementById('test');
   // sizing
-  const windowHeight = window.innerHeight;
-  const windowWidth = window.innerWidth;
-  const fontSize = this.windowHeight * 0.1;
-  const headingSize = this.windowWidth * 0.1;
+   windowHeight = window.innerHeight;
+   windowWidth = window.innerWidth;
+
+   fontSize = this.windowHeight * 0.1;
+   headingSize = this.windowWidth * 0.1;
 
   ngOnInit() {
-
   }
 
   click() {
-    console.log(11)
+    console.log(11);
   }
 
-
+/*
 resize() {
   this.windowHeight = window.innerHeight;
   this.windowWidth = window.innerWidth;
@@ -51,16 +51,20 @@ resize() {
   this.heading.style.height = this.headingSize + 'px';
   this.heading.style.marginTop = '-' + this.headingSize * 0.6 + 'px';
 
-}
+}*/
 
-navToggle(e) {
-  const closed = (this.navTrigger.className.indexOf('close') > 0);
+navToggle() {
+
+  const closed = (document.getElementById('nav-trigger').className.indexOf('close') > 0);
+
   if (closed) {
-    this.navTrigger.className = 'nav-trigger open';
-    this.nav.className = 'out';
+    console.log(1)
+    document.getElementById('nav-trigger').className = 'nav-trigger open';
+    document.getElementById('nav').className = 'out';
   } else {
-    this.navTrigger.className = 'nav-trigger close';
-    this.nav.className = 'in';
+    console.log(2)
+    document.getElementById('nav-trigger').className = 'nav-trigger close';
+    document.getElementById('nav').className = 'in';
   }
 }
 
