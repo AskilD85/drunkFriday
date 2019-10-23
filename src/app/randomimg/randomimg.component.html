@@ -1,8 +1,12 @@
 
-<div class="container">
+<div style="text-align:center">
+    <h1>
+        Welcome to {{ title }}! 
+    </h1>
+</div>
     <div class="row shadow rounded m-2 p-2">
         <div  *ngIf="img"  class="col-12 p-1 blockForImg">
-                <img src="{{img?.url }} " (click)="getRandomImg()" >
+                <img src="{{img?.url }}" (click)="getRandomImg()" >
         </div>
         <button class="btn btn-primary myBtn" (click)="getRandomImg()" >random picture</button>
     </div>
@@ -16,4 +20,4 @@
         </div>
         <button class="btn btn-primary myBtn" (click)="getRandomUser()" >random drunker </button>
     </div>
-</div>
+

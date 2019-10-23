@@ -14,8 +14,8 @@ export class RandomimgComponent implements OnInit {
 
   img: RandomImg;
   users: User;
+  title = 'DrunkApp';
   ngOnInit() {
-    // this.getRandomImg();
   }
 
   getRandomImg() {
@@ -31,4 +31,5 @@ export class RandomimgComponent implements OnInit {
   click() {
     console.log(111);
   }
+ 
 }

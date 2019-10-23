@@ -8,13 +8,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AlkousersComponent } from './alkousers/alkousers.component';
 import { RandomimgComponent } from './randomimg/randomimg.component';
 import { MenuComponent } from './menu/menu.component';
+import { NotfridayComponent } from './notfriday/notfriday.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AlkousersComponent,
     RandomimgComponent,
-    MenuComponent
+    MenuComponent,
+    NotfridayComponent
   ],
   imports: [
     BrowserModule,
