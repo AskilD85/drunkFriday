@@ -19,4 +19,17 @@ export class HttpService {
     return this.http.get(this.url + 'randomimg');
 
   }
+
+  authService(email: string, password: string) {
+    const body = {
+      'email': email,
+      'password': password
+
+    };
+
+    console.log(JSON.stringify(body));
+    return this.http.post(this.url + 'login', body);
+  }
+
+
 }

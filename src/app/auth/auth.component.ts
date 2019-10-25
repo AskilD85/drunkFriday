@@ -1,3 +1,5 @@
+import { User } from './../model/User';
+import { HttpService } from './../services/http.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,11 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http: HttpService) { }
   view: string;
   name = '';
   password = '';
   email = '';
+  users: User;
   ngOnInit() {
   }
   setView(view: string) {
@@ -19,6 +22,7 @@ export class AuthComponent implements OnInit {
   }
 
   Auth() {
-    console.log(this.email, this.password);
+    this.http.authService(this.email, this.password).subscribe((data: User) => this.users = data);
+    console.log(this.users);
   }
 }
