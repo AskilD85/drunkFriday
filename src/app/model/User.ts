@@ -4,4 +4,8 @@ export class User {
     age: string;
     sex: string;
     admin: boolean;
+    stage: string;
+    favorite: string;
+    readytodrink: number;
+
 }

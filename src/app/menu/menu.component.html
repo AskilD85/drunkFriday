@@ -1,14 +1,24 @@
-<div id="nav-trigger" class="nav-trigger open" (click)="navToggle()">
+
+
+<div id="menu-div" class="menu-div ">
+<div id="nav-trigger" class="nav-trigger open col-4" (click)="navToggle()">
     <span class="line"></span>
     <span class="line"></span>
     <span class="line"></span>
 </div>
+<div class="col-8 float-right today">
+  <span ><b>{{today | titlecase}}</b></span><br />
+  <a  [routerLink]="['./Auth']" ><span >Войти/Авторизоваться</span></a>
+</div>
+
   <nav id="nav" class="out">
     <ul>
-      <li (click)="navToggle()"><span class="nav-label"><a  href="#">Home</a></span></li>
-      <li (click)="navToggle()"><span class="nav-label"><a  href="#">About</a></span></li>
-      <li (click)="navToggle()"><span class="nav-label"><a  href="#">Work</a></span></li>
-      <li (click)="navToggle()"><span class="nav-label"><a  href="#">Blog</a></span></li>
-      <li (click)="navToggle()"><span class="nav-label"><a  href="#">Contact</a></span></li>
+        
+      <a  [routerLink]="['./']" ><li (click)="navToggle()"><span class="nav-label">Главная</span></li></a>
+      <a  [routerLink]="['./About']" ><li (click)="navToggle()"><span class="nav-label">О нас</span></li></a>
+      <a  [routerLink]="['./Work']" routerLinkActive="active"><li (click)="navToggle()"><span class="nav-label">Работа</span></li></a>
+      <a  [routerLink]="['./Blog']" routerLinkActive="active"><li (click)="navToggle()"><span class="nav-label">Блог</span></li></a>
+      <a  [routerLink]="['./Contacts']" routerLinkActive="active"><li (click)="navToggle()"><span class="nav-label">Контакты</span></li></a>
     </ul>
   </nav>
+</div>

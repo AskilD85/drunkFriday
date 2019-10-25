@@ -14,7 +14,7 @@ p {
   position: fixed;
   width: 110px;
   height: 98px;
-  right: 0px;
+  left: 0px;
   top: 0px;
   cursor: pointer;
   z-index: 200;
@@ -22,7 +22,7 @@ p {
   -moz-transform-origin: 110px 0px;
   -ms-transform-origin: 110px 0px;
   -o-transform-origin: 110px 0px;
-  transform-origin: 110px 0px;
+  transform-origin: 20px 20px;
   -webkit-transform: scale(0.6);
   -moz-transform: scale(0.6);
   -ms-transform: scale(0.6);
@@ -76,6 +76,9 @@ p {
   -ms-transform: translateX(11px) rotate(45deg);
   -o-transform: translateX(11px) rotate(45deg);
   transform: translateX(11px) rotate(45deg);
+}
+.close {
+  float: left !important;
 }
 
 .close .line:nth-child(2) {
@@ -258,4 +261,11 @@ nav.in li {
 }
 .red {
   color:red;
+}
+.menu-div {
+  height: 75px;
+}
+.today {
+  top:24px;
+  color:#007bff;
 }

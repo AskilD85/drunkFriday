@@ -7,20 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class AppComponent implements OnInit {
-  
-constructor () {}
-ngOnInit() {
+
+  constructor() { }
+  ngOnInit() {
     this.isTodayFriday();
-}
-
-
-isTodayFriday() {
-  let today = new Date();
-  if (today.getDay() === 5){
-    return true;
   }
-  return true;
-}
+
+
+  isTodayFriday() {
+    const today = new Date();
+    if (today.getDay() === 5) {
+      return true;
+    }
+    return false;
+  }
 
 
 }

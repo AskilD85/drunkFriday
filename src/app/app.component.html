@@ -1,13 +1,13 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <app-menu></app-menu>
 
-<div class="wrapper">
-  
-    <div *ngIf="isTodayFriday()">
-        <router-outlet></router-outlet>
-    </div>
-    <div *ngIf="!isTodayFriday()">
-      <app-notfriday></app-notfriday>
-    </div>
+<div *ngIf="isTodayFriday()" class="rounded shadow m-3 p-3">
+
+  <router-outlet></router-outlet>
+
 </div>
+
+<div *ngIf="!isTodayFriday()"><app-notfriday></app-notfriday></div>
+
+
 

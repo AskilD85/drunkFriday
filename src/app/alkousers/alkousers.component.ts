@@ -14,9 +14,4 @@ export class AlkousersComponent implements OnInit {
   ngOnInit() {
   }
 
-  getRandomUser() {
-
-    this.httpservice.getRandomUser().subscribe((data: User) => this.users = data);
-    console.log(this.users);
-  }
 }
