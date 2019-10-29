@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
     if (today.getDay() === 5) {
       return true;
     }
-    return false;
+    return true;
   }
 
 

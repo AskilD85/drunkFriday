@@ -1,3 +1,4 @@
+import { AlkousersComponent } from './alkousers/alkousers.component';
 import { RandomimgComponent } from './randomimg/randomimg.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'Blog', component: BlogComponent},
   {path: 'Contacts', component: ContactsComponent},
   {path: 'Auth', component: AuthComponent},
+  { path: 'alkouser', component: AlkousersComponent},
   { path: '**', component: NotFoundComponent }
 ];
 
