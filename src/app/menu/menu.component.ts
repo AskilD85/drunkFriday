@@ -1,3 +1,4 @@
+import { HttpService } from './../services/http.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http: HttpService) { }
+
+  token = this.http.apitoken;
 
 
-
+  auth = this.http.auth;
+  username = this.http.username;
   // selected elements
   navTrigger = document.getElementById('nav-trigger');
   nav = document.getElementById('nav');
@@ -24,11 +28,10 @@ export class MenuComponent implements OnInit {
 
   fontSize = this.windowHeight * 0.1;
   headingSize = this.windowWidth * 0.1;
-  today: string;
+  
   ngOnInit() {
-    this.today = new Date().toLocaleString('ru', { weekday: 'long' }) + ', ' + new Date().toLocaleString('ru', {
-      year: 'numeric', month: 'long', day: 'numeric'
-    });
+    
+    
   }
 
   click() {

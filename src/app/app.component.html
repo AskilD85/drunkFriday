@@ -1,13 +1,35 @@
-<!--The content below is only a placeholder and can be replaced.-->
+
+<!-- шапка  -->
+<header>
+
+  <div class="col-9 float-right today">
+
+      <span ><b>{{ today | titlecase}}</b></span>
+      <div *ngIf="!auth">
+        <a  [routerLink]="['./Au  th']" ><span >Войти/Авторизоваться</span></a>
+      </div>
+
+
+      <div *ngIf="auth">
+        <div>Здарова, {{ username }}</div>
+        <button class="btn btn-warning" (click)="logout()"> Выйти</button>
+      </div>
+      
+  </div>
+</header>
+
 <app-menu></app-menu>
 
+<!-- если пятница -->
 <div *ngIf="isTodayFriday()" class="rounded shadow m-3 p-3">
-
   <router-outlet></router-outlet>
-
 </div>
 
-<div *ngIf="!isTodayFriday()"><app-notfriday></app-notfriday></div>
+
+<!-- если не пятница -->
+<div *ngIf="!isTodayFriday()">
+  <app-notfriday></app-notfriday>
+</div>
 
 
 

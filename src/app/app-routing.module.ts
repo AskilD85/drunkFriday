@@ -8,15 +8,16 @@ import { BlogComponent } from './blog/blog.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthComponent } from './auth/auth.component';
+import { MainComponent } from './main/main.component';
 
 
 const routes: Routes = [
-  {path: '', component: RandomimgComponent  },
-  {path: 'About', component: AboutComponent},
-  {path: 'Work', component: WorkComponent},
-  {path: 'Blog', component: BlogComponent},
-  {path: 'Contacts', component: ContactsComponent},
-  {path: 'Auth', component: AuthComponent},
+  { path: '', component: MainComponent  },
+  { path: 'About', component: AboutComponent},
+  { path: 'Work', component: WorkComponent},
+  { path: 'Blog', component: BlogComponent},
+  { path: 'Contacts', component: ContactsComponent},
+  { path: 'Auth', component: AuthComponent},
   { path: 'alkouser', component: AlkousersComponent},
   { path: '**', component: NotFoundComponent }
 ];
