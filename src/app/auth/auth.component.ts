@@ -13,9 +13,10 @@ import { Router } from '@angular/router';
 export class AuthComponent implements OnInit {
 
   constructor(private http: HttpService, private route: Router) { }
-  view: string;
+  view = 'enter';
   name = '';
   password = '';
+  password2 = '';
   email = '';
   user: User;
   username = '';
@@ -65,7 +66,12 @@ export class AuthComponent implements OnInit {
   }
 
   register() {
-    console.log('зарегался типа');
+    if (this.password !== this.password2) {
+      this.errorText = 'Пароли не совпадают!';
+    }
+
+
+    this.http.register(this.name, this.email, this.password);
   }
 
 

@@ -81,8 +81,15 @@ export class HttpService {
     this.authEmit.emit(this.auth);
   }
 
-  register() {
-    console.log('зарегался типа');
+  register(name: string, email: string, pass: string) {
+    const regData = {
+      'email': email,
+      'password' : pass,
+      'password_confirmation': pass,
+      'name' : name
+    };
+
+    console.log(JSON.stringify(regData));
   }
 
 }

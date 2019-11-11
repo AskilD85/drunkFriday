@@ -6,13 +6,16 @@
 
       <span ><b>{{ today | titlecase}}</b></span>
       <div *ngIf="!auth">
-        <a  [routerLink]="['./Au  th']" ><span >Войти/Авторизоваться</span></a>
+        <a  [routerLink]="['./Auth']" ><span >Войти/Авторизоваться</span></a>
       </div>
 
 
       <div *ngIf="auth">
-        <div>Здарова, {{ username }}</div>
-        <button class="btn btn-warning" (click)="logout()"> Выйти</button>
+        <div class="username">Здарова, {{ username }} 
+          <i class=""></i>
+          <button class="btn btn-warning" (click)="logout()"> Выйти</button>
+        </div>
+        
       </div>
       
   </div>
