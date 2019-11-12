@@ -31,7 +31,7 @@ export class AuthComponent implements OnInit {
       if (data) {
         console.log(2, data.data.api_token);
         this.apiToken = data.data.api_token;
-        this.route.navigate('/alkouser');
+        this.route.navigate(['/alkouser']);
       }
 
       }, (err: HttpErrorResponse) => {
