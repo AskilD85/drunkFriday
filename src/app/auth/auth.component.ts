@@ -21,7 +21,7 @@ export class AuthComponent implements OnInit {
   user: User;
   username = '';
   apiToken = this.http.apitoken;
-  errorText = '';
+  errorText = this.http.errorText;
   auth = false;
 
   ngOnInit() {

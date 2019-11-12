@@ -1,4 +1,4 @@
-<p><b>АВТОРИЗАЦИЯ</b></p>
+<p class="text-center"><b>{{view === 'enter' ? 'АВТОРИЗАЦИЯ' : 'РЕГИСТРАЦИЯ'}}</b></p>
 
 <div *ngIf="auth">{{ username }}
 <span (click) = logout()>Выйти</span>
@@ -9,15 +9,14 @@
     <button class="btn btn-success" (click)="setView('reg')" > Регистрация</button>
 </div>
 
-<div [ngSwitch]="view">
+<div [ngSwitch]="view" >
 
-    <div *ngSwitchCase="'enter'">
+    <div *ngSwitchCase="'enter'" >
             <div class="container">
-                    <div class="row">
+                    <div class="row ">
                    
-                    <div class="col-md-offset-3 col-md-6">
+                    <div class="col-md-offset-3 col-12 text-center " >
                     <form class="form-horizontal">
-                    <span class="heading"><b>Войти</b></span>
                     <div class="m-2" >
                         <input type="email" [(ngModel)]="email" name="email" class="form-control" id="inputEmail" placeholder="E-mail">
                         <i class="fa fa-user"></i>
@@ -30,16 +29,18 @@
                     </div>
 
                     <div class="form-group">
-                    <div class="main-checkbox">
-                    <input type="checkbox" value="none" id="checkbox1" name="check"/>
-                    <label for="checkbox1"></label><span class="text">Запомнить</span>
-                    </div>
-                    
-                    <button type="submit" (click)="login()"  class="btn btn-default">ВХОД</button>
+                 
                     </div>
                     </form>
                     
                     </div>
+                    <div class="main-checkbox">
+                        <input type="checkbox" value="none" id="checkbox1" name="check"/>
+                        <label for="checkbox1"></label><span class="text">Запомнить</span><br />
+                        <button type="submit" (click)="login()"  class="btn btn-primary">ВХОД</button>
+                    </div>
+                        
+                        
                 </div><!-- /.row -->
             </div><!-- /.container -->
     </div>
@@ -47,9 +48,8 @@
         <div class="container">
             <div class="row">
            
-            <div class="col-md-offset-3 col-md-6">
+            <div class="col-md-offset-3 col-12 text-center">
             <form class="form-horizontal" >
-            <span class="heading"><b>Регистрация</b></span>
 
             <div class="m-2" >
                 <input type="text" [(ngModel)]="name" name="name" class="form-control" id="inputEmail" placeholder="Введите username">
@@ -76,10 +76,11 @@
             <div class="main-checkbox">
             </div>
             
-            <button type="submit" (click)="register()"  class="btn btn-default">Зарегистрироваться</button>
+           
             </div>
             </form>
             </div>
+            <button type="submit" (click)="register()"  class="btn btn-primary">Зарегистрироваться</button>
         </div><!-- /.row -->
     </div><!-- /.container -->
     </div>

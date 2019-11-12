@@ -18,7 +18,7 @@ export class HttpService {
   errorText = '';
   auth = false;
   user;
-
+  regUser;
   authEmit: EventEmitter<boolean> = new EventEmitter();
   usernameEmit: EventEmitter<string> = new EventEmitter();
 
@@ -31,15 +31,14 @@ export class HttpService {
 
   }
 
-  authService(email: string, password: string) {
+  authService(email: string, password: string, url: string,  name?: string ) {
     const body = {
       'email': email,
-      'password': password
-
+      'password': password,
+      'name': name
     };
-
-    console.log(JSON.stringify(body));
-    return this.http.post(this.url + 'login', body);
+    console.log(333, JSON.stringify(body));
+    return this.http.post(this.url + url, body);
   }
 
   checkAuth() {
@@ -54,7 +53,7 @@ export class HttpService {
   }
 
   login(email, password) {
-    this.authService(email, password).subscribe(data => {
+    this.authService(email, password, 'login').subscribe(data => {
       console.log(data);
       this.user = data as User;
       if ( this.user.data !== null && this.user.data !== undefined) {
@@ -83,13 +82,27 @@ export class HttpService {
 
   register(name: string, email: string, pass: string) {
     const regData = {
+      'name' : name,
       'email': email,
       'password' : pass,
-      'password_confirmation': pass,
-      'name' : name
-    };
+      'password_confirmation': pass
 
-    console.log(JSON.stringify(regData));
+    };
+    this.http.post(this.url + 'register', regData, {observe: 'response'}).subscribe(data => {
+      this.regUser = data;
+      console.log('статус: ', this.regUser.status);
+      console.log(data.status);
+      if (this.regUser.status === 201) {
+        this.errorText = 'Зареган!';
+      }
+
+    }, (err: HttpErrorResponse) => {
+      if (err.status === 422) {
+        this.errorText = 'Не верный логин и/или пароль';
+      }
+      console.log(err);
+      console.log(err.status);
+    });
   }
 
 }
