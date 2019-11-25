@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +16,8 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { BlogComponent } from './blog/blog.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthComponent } from './auth/auth.component';
+import { ChatComponent } from './chat/chat.component';
+import { TokenInterceptor } from './_helpers/token.interceptor';
 
 
 
@@ -32,7 +34,8 @@ import { AuthComponent } from './auth/auth.component';
     ContactsComponent,
     BlogComponent,
     NotFoundComponent,
-    AuthComponent
+    AuthComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,9 @@ import { AuthComponent } from './auth/auth.component';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
