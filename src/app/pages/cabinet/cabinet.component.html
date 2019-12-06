@@ -1,0 +1,12 @@
+<p>Читай внимательней!</p>
+<div >
+    <ul>
+        <li><span>id: {{ user?.id}}</span></li>
+        <li><span>зовут: {{ user?.name}}</span></li>
+        <li><span>возраст: {{ user?.age}}</span></li>
+        <li><span>email: {{ user?.email}}</span></li>
+        <li><span>Пьёшь ли?: {{ user?.alko == 1 ? 'да' : 'нет'}}</span></li>
+        <li *ngIf="user?.alko === 1"><span>стаж бухаловки: {{ user.stage}}</span></li>
+        <li><span>Пойдёшь сейчас бухать? : {{ user?.readytodrink == 0 ? 'не хочу пока': 'пойду, пиши'}}</span></li>
+    </ul>
+</div>

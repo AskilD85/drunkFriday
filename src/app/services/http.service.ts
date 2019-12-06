@@ -1,7 +1,7 @@
+import { User } from './../model/User';
 import { Router } from '@angular/router';
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { User } from '../model/User';
 
 
 @Injectable({
@@ -18,10 +18,11 @@ export class HttpService {
   errorText = '';
   auth = false;
   user;
+  userInfo: User;
   regUser;
   authEmit: EventEmitter<boolean> = new EventEmitter();
   usernameEmit: EventEmitter<string> = new EventEmitter();
-
+  userInfoEmit: EventEmitter<User> = new EventEmitter();
   getRandomUser() {
     return this.http.get(this.url + 'randomuser');
 
@@ -105,4 +106,16 @@ export class HttpService {
     });
   }
 
+
+  getUserInfo() {
+    this.http.get(this.url + 'user').subscribe(data => {
+
+    this.userInfo =  data as User;
+    this.userInfoEmit.emit(this.userInfo);
+    }, (err: HttpErrorResponse) => {
+
+      console.log(err);
+   
+    });
+  }
 }

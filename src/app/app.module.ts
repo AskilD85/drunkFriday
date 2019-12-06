@@ -9,15 +9,16 @@ import { AlkousersComponent } from './alkousers/alkousers.component';
 import { RandomimgComponent } from './randomimg/randomimg.component';
 import { MenuComponent } from './menu/menu.component';
 import { NotfridayComponent } from './notfriday/notfriday.component';
-import { AboutComponent } from './about/about.component';
-import { MainComponent } from './main/main.component';
-import { WorkComponent } from './work/work.component';
-import { ContactsComponent } from './contacts/contacts.component';
-import { BlogComponent } from './blog/blog.component';
+import { AboutComponent } from './pages/about/about.component';
+import { MainComponent } from './pages/main/main.component';
+import { WorkComponent } from './pages/work/work.component';
+import { ContactsComponent } from './pages/contacts/contacts.component';
+import { BlogComponent } from './pages/blog/blog.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthComponent } from './auth/auth.component';
-import { ChatComponent } from './chat/chat.component';
 import { TokenInterceptor } from './_helpers/token.interceptor';
+import { CabinetComponent } from './pages/cabinet/cabinet.component';
+import { TestComponent } from './test/test.component';
 
 
 
@@ -35,7 +36,8 @@ import { TokenInterceptor } from './_helpers/token.interceptor';
     BlogComponent,
     NotFoundComponent,
     AuthComponent,
-    ChatComponent
+    CabinetComponent,
+    TestComponent,
   ],
   imports: [
     BrowserModule,

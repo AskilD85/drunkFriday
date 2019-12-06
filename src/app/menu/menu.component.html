@@ -1,19 +1,20 @@
 
 
 <div id="menu-div" class="menu-div ">
-<div id="nav-trigger" class="nav-trigger open col-4" (click)="navToggle()">
-    <span class="line"></span>
-    <span class="line"></span>
-    <span class="line"></span>
-</div>
-<nav id="nav" class="out">
-    <ul>
-        
-      <a  [routerLink]="['./']" ><li (click)="navToggle()"><span class="nav-label">Главная</span></li></a>
-      <a  [routerLink]="['./About']" ><li (click)="navToggle()"><span class="nav-label">О нас</span></li></a>
-      <a  [routerLink]="['./Work']" routerLinkActive="active"><li (click)="navToggle()"><span class="nav-label">Работа</span></li></a>
-      <a  [routerLink]="['./Blog']" routerLinkActive="active"><li (click)="navToggle()"><span class="nav-label">Блог</span></li></a>
-      <a  [routerLink]="['./Contacts']" routerLinkActive="active"><li (click)="navToggle()"><span class="nav-label">Контакты</span></li></a>
-    </ul>
-  </nav>
-</div>
+  <div id="nav-trigger" class="nav-trigger open col-4" (click)="navToggle()">
+      <span class="line"></span>
+      <span class="line"></span>
+      <span class="line"></span>
+  </div>
+  <nav id="nav" class="out">
+      <ul>
+          
+        <a  [routerLink]="['./']" ><li (click)="navToggle()"><span class="nav-label">Главная</span></li></a>
+        <a  [routerLink]="['./About']" ><li (click)="navToggle()"><span class="nav-label">О нас</span></li></a>
+        <a  [routerLink]="['./Work']" routerLinkActive="active"><li (click)="navToggle()"><span class="nav-label">Работа</span></li></a>
+        <a  [routerLink]="['./Contacts']" routerLinkActive="active"><li (click)="navToggle()"><span class="nav-label">Контакты</span></li></a>
+        <a  [routerLink]="['./Blog']" routerLinkActive="active"><li (click)="navToggle()"><span class="nav-label">Блог</span></li></a>
+        <a  [routerLink]="['./chat']" routerLinkActive="active"><li (click)="navToggle()"><span class="nav-label">Чат</span></li></a>
+      </ul>
+    </nav>
+  </div>

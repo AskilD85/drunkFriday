@@ -20,3 +20,8 @@ html, body {
     .username {
         font-size: 12px;
     }
+.today {
+    font-size: 11px;
+    color: #000;
+    
+}
