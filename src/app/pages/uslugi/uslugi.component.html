@@ -1,0 +1,8 @@
+
+<div *ngIf="articles?.length > 0">
+    <div *ngFor="let article of articles">
+        {{article.title}}
+        <p>{{article.body}}</p>
+        <hr>
+    </div>
+</div>

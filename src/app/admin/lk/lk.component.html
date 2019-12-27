@@ -1,0 +1,33 @@
+<p></p>
+<input type="button" class="btn btn-outline-primary m-1" value="Добавить услугу" (click)="addClick=true; myArticles=false">
+<input type="button" class="btn btn-outline-primary m-1"  value="Мои услуги" (click)="myUslugi();addClick = false; myArticles=true; addArticle=false">
+<hr>
+<div *ngIf="addClick">
+    <h3>Добавить услугу</h3>
+    <form  [formGroup]="addForm" (ngSubmit)="addUsluga()">
+        <div><input type="text" class="form-control m-1" [(ngModel)]="title" formControlName="title" ></div>
+        <div><textarea type="text" class="form-control m-1" [(ngModel)]="body" formControlName="body"></textarea></div>
+        <input type="text" hidden formControlName="user_id">
+        <input type="button" value="Очистить" class="btn btn-danger m-1" (click)="clearForm()" >
+        <input type="submit" value="Добавить" class="btn btn-success m-1" [disabled]="addForm.invalid" >
+    </form>
+</div>
+<div *ngIf="myArticles">
+    <h3>Список моих услуг</h3>
+    <div *ngFor="let article of allArticles; let i = index">
+        <div>
+            <div><b>{{article.title}}</b></div>
+            <div>{{article.body}}</div>
+            <input type="button" (click)="delete(article.id)" value="Удалить" class="btn btn-danger">
+            <HR>
+        </div>
+    </div>
+</div>
+<!-- {{addForm.value | json}} -->
+<div *ngIf="addArticle">
+    <p class="color-green">Услуга добавлена!</p>
+    <div><small>Название:</small> {{addArticle.title}}</div>
+    <div><small>Описание:</small> {{addArticle.body}}</div>
+
+</div>
+

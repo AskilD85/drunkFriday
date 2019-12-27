@@ -31,11 +31,21 @@ export class HttpService {
 
   }
 
+  getArticles() {
+    return this.http.get(this.url + 'articles');
+  }
+
+  addArticle(body) {
+    return this.http.post(this.url + 'articles', body);
+  }
+  delete(id: string) {
+    return this.http.delete(this.url + `articles/${id}`);
+  }
   authService(email: string, password: string, url: string,  name?: string ) {
     const body = {
-      'email': email,
-      'password': password,
-      'name': name
+      email,
+       password,
+      name
     };
     console.log(333, JSON.stringify(body));
     return this.http.post(this.url + url, body);
@@ -58,8 +68,8 @@ export class HttpService {
       this.user = data as User;
       if ( this.user.data !== null && this.user.data !== undefined) {
         this.errorText = '';
-        localStorage.setItem('apikey', this.user.data['api_token'] );
-        localStorage.setItem('username', this.user.data['name'] );
+        localStorage.setItem('apikey', this.user.data.api_token );
+        localStorage.setItem('username', this.user.data.name );
         this.checkAuth();
       }
 
@@ -82,9 +92,13 @@ export class HttpService {
 
   register(name: string, email: string, pass: string) {
     const regData = {
+      // tslint:disable-next-line:object-literal-key-quotes
       'name' : name,
+      // tslint:disable-next-line:object-literal-key-quotes
       'email': email,
+      // tslint:disable-next-line:object-literal-key-quotes
       'password' : pass,
+      // tslint:disable-next-line:object-literal-key-quotes
       'password_confirmation': pass
 
     };

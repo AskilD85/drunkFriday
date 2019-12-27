@@ -1,0 +1,36 @@
+<div class="text-center">
+    <form *ngIf="!reg" class="login-div" [formGroup]="form" (ngSubmit)="login()">
+        <h3>Авторизация</h3>
+
+        <div><input class="form-control m-1" name="email" formControlName="email"  type="email" placeholder="Введите email"></div>
+        <div class="validation" *ngIf="form.get('email').invalid && form.get('email').touched">
+            <small *ngIf="form.get('email').errors.required">Поле e-mail не может быть пустым!</small>
+            <small *ngIf="form.get('email').errors.email">Введите корректный email!</small>
+        </div>
+
+        <div><input class="form-control m-1" name="password" formControlName="password"  type="password" placeholder="Введите password"></div>
+        <div class="validation" *ngIf="form.get('password').invalid && form.get('password').touched">
+            <small *ngIf="form.get('password').errors.required">Поле password не может быть пустым!</small>
+            <small *ngIf="form.get('password').errors.minlength">
+                Поле password должно быть {{form.get('password').errors.minlength.requiredLength}} , 
+                сейчас {{form.get('password').errors.minlength.actualLength}} символов
+            </small>
+        </div>
+
+        <div><input type="submit" class="btn btn-primary m-1" value = "Войти" [disabled]="form.invalid" > 
+        <input type="button" class="btn btn-primary m-1"  value = "Регистрация" (click)="regClick()"></div>
+    </form>
+
+
+
+    <div *ngIf="reg" class="reg-div">
+        <h3>Регистрация</h3>
+        <div><input class="form-control m-1" type="text" placeholder="Введите email"></div>
+        <div><input class="form-control m-1" type="password" placeholder="Введите password"></div>
+        <div><input class="form-control m-1" type="password" placeholder="Повторите password"></div>
+        <div>
+            <input type="submit" class="btn btn-primary m-1" value = "Зарегистрироваться">
+            <input type="button" class="btn btn-primary m-1" value = "Есть аккаунт" (click)="authClick()">
+        </div>
+    </div>
+</div>

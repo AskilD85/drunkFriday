@@ -1,3 +1,4 @@
+import { AuthService } from './admin/auth.service';
 import { HttpService } from './services/http.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 
 export class AppComponent implements OnInit {
 
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpService, private authService: AuthService) { }
 
   today: string;
   auth: boolean;
@@ -22,15 +23,13 @@ export class AppComponent implements OnInit {
     this.today = new Date().toLocaleString('ru', { weekday: 'long' }) + ', ' + new Date().toLocaleString('ru', {
       year: 'numeric', month: 'long', day: 'numeric'
     });
-    this.http.authEmit.subscribe(x => { this.auth = x; });
     this.http.usernameEmit.subscribe(x  => { this.username = x; console.log(this.username); });
-    this.checkAuth();
+    this.authService.authEmit.subscribe(x => { this.auth = x;  });
+    this.authService.checkAuth();
+    this.username = localStorage.getItem('username');
   }
 
 
-  checkAuth() {
-    this.http.checkAuth();
-  }
   isTodayFriday() {
     const today = new Date();
     if (today.getDay() === 5) {
@@ -40,7 +39,7 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
-    this.http.logout();
+    this.authService.logout();
   }
 }
 
