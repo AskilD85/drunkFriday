@@ -10,7 +10,7 @@
       </div>
       <div *ngIf="auth">
         <div class="username">
-          <button class="m-1 btn btn-primary"  (click)="Cabinet()" [routerLink]="['./Admin/Lk']">Личный кабинет</button>
+          <button class="m-1 btn btn-primary"   [routerLink]="['./Admin', 'Lk']">Личный кабинет</button>
           <button class="m-1 btn btn-light" (click)="logout()"> Выйти</button>
         </div>
         

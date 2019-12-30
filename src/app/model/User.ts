@@ -8,6 +8,9 @@ export class User {
     favorite: string;
     readytodrink: number;
     data: Data;
+    constructor(data: Data) {
+        this.data = data;
+    }
 
 }
 

@@ -1,4 +1,6 @@
+import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/model/User';
 
 @Component({
   selector: 'app-admin-layout',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminLayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
+
+  isAuth: boolean;
 
   ngOnInit() {
+    this.isAuth = this.authService.isAuthenticated();
+    this.authService.authEmit.subscribe(auth => this.isAuth = auth);
+
   }
 
 }

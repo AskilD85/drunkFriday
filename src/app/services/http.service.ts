@@ -90,33 +90,6 @@ export class HttpService {
     this.authEmit.emit(this.auth);
   }
 
-  register(name: string, email: string, pass: string) {
-    const regData = {
-      // tslint:disable-next-line:object-literal-key-quotes
-      'name' : name,
-      // tslint:disable-next-line:object-literal-key-quotes
-      'email': email,
-      // tslint:disable-next-line:object-literal-key-quotes
-      'password' : pass,
-      // tslint:disable-next-line:object-literal-key-quotes
-      'password_confirmation': pass
-
-    };
-    this.http.post(this.url + 'register', regData, {observe: 'response'}).subscribe(data => {
-      this.regUser = data;
-      console.log('статус: ', this.regUser.status);
-      console.log(data.status);
-      if (this.regUser.status === 201) {
-        this.errorText = 'Зареган!';
-      }
-
-    }, (err: HttpErrorResponse) => {
-      if (err.status === 422) {
-        this.errorText = 'Не верный логин и/или пароль';
-      }
-      console.log(err);
-      console.log(err.status);
-    });
-  }
+  
 
 }

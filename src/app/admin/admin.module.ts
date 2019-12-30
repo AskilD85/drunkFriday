@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LkComponent } from './lk/lk.component';
+import { GeneralGuard } from '../general.guards';
 
 
 @NgModule({
@@ -20,9 +21,11 @@ imports: [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild([
-        { path: '', component: AdminLayoutComponent  },
+        { path: '', component: AdminLayoutComponent, children: [
+            { path: 'Lk', component: LkComponent, canActivate: [ GeneralGuard ] },
+        ]  },
         { path: 'login', component: LoginPageComponent  },
-        { path: 'Lk', component: LkComponent  },
+
     ])
 ],
 exports: [

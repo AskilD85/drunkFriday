@@ -1,7 +1,9 @@
+import { AuthService } from './../auth.service';
 import { HttpService } from './../../services/http.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Article } from 'src/app/model/Article';
+import { User } from 'src/app/model/User';
 
 @Component({
   selector: 'app-lk',
@@ -22,10 +24,11 @@ export class LkComponent implements OnInit {
   title = '';
   body = '';
   del;
-  constructor(private http: HttpService) { }
+  user: User;
+  constructor(private http: HttpService, private authService: AuthService) { }
 
   ngOnInit() {
-    console.log(this.addClick);
+    this.authService.userEmit.subscribe( (user: User) => {this.user = user; console.log(user); } );
   }
   addUsluga() {
     console.log('addUsluga', this.addForm.value);
