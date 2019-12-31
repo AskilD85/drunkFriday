@@ -90,6 +90,11 @@ export class HttpService {
     this.authEmit.emit(this.auth);
   }
 
-  
+  getUsers() {
+    return this.http.get(this.url + 'users');
+  }
 
+  getUser(id: string) {
+    return this.http.get(this.url + `users/${id}`);
+  }
 }

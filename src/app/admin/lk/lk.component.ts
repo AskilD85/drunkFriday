@@ -25,15 +25,20 @@ export class LkComponent implements OnInit {
   body = '';
   del;
   user: User;
+
   constructor(private http: HttpService, private authService: AuthService) { }
 
   ngOnInit() {
-    this.authService.userEmit.subscribe( (user: User) => {this.user = user; console.log(user); } );
+    this.getUser();
   }
   addUsluga() {
     console.log('addUsluga', this.addForm.value);
     this.http.addArticle(this.addForm.value).subscribe(( add: Article ) => {this.addArticle = add; this.clearForm(); } );
   }
+  delete(id: string) {
+    this.http.delete(id).subscribe(del => {this.del = del;  this.myUslugi(); });
+  }
+
   myUslugi() {
     console.log('мои услуги');
     this.http.getArticles().subscribe((uslugi: Article) => {this.allArticles = uslugi; });
@@ -43,7 +48,14 @@ export class LkComponent implements OnInit {
     this.body = this.addForm.value.body = null;
   }
 
-  delete(id: string) {
-    this.http.delete(id).subscribe(del => {this.del = del;  this.myUslugi(); });
+  getUsers() {
+    this.http.getUsers().subscribe( (user: User) => {this.user = user; console.log(user); } );
   }
+
+  getUser() {
+    const userid = localStorage.getItem('user_id');
+    this.http.getUser(userid).subscribe( (user: User) => {this.user = user; console.log(user); } );
+  }
+
+  
 }
