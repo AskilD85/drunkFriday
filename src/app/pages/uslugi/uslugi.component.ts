@@ -16,7 +16,6 @@ export class UslugiComponent implements OnInit {
     this.getUslugi();
   }
 
-  
   getUslugi() {
     this.http.getArticles().subscribe((articles: Article[]) =>  this.articles = articles );
   }
