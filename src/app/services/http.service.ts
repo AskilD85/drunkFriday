@@ -35,6 +35,10 @@ export class HttpService {
     return this.http.get(this.url + 'articles');
   }
 
+  getArticleOfUser(id) {
+    return this.http.get(this.url + `category/${id}`);
+  }
+
   addArticle(body) {
     return this.http.post(this.url + 'articles', body);
   }
@@ -73,13 +77,8 @@ export class HttpService {
         this.checkAuth();
       }
 
-
-
     }, (err: HttpErrorResponse) => {
-      if (err.status === 422) {
-        this.errorText = 'Не верный логин и/или пароль';
-      }
-      console.log(err);
+        console.log(err);
     });
   }
 

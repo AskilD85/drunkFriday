@@ -18,7 +18,7 @@ export class LkComponent implements OnInit {
       body: new FormControl('', [Validators.required]),
   });
   addArticle: Article;
-  allArticles: Article;
+  allArticles;
   addClick = false;
   myArticles = false;
   title = '';
@@ -41,8 +41,10 @@ export class LkComponent implements OnInit {
 
   myUslugi() {
     console.log('мои услуги');
-    this.http.getArticles().subscribe((uslugi: Article) => {this.allArticles = uslugi; });
+    const userid = localStorage.getItem('user_id');
+    this.http.getArticleOfUser(userid).subscribe((uslugi) => {this.allArticles = uslugi; console.log(this.allArticles); });
   }
+
   clearForm() {
     this.title = this.addForm.value.title = null;
     this.body = this.addForm.value.body = null;

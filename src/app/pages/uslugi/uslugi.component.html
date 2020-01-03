@@ -1,7 +1,9 @@
 
 <div *ngIf="articles?.length > 0">
-    <div *ngFor="let article of articles">
-        {{article.title}}
+
+    <div *ngFor="let article of articles" class="shadow p-2 m-2 rounded">
+
+        <b><a href="#">{{article.title}}</a></b>
         <p>{{article.body}}</p>
         <hr>
     </div>
