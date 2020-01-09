@@ -4,7 +4,7 @@ import { RandomimgComponent } from './randomimg/randomimg.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, CanActivate, Routes } from '@angular/router';
 import { AboutComponent } from './about/about.component';
-import { WorkComponent } from './work/work.component';
+import { WorkComponent } from './pages/work/work.component';
 import { BlogComponent } from './blog/blog.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { NotFoundComponent } from './not-found/not-found.component';

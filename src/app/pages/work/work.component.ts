@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkComponent implements OnInit {
 
+  latitude = 51.678418;
+  longitude = 7.809007;
   constructor() { }
 
   ngOnInit() {
   }
 
+  onChooseLocation(event) {
+    console.log(event);
+    this.latitude = event.coords.lat;
+    this.longitude = event.coords.lng;
+  }
 }

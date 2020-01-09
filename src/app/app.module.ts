@@ -11,7 +11,7 @@ import { MenuComponent } from './menu/menu.component';
 import { NotfridayComponent } from './notfriday/notfriday.component';
 import { AboutComponent } from './about/about.component';
 import { MainComponent } from './main/main.component';
-import { WorkComponent } from './work/work.component';
+import { WorkComponent } from './pages/work/work.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { BlogComponent } from './blog/blog.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -19,7 +19,7 @@ import { TokenInterceptor } from './_helpers/token.interceptor';
 import { SharedModule } from './_shared/shared.module';
 import { UslugiComponent } from './pages/uslugi/uslugi.component';
 
-
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,10 @@ import { UslugiComponent } from './pages/uslugi/uslugi.component';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCZuwSovZWVFqgaHBwvdkbNcwgvlj14QXU'
+    })
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
