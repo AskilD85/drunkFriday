@@ -35,6 +35,10 @@ export class HttpService {
     return this.http.get(this.url + 'articles');
   }
 
+  getArticle(id) {
+    return this.http.get(this.url + `articles/${id}`);
+  }
+
   getArticleOfUser(id) {
     return this.http.get(this.url + `category/${id}`);
   }

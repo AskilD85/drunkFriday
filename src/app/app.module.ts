@@ -20,6 +20,7 @@ import { SharedModule } from './_shared/shared.module';
 import { UslugiComponent } from './pages/uslugi/uslugi.component';
 
 import { AgmCoreModule } from '@agm/core';
+import { UsDetailComponent } from './pages/uslugi/us-detail/us-detail.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { AgmCoreModule } from '@agm/core';
     BlogComponent,
     NotFoundComponent,
     UslugiComponent,
+    UsDetailComponent,
 
   ],
   imports: [

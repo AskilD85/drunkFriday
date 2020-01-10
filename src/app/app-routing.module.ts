@@ -11,6 +11,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { MainComponent } from './main/main.component';
 import { GeneralGuard } from './general.guards';
 import { UslugiComponent } from './pages/uslugi/uslugi.component';
+import { UsDetailComponent } from './pages/uslugi/us-detail/us-detail.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'Work', component: WorkComponent, canActivate: [ GeneralGuard ]},
   { path: 'Blog', component: BlogComponent, canActivate: [ GeneralGuard ]},
   { path: 'Uslugi', component: UslugiComponent },
+  { path: 'Uslugi/:id', component: UsDetailComponent },
   { path: 'Contacts', component: ContactsComponent},
   { path: 'alkouser', component: AlkousersComponent},
   { path: 'Admin', loadChildren: './admin/admin.module#AdminModule'},

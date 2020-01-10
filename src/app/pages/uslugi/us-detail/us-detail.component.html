@@ -1,0 +1,7 @@
+<input type="button" [routerLink]="['/']" class="btn btn-outline-primary m-1 " value="назад">
+<div >
+    <h4>{{usluga.title}}</h4>
+    <p>{{usluga.body}}</p>
+</div>
+<input type="button" (click) = "getComments()" class="btn btn-outline-primary m-1 " value="Посмотреть комментарии">
+<p>{{comments}}</p>

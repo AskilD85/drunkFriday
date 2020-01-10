@@ -1,10 +1,11 @@
 
 <div *ngIf="articles?.length > 0">
 
-    <div *ngFor="let article of articles" class="shadow p-2 m-2 rounded">
+    <div *ngFor="let article of articles" >
 
-        <b><a href="#">{{article.title}}</a></b>
+        <b><a [routerLink]="['/Uslugi', article.id]">{{article.title}}</a></b>
         <p>{{article.body}}</p>
+        <router-outlet></router-outlet>
         <hr>
     </div>
 </div>
