@@ -1,6 +1,7 @@
 import { Article } from './../../model/Article';
 import { HttpService } from './../../services/http.service';
 import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-uslugi',
@@ -17,7 +18,12 @@ export class UslugiComponent implements OnInit {
   }
 
   getUslugi() {
-    this.http.getArticles().subscribe((articles: Article[]) =>  this.articles = articles );
+    this.http.getArticles().subscribe((articles: Article[]) => { 
+      this.articles = articles; },
+      (err: HttpErrorResponse) => {
+        console.log('Ошибка', err);
+
+      } );
   }
 
   

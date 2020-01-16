@@ -3,6 +3,7 @@ import { Article } from './../../../model/Article';
 import { HttpService } from './../../../services/http.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-us-detail',
@@ -32,7 +33,11 @@ export class UsDetailComponent implements OnInit, OnDestroy {
   }
 
   getArticle() {
-    this.http.getArticle(this.id).subscribe( (usluga: Article) => {this.usluga = usluga; });
+    this.http.getArticle(this.id).subscribe( (usluga: Article) => {this.usluga = usluga; },
+      (err: HttpErrorResponse) => {
+        console.log('Ошибка деталки:  ', err);
+
+      });
   }
   getComments() {
     this.comments = 'Комментарий пока нет';
