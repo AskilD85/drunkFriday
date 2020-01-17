@@ -1,23 +1,43 @@
-<input type="button" class="btn btn-outline-primary m-1" value="Добавить услугу" (click)="addClick=true; myArticles=false">
-<input type="button" class="btn btn-outline-primary m-1"  value="Мои услуги" (click)="myUslugi();addClick = false; myArticles=true; addArticle=false">
+<input type="button" class="btn btn-outline-primary m-1" value="Добавить хотелку"
+    (click)="addClick=true; myArticles=false">
+<input type="button" class="btn btn-outline-primary m-1" value="Мои хотелки"
+    (click)="myUslugi();addClick = false; myArticles=true; addArticle=false">
 <hr>
 <div *ngIf="addClick">
-    <h3>Добавить услугу</h3>
-    <form  [formGroup]="addForm" (ngSubmit)="addUsluga()">
-        <div><input type="text" class="form-control m-1" [(ngModel)]="title" formControlName="title" ></div>
+    <h3>Добавить хотелку</h3>
+
+    <form [formGroup]="addForm" (ngSubmit)="addUsluga()">
+
+
+            <mat-form-field class="full-width">
+                
+                <mat-label class="mat-label ">Категория</mat-label>
+                <mat-select formControlName="category_id" >
+                    <mat-option value="">Не выбрано</mat-option>
+                    <mat-option *ngFor="let categ of categories;" [value]="categ.id">
+                        {{ categ.title }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+
+        <div class="input-field">
+            <input type="text" class="form-control m-1" [(ngModel)]="title" formControlName="title" id="title">
+            <label for="title">Введите название</label>
+        </div>
         <div><textarea type="text" class="form-control m-1" [(ngModel)]="body" formControlName="body"></textarea></div>
         <input type="text" hidden formControlName="user_id">
-        <input type="button" value="Очистить" class="btn btn-danger m-1" (click)="clearForm()" >
-        <input type="submit" value="Добавить" class="btn btn-success m-1" [disabled]="addForm.invalid" >
+        <input type="button" value="Очистить" class="btn btn-danger m-1" (click)="clearForm()">
+        <input type="submit" value="Добавить" class="btn btn-success m-1" [disabled]="addForm.invalid">
     </form>
 </div>
 <div *ngIf="myArticles">
-    <h3>Список моих услуг</h3>
+    <h3>Список моих хотелок</h3>
     <div *ngFor="let article of allArticles; let i = index">
         <div>
             <div><b>{{article.title}}</b></div>
             <div>{{article.body}}</div>
-            <input type="button" (click)="delete(article.id)" value="Удалить" class="btn btn-danger">
+            <input type="button" (click)="edit(article.id)" value="Редактировать" class="btn btn-danger m-2 ">
+            <input type="button" (click)="delete(article.id)" value="Удалить" class="btn btn-danger m-2 red">
             <HR>
         </div>
     </div>
@@ -32,4 +52,3 @@
 </div>
 
 <div> Данные пользователя {{ user | json}}</div>
-

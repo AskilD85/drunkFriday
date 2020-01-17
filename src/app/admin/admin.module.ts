@@ -9,6 +9,12 @@ import { LkComponent } from './lk/lk.component';
 import { GeneralGuard } from '../general.guards';
 
 
+import { MatSelectModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRippleModule,  } from '@angular/material';
+
 @NgModule({
 declarations: [
     LoginPageComponent,
@@ -26,7 +32,11 @@ imports: [
         ]  },
         { path: 'login', component: LoginPageComponent  },
 
-    ])
+    ]),
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    MatButtonModule,
 ],
 exports: [
     RouterModule

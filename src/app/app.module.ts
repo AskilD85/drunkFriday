@@ -22,6 +22,16 @@ import { UslugiComponent } from './pages/uslugi/uslugi.component';
 import { AgmCoreModule } from '@agm/core';
 import { UsDetailComponent } from './pages/uslugi/us-detail/us-detail.component';
 
+
+import { MatSelectModule,
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatRippleModule,  } from '@angular/material';
+
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +57,24 @@ import { UsDetailComponent } from './pages/uslugi/us-detail/us-detail.component'
     SharedModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCZuwSovZWVFqgaHBwvdkbNcwgvlj14QXU'
-    })
+    }),
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRippleModule,
+    MatSelectModule,
+  ],
+  exports: [
+    MatSelectModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    BrowserModule,
+    MatRippleModule,
+    
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }

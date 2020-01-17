@@ -77,7 +77,7 @@ export class AuthService {
   logout() {
     this.authEmit.emit(false);
     localStorage.clear();
-    this.route.navigate(['Admin', 'login']);
+    this.route.navigate(['Admin']);
   }
 
   register(regData) {

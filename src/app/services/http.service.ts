@@ -100,4 +100,9 @@ export class HttpService {
   getUser(id: string) {
     return this.http.get(this.url + `users/${id}`);
   }
+
+  getCategories() {
+    return this.http.get(this.url + 'categories');
+  }
+
 }

@@ -1,3 +1,4 @@
+import { Categories } from './../../model/Categories';
 import { AuthService } from './../auth.service';
 import { HttpService } from './../../services/http.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -16,6 +17,7 @@ export class LkComponent implements OnInit {
       user_id : new FormControl(localStorage.getItem('user_id'), [Validators.required]),
       title: new FormControl('', [Validators.required]),
       body: new FormControl('', [Validators.required]),
+      category_id: new FormControl('', [Validators.required]),
   });
   addArticle: Article;
   allArticles;
@@ -25,11 +27,13 @@ export class LkComponent implements OnInit {
   body = '';
   del;
   user: User;
+  categories: Categories;
 
   constructor(private http: HttpService, private authService: AuthService) { }
 
   ngOnInit() {
     this.getUser();
+    this.getCategories();
   }
   addUsluga() {
     console.log('addUsluga', this.addForm.value);
@@ -59,5 +63,10 @@ export class LkComponent implements OnInit {
     this.http.getUser(userid).subscribe( (user: User) => {this.user = user; console.log(user); } );
   }
 
-  
+  getCategories() {
+    this.http.getCategories().subscribe( (categ: Categories) => {this.categories = categ; console.log('here: ', this.categories); } );
+  }
+  edit(id) {
+
+  }
 }
