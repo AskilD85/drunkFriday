@@ -97,14 +97,7 @@ export class LkComponent implements OnInit, OnDestroy {
       this.categories = categ;
       console.log('here: ', this.categories); });
   }
-  editArticleSubmit(id, i) {
-    console.log(this.editArticleForm.value);
-    this.http.editArticle( this.editArticleForm.value, id).subscribe(( edit: Article) => { 
-      this.addArticle = edit;
-      console.log('edit', edit); }, 
-      (err) => { console.log('что -то пошло нетак');}, 
-      () => {this.editPage = false; });
-  }
+  
 
   /*reverse2(str: string) {
     const result = str.split('').reverse().join('');
