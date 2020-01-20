@@ -14,12 +14,14 @@ import { MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
     MatRippleModule,  } from '@angular/material';
+import { DetailPageComponent } from './lk/detail-page/detail-page.component';
 
 @NgModule({
 declarations: [
     LoginPageComponent,
     AdminLayoutComponent,
-    LkComponent
+    LkComponent,
+    DetailPageComponent,
 ],
 imports: [
     SharedModule,
@@ -29,6 +31,7 @@ imports: [
     RouterModule.forChild([
         { path: '', component: AdminLayoutComponent, children: [
             { path: 'Lk', component: LkComponent, canActivate: [ GeneralGuard ] },
+            { path: 'Lk/Detail/:id', component: DetailPageComponent, canActivate: [ GeneralGuard ] },
         ]  },
         { path: 'login', component: LoginPageComponent  },
 

@@ -1,0 +1,18 @@
+<div *ngIf="form">
+    <form  [formGroup]="form" >
+        <!-- <mat-form-field class="full-width">
+        
+            <mat-label class="mat-label ">Категория</mat-label>
+            <mat-select formControlName="category_id" >
+                <mat-option value="">Не выбрано</mat-option>
+                <mat-option *ngFor="let categ of categories;" [value]="categ.id">
+                    {{ categ.name }}</mat-option>
+            </mat-select>
+        </mat-form-field> -->
+        <div class="input-field">
+            <input type="text" class="form-control m-1"  formControlName="title" id="title">
+        </div>
+        <div><textarea type="text" class="form-control m-1"  formControlName="body" ></textarea></div>
+        <input type="text" hidden formControlName="user_id">
+    </form>
+</div>

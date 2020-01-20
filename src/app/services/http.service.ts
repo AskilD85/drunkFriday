@@ -39,12 +39,16 @@ export class HttpService {
     return this.http.get(this.url + `articles/${id}`);
   }
 
-  getArticleOfUser(id) {
-    return this.http.get(this.url + `category/${id}`);
+  getArticleOfUser(authorId) {
+    return this.http.get(this.url + `category/${authorId}`);
   }
 
   addArticle(body) {
-    return this.http.post(this.url + 'articles', body);
+    return this.http.post(this.url + `articles`, body);
+  }
+
+  editArticle(body, id) {
+    return this.http.put(this.url + `articles/${id}`, body);
   }
   delete(id: string) {
     return this.http.delete(this.url + `articles/${id}`);
@@ -105,4 +109,7 @@ export class HttpService {
     return this.http.get(this.url + 'categories');
   }
 
+  addCategories(body) {
+    return this.http.post(this.url + 'categories', body);
+  }
 }
