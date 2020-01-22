@@ -1,7 +1,9 @@
+import { Article } from './../model/Article';
 import { Router } from '@angular/router';
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { User } from '../model/User';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -21,6 +23,8 @@ export class HttpService {
   regUser;
   authEmit: EventEmitter<boolean> = new EventEmitter();
   usernameEmit: EventEmitter<string> = new EventEmitter();
+  articleEmit: EventEmitter<Article> = new EventEmitter();
+  article: Article;
 
   getRandomUser() {
     return this.http.get(this.url + 'randomuser');
@@ -37,6 +41,25 @@ export class HttpService {
 
   getArticle(id) {
     return this.http.get(this.url + `articles/${id}`);
+
+    /*
+    this.http.get(this.url + `articles/${id}`).subscribe( (data: Article) => {
+      this.articleEmit.emit(data);
+    }
+     );*/
+
+    /*
+    let arr = new Array<Article>();
+    // return this.http.get(this.url + `articles/${id}`);
+
+    this.http.get(this.url + `articles/${id}`).toPromise().then( data => {
+      arr = data as Article[];
+      this.articleEmit.emit(arr);
+      console.log('article : ', arr);
+
+    }
+
+    );*/
   }
 
   getArticleOfUser(authorId) {
@@ -44,19 +67,27 @@ export class HttpService {
   }
 
   addArticle(body) {
+    body.user_id = localStorage.getItem('user_id');
+    console.log(333, body);
     return this.http.post(this.url + `articles`, body);
   }
 
   editArticle(body, id) {
+    if ( body.active === true) {
+      body.active = 1;
+    }
+    if ( body.active === false) {
+      body.active = 0;
+    }
     return this.http.put(this.url + `articles/${id}`, body);
   }
   delete(id: string) {
     return this.http.delete(this.url + `articles/${id}`);
   }
-  authService(email: string, password: string, url: string,  name?: string ) {
+  authService(email: string, password: string, url: string, name?: string) {
     const body = {
       email,
-       password,
+      password,
       name
     };
     console.log(333, JSON.stringify(body));
@@ -64,12 +95,12 @@ export class HttpService {
   }
 
   checkAuth() {
-    if (localStorage.getItem('apikey') !== null ) {
-       this.auth = true;
-       this.authEmit.emit(this.auth);
-       this.username = localStorage.getItem('username');
-       this.usernameEmit.emit(this.username);
-       this.route.navigate(['/']);
+    if (localStorage.getItem('apikey') !== null) {
+      this.auth = true;
+      this.authEmit.emit(this.auth);
+      this.username = localStorage.getItem('username');
+      this.usernameEmit.emit(this.username);
+      this.route.navigate(['/']);
     }
 
   }
@@ -78,15 +109,15 @@ export class HttpService {
     this.authService(email, password, 'login').subscribe(data => {
       console.log(data);
       this.user = data as User;
-      if ( this.user.data !== null && this.user.data !== undefined) {
+      if (this.user.data !== null && this.user.data !== undefined) {
         this.errorText = '';
-        localStorage.setItem('apikey', this.user.data.api_token );
-        localStorage.setItem('username', this.user.data.name );
+        localStorage.setItem('apikey', this.user.data.api_token);
+        localStorage.setItem('username', this.user.data.name);
         this.checkAuth();
       }
 
     }, (err: HttpErrorResponse) => {
-        console.log(err);
+      console.log(err);
     });
   }
 
@@ -110,6 +141,8 @@ export class HttpService {
   }
 
   addCategories(body) {
+    body.author_id = localStorage.getItem('user_id');
+    console.log(body);
     return this.http.post(this.url + 'categories', body);
   }
 }

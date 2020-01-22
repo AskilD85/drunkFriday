@@ -1,18 +1,100 @@
-<div class="container">
-    <div class="row">
+<div class="">
+    <div class="">
         <div class="col-12">
             <div class="text-center">
-                <h3>Админка</h3>
-                <div *ngIf="!isAuth">
+                <!-- <h3>Админка</h3>  -->
+                <div *ngIf="!isAuth; ">
                     <app-login-page></app-login-page>
+                </div>
+
+            </div>
+
+            <div *ngIf="isAuth;">
+                <input type="button" class="btn btn-outline-primary m-1" value="Добавить хотелку"
+                (click)="addClick=true; myArticles=false">
+                <hr>
+
+                <div *ngIf="addClick">
+                    <h3>Добавить хотелку</h3>
+                    <input type="button" value="Добавить категорию" class="btn m-2" (click)="addCategPage = true">
+                
+                    <div *ngIf="addCategPage" class="addCategPage shadow m-3 p-3">
+                        
+                        <p>Добавить категорию</p>
+                        <form [formGroup]="addCategForm" (ngSubmit)="addCategSubmit()" >
+                            <div class="input-field" >
+                                <input type="text" 
+                                        id="name" 
+                                        formControlName="name">
+                                <label for="name">название категории</label>
+                            </div>
+                            <div class="input-field">
+                                <input type="text" 
+                                        id="body" 
+                                        formControlName="body">
+                                <label for="body">Описание</label>
+                            </div>
+                            <!-- <input type="text" hidden formControlName="author_id"> -->
+                
+                        <input type="submit" value="Добавить категорию" class="btn m-2" [disabled]="addCategForm.invalid">
+                        <input type="button" value="Закрыть" class="btn m-2 red" (click)="addCategPage = false">
+                        
+                        </form>
+                    </div>
+                
+                                    
+                    <form [formGroup]="addForm" (ngSubmit)="addUsluga()">
+                        <mat-form-field class="full-width">
+                            <mat-label class="mat-label ">Категория</mat-label>
+                            <mat-select formControlName="category_id" >
+                                <mat-option value="">Не выбрано</mat-option>
+                                <mat-option *ngFor="let categ of categories;" [value]="categ.id">
+                                    {{ categ.name }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+           
+                        <div class="input-field">
+                            <input type="text" class="form-control m-1"  formControlName="title" id="title">
+                            <label for="title">Введите название</label>
+                        </div>
+                        <div><textarea type="text" class="form-control m-1"  formControlName="body"></textarea></div>
+                        <input type="button" value="Очистить" class="btn btn-danger m-1" (click)="addForm.reset()">
+                        <input type="submit" value="Добавить" class="btn btn-success m-1" [disabled]="addForm.invalid">
+                        <input type="button" value="Закрыть" class="btn m-2 red" (click)="addClick = false">
+                    </form>
+    
+                </div>
+
+
+            <div *ngIf="allArticles">
+                <div *ngFor="let article of allArticles" class=" shadow m-3  p-3" [ngClass]=" article?.active === 1 ? {'no-active': false} : {'no-active': true}">
+                    <div><b>{{ article.title }}</b></div>
+                    <div>{{article.body}}</div>
+                    <input type="button" class="btn m-2" [routerLink]="(['Detail', article.id])" value="открыть">
+                    <input type="button" class="btn red m-2" (click)="delete(article.id)" value="удалить">
+                   
+                    <hr>
+                    <b>Активность:</b> {{article?.active === 1 ? 'Да' : 'Нет'}} &nbsp;<b>Просмотров:</b>  &nbsp; <b>Комментариев:  </b>&nbsp; <b>Откликов:</b> 
                 </div>
                 
             </div>
-            <div *ngIf="isAuth">
-                
-                <router-outlet></router-outlet>
+
+            
+         
+            
+            
+            
+            <!-- {{addForm.value | json}} -->
+            <div *ngIf="addArticle">
+                <p class="color-green">Услуга добавлена!</p>
+                <div><small>Название:</small> {{addArticle.title}}</div>
+                <div><small>Описание:</small> {{addArticle.body}}</div>
+            
+            </div>
+
+
+                <!-- <router-outlet></router-outlet> -->
             </div>
         </div>
     </div>
 </div>
-

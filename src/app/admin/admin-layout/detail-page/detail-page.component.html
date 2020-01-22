@@ -1,0 +1,51 @@
+<a [routerLink]="(['/Admin'])" class="btn m-3">назад</a>
+<div class="m-3 p-3 editForm">
+<div *ngIf="form">
+    <form  [formGroup]="form" (ngSubmit)="editArticleSubmit()">
+        
+        <mat-form-field class="full-width">
+        
+            <mat-label class="mat-label ">Категория</mat-label>
+            <mat-select formControlName="category_id"  >
+                <mat-option value="">Не выбрано</mat-option>
+                <mat-option *ngFor="let categ of categories;" [value]="categ.id">
+                    {{ categ.name }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+
+        <div class="input-field">
+            <input type="text" class="form-control m-1" value="article?.title"  formControlName="title" id="title">
+        </div>
+
+
+        <div><textarea type="text" class="form-control m-1"  formControlName="body" value="article?.body" ></textarea></div>
+
+
+        <input type="text" hidden formControlName="user_id">
+
+
+        <div>
+            Активен
+            <mat-slide-toggle 
+                [checked]="article?.active === 1 ? true : false"
+                color="primary"
+                formControlName="active"
+                class="float-right">
+              <span class="OnOff">
+                {{ article?.active === 1 ? 'Да' : 'Нет' }}
+              </span>
+            </mat-slide-toggle>
+          </div>
+
+
+
+        <input type="submit" class="btn m-2" value="Обновить" [disabled]="form.invalid || form.pristine">
+        <input type="button" class="btn m-2" value="ФОрма" (click)="formValue()">
+    </form>
+
+    <div *ngIf="editInfo">
+        <span class="color-green">Сохранено! Перенаправление...</span>
+    </div>
+</div>
+</div>

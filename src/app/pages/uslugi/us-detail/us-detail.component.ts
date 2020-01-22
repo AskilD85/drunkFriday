@@ -33,6 +33,7 @@ export class UsDetailComponent implements OnInit, OnDestroy {
   }
 
   getArticle() {
+
     this.http.getArticle(this.id).subscribe( (usluga: Article) => {this.usluga = usluga; },
       (err: HttpErrorResponse) => {
         console.log('Ошибка деталки:  ', err);

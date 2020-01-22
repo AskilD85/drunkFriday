@@ -22,11 +22,7 @@ export class AuthService {
               private httpService: HttpService) { }
 
   get token(): string {
-    // const expDate = new Date(localStorage.getItem('fb-token-exp'))
-    // if (new Date() > expDate) {
-    //     this.logout()
-    //     return null
-    // }
+   
     return localStorage.getItem('apikey');
   }
 
@@ -65,7 +61,7 @@ export class AuthService {
         this.authEmit.emit(true);
       },
         (err: HttpErrorResponse) => {
-          console.log('Не автооризовался: ', err);
+          console.log('Не авторизовался: ', err);
           this.authEmit.emit(false);
         });
 

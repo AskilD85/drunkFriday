@@ -13,8 +13,11 @@ import { MatSelectModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSlideToggleModule,
+
     MatRippleModule,  } from '@angular/material';
-import { DetailPageComponent } from './lk/detail-page/detail-page.component';
+import { DetailPageComponent } from './admin-layout/detail-page/detail-page.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
 declarations: [
@@ -22,6 +25,7 @@ declarations: [
     AdminLayoutComponent,
     LkComponent,
     DetailPageComponent,
+    ProfileComponent,
 ],
 imports: [
     SharedModule,
@@ -31,15 +35,17 @@ imports: [
     RouterModule.forChild([
         { path: '', component: AdminLayoutComponent, children: [
             { path: 'Lk', component: LkComponent, canActivate: [ GeneralGuard ] },
-            { path: 'Lk/Detail/:id', component: DetailPageComponent, canActivate: [ GeneralGuard ] },
         ]  },
         { path: 'login', component: LoginPageComponent  },
-
+        { path: 'Profile', component: ProfileComponent, canActivate: [ GeneralGuard ] },
+        { path: 'Detail/:id', component: DetailPageComponent, canActivate: [ GeneralGuard ] },
     ]),
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
     MatButtonModule,
+    MatSlideToggleModule,
+
 ],
 exports: [
     RouterModule

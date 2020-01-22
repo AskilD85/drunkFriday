@@ -12,6 +12,7 @@ export class TokenInterceptor implements HttpInterceptor {
         // add authorization header with jwt token if available
 
         const token = localStorage.getItem('apikey');
+
         if (token) {
 
             request = request.clone({
