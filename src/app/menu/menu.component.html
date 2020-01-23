@@ -1,6 +1,49 @@
+   
 
-  <div>
-      <a [routerLink]="['./']"  class="btn btn-outline-primary m-2 ">Главная</a>
-      <!-- <a [routerLink]="['./About']"  routerLinkActive="active" class="btn btn-outline-primary m-2 p-2">Обо мне</a> -->
-      <a [routerLink]="['./Contacts']" routerLinkActive="active" class="btn btn-outline-primary m-2 ">Обратная связь</a>
+
+
+<!-- <nav class="nav-wrapper"> 
+  <div >
+  <a [routerLink]="['./']"  class="btn btn-outline-primary m-2 ">Главная</a>
+  <a [routerLink]="['./About']"  routerLinkActive="active" class="btn btn-outline-primary m-2 p-2">Обо мне</a>
+  <a [routerLink]="['./Contacts']" routerLinkActive="active" class="btn btn-outline-primary m-2 ">Обратная связь</a>
+</div> 
+</nav> -->
+
+<nav>
+  <div class="nav-wrapper">
+   <div class="container">
+    <a  class="brand-logo">
+     Сервис
+    </a>
+    <a data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>    
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+     <li ><a [routerLink]="['./']"  class="btn btn-outline-primary m-2 ">Главная</a></li>
+     <li routerLinkActive="active"><a [routerLink]="['./Contacts']" routerLinkActive="active" class="btn btn-outline-primary m-2 ">Обратная связь</a></li>
+    </ul>
+   </div>
   </div>
+ </nav>
+
+<ul id="slide-out" class="sidenav " >
+  <li *ngIf="auth">
+    <div class="user-view">
+    <div class="background bg-info">
+    </div>
+    <a href="#name"><span class="white-text name">John Doe</span></a>
+    <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+    </div>
+  </li>
+
+
+  <li><a href="#"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+  <li><a [routerLink]="['./']" class="sidenav-close">Список услуг</a></li>
+  <li><a href="#" class="sidenav-close">Список категорий</a></li>
+  <li><a href="#" class="sidenav-close">Список пользователей</a></li>
+  <li><a [routerLink]="['./Contacts']" class="sidenav-close">Обратная связь</a></li>
+  <li><div class="divider"></div></li>
+  <li><a class="subheader">Subheader</a></li>
+  <li><a class="waves-effect" class="sidenav-close">Third Link With Waves</a></li>
+</ul>
+    
+  

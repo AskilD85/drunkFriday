@@ -1,6 +1,7 @@
 import { HttpService } from './../services/http.service';
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -28,15 +29,15 @@ export class MenuComponent implements OnInit {
 
   fontSize = this.windowHeight * 0.1;
   headingSize = this.windowWidth * 0.1;
-  
+
   ngOnInit() {
-    
-    
   }
 
   click() {
     console.log(11);
   }
+
+
 
 
   navToggle() {

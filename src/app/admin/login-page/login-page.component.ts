@@ -11,7 +11,6 @@ import { User } from 'src/app/model/User';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit, OnDestroy {
-  
 
   reg = false;
   email = '';

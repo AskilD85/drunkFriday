@@ -22,7 +22,7 @@ export class AuthService {
               private httpService: HttpService) { }
 
   get token(): string {
-   
+
     return localStorage.getItem('apikey');
   }
 
