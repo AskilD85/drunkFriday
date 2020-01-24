@@ -1,20 +1,7 @@
-
- 
-
 <app-menu></app-menu>
 <hr>
-<!-- если пятница -->
-<div *ngIf="isTodayFriday()">
-  <div class="shadow p-4 m-4 rounded">
-  <router-outlet></router-outlet>
-  </div>
-</div>
+<router-outlet></router-outlet>
 
-
-<!-- если не пятница -->
-<div *ngIf="!isTodayFriday()">
-  <app-notfriday></app-notfriday>
-</div>
 
 
 
