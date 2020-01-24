@@ -20,7 +20,6 @@ export class AppComponent implements OnInit, OnDestroy {
   username: string;
   user: User;
 
-  userSub: Subscription;
 
   ngOnInit() {
 
@@ -28,18 +27,9 @@ export class AppComponent implements OnInit, OnDestroy {
     this.today = new Date().toLocaleString('ru', { weekday: 'long' }) + ', ' + new Date().toLocaleString('ru', {
       year: 'numeric', month: 'long', day: 'numeric'
     });
-    this.authService.checkAuth();
-    this.authService.authEmit.subscribe(x => {
-      this.auth = x;
-      this.userSub = this.http.getUser(localStorage.getItem('user_id')).subscribe( (us: User) => {this.user = us; });
-    });
-
   }
 
   ngOnDestroy(): void {
-    if (this.userSub) {
-      this.userSub.unsubscribe();
-    }
   }
 
 
@@ -49,10 +39,6 @@ export class AppComponent implements OnInit, OnDestroy {
       return true;
     }
     return true;
-  }
-
-  logout() {
-    this.authService.logout();
   }
 }
 

@@ -1,20 +1,4 @@
-  <div class="float-right today m-2">
 
-      <!-- <span ><b>{{ today | titlecase}}</b></span> -->
-      <div *ngIf="!auth">
-        <a  [routerLink]="['./Admin']" ><button class="btn" >Войти</button></a>
-      </div>
-      <div *ngIf="auth">
-       
-        <div class="username"  > 
-          <a [routerLink]="(['Admin', 'Profile'])" class="btn mx-1 ">Привет, {{user?.name}} </a>
-          <button class="mx-1 btn btn-primary"   [routerLink]="['./Admin', 'Lk']">Личный кабинет</button>
-          <button class="mx-1 btn btn-light" (click)="logout()"> Выйти</button>
-        </div>
-        
-      </div>
-      
-  </div>
  
 
 <app-menu></app-menu>

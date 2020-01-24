@@ -14,8 +14,7 @@ import { MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
     MatSlideToggleModule,
-
-    MatRippleModule,  } from '@angular/material';
+    } from '@angular/material';
 import { DetailPageComponent } from './admin-layout/detail-page/detail-page.component';
 import { ProfileComponent } from './profile/profile.component';
 
