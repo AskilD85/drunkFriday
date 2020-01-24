@@ -1,11 +1,10 @@
 
 <div *ngIf="articles?.length > 0">
-
-    <div *ngFor="let article of articles" >
-
-        <b><a [routerLink]="['/Uslugi', article.id]">{{article.title}}</a></b>
-        <p>{{article.body}}</p>
-        <router-outlet></router-outlet>
-        <hr>
+    <div class="container">
+        <div *ngFor="let article of articles" >
+            <b><a [routerLink]="['/Uslugi', article.id]">{{article.title}}</a></b>
+            <p>{{article.body}}</p>
+            <hr>
+        </div>
     </div>
 </div>

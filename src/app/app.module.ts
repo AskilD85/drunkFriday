@@ -27,7 +27,10 @@ import { MatSelectModule,
   MatButtonModule,
   MatFormFieldModule,
   MatInputModule,
-  MatRippleModule,  } from '@angular/material';
+  MatSidenavModule,
+  MatToolbarModule,
+  MatRippleModule,
+  MatIconModule  } from '@angular/material';
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -64,6 +67,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatInputModule,
     MatRippleModule,
     MatSelectModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule
   ],
   exports: [
     MatSelectModule,
@@ -74,7 +80,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     BrowserModule,
     MatRippleModule,
-    
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }

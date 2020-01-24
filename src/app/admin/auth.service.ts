@@ -57,7 +57,7 @@ export class AuthService {
     if (this.isAuthenticated()) {
       const userId = localStorage.getItem('user_id');
       this.httpService.getUser(userId).subscribe(x => {
-        console.log('Авторизовался: ', x);
+        console.log('Авторизовался: ');
         this.authEmit.emit(true);
       },
         (err: HttpErrorResponse) => {

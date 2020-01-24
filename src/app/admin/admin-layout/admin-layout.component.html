@@ -1,4 +1,4 @@
-        <div class="col-12">
+          
             <div class="text-center">
                 <!-- <h3>Админка</h3>  -->
                 <div *ngIf="!isAuth; ">
@@ -7,7 +7,7 @@
 
             </div>
 
-            <div *ngIf="isAuth;">
+            <div *ngIf="isAuth;" class="container">
                 <input type="button" class="btn btn-outline-primary m-1" value="Добавить хотелку"
                 (click)="addClick=true; myArticles=false">
                 <hr>
@@ -65,7 +65,7 @@
 
 
             <div *ngIf="allArticles">
-                <div *ngFor="let article of allArticles" class=" shadow m-3  p-3" [ngClass]=" article?.active === 1 ? {'no-active': false} : {'no-active': true}">
+                <div *ngFor="let article of allArticles" class=" m-1 p-2 shadow rounded" [ngClass]=" article?.active === 1 ? {'no-active': false} : {'no-active': true}">
                     <div><b>{{ article.title }}</b></div>
                     <div>{{article.body}}</div>
                     <input type="button" class="btn m-2" [routerLink]="(['Detail', article.id])" value="открыть">
@@ -93,4 +93,3 @@
 
                 <!-- <router-outlet></router-outlet> -->
             </div>
-        </div>

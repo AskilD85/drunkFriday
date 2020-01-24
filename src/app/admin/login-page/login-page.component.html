@@ -1,3 +1,5 @@
+<div class="container">
+    
 <div class="text-center">
     <h3>{{reg ? 'Регистрация' : 'Авторизация'}}</h3>
     <form *ngIf="!reg" class="login-div" [formGroup]="form" (ngSubmit)="login()">
@@ -67,4 +69,5 @@
             <input type="button" class="btn btn-primary m-1" value = "Есть аккаунт" (click)="authClick()">
         </div>
     </form>
+</div>
 </div>

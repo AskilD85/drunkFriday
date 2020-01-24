@@ -1,11 +1,3 @@
-<!-- <nav class="nav-wrapper"> 
-  <div >
-  <a [routerLink]="['./']"  class="btn btn-outline-primary m-2 ">Главная</a>
-  <a [routerLink]="['./About']"  routerLinkActive="active" class="btn btn-outline-primary m-2 p-2">Обо мне</a>
-  <a [routerLink]="['./Contacts']" routerLinkActive="active" class="btn btn-outline-primary m-2 ">Обратная связь</a>
-</div> 
-</nav> -->
-
 <nav>
   <div class="nav-wrapper bg-info">
    <div class="container">
@@ -13,14 +5,14 @@
      Сервис
     </a>
     <a data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>    
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
+    <ul  class="right hide-on-med-and-down">
      <li ><a [routerLink]="['./']"  class="">Главная</a></li>
      <li routerLinkActive="active"><a [routerLink]="['./Contacts']" class="">Обратная связь</a></li>
      <li *ngIf="!auth" ><a [routerLink]="['./Admin']" class="">Войти</a></li>
      <li *ngIf="auth" routerLinkActive="active"><a [routerLink]="['./Admin']"  class="">Личный кабинет</a></li>
      <li *ngIf="auth"><a (click)="logout()" routerLinkActive="active" class="">Выйти</a></li>
     </ul>
-    <a *ngIf="auth" [routerLink]="['./Admin', 'Profile']" class="right sidenav-trigger"><i class="material-icons">
+    <a *ngIf="auth" [routerLink]="['./Admin']" class="right hide-on-large-only"><i class="material-icons">
       perm_identity
       </i>
     
@@ -39,7 +31,7 @@
         <a  [routerLink]="['./Admin']" class="white-text sidenav-close" >Войти</a>
       </div>
       <div class="username" *ngIf="auth" > 
-        <a [routerLink]="(['Admin', 'Profile'])"><span class="white-text name">{{user?.name | titlecase}}</span></a>
+        <a [routerLink]="['Admin', 'Profile']"><span class="white-text name sidenav-close">{{user?.name | titlecase}}</span></a>
         <a [routerLink]="['./Admin', 'Lk']" class="white-text mx-1 sidenav-close">Личный кабинет </a>
         <a class="mx-1 white-text sidenav-close right" (click)="logout()"> Выйти</a>
       </div>
@@ -57,5 +49,3 @@
 <li><a class="subheader">Subheader</a></li>
 <li><a class="waves-effect" class="sidenav-close">Third Link With Waves</a></li>
 </ul>
-      
-  
