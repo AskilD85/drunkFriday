@@ -20,9 +20,11 @@
      <li *ngIf="auth" routerLinkActive="active"><a [routerLink]="['./Admin']"  class="">Личный кабинет</a></li>
      <li *ngIf="auth"><a (click)="logout()" routerLinkActive="active" class="">Выйти</a></li>
     </ul>
-    <a *ngIf="auth" [routerLink]="['./Admin', 'Profile']" class="right"><i class="material-icons">
+    <a *ngIf="auth" [routerLink]="['./Admin', 'Profile']" class="right sidenav-trigger"><i class="material-icons">
       perm_identity
-      </i></a>    
+      </i>
+    
+    </a>    
 
    </div>
   </div>
