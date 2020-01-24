@@ -14,10 +14,16 @@
     </a>
     <a data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>    
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-     <li ><a [routerLink]="['./']"  class=" m-2 ">Главная</a></li>
-     <li routerLinkActive="active"><a [routerLink]="['./Contacts']" routerLinkActive="active" class=" m-2 ">Обратная связь</a></li>
-     <li *ngIf="auth" routerLinkActive="active"><a [routerLink]="['./Admin']" routerLinkActive="active" class=" m-2 ">Личный кабинет</a></li>
+     <li ><a [routerLink]="['./']"  class="">Главная</a></li>
+     <li routerLinkActive="active"><a [routerLink]="['./Contacts']" class="">Обратная связь</a></li>
+     <li *ngIf="!auth" ><a [routerLink]="['./Admin']" class="">Войти</a></li>
+     <li *ngIf="auth" routerLinkActive="active"><a [routerLink]="['./Admin']"  class="">Личный кабинет</a></li>
+     <li *ngIf="auth"><a (click)="logout()" routerLinkActive="active" class="">Выйти</a></li>
     </ul>
+    <a *ngIf="auth" [routerLink]="['./Admin', 'Profile']" class="right"><i class="material-icons">
+      perm_identity
+      </i></a>    
+
    </div>
   </div>
  </nav>
@@ -33,7 +39,7 @@
       <div class="username" *ngIf="auth" > 
         <a [routerLink]="(['Admin', 'Profile'])"><span class="white-text name">{{user?.name | titlecase}}</span></a>
         <a [routerLink]="['./Admin', 'Lk']" class="white-text mx-1 sidenav-close">Личный кабинет </a>
-        <a class="mx-1 white-text sidenav-close" (click)="logout() "> Выйти</a>
+        <a class="mx-1 white-text sidenav-close right" (click)="logout()"> Выйти</a>
       </div>
   </div>
 </li>

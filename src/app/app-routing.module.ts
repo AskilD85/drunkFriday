@@ -1,6 +1,5 @@
 import { SharedModule } from './_shared/shared.module';
 import { AlkousersComponent } from './alkousers/alkousers.component';
-import { RandomimgComponent } from './randomimg/randomimg.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, CanActivate, Routes } from '@angular/router';
 import { AboutComponent } from './pages/about/about.component';

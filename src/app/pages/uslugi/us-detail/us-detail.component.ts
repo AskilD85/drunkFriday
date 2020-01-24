@@ -12,34 +12,27 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class UsDetailComponent implements OnInit, OnDestroy {
 
-  id ;
+  id = this.route.snapshot.params.id;
   usluga: Article;
   comments = '';
 
-  sId: Subscription;
+  sArticle: Subscription;
   constructor(private route: ActivatedRoute, private http: HttpService) { }
 
   ngOnInit() {
-    this.sId = this.route.params.subscribe((params: Params) => {
-      this.id = params.id;
-      this.getArticle();
-    });
-  }
-
-  ngOnDestroy() {
-    if (this.sId) {
-      this.sId.unsubscribe();
-    }
-  }
-
-  getArticle() {
-
-    this.http.getArticle(this.id).subscribe( (usluga: Article) => {this.usluga = usluga; },
+    this.sArticle = this.http.getArticle(this.id).subscribe( (usluga: Article) => {this.usluga = usluga; },
       (err: HttpErrorResponse) => {
         console.log('Ошибка деталки:  ', err);
 
       });
   }
+
+  ngOnDestroy() {
+    if (this.sArticle) {
+      this.sArticle.unsubscribe();
+    }
+  }
+
   getComments() {
     this.comments = 'Комментарий пока нет';
   }
