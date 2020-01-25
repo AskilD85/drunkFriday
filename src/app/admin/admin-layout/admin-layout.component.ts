@@ -59,10 +59,14 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.authService.checkAuth();
-    this.sSub = this.authService.authEmit.subscribe(auth => this.isAuth = auth);
+    this.sSub = this.authService.authEmit.subscribe(auth => {
+      this.isAuth = auth;
+      if (auth === true) {
+        this.myUslugi();
+        this.getCategories();
+      }
+    });
 
-    this.myUslugi();
-    this.getCategories();
   }
   ngOnDestroy(): void {
     if (this.sSub) {
@@ -78,10 +82,13 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
   }
 
   myUslugi() {
-    console.log('мои услуги');
     const userid = localStorage.getItem('user_id');
-    this.myUslugiSub = this.http.getArticleOfUser(userid).subscribe((uslugi: Article[]) => {
-    this.allArticles = uslugi; console.log(1, this.allArticles); });
+    if (userid != null && userid !== undefined) {
+      this.myUslugiSub = this.http.getArticleOfUser(userid).subscribe((uslugi: Article[]) => {
+        this.allArticles = uslugi; console.log(1, this.allArticles);
+      });
+    }
+
   }
 
   delete(id: string) {
