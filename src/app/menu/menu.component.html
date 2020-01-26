@@ -7,6 +7,7 @@
     <a data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>    
     <ul  class="right hide-on-med-and-down">
      <li ><a [routerLink]="['./']"  class="">Главная</a></li>
+    <li><a [routerLink]="['./Info']" class="">Инфо</a></li>
      <li routerLinkActive="active"><a [routerLink]="['./Contacts']" class="">Обратная связь</a></li>
      <li *ngIf="!auth" ><a [routerLink]="['./Admin']" class="">Войти</a></li>
      <li *ngIf="auth" routerLinkActive="active"><a [routerLink]="['./Admin']"  class="">Личный кабинет</a></li>
@@ -40,12 +41,14 @@
  
  
  
-<li><a href="#"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+<li><a href="#"><i class="material-icons">home</i>Сервис поиска услуг</a></li>
 <li><a [routerLink]="['./']" class="sidenav-close">Список услуг</a></li>
+
 <li><a href="#" class="sidenav-close">Список категорий</a></li>
 <li><a href="#" class="sidenav-close">Список пользователей</a></li>
+
+<li><div class="divider background bg-info"></div></li>
+<li><a class="subheader">Дополнительная информация</a></li>
+<li><a [routerLink]="['./Info']" class="sidenav-close">О приложении</a></li>
 <li><a [routerLink]="['./Contacts']" class="sidenav-close">Обратная связь</a></li>
-<li><div class="divider"></div></li>
-<li><a class="subheader">Subheader</a></li>
-<li><a class="waves-effect" class="sidenav-close">Third Link With Waves</a></li>
 </ul>
