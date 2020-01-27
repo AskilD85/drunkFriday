@@ -8,12 +8,12 @@
             </div>
 
             <div *ngIf="isAuth;" class="container">
-                <input type="button" class="btn btn-outline-primary m-1" value="Добавить хотелку"
+                <input type="button" class="btn btn-outline-primary m-1" value="Добавить услугу"
                 (click)="addClick=true; myArticles=false">
                 <hr>
 
                 <div *ngIf="addClick">
-                    <h3>Добавить хотелку</h3>
+                    <h3>Добавить услугу</h3>
                     <input type="button" value="Добавить категорию" class="btn m-2" (click)="addCategPage = true">
                 
                     <div *ngIf="addCategPage" class="addCategPage shadow m-3 p-3">
@@ -64,7 +64,7 @@
                 </div>
 
 
-            <div *ngIf="allArticles">
+            <div *ngIf="allArticles && !addClick">
                 <div *ngFor="let article of allArticles" class=" m-1 p-2 shadow rounded" [ngClass]=" article?.active === 1 ? {'no-active': false} : {'no-active': true}">
                     <div><b>{{ article.title }}</b></div>
                     <div>{{article.body}}</div>
