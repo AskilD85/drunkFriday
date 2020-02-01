@@ -1,0 +1,11 @@
+.container {
+    width: 100%;
+}
+
+.item {
+    cursor: pointer;
+}
+.item:hover {
+    background-color: #d5f3f8;
+}
+

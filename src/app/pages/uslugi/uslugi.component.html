@@ -1,10 +1,17 @@
 
 <div *ngIf="articles?.length > 0">
-    <div class="container">
+    <div class="container ">
         <div *ngFor="let article of articles" >
-            <b><a [routerLink]="['/Uslugi', article.id]">{{article.title}}</a></b>
-            <p>{{article.body}}</p>
+            <div class=" p-2 m-3 item card" [routerLink]="['/Uslugi', article.id]" >
+            <b>{{article.title}}</b>
+            <div><small>категория:</small> {{ getCatById(article.category_id)[0].name}}</div>
+            <div>{{article.body | slice: 0:30 }}...</div>
+            
             <hr>
+            <div> Просмотры: 
+                    Комментарии:
+            </div> 
+            </div>
         </div>
     </div>
 </div>
