@@ -25,6 +25,7 @@ declarations: [
     LkComponent,
     DetailPageComponent,
     ProfileComponent,
+
 ],
 imports: [
     SharedModule,
@@ -34,10 +35,12 @@ imports: [
     RouterModule.forChild([
         { path: '', component: AdminLayoutComponent, children: [
             { path: 'Lk', component: LkComponent, canActivate: [ GeneralGuard ] },
+           
         ]  },
         { path: 'login', component: LoginPageComponent  },
-        { path: 'Profile', component: ProfileComponent, canActivate: [ GeneralGuard ] },
         { path: 'Detail/:id', component: DetailPageComponent, canActivate: [ GeneralGuard ] },
+        { path: 'Profile', component: ProfileComponent, canActivate: [ GeneralGuard ] },
+
     ]),
     MatFormFieldModule,
     MatSelectModule,

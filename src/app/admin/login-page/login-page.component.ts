@@ -1,9 +1,8 @@
-import { MyValidators } from './my.validators';
 import { AuthService } from './../auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { User } from 'src/app/model/User';
+import { User, Data } from 'src/app/model/User';
 
 @Component({
   selector: 'app-login-page',
@@ -35,7 +34,10 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.sServerError = this.authService.serverError.subscribe(err => {this.serverError = err ; });
-    this.sRegisterUser = this.authService.registerUser.subscribe(x => {this.regUser = x; });
+    this.sRegisterUser = this.authService.registerUser.subscribe(  (x: User)  => {
+      this.regUser = x;
+      this.reg = false;
+      console.log(2, this.regUser); }) ;
   }
   ngOnDestroy(): void {
     if (this.sServerError) {
@@ -65,7 +67,9 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   }
 
   regSubmit() {
-    console.log('регистрируюсь') ;
-    this.authService.register(this.regForm.value);
+    if (!this.regForm.invalid) {
+      this.authService.register(this.regForm.value);
+    }
+
  }
 }

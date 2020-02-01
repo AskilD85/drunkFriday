@@ -1,22 +1,20 @@
-          
-            <div class="text-center">
-                <!-- <h3>Админка</h3>  -->
-                <div *ngIf="!isAuth; ">
-                    <app-login-page></app-login-page>
-                </div>
+ 
+           
+<div *ngIf="!isAuth" class="text-center">
+    <app-login-page></app-login-page>
+</div>
 
-            </div>
 
             <div *ngIf="isAuth;" class="container">
-                <input type="button" class="btn btn-outline-primary m-1" value="Добавить услугу"
+                <div class="text-center"><h5>Админка</h5></div>
+                <input type="button" class="btn btn-outline-primary m-1 bg-info" value="Добавить услугу"
                 (click)="addClick=true; myArticles=false">
 
-                <i class="material-icons color-info">add_circle</i>
                 <hr>
 
                 <div *ngIf="addClick">
                     <h3>Добавить услугу</h3>
-                    <input type="button" value="Добавить категорию" class="btn m-2" (click)="addCategPage = true">
+                    <input type="button" value="Добавить категорию" class="btn m-2 bg-info" (click)="addCategPage = true">
                 
                     <div *ngIf="addCategPage" class="addCategPage shadow m-3 p-3">
                         
@@ -36,7 +34,7 @@
                             </div>
                             <!-- <input type="text" hidden formControlName="author_id"> -->
                 
-                        <input type="submit" value="Добавить категорию" class="btn m-2" [disabled]="addCategForm.invalid">
+                        <input type="submit" value="Добавить категорию" class="btn m-2 bg-info" [disabled]="addCategForm.invalid">
                         <input type="button" value="Закрыть" class="btn m-2 red" (click)="addCategPage = false">
                         
                         </form>
@@ -58,8 +56,8 @@
                             <label for="title">Введите название</label>
                         </div>
                         <div><textarea type="text" class="form-control m-1"  formControlName="body"></textarea></div>
-                        <input type="button" value="Очистить" class="btn btn-danger m-1" (click)="addForm.reset()">
-                        <input type="submit" value="Добавить" class="btn btn-success m-1" [disabled]="addForm.invalid">
+                        <input type="button" value="Очистить" class="btn btn-danger m-1 bg-info" (click)="addForm.reset()">
+                        <input type="submit" value="Добавить" class="btn btn-success m-1 bg-info" [disabled]="addForm.invalid">
                         <input type="button" value="Закрыть" class="btn m-2 red" (click)="addClick = false">
                     </form>
     
@@ -70,7 +68,7 @@
                 <div *ngFor="let article of allArticles" class=" m-1 p-2 shadow rounded" [ngClass]=" article?.active === 1 ? {'no-active': false} : {'no-active': true}">
                     <div><b>{{ article.title }}</b></div>
                     <div>{{article.body}}</div>
-                    <input type="button" class="btn m-2" [routerLink]="(['Detail', article.id])" value="открыть">
+                    <input type="button" class="btn m-2 bg-info" [routerLink]="(['Detail', article.id])" value="открыть">
                     <input type="button" class="btn red m-2" (click)="delete(article.id)" value="удалить">
                    
                     <hr>

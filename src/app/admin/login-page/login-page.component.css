@@ -10,3 +10,11 @@ input.ng-valid {
     color: red;
     text-align: left;
 }
+
+.contaner {
+    width: 100%;
+}
+
+input {
+    width: 95% !important;
+}

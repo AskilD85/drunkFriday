@@ -98,3 +98,6 @@ section {
 }
 .material-icons.color-info { color: #17a2b8; }
 
+.container {
+    width: 100% !important;
+}

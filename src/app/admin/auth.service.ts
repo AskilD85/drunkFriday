@@ -81,9 +81,8 @@ export class AuthService {
 
   register(regData) {
     this.http.post(this.url + 'register', regData, { observe: 'response' }).subscribe(data => {
-      this.regUser = data;
-      this.registerUser.emit(this.regUser);
-
+      this.regUser = data.body;
+      this.registerUser.emit(this.regUser.data);
     }, (err: HttpErrorResponse) => {
       this.serverError.emit(err);
     });
