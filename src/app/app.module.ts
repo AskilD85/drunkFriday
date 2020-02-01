@@ -34,6 +34,7 @@ import { MatSelectModule,
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InfoComponent } from './pages/info/info.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NotFoundComponent,
     UslugiComponent,
     UsDetailComponent,
+    InfoComponent,
 
   ],
   imports: [

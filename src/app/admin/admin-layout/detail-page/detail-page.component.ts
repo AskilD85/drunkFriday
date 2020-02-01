@@ -42,8 +42,7 @@ export class DetailPageComponent implements OnInit, OnDestroy {
         category_id: new FormControl(this.article.category_id, Validators.required),
         active: new FormControl(this.article.active),
       });
-      console.log(this.article);
-       
+
     });
   }
   ngOnDestroy(): void {
