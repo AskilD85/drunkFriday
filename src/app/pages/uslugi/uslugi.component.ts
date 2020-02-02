@@ -25,7 +25,6 @@ export class UslugiComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sArticles = this.http.getArticles().subscribe((articles: Article[]) => {
       this.articles = articles;
-      console.log(this.articles);
     },
       (err: HttpErrorResponse) => {
         console.log('Ошибка', err);
@@ -37,7 +36,6 @@ export class UslugiComponent implements OnInit, OnDestroy {
 
     });
 
-    this.http.getHero(2);
   }
 
   ngOnDestroy() {
@@ -52,9 +50,8 @@ export class UslugiComponent implements OnInit, OnDestroy {
 
 
   getCatById(id: string) {
-   // this.http.getCatregoryById(id).subscribe( (c: Categories[]) => {this.category = c; } );
-
-    console.log(this.categories.filter( (c) => c.id === id ));
-    return this.categories.filter( (c) => c.id === id );
+    if (this.categories) {
+      return this.categories.filter((c) => c.id === id);
+    }
   }
 }
