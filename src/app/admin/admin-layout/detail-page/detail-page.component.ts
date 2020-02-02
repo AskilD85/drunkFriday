@@ -33,7 +33,7 @@ export class DetailPageComponent implements OnInit, OnDestroy {
     this.sCateg = this.http.getCategories().subscribe((cat: Categories[]) => {
       this.categories = cat;
     });
-    this.sArticle = this.http.getArticle(this.id).subscribe((x: Article) => { 
+    this.sArticle = this.http.getArticle(this.id).subscribe((x: Article) => {
       this.article = x;
       this.form = new FormGroup({
         title: new FormControl(this.article.title, Validators.required),
@@ -58,8 +58,6 @@ export class DetailPageComponent implements OnInit, OnDestroy {
 
   editArticleSubmit() {
 
-    console.log(this.form.value);
-
     this.http.editArticle(this.form.value, this.id).subscribe((edit: Article) => {
       this.editInfo = edit;
       setTimeout(() => this.router.navigate(['/Admin']), 1000);
@@ -81,5 +79,5 @@ export class DetailPageComponent implements OnInit, OnDestroy {
       this.article.active = 0;
     }
   }
-  
+
 }
