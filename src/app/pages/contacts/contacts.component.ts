@@ -27,7 +27,6 @@ export class ContactsComponent implements OnInit, OnDestroy {
   constructor(private sharedService: SharedService, private http: HttpService) { }
 
   ngOnInit() {
-    console.log('userId: ', this.userId);
   }
   ngOnDestroy() {
     if (this.saddAppealResponse) {
@@ -38,9 +37,8 @@ export class ContactsComponent implements OnInit, OnDestroy {
 
   addAppeal() {
     if (this.addAppealForm.valid) {
-      console.log(this.addAppealForm.value);
       this.saddAppealResponse = this.http.addAppeal(this.addAppealForm.value)
-        .subscribe((response: AddAppeal) => { this.addAppealResponse = response; console.log(this.addAppealResponse); });
+        .subscribe((response: AddAppeal) => { this.addAppealResponse = response; });
       this.clearFormAll(this.addAppealForm);
     }
 

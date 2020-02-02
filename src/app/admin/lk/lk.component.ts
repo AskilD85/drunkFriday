@@ -18,12 +18,11 @@ export class LkComponent implements OnInit, OnDestroy {
 
   title = '';
   body = '';
- 
 
   user: User;
 
   getUserSub: Subscription;
- 
+
   constructor(private http: HttpService, private authService: AuthService) { }
 
   ngOnInit() {
@@ -41,7 +40,10 @@ export class LkComponent implements OnInit, OnDestroy {
 
   getUser() {
     const userid = localStorage.getItem('user_id');
-    this.http.getUser(userid).subscribe((user: User) => { this.user = user; console.log(user); });
+    if (userid !== null) {
+      this.http.getUser(userid).subscribe((user: User) => { this.user = user; });
+    }
+
   }
 
 
@@ -60,7 +62,7 @@ export class LkComponent implements OnInit, OnDestroy {
     console.log( c());
     console.log( c());
   }*/
- 
+
 
 }
 

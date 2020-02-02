@@ -14,7 +14,7 @@ import { map } from 'rxjs/operators';
 export class UslugiComponent implements OnInit, OnDestroy {
 
   articles: Article[];
-  categories: Categories[];
+  categories: Categories[] = [];
   category: Categories[];
 
   sArticles: Subscription;

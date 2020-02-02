@@ -35,7 +35,6 @@ imports: [
     RouterModule.forChild([
         { path: '', component: AdminLayoutComponent, children: [
             { path: 'Lk', component: LkComponent, canActivate: [ GeneralGuard ] },
-           
         ]  },
         { path: 'login', component: LoginPageComponent  },
         { path: 'Detail/:id', component: DetailPageComponent, canActivate: [ GeneralGuard ] },

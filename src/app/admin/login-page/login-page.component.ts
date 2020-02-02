@@ -37,7 +37,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     this.sRegisterUser = this.authService.registerUser.subscribe(  (x: User)  => {
       this.regUser = x;
       this.reg = false;
-      console.log(2, this.regUser); }) ;
+      }) ;
   }
   ngOnDestroy(): void {
     if (this.sServerError) {
