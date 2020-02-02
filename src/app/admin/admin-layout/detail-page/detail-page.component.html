@@ -1,6 +1,7 @@
-<a [routerLink]="(['/Admin'])" class="btn m-3">назад</a>
-<div class="m-3 p-3 editForm">
-<div *ngIf="form">
+<div class="editForm container">
+    <i  [routerLink]="(['/Admin'])" class="material-icons color-info m-3"> keyboard_backspace</i>
+
+    <div *ngIf="form" class=" p-3 card">
     <form  [formGroup]="form" (ngSubmit)="editArticleSubmit()">
         
         <mat-form-field class="full-width">
@@ -31,7 +32,7 @@
                 [checked]="article?.active === 1 ? true : false"
                 color="primary"
                 formControlName="active"
-                class="float-right">
+                class="mx-5">
               <span class="OnOff">
                 {{ article?.active === 1 ? 'Да' : 'Нет' }}
               </span>
@@ -40,8 +41,7 @@
 
 
 
-        <input type="submit" class="btn m-2" value="Обновить" [disabled]="form.invalid || form.pristine">
-        <input type="button" class="btn m-2" value="ФОрма" (click)="formValue()">
+        <input type="submit" class="btn m-2 bg-info" value="Обновить" [disabled]="form.invalid || form.pristine">
     </form>
 
     <div *ngIf="editInfo">
@@ -49,3 +49,4 @@
     </div>
 </div>
 </div>
+

@@ -2,6 +2,7 @@ export class User {
     id: string;
     name: string;
     age: string;
+    email: string;
     sex: string;
     admin: boolean;
     stage: string;
@@ -26,4 +27,7 @@ export class Data {
     age: string;
     readytodrink: string;
     favorite: string;
+    constructor(email: string) {
+        this.email = email;
+    }
 }

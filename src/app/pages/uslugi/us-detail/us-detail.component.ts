@@ -25,12 +25,14 @@ export class UsDetailComponent implements OnInit, OnDestroy {
         console.log('Ошибка деталки:  ', err);
 
       });
+    this.getComments();
   }
 
   ngOnDestroy() {
     if (this.sArticle) {
       this.sArticle.unsubscribe();
     }
+    
   }
 
   getComments() {

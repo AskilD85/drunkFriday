@@ -1,9 +1,11 @@
+import { Categories } from './../model/Categories';
 import { Article } from './../model/Article';
 import { Router } from '@angular/router';
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { User } from '../model/User';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -140,9 +142,18 @@ export class HttpService {
     return this.http.get(this.url + 'categories');
   }
 
+  getCatregoryById(id: string) {
+    return this.http.get<Categories>(this.url + `categories/${id}`);
+  }
+
   addCategories(body) {
     body.author_id = localStorage.getItem('user_id');
     console.log(body);
     return this.http.post(this.url + 'categories', body);
+  }
+
+  /** GET hero by id. Will 404 if id not found */
+  getHero(id: number) {
+  console.log(id);
   }
 }

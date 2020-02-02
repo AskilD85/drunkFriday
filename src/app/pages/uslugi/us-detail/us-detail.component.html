@@ -1,10 +1,23 @@
-<div class="container">
-    <input type="button" [routerLink]="['/']" class="btn btn-outline-primary m-1 " value="назад">
-    <div >
-        <h4>{{usluga?.title}}</h4>
-        <p>{{usluga?.body}}</p>
+<div class="container ">
+
+    <i  class="material-icons color-info"
+        [routerLink]="['/']"
+    >
+        keyboard_backspace
+        </i>
+    <!-- <input type="button" [routerLink]="['/']" class=" m-1  waves-effect waves-teal btn-flat" value="назад"> -->
+
+    <div class=" p-3 card">
+        
+        <div >
+            <h4>{{usluga?.title}}</h4>
+            <p>{{usluga?.body}}</p>
+            <div class="btn">свободен</div>
+            <input type="button" class="btn btn-outline-primary m-1 right bg-info" value="Написать автору">
+        </div>
+        
     </div>
-    <input type="button" (click) = "getComments()" class="btn btn-outline-primary m-1 " value="Комментарии">
-    <input type="button" class="btn btn-outline-primary m-1 " value="Написать автору">
-    <p>{{comments}}</p>
+    <div *ngIf="comments" class="row card p-3">
+        <p>{{comments}}</p>
+    </div>
 </div>

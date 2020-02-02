@@ -1,17 +1,17 @@
 <div class="container">
-    
-<div class="text-center">
     <h3>{{reg ? 'Регистрация' : 'Авторизация'}}</h3>
-    <form *ngIf="!reg" class="login-div" [formGroup]="form" (ngSubmit)="login()">
+    <div class="card p-2 ">
+
+    <form *ngIf="!reg" class="login-div text-center" [formGroup]="form" (ngSubmit)="login()">
         
 
-        <div><input class="form-control m-1 p-2" name="email" formControlName="email"  type="email" placeholder="Введите email"></div>
+        <div class="p-2"><input class="form-control p-3" name="email" formControlName="email"  type="email" placeholder="Введите email"></div>
         <div class="validation" *ngIf="form.get('email').invalid && form.get('email').touched">
             <small *ngIf="form.get('email').errors.required">Поле e-mail не может быть пустым!</small>
             <small *ngIf="form.get('email').errors.email">Введите корректный email!</small>
         </div>
 
-        <div><input class="form-control m-1 p-2 " name="password" formControlName="password"  type="password" placeholder="Введите password"></div>
+        <div class="p-2"><input class="form-control p-3" name="password" formControlName="password"  type="password" placeholder="Введите password"></div>
         <div class="validation" *ngIf="form.get('password').invalid && form.get('password').touched">
             <small *ngIf="form.get('password').errors.required">Поле password не может быть пустым!</small>
             <small *ngIf="form.get('password').errors.minlength">
@@ -22,14 +22,14 @@
         <div  class="validation" *ngIf="serverError">
             <div><small>{{serverError.error.errors.email}}</small></div>
         </div>
-        <div><input type="submit" class="btn btn-primary m-1" value = "Войти" [disabled]="form.invalid" > 
-        <input type="button" class="btn btn-primary m-1"  value = "Регистрация" (click)="regClick()"></div>
+        <div><input type="submit" class="btn btn-primary m-1 bg-info" value = "Войти" [disabled]="form.invalid" > 
+        <input type="button" class="btn btn-primary m-1 bg-info"  value = "Регистрация" (click)="regClick()"></div>
     </form>
 
 
 
     <form *ngIf="reg" class="reg-div" [formGroup]="regForm" (ngSubmit)="regSubmit()">
-        <div><input class="form-control m-1 p-2" type="text" formControlName="name" placeholder="Введите имя"></div>
+        <div><input class="form-control p-2" type="text" formControlName="name" placeholder="Введите имя"></div>
             <div class="validation" *ngIf="regForm.get('name').invalid && regForm.get('name').touched">
                 <small *ngIf="regForm.get('name').errors.required">Поле Имя не может быть пустым!</small>
                 <small *ngIf="regForm.get('name').errors.minlength">
@@ -37,7 +37,7 @@
                     сейчас {{regForm.get('name').errors.minlength.actualLength}} символов
                 </small>
             </div>
-        <div><input class="form-control m-1 p-2" type="text" formControlName="email"  placeholder="Введите email"></div>
+        <div><input class="form-control  p-2" type="text" formControlName="email"  placeholder="Введите email"></div>
             <div class="validation" *ngIf="regForm.get('email').invalid && regForm.get('email').touched">
                 <small *ngIf="regForm.get('email').errors.required">Поле e-mail не может быть пустым!</small>
                 <small *ngIf="regForm.get('email').errors.email">Введите корректный email!</small>
@@ -63,11 +63,20 @@
             </div>
         <div>
             <input type="submit" 
-                class="btn btn-primary m-1" 
+                class="btn btn-primary m-1 bg-info" 
                 value = "Зарегистрироваться" 
                 [disabled]="regForm.invalid || !(regForm.get('password').value === regForm.get('password_confirmation').value)">
-            <input type="button" class="btn btn-primary m-1" value = "Есть аккаунт" (click)="authClick()">
+            <input type="button" class="btn btn-primary m-1 bg-info" value = "Есть аккаунт" (click)="authClick()">
         </div>
     </form>
 </div>
+
+</div>
+
+
+<div *ngIf="regUser" class="color-green">
+
+    <div>Пользователь создан!</div>
+    <div>Имя: {{regUser.name}}</div>
+    <div>e-mail: {{ regUser.email }}</div>
 </div>
