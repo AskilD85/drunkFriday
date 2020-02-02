@@ -148,12 +148,11 @@ export class HttpService {
 
   addCategories(body) {
     body.author_id = localStorage.getItem('user_id');
-    console.log(body);
     return this.http.post(this.url + 'categories', body);
   }
 
-  /** GET hero by id. Will 404 if id not found */
-  getHero(id: number) {
-  console.log(id);
+  addAppeal(body) {
+    body.user_id = localStorage.getItem('user_id');
+    return this.http.post(this.url + `appeals`, body);
   }
 }

@@ -1,36 +1,57 @@
 
-<!-- тут описание формы обратной связи -->
-<div class="container text-center" >
-    <div class="shadow rounded p-3 m-3 ">
-        <p>Все вопросы и пожелания пишите на <a href="mailto:askildar@yandex.ru">askildar@yandex.ru</a></p>
-    </div>    
-</div>
+
 
  <div class=" text-center"><h5>Предложения, пожелания и замечания можете отправить нам заполнив ниже форму.</h5></div>
 
 <div class="container">
 <div class="card p-3 m-3">
-<form [formGroup]="addAppealForm" (ngSubmit)="addAppeal()">
+<form *ngIf="!addAppealResponse" [formGroup]="addAppealForm" (ngSubmit)="addAppeal()">
     <div class="input-field">
-        <input type="text" formControlName="username" [(ngModel)]="username" formControlName="username" id="username">
-        <label for="username">Введите Ваше имя</label>
+        <input type="text" class="p-2" formControlName="name"  formControlName="name" id="name">
+        <label for="name" class="p-2">Введите Ваше имя</label>
+        <div class="validation" *ngIf="addAppealForm.get('name').invalid && addAppealForm.get('name').touched">
+            <small *ngIf="addAppealForm.get('name').errors.required">Поле Имя не может быть пустым!</small>
+            <small *ngIf="addAppealForm.get('name').errors.minlength">
+                Поле Имя должно быть не менее {{addAppealForm.get('name').errors.minlength.requiredLength}} символов ,
+                сейчас {{addAppealForm.get('name').errors.minlength.actualLength}} символов
+            </small>
+        </div>
+    </div>
+
+    <div class="input-field ">
+        <input type="text" class="p-2"  formControlName="theme" id="theme" placeholder="Введите тему обращения"
+            name="theme">
+        <!-- <label for="theme" class="p-2">Введите тему обращения</label> -->
+        <div class="validation" *ngIf="addAppealForm.get('theme').invalid && addAppealForm.get('theme').touched">
+            <small *ngIf="addAppealForm.get('theme').errors.required">Поле Тема не может быть пустым!</small>
+            <small *ngIf="addAppealForm.get('theme').errors.minlength">
+                Поле Тема должно быть не менее {{addAppealForm.get('theme').errors.minlength.requiredLength}} символов ,
+                сейчас {{addAppealForm.get('theme').errors.minlength.actualLength}} символов
+            </small>
+        </div>
     </div>
 
     <div class="input-field">
-        <input type="text" class="form-control m-1" [(ngModel)]="title" formControlName="title" id="title2"
-            name="title2">
-        <label for="title2">Введите тему обращения</label>
-    </div>
-
-    <div class="input-field">
-        <textarea type="text" class="form-control m-1" [(ngModel)]="body" formControlName="body"></textarea>
+        <textarea type="text" class="p-2" formControlName="body" placeholder="Тут Ваш текст..."></textarea>
+        <div class="validation" *ngIf="addAppealForm.get('body').invalid && addAppealForm.get('body').touched">
+            <small *ngIf="addAppealForm.get('body').errors.required">Поле Тема не может быть пустым!</small>
+            <small *ngIf="addAppealForm.get('body').errors.minlength">
+                Поле Тема должно быть не менее {{addAppealForm.get('body').errors.minlength.requiredLength}} символов ,
+                сейчас {{addAppealForm.get('body').errors.minlength.actualLength}} символов
+            </small>
+        </div>
     </div>
 
     <input type="button" value="Очистить" class="btn btn-danger m-1" (click)="clearFormAll(addAppealForm)">
     <input type="submit" value="Добавить" class="btn btn-success m-1" [disabled]="addAppealForm.invalid">
 </form>
+<div *ngIf="addAppealResponse">
+    <div class="text-center" >
+        <span class="color-green">Ваше обращение отправилось!</span>
+    </div>
+</div></div>
 </div>
-</div>
+
 
 
 
