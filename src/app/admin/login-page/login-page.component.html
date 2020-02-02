@@ -2,16 +2,16 @@
     <h3>{{reg ? 'Регистрация' : 'Авторизация'}}</h3>
     <div class="card p-2 ">
 
-    <form *ngIf="!reg" class="login-div text-center" [formGroup]="form" (ngSubmit)="login()">
+    <form *ngIf="!reg" class="" [formGroup]="form" (ngSubmit)="login()">
         
 
-        <div class="p-2"><input class="form-control p-3" name="email" formControlName="email"  type="email" placeholder="Введите email"></div>
+        <div class="p-2 input-field"><input  name="email" formControlName="email"  type="email" placeholder="Введите email"></div>
         <div class="validation" *ngIf="form.get('email').invalid && form.get('email').touched">
             <small *ngIf="form.get('email').errors.required">Поле e-mail не может быть пустым!</small>
             <small *ngIf="form.get('email').errors.email">Введите корректный email!</small>
         </div>
 
-        <div class="p-2"><input class="form-control p-3" name="password" formControlName="password"  type="password" placeholder="Введите password"></div>
+        <div class="p-2 input-field"><input class="" name="password" formControlName="password"  type="password" placeholder="Введите password"></div>
         <div class="validation" *ngIf="form.get('password').invalid && form.get('password').touched">
             <small *ngIf="form.get('password').errors.required">Поле password не может быть пустым!</small>
             <small *ngIf="form.get('password').errors.minlength">
@@ -29,7 +29,7 @@
 
 
     <form *ngIf="reg" class="reg-div" [formGroup]="regForm" (ngSubmit)="regSubmit()">
-        <div><input class="form-control p-2" type="text" formControlName="name" placeholder="Введите имя"></div>
+        <div class="input-field"><input class="" type="text" formControlName="name" placeholder="Введите имя"></div>
             <div class="validation" *ngIf="regForm.get('name').invalid && regForm.get('name').touched">
                 <small *ngIf="regForm.get('name').errors.required">Поле Имя не может быть пустым!</small>
                 <small *ngIf="regForm.get('name').errors.minlength">
@@ -37,12 +37,12 @@
                     сейчас {{regForm.get('name').errors.minlength.actualLength}} символов
                 </small>
             </div>
-        <div><input class="form-control  p-2" type="text" formControlName="email"  placeholder="Введите email"></div>
+        <div class="input-field"><input class="" type="text" formControlName="email"  placeholder="Введите email"></div>
             <div class="validation" *ngIf="regForm.get('email').invalid && regForm.get('email').touched">
                 <small *ngIf="regForm.get('email').errors.required">Поле e-mail не может быть пустым!</small>
                 <small *ngIf="regForm.get('email').errors.email">Введите корректный email!</small>
             </div>
-        <div><input class="form-control m-1 p-2" type="password" formControlName="password" placeholder="Введите password"></div>
+        <div class="input-field"><input class="" type="password" formControlName="password" placeholder="Введите password"></div>
             <div class="validation" *ngIf="regForm.get('password').invalid && regForm.get('password').touched">
                 <small *ngIf="regForm.get('password').errors.required">Поле password не может быть пустым!</small>
                 <small *ngIf="regForm.get('password').errors.minlength">
@@ -50,7 +50,7 @@
                     сейчас {{regForm.get('password').errors.minlength.actualLength}} символов
                 </small>
             </div>
-        <div><input class="form-control m-1 p-2" type="password" formControlName="password_confirmation"  placeholder="Повторите password"></div>
+        <div class="input-field"><input class="" type="password" formControlName="password_confirmation"  placeholder="Повторите password"></div>
             <div class="validation" *ngIf="regForm.get('password_confirmation').invalid && regForm.get('password_confirmation').touched">
                 <small *ngIf="regForm.get('password_confirmation').errors.required">Поле не может быть пустым!</small>
                 

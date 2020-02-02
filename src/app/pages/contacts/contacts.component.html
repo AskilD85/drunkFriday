@@ -6,26 +6,31 @@
     </div>    
 </div>
 
-<!-- <p>Предложения, пожелания и замечания можете отправить нам заполнив ниже форму.</p>
+ <div class=" text-center"><h5>Предложения, пожелания и замечания можете отправить нам заполнив ниже форму.</h5></div>
 
-
-<form  [formGroup]="addAppealForm" (ngSubmit)="addAppeal()" >
-    <div class="input-field">     
-        <input type="text"  formControlName="username" [(ngModel)]="username" formControlName="username" id="username">
+<div class="container">
+<div class="card p-3 m-3">
+<form [formGroup]="addAppealForm" (ngSubmit)="addAppeal()">
+    <div class="input-field">
+        <input type="text" formControlName="username" [(ngModel)]="username" formControlName="username" id="username">
         <label for="username">Введите Ваше имя</label>
     </div>
 
-   <div class="input-field">     
-        <input type="text" class="form-control m-1" [(ngModel)]="title" formControlName="title" id="title2" name="title2">
+    <div class="input-field">
+        <input type="text" class="form-control m-1" [(ngModel)]="title" formControlName="title" id="title2"
+            name="title2">
         <label for="title2">Введите тему обращения</label>
-   </div>
+    </div>
 
     <div class="input-field">
         <textarea type="text" class="form-control m-1" [(ngModel)]="body" formControlName="body"></textarea>
     </div>
 
-    <input type="button" value="Очистить" class="btn btn-danger m-1" (click)="clearFormAll(addAppealForm)" >
-    <input type="submit" value="Добавить" class="btn btn-success m-1" [disabled]="addAppealForm.invalid" >
-</form> -->
+    <input type="button" value="Очистить" class="btn btn-danger m-1" (click)="clearFormAll(addAppealForm)">
+    <input type="submit" value="Добавить" class="btn btn-success m-1" [disabled]="addAppealForm.invalid">
+</form>
+</div>
+</div>
+
 
 
