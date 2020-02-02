@@ -8,12 +8,12 @@
             </div>
 
             <div *ngIf="isAuth;" class="container">
-                <input type="button" class="btn btn-outline-primary m-1" value="Добавить хотелку"
+                <input type="button" class="btn btn-outline-primary m-1" value="Добавить услугу"
                 (click)="addClick=true; myArticles=false">
                 <hr>
 
                 <div *ngIf="addClick">
-                    <h3>Добавить хотелку</h3>
+                    <h3>Добавить услугу</h3>
                     <input type="button" value="Добавить категорию" class="btn m-2" (click)="addCategPage = true">
                 
                     <div *ngIf="addCategPage" class="addCategPage shadow m-3 p-3">

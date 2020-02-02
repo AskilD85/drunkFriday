@@ -1,9 +1,9 @@
 
 <div *ngIf="articles?.length > 0">
-    <div class="container">
-        <div *ngFor="let article of articles" >
+    <div class="container-fluid main-div">
+        <div *ngFor="let article of articles" class="rounded shadow p-2" >
             <b><a [routerLink]="['/Uslugi', article.id]">{{article.title}}</a></b>
-            <p>{{article.body}}</p>
+            <div >{{ category[article.category_id.name].name}}</div>
             <hr>
         </div>
     </div>

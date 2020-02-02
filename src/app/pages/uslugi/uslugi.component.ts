@@ -2,6 +2,7 @@ import { Article } from './../../model/Article';
 import { HttpService } from './../../services/http.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Categories } from './../../model/Categories';
 
 @Component({
   selector: 'app-uslugi',
@@ -12,7 +13,7 @@ export class UslugiComponent implements OnInit {
 
   articles: Article[];
   constructor(private http: HttpService) { }
-
+  category;
   ngOnInit() {
     this.getUslugi();
   }
@@ -24,7 +25,7 @@ export class UslugiComponent implements OnInit {
         console.log('Ошибка', err);
 
       } );
-  }
+   }
 
-  
+
 }
