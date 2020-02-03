@@ -33,9 +33,8 @@ imports: [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild([
-        { path: '', component: AdminLayoutComponent, children: [
-            { path: 'Lk', component: LkComponent, canActivate: [ GeneralGuard ] },
-        ], canActivate: [GeneralGuard]  },
+        { path: '', component: AdminLayoutComponent, canActivate: [GeneralGuard]  },
+        { path: 'Lk', component: LkComponent, canActivate: [ GeneralGuard ] },
         { path: 'login', component: LoginPageComponent  },
         { path: 'Detail/:id', component: DetailPageComponent, canActivate: [ GeneralGuard ] },
         { path: 'Profile', component: ProfileComponent, canActivate: [ GeneralGuard ] },

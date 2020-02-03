@@ -4,7 +4,7 @@
  <div class=" text-center"><h5>Предложения, пожелания и замечания можете отправить нам заполнив ниже форму.</h5></div>
 
 <div class="container">
-<div class="card p-3 m-3">
+<div class="card p-3">
 <form *ngIf="!addAppealResponse" [formGroup]="addAppealForm" (ngSubmit)="addAppeal()">
     <div class="input-field">
         <input type="text" class="p-2" formControlName="name"  formControlName="name" id="name">
