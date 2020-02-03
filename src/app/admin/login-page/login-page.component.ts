@@ -1,3 +1,4 @@
+import { SharedService } from './../../services/shared.service';
 import { AuthService } from './../auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
@@ -18,7 +19,8 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   regUser: User;
   form = new FormGroup({
     email: new FormControl('', [Validators.email, Validators.required] ),
-    password: new FormControl('', [Validators.required, Validators.minLength(6)])
+    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    recaptcha: new FormControl('', [Validators.required]),
   });
 
   regForm = new FormGroup({
@@ -26,11 +28,12 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     email : new FormControl('', [Validators.email, Validators.required] ),
     password: new FormControl('', [Validators.required, Validators.minLength(8)] ),
     password_confirmation: new FormControl('', [Validators.required, Validators.minLength(8)] ),
+    recaptcha: new FormControl('', [Validators.required]),
   }, );
 
   sServerError: Subscription;
   sRegisterUser: Subscription;
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private sharedService: SharedService) { }
 
   ngOnInit() {
     this.sServerError = this.authService.serverError.subscribe(err => {this.serverError = err ; });
@@ -72,4 +75,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     }
 
  }
+ resolved(event) {
+  this.sharedService.resolved(event);
+}
 }

@@ -8,7 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">      
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">    
+  <script src="https://www.google.com/recaptcha/api.js?render=6Lf2oacUAAAAAHDGk5rddlzxHBDQ2rhHk17fkguV"></script>  
 </head>
 <body>
 <app-root>Жди, идёт загрузка...</app-root>
@@ -23,5 +24,10 @@
 
 
 </script>
+<script>
+  grecaptcha.ready(function() {
+      grecaptcha.execute('6Lf2oacUAAAAAHDGk5rddlzxHBDQ2rhHk17fkguV', {action: 'Contacts'});
+  });
+  </script>
 
 </html>

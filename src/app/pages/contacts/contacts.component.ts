@@ -16,6 +16,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     theme: new FormControl('', [Validators.required, Validators.minLength(4)]),
     body: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    recaptcha: new FormControl('', [Validators.required]),
   });
 
   title = '';
@@ -24,7 +25,10 @@ export class ContactsComponent implements OnInit, OnDestroy {
   userId = localStorage.getItem('user_id');
   addAppealResponse: AddAppeal;
   saddAppealResponse: Subscription;
-  constructor(private sharedService: SharedService, private http: HttpService) { }
+
+  constructor(private sharedService: SharedService,
+              private http: HttpService,
+              ) { }
 
   ngOnInit() {
   }
@@ -47,4 +51,9 @@ export class ContactsComponent implements OnInit, OnDestroy {
   clearFormAll(form: FormGroup | FormArray) {
     this.sharedService.clearFormAll(form);
   }
+
+  resolved(event) {
+    this.sharedService.resolved(event);
+  }
+
 }

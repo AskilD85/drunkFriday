@@ -11,4 +11,8 @@ export class SharedService {
     clearFormAll(form: FormArray | FormGroup) {
         form.reset();
     }
+
+    resolved(captchaResponse: string) {
+        console.log(`Resolved captcha with response: ${captchaResponse}`);
+    }
 }

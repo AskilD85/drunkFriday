@@ -36,6 +36,8 @@ import { MatSelectModule,
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InfoComponent } from './pages/info/info.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,7 +73,8 @@ import { InfoComponent } from './pages/info/info.component';
     MatSelectModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+  
   ],
   exports: [
     MatSelectModule,
@@ -87,7 +90,8 @@ import { InfoComponent } from './pages/info/info.component';
     MatIconModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+   
   ],
   bootstrap: [AppComponent]
 })

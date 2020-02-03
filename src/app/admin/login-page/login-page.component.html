@@ -5,7 +5,7 @@
     <form *ngIf="!reg" class="" [formGroup]="form" (ngSubmit)="login()">
         
 
-        <div class="p-2 input-field"><input  name="email" formControlName="email"  type="email" placeholder="Введите email"></div>
+        <div class="p-2 input-field"><input name="email" formControlName="email"  type="email" placeholder="Введите email"></div>
         <div class="validation" *ngIf="form.get('email').invalid && form.get('email').touched">
             <small *ngIf="form.get('email').errors.required">Поле e-mail не может быть пустым!</small>
             <small *ngIf="form.get('email').errors.email">Введите корректный email!</small>
@@ -22,14 +22,18 @@
         <div  class="validation" *ngIf="serverError">
             <div><small>{{serverError.error.errors.email}}</small></div>
         </div>
-        <div><input type="submit" class="btn btn-primary m-1 bg-info" value = "Войти" [disabled]="form.invalid" > 
-        <input type="button" class="btn btn-primary m-1 bg-info"  value = "Регистрация" (click)="regClick()"></div>
+        <re-captcha formControlName ="recaptcha" siteKey="6LemNtUUAAAAANV1lDNoUYKm3-Wkwq8eQquFd4-1" ></re-captcha>
+
+        <div class="p-2 input-field">
+            <input type="submit" class="btn btn-primary my-1 bg-info" value = "Войти" [disabled]="form.invalid" > 
+            <input type="button" class="btn btn-primary my-1 bg-info"  value = "Регистрация" (click)="regClick()">
+        </div >
     </form>
 
 
 
     <form *ngIf="reg" class="reg-div" [formGroup]="regForm" (ngSubmit)="regSubmit()">
-        <div class="input-field"><input class="" type="text" formControlName="name" placeholder="Введите имя"></div>
+        <div class=" p-2 input-field"><input class="" type="text" formControlName="name" placeholder="Введите имя"></div>
             <div class="validation" *ngIf="regForm.get('name').invalid && regForm.get('name').touched">
                 <small *ngIf="regForm.get('name').errors.required">Поле Имя не может быть пустым!</small>
                 <small *ngIf="regForm.get('name').errors.minlength">
@@ -37,12 +41,12 @@
                     сейчас {{regForm.get('name').errors.minlength.actualLength}} символов
                 </small>
             </div>
-        <div class="input-field"><input class="" type="text" formControlName="email"  placeholder="Введите email"></div>
+        <div class="p-2 input-field"><input class="" type="text" formControlName="email"  placeholder="Введите email"></div>
             <div class="validation" *ngIf="regForm.get('email').invalid && regForm.get('email').touched">
                 <small *ngIf="regForm.get('email').errors.required">Поле e-mail не может быть пустым!</small>
                 <small *ngIf="regForm.get('email').errors.email">Введите корректный email!</small>
             </div>
-        <div class="input-field"><input class="" type="password" formControlName="password" placeholder="Введите password"></div>
+        <div class="p-2 input-field"><input class="" type="password" formControlName="password" placeholder="Введите password"></div>
             <div class="validation" *ngIf="regForm.get('password').invalid && regForm.get('password').touched">
                 <small *ngIf="regForm.get('password').errors.required">Поле password не может быть пустым!</small>
                 <small *ngIf="regForm.get('password').errors.minlength">
@@ -50,7 +54,7 @@
                     сейчас {{regForm.get('password').errors.minlength.actualLength}} символов
                 </small>
             </div>
-        <div class="input-field"><input class="" type="password" formControlName="password_confirmation"  placeholder="Повторите password"></div>
+        <div class="p-2 input-field"><input class="" type="password" formControlName="password_confirmation"  placeholder="Повторите password"></div>
             <div class="validation" *ngIf="regForm.get('password_confirmation').invalid && regForm.get('password_confirmation').touched">
                 <small *ngIf="regForm.get('password_confirmation').errors.required">Поле не может быть пустым!</small>
                 
@@ -61,12 +65,13 @@
             <div  class="validation" *ngIf="serverError">
                 <div><small>{{serverError.error.errors.email}}</small></div>
             </div>
-        <div>
+            <re-captcha formControlName ="recaptcha" siteKey="6LemNtUUAAAAANV1lDNoUYKm3-Wkwq8eQquFd4-1" ></re-captcha>
+        <div class="p-2 input-field" >
             <input type="submit" 
-                class="btn btn-primary m-1 bg-info" 
+                class="btn btn-primary my-1 bg-info" 
                 value = "Зарегистрироваться" 
                 [disabled]="regForm.invalid || !(regForm.get('password').value === regForm.get('password_confirmation').value)">
-            <input type="button" class="btn btn-primary m-1 bg-info" value = "Есть аккаунт" (click)="authClick()">
+            <input type="button" class="btn btn-primary my-1 bg-info" value = "Есть аккаунт" (click)="authClick()">
         </div>
     </form>
 </div>
