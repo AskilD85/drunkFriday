@@ -4,11 +4,11 @@
  <div class=" text-center"><h5>Предложения, пожелания и замечания можете отправить нам заполнив ниже форму.</h5></div>
 
 <div class="container">
-<div class="card p-3">
+<div class="card p-3 form-div">
 <form *ngIf="!addAppealResponse" [formGroup]="addAppealForm" (ngSubmit)="addAppeal()">
     <div class="input-field">
-        <input type="text" class="p-2" formControlName="name"  formControlName="name" id="name">
-        <label for="name" class="p-2">Введите Ваше имя</label>
+        <input type="text" class="p-2" formControlName="name" placeholder="Введите Ваше имя"  formControlName="name" id="name">
+        
         <div class="validation" *ngIf="addAppealForm.get('name').invalid && addAppealForm.get('name').touched">
             <small *ngIf="addAppealForm.get('name').errors.required">Поле Имя не может быть пустым!</small>
             <small *ngIf="addAppealForm.get('name').errors.minlength">
@@ -32,7 +32,7 @@
     </div>
 
     <div class="input-field">
-        <textarea type="text" class="p-2" formControlName="body" placeholder="Тут Ваш текст..."></textarea>
+        <textarea type="text" rows="10" class="p-2" formControlName="body" placeholder="Тут Ваш текст..."></textarea>
         <div class="validation" *ngIf="addAppealForm.get('body').invalid && addAppealForm.get('body').touched">
             <small *ngIf="addAppealForm.get('body').errors.required">Поле Тема не может быть пустым!</small>
             <small *ngIf="addAppealForm.get('body').errors.minlength">
@@ -41,8 +41,10 @@
             </small>
         </div>
     </div>
-
-    <re-captcha formControlName ="recaptcha" siteKey="{{recaptchaSiteKey}}" ></re-captcha>
+    
+        <re-captcha class="re-captcha" formControlName="recaptcha" siteKey="{{recaptchaSiteKey}}"></re-captcha>
+    
+    
 
     <input type="button" value="Очистить" class="btn btn-danger m-1" (click)="clearFormAll(addAppealForm)">
     <input type="submit" value="Добавить" class="btn btn-success m-1" [disabled]="addAppealForm.invalid">

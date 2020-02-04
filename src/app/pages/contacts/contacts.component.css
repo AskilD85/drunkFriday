@@ -18,3 +18,8 @@ input.ng-valid {
 .input-field > input  {
     box-sizing: inherit;
 }
+
+.form-div {
+    width: 650px;
+    margin: auto;
+}

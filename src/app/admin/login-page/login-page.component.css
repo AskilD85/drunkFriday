@@ -15,6 +15,13 @@ input.ng-valid {
     width: 100%;
 }
 
-input {
-    width: 100% !important;
+.input-field > input  {
+    box-sizing: inherit;
+    
 }
+
+.login-div {
+    width: 350px;
+    margin: auto;
+}
+
