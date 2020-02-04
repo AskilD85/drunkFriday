@@ -1,0 +1,13 @@
+.material-icons.bg-color-red {
+    color: red;
+}
+.material-icons.bg-color-red:hover {
+    cursor: pointer;
+}
+
+.material-icons.bg-color-green {
+    color: green;
+}
+.material-icons.bg-color-green:hover {
+    cursor: pointer;
+}

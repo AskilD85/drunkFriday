@@ -3,9 +3,9 @@
       <div class="card">
         <div class="card-content">
           <span class="card-title">{{ user.name}}</span>
-          <p>I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively.</p>
+          <div>О себе: </div>
           <div>Роль пользователя: <b>{{user.type}}</b></div>
+          <div>Создан: <b>{{user.created_at}}</b></div>
         </div>
         <div class="card-action">
           <a >Подробнее{{user.id}}</a>

@@ -5,7 +5,8 @@
 .item {
     cursor: pointer;
 }
-.item:hover {
+.card:hover {
     background-color: #d5f3f8;
+    cursor: pointer;
 }
 

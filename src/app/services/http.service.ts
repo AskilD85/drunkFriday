@@ -17,6 +17,7 @@ export class HttpService {
               private route: Router) { }
   private url = 'http://laravel5.master702.ru/api/';
 
+
   apitoken = '';
   username = '';
   errorText = '';

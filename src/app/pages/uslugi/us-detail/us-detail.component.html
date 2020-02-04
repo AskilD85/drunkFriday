@@ -1,23 +1,20 @@
 <div class="container ">
-
-    <i  class="material-icons color-info"
-        [routerLink]="['/']"
-    >
-        keyboard_backspace
-        </i>
-    <!-- <input type="button" [routerLink]="['/']" class=" m-1  waves-effect waves-teal btn-flat" value="назад"> -->
-
     <div class=" p-3 card">
-        
-        <div >
-            <h4>{{usluga?.title}}</h4>
+        <div class="">
+            <div class="">
+                <h4 class="card-title">{{usluga?.title}}</h4>
+                <div class="secondary-content">свободен</div>
+            </div>
+            
             <p>{{usluga?.body}}</p>
-            <div class="btn">свободен</div>
-            <input type="button" class="btn btn-outline-primary m-1 right bg-info" value="Написать автору">
+           <div class="card-action">
+            <input type="button" class="btn btn-outline-primary m-1 bg-info" value="Написать автору">
+           </div>
+            
         </div>
         
     </div>
-    <div *ngIf="comments" class="row card p-3">
+    <div *ngIf="comments" class="card p-3">
         <p>{{comments}}</p>
     </div>
 </div>

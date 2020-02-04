@@ -45,7 +45,6 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       this.regUser = x;
       this.reg = false;
       }) ;
-    console.log(this.recaptchaSiteKey);
   }
   ngOnDestroy(): void {
     if (this.sServerError) {

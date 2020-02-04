@@ -44,12 +44,12 @@ imports: [
             { path: 'Users', component: UsersComponent, canActivate: [ GeneralGuard ] },
             { path: 'Services', component: UslugiListComponent, canActivate: [ GeneralGuard ] },
             { path: 'Categories', component: CategoryListComponent, canActivate: [ GeneralGuard ] },
-        ], canActivate: [GeneralGuard]  },
+        ], /* canActivate: [GeneralGuard] */ },
 
         { path: 'login', component: LoginPageComponent  },
         { path: 'Users', component: UsersComponent, canActivate: [ GeneralGuard ] },
         { path: 'Services/Detail/:id', component: DetailPageComponent, canActivate: [ GeneralGuard ] },
-        { path: 'Profile', component: ProfileComponent, canActivate: [ GeneralGuard ] },
+        { path: 'Profile', component: ProfileComponent },
 
     ]),
     MatFormFieldModule,
