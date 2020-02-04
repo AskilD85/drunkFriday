@@ -1,4 +1,9 @@
 
+li:hover {
+    background-color: var(--bg-info);
+    
+
+}
 
 .addCategPage {
 

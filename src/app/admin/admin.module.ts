@@ -15,8 +15,11 @@ import { MatSelectModule,
     MatInputModule,
     MatSlideToggleModule,
     } from '@angular/material';
-import { DetailPageComponent } from './admin-layout/detail-page/detail-page.component';
+import { DetailPageComponent } from './uslugi-list/detail-page/detail-page.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UsersComponent } from './users/users.component';
+import { UslugiListComponent } from './uslugi-list/uslugi-list.component';
+import { CategoryListComponent } from './category-list/category-list.component';
 
 @NgModule({
 declarations: [
@@ -25,6 +28,9 @@ declarations: [
     LkComponent,
     DetailPageComponent,
     ProfileComponent,
+    UsersComponent,
+    UslugiListComponent,
+    CategoryListComponent,
 
 ],
 imports: [
@@ -33,10 +39,16 @@ imports: [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild([
-        { path: '', component: AdminLayoutComponent, canActivate: [GeneralGuard]  },
-        { path: 'Lk', component: LkComponent, canActivate: [ GeneralGuard ] },
+        { path: '', component: AdminLayoutComponent, children: [
+            { path: 'Lk', component: LkComponent, canActivate: [ GeneralGuard ] },
+            { path: 'Users', component: UsersComponent, canActivate: [ GeneralGuard ] },
+            { path: 'Services', component: UslugiListComponent, canActivate: [ GeneralGuard ] },
+            { path: 'Categories', component: CategoryListComponent, canActivate: [ GeneralGuard ] },
+        ], canActivate: [GeneralGuard]  },
+
         { path: 'login', component: LoginPageComponent  },
-        { path: 'Detail/:id', component: DetailPageComponent, canActivate: [ GeneralGuard ] },
+        { path: 'Users', component: UsersComponent, canActivate: [ GeneralGuard ] },
+        { path: 'Services/Detail/:id', component: DetailPageComponent, canActivate: [ GeneralGuard ] },
         { path: 'Profile', component: ProfileComponent, canActivate: [ GeneralGuard ] },
 
     ]),
@@ -57,3 +69,4 @@ providers: [],
 export class AdminModule {
 
 }
+

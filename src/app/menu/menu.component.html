@@ -10,10 +10,10 @@
     <li><a [routerLink]="['./Info']" class="">Инфо</a></li>
      <li routerLinkActive="active"><a [routerLink]="['./Contacts']" class="">Обратная связь</a></li>
      <li *ngIf="!auth" ><a [routerLink]="['./Admin']" class="">Войти</a></li>
-     <li *ngIf="auth" routerLinkActive="active"><a [routerLink]="['./Admin']"  class="">Личный кабинет</a></li>
+     <li *ngIf="auth" routerLinkActive="active"><a [routerLink]="['./Admin', 'Lk']"  class="">Личный кабинет</a></li>
      <li *ngIf="auth"><a (click)="logout()" routerLinkActive="active" class="">Выйти</a></li>
     </ul>
-    <a *ngIf="auth" [routerLink]="['./Admin']" class="right hide-on-large-only"><i class="material-icons">
+    <a *ngIf="auth" [routerLink]="['./Admin', 'Lk']" class="right hide-on-large-only"><i class="material-icons">
       perm_identity
       </i>
     </a>    

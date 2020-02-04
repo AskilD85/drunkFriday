@@ -1,0 +1,3 @@
+div.card:hover {
+    background-color: var(--bg-info-hover);
+}

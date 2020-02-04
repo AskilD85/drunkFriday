@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { SharedService } from './../../services/shared.service';
 import { AuthService } from './../auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -33,6 +34,9 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
   sServerError: Subscription;
   sRegisterUser: Subscription;
+
+  recaptchaSiteKey = environment.recaptchaSiteKey;
+
   constructor(private authService: AuthService, private sharedService: SharedService) { }
 
   ngOnInit() {
@@ -41,6 +45,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       this.regUser = x;
       this.reg = false;
       }) ;
+    console.log(this.recaptchaSiteKey);
   }
   ngOnDestroy(): void {
     if (this.sServerError) {

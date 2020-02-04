@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-
+:root {
+    --bg-info-hover: #d5f3f8;
+    --min-font-size: 11px;
+    --max-font-size: 14px;
+  }
 
  body {
     position: relative;

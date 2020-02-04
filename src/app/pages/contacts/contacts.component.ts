@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { SharedService } from './../../services/shared.service';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -25,6 +26,8 @@ export class ContactsComponent implements OnInit, OnDestroy {
   userId = localStorage.getItem('user_id');
   addAppealResponse: AddAppeal;
   saddAppealResponse: Subscription;
+
+  recaptchaSiteKey = environment.recaptchaSiteKey;
 
   constructor(private sharedService: SharedService,
               private http: HttpService,

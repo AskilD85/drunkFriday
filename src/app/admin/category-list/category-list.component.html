@@ -1,0 +1,19 @@
+<div *ngIf="categories.length > 0; else loading">
+    <div class="" *ngFor="let categ of categories">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">{{ categ.name}}</span>
+          <p>{{categ.body}}</p>
+          <div>Автор категории: <b>{{getUserById(categ.author_id)[0]?.name}}</b></div>
+        </div>
+        <div class="card-action">
+          <a >Подробнее{{categ.id}}</a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+<ng-template #loading> 
+    Идёт загрузка...
+</ng-template>

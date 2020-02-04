@@ -5,9 +5,12 @@ export class User {
     email: string;
     sex: string;
     admin: boolean;
+    type: string;
     stage: string;
     favorite: string;
     readytodrink: number;
+    // tslint:disable-next-line:variable-name
+    created_at: Date;
     data: Data;
     constructor(data: Data) {
         this.data = data;

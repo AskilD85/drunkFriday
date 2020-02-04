@@ -1,5 +1,7 @@
 <div class="container">
     <div class="p-2">
-        <p>profile works!</p>
+        <div>Имя: {{user?.name}}</div>
+        <div>Роль: {{user?.type}}</div>
+        <div>Зарегистрирован: {{user?.created_at | date: 'longDate' }}</div>
     </div>
 </div>

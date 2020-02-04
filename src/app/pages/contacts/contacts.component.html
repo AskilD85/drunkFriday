@@ -42,7 +42,7 @@
         </div>
     </div>
 
-    <re-captcha formControlName ="recaptcha"  siteKey="6LemNtUUAAAAANV1lDNoUYKm3-Wkwq8eQquFd4-1" ></re-captcha>
+    <re-captcha formControlName ="recaptcha" siteKey="{{recaptchaSiteKey}}" ></re-captcha>
 
     <input type="button" value="Очистить" class="btn btn-danger m-1" (click)="clearFormAll(addAppealForm)">
     <input type="submit" value="Добавить" class="btn btn-success m-1" [disabled]="addAppealForm.invalid">

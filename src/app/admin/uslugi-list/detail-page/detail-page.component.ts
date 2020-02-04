@@ -1,4 +1,4 @@
-import { Categories } from './../../../model/Categories';
+import { Categories } from '../../../model/Categories';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Article } from '../../../model/Article';
 import { HttpService } from '../../../services/http.service';
@@ -12,7 +12,7 @@ import { interval, Subscription } from 'rxjs';
   styleUrls: ['./detail-page.component.css']
 })
 export class DetailPageComponent implements OnInit, OnDestroy {
-  
+
 
   editInfo;
   categories: Categories[];
@@ -22,7 +22,6 @@ export class DetailPageComponent implements OnInit, OnDestroy {
   id = this.route.snapshot.params.id;
 
   form: FormGroup;
-  
 
   constructor(private route: ActivatedRoute,
               private router: Router,
