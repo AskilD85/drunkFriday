@@ -1,8 +1,8 @@
 
 <div *ngIf="articles?.length > 0">
     <div class="container ">
-        <div *ngFor="let article of articles" class="card" >
-            <div class=" p-2 m-3 item-card" [routerLink]="['/Uslugi', article.id]" >
+        <div *ngFor="let article of articles" class="card" [routerLink]="['/Uslugi', article.id]" >
+            <div class=" p-2 m-3 item-card"  >
              <div >   
                 <b class="card-title">{{article.title}}</b>
                 <div class="secondary-content"> Обновлено: {{article.updated_at | date: 'longDate'}}</div>
