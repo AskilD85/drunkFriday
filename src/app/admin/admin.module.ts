@@ -44,7 +44,7 @@ imports: [
             { path: 'Users', component: UsersComponent, canActivate: [ GeneralGuard ] },
             { path: 'Services', component: UslugiListComponent, canActivate: [ GeneralGuard ] },
             { path: 'Categories', component: CategoryListComponent, canActivate: [ GeneralGuard ] },
-        ], /* canActivate: [GeneralGuard] */ },
+        ],  canActivate: [GeneralGuard]  },
 
         { path: 'login', component: LoginPageComponent  },
         { path: 'Users', component: UsersComponent, canActivate: [ GeneralGuard ] },

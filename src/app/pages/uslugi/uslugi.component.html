@@ -2,20 +2,21 @@
 <div *ngIf="articles?.length > 0">
     <div class="container ">
         <div *ngFor="let article of articles" class="card" [routerLink]="['/Uslugi', article.id]" >
-            <div class=" p-2 m-3 item-card"  >
-             <div >   
-                <b class="card-title">{{article.title}}</b>
-                <div class="secondary-content"> Обновлено: {{article.updated_at | date: 'longDate'}}</div>
-            </div>
-            <div><b>Категория:</b> {{ getCatById(article.category_id)[0]?.name}}</div>
-            <!-- <div><b>Описание:</b>{{article.body | slice: 0:30 }}...</div> -->
+            <div class="p-2 item-card"  >
+                <div class="my-2">
+                    <div class="card-title">{{article.title}}</div>
+                    <b>Категория:</b> {{ getCatById(article.category_id)[0]?.name}}
+                    <div class="secondary-content"> Обновлено: {{article.updated_at | date: 'longDate'}}</div>   
+                    
+                    
+                </div>
+               
+                <!-- <div><b>Описание:</b>{{article.body | slice: 0:30 }}...</div> -->
             
-            <div class=""> 
-                Просмотры:  
-                Комментарии:
-                   
-            </div> 
-
+                <div class=""> 
+                    Просмотры:  
+                    Комментарии:
+                </div> 
             </div>
         </div>
     </div>

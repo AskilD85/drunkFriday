@@ -19,7 +19,7 @@ export class UslugiListComponent implements OnInit, OnDestroy {
   sSub: Subscription;
   myUslugiSub: Subscription;
   getCategSub: Subscription;
-
+  sDeleteArticle: Subscription;
   isAuth: boolean;
   allArticles: Article[] = [];
   del;
@@ -79,6 +79,9 @@ export class UslugiListComponent implements OnInit, OnDestroy {
     if (this.getCategSub) {
       this.getCategSub.unsubscribe();
     }
+    if (this.sDeleteArticle) {
+      this.sDeleteArticle.unsubscribe();
+    }
 
   }
 
@@ -93,7 +96,10 @@ export class UslugiListComponent implements OnInit, OnDestroy {
   }
 
   delete(id: string) {
-    this.http.delete(id).subscribe(del => { this.del = del;  this.myUslugi();  });
+    this.sDeleteArticle = this.http.delete(id).subscribe(del => {
+      this.del = del;
+      this.allArticles = this.allArticles.filter( articles => articles.id !== id);
+    });
   }
   getCategories() {
     this.getCategSub = this.http.getCategories().subscribe((categ: Categories) => {
@@ -123,7 +129,7 @@ export class UslugiListComponent implements OnInit, OnDestroy {
       this.addClick = false;
       this.addForm.reset();
       this.myUslugi();
-      setTimeout ( () => this.router.navigate(['Admin', 'Detail', this.addArticle.id ]) , 1000) ;
+      setTimeout ( () => this.router.navigate(['Admin', 'Services', 'Detail', this.addArticle.id ]) , 1000) ;
     });
   }
 }

@@ -10,3 +10,6 @@
     cursor: pointer;
 }
 
+.secondary-content {
+    float: unset;
+}

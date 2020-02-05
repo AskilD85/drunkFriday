@@ -27,7 +27,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
   addAppealResponse: AddAppeal;
   saddAppealResponse: Subscription;
 
-  recaptchaSiteKey = environment.recaptchaSiteKey;
+  /*recaptchaSiteKey = environment.recaptchaSiteKey;*/
 
   constructor(private sharedService: SharedService,
               private http: HttpService,

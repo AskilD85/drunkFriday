@@ -40,7 +40,7 @@ export class AuthService {
         localStorage.setItem('apikey', this.user.data['api_token']);
         localStorage.setItem('user_id', this.user.data.id);
         this.authEmit.emit(true);
-        this.route.navigate(['/Admin/Lk']);
+        this.route.navigate(['Admin', 'Lk']);
       }
 
     }, (err: HttpErrorResponse) => {
@@ -57,7 +57,8 @@ export class AuthService {
     if (this.isAuthenticated()) {
       const userId = localStorage.getItem('user_id');
       if (userId !== null && userId !== undefined) {
-        this.httpService.getUser(userId).subscribe(x => {
+
+        this.httpService.getUser(userId).subscribe( () => {
           this.authEmit.emit(true);
         },
           (err: HttpErrorResponse) => {
@@ -65,16 +66,25 @@ export class AuthService {
           });
       }
 
-
     } else {
       this.authEmit.emit(false);
     }
   }
 
+  /*checkAuth() {
+    if (this.isAuthenticated) {
+      this.authEmit.emit(true);
+      return true;
+    } else {
+      this.authEmit.emit(false);
+      return false;
+    }
+  }*/
+
   logout() {
     this.authEmit.emit(false);
     localStorage.clear();
-    this.route.navigate(['Admin']);
+    this.route.navigate(['Admin', 'login']);
   }
 
   register(regData) {

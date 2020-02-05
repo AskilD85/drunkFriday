@@ -11,3 +11,7 @@
 .material-icons.bg-color-green:hover {
     cursor: pointer;
 }
+
+.material-icons.darkred{
+    color: darkred;
+}

@@ -1,3 +1,4 @@
+import { FormGroup } from '@angular/forms';
 import { Categories } from './../model/Categories';
 import { Article } from './../model/Article';
 import { Router } from '@angular/router';
@@ -6,6 +7,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { User } from '../model/User';
 import { map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { UserComment } from '../model/UserComment';
 
 
 @Injectable({
@@ -156,5 +158,24 @@ export class HttpService {
     body.user_id = localStorage.getItem('user_id');
     return this.http.post(this.url + `appeals`, body);
   }
-  
+
+  getResponses(id: string) {
+    return this.http.get(this.url + `response/${id}`);
+  }
+
+  getUserResponse(article: string) {
+    const user = localStorage.getItem('user_id');
+    return this.http.get<Array<UserComment>>(this.url + `response/${user}/${article}`);
+  }
+
+  toDeal(form: FormGroup, articlId: string  ) {
+    const body = form.value;
+    body.user_id = localStorage.getItem('user_id');
+    body.article_id = articlId;
+    console.log(body);
+    return this.http.post(this.url + 'response', body);
+  }
+  destroyResponse(id: string) {
+    return this.http.delete(this.url + `response/${id}`);
+  }
 }

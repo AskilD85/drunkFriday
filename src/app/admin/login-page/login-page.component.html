@@ -1,5 +1,5 @@
 <div class="container ">
-    <h3>{{reg ? 'Регистрация' : 'Авторизация'}}</h3>
+    <div class="text-center"><h3>{{reg ? 'Регистрация' : 'Авторизация'}}</h3></div>
     <div class="card p-2  login-div" >
         
         <!-- форма авторизации -->
@@ -27,7 +27,7 @@
             <div  class="validation" *ngIf="serverError">
                 <div><small>{{serverError.error.errors.email}}</small></div>
             </div>
-            <re-captcha  formControlName ="recaptcha" siteKey="{{recaptchaSiteKey}}" ></re-captcha>
+            <!-- <re-captcha  formControlName ="recaptcha" siteKey="{{recaptchaSiteKey}}" ></re-captcha> -->
 
             <div class="p-2 input-field">
                 <input type="submit" class="btn btn-primary m-1 bg-info" value = "Войти" [disabled]="form.invalid" > 
@@ -69,13 +69,13 @@
                 <div  class="validation" *ngIf="serverError">
                     <div><small>{{serverError.error.errors.email}}</small></div>
                 </div>
-                <re-captcha formControlName ="recaptcha" siteKey="{{recaptchaSiteKey}}" ></re-captcha>
+                <!-- <re-captcha formControlName ="recaptcha" siteKey="{{recaptchaSiteKey}}" ></re-captcha> -->
             <div class="p-2 input-field" >
                 <input type="submit" 
                     class="btn btn-primary m-1 bg-info" 
-                    value = "Зарегистрироваться" 
+                    value = "Регистрация" 
                     [disabled]="regForm.invalid || !(regForm.get('password').value === regForm.get('password_confirmation').value)">
-                <input type="button" class="btn btn-primary my-1 bg-info" value = "Есть аккаунт" (click)="authClick()">
+                <input type="button" class="btn btn-primary m-1 bg-info" value = "Есть аккаунт" (click)="authClick()">
             </div>
         </form>
     </div>

@@ -1,2 +1,15 @@
 
 
+.deleteButton {
+    text-align: right;
+    
+}
+.material-icons:hover {
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.material-icons.color{
+    color: darkred;
+}
+

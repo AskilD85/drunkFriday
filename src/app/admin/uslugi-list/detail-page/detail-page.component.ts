@@ -59,7 +59,7 @@ export class DetailPageComponent implements OnInit, OnDestroy {
 
     this.http.editArticle(this.form.value, this.id).subscribe((edit: Article) => {
       this.editInfo = edit;
-      setTimeout(() => this.router.navigate(['/Admin']), 1000);
+      setTimeout(() => this.router.navigate(['/Admin', 'Services']), 1000);
     },
       (err) => { console.log('что -то пошло нетак'); },
     );
