@@ -34,7 +34,7 @@ export class UsDetailComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private http: HttpService, private auth: AuthService) { }
 
   ngOnInit() {
-    this.sArticle = this.http.getArticle(this.id).subscribe( (usluga: Article) => {this.usluga = usluga; },
+    this.sArticle = this.http.getArticle(this.id).subscribe((usluga: Article) => { this.usluga = usluga; },
       (err: HttpErrorResponse) => {
         console.log('Ошибка деталки:  ', err);
 
@@ -63,7 +63,12 @@ export class UsDetailComponent implements OnInit, OnDestroy {
   getMyResponses() {
     if (this.isAuth) {
       this.sMyResponses = this.http.getUserResponse(this.id).subscribe(
-        (myResponses: UserComment[] ) => { this.myResponses = myResponses; } );
+        (myResponses: UserComment[]) => { this.myResponses = myResponses; },
+        (err) => {
+          console.log(err);
+          this.auth.logout();
+        }
+      );
     }
   }
   getComments() {
@@ -74,21 +79,23 @@ export class UsDetailComponent implements OnInit, OnDestroy {
     if (!this.formDeal.invalid) {
       this.sFormSubmit = this.http.toDeal(this.formDeal, this.id).subscribe(
         (resp: UserComment) => { this.response = resp; console.log(this.response); },
-        (err) => {console.log(err); },
+        (err) => { console.log(err); this.auth.logout(); },
         () => {
           this.sFormSubmit.unsubscribe();
           this.getMyResponses();
           this.deal = false;
-          }
-        );
+        }
+      );
       this.formDeal.reset();
     }
 
   }
   destroyResponse(id: string) {
-    this.sDestroy = this.http.destroyResponse(id).subscribe( () => {
-      this.myResponses = this.myResponses.filter( resp => resp.id !== id);
+    this.sDestroy = this.http.destroyResponse(id).subscribe(() => {
+      this.myResponses = this.myResponses.filter(resp => resp.id !== id);
       this.getMyResponses();
-    });
+    },
+      (err) => { console.log(err); this.auth.logout(); }
+    );
   }
 }
