@@ -40,10 +40,10 @@ imports: [
     ReactiveFormsModule,
     RouterModule.forChild([
         { path: '', component: AdminLayoutComponent, children: [
-            { path: 'Lk', component: LkComponent, canActivate: [ GeneralGuard ] },
-            { path: 'Users', component: UsersComponent, canActivate: [ GeneralGuard ] },
-            { path: 'Services', component: UslugiListComponent, canActivate: [ GeneralGuard ] },
-            { path: 'Categories', component: CategoryListComponent, canActivate: [ GeneralGuard ] },
+            { path: 'Lk', component: LkComponent },
+            { path: 'Users', component: UsersComponent },
+            { path: 'Services', component: UslugiListComponent },
+            { path: 'Categories', component: CategoryListComponent },
         ],  canActivate: [GeneralGuard]  },
 
         { path: 'login', component: LoginPageComponent  },

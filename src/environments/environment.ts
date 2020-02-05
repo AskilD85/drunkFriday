@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   BackendDBUrl: 'http://localhost:8000/api/',
- /*recaptchaSiteKey: '6LemNtUUAAAAANV1lDNoUYKm3-Wkwq8eQquFd4-1'*/
+ recaptchaSiteKey: '6LemNtUUAAAAANV1lDNoUYKm3-Wkwq8eQquFd4-1'
 };
 
 /*

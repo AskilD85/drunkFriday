@@ -59,14 +59,17 @@ export class UslugiListComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-    this.authService.checkAuth();
+    this.myUslugi();
+    this.getCategories();
+
+
+    /*this.authService.checkAuth();
     this.sSub = this.authService.authEmit.subscribe(auth => {
       this.isAuth = auth;
-      if (auth === true) {
-        this.myUslugi();
-        this.getCategories();
+      if (this.isAuth === true) {
+        
       }
-    });
+    });*/
 
   }
   ngOnDestroy(): void {
@@ -123,7 +126,6 @@ export class UslugiListComponent implements OnInit, OnDestroy {
     console.log('addCateg', this.addCategForm.value, this.addCategForm );
   }
   addUsluga() {
-    console.log('addUsluga', this.addForm.value);
     this.http.addArticle(this.addForm.value).subscribe((add: Article) => {
       this.addArticle = add;
       this.addClick = false;

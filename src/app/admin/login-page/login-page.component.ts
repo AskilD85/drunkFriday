@@ -21,7 +21,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   form = new FormGroup({
     email: new FormControl('', [Validators.email, Validators.required] ),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-   /*recaptcha: new FormControl('', [Validators.required]),*/
+    recaptcha: new FormControl('', [Validators.required])
   });
 
   regForm = new FormGroup({
@@ -29,13 +29,13 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     email : new FormControl('', [Validators.email, Validators.required] ),
     password: new FormControl('', [Validators.required, Validators.minLength(8)] ),
     password_confirmation: new FormControl('', [Validators.required, Validators.minLength(8)] ),
-   /* recaptcha: new FormControl('', [Validators.required]),*/
+    recaptcha: new FormControl('', [Validators.required])
   }, );
 
   sServerError: Subscription;
   sRegisterUser: Subscription;
 
-  /*recaptchaSiteKey = environment.recaptchaSiteKey;*/
+  recaptchaSiteKey = environment.recaptchaSiteKey;
 
   constructor(private authService: AuthService, private sharedService: SharedService) { }
 

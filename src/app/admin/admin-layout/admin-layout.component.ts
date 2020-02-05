@@ -62,7 +62,6 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
 
       this.authService.checkAuth();
       this.sSub = this.authService.authEmit.subscribe(auth => {
-        console.log(auth);
         this.isAuth = auth;
         if (this.isAuth === true) {
             this.router.navigate(['Admin', 'Lk']);
