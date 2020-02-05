@@ -20,22 +20,25 @@ export class MenuComponent implements OnInit, OnDestroy {
   auth: boolean;
   user: User;
   userSub: Subscription;
-
+  authSub: Subscription;
   ngOnInit() {
 
-    
       this.authService.checkAuth();
-      this.authService.authEmit.subscribe(x => {
+      this.authSub = this.authService.authEmit.subscribe(x => {
         this.auth = x;
       });
+
       this.userSub = this.http.getUser(localStorage.getItem('user_id')).subscribe( (us: User) => {this.user = us; });
-    
+
 
   }
 
   ngOnDestroy(): void {
     if (this.userSub) {
       this.userSub.unsubscribe();
+    }
+    if (this.authSub) {
+      this.authSub.unsubscribe();
     }
   }
 

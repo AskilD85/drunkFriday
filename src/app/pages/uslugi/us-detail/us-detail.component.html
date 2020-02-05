@@ -9,20 +9,24 @@
             </div>
             
             <p>{{usluga?.body}}</p>
-           <div class="card-action2">
-            <input type="button" class="btn btn-outline-primary m-1 bg-info" (click)="deal = true" value="Написать автору">
-           </div>
-            
-           <form *ngIf="deal" [formGroup]="formDeal" (ngSubmit)="toDeal()">
-                <div class="input-field">
-                    <input type="text" formControlName="text"  >
+            <div *ngIf="isAuth"> 
+                <div class="card-action2">
+                    <input type="button" class="btn btn-outline-primary m-1 bg-info" (click)="deal = true" value="Написать автору">
                 </div>
-                <input type="submit" class="btn bg-info" [disabled]="formDeal.invalid" value="Отправить">
-                <input type="button" class="btn m-2 red" (click)="deal = false; formDeal.reset()" value="Закрыть">
-           </form>
-           <div *ngIf="response">
-            <span class="color-green">Отправлено!</span>
-        </div>
+                
+                <form *ngIf="deal" [formGroup]="formDeal" (ngSubmit)="toDeal()">
+                    <div class="input-field">
+                        <input type="text" formControlName="text">
+                    </div>
+                    <input type="submit" class="btn bg-info" [disabled]="formDeal.invalid" value="Отправить">
+                    <input type="button" class="btn m-2 red" (click)="deal = false; formDeal.reset()" value="Закрыть">
+                </form>
+                <div *ngIf="response">
+                    <span class="color-green">Отправлено!</span>
+                </div>
+            </div>
+          
+
         </div>
         
     </div>
