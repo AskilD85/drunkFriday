@@ -5,3 +5,7 @@ div.card:hover {
 .material-icons.darkred{
     color: darkred;
 }
+
+.material-icons:hover{
+    cursor: pointer;
+}
