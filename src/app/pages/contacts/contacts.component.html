@@ -1,11 +1,14 @@
 
 
 
- <div class=" text-center"><h5>Предложения, пожелания и замечания можете отправить нам заполнив ниже форму.</h5></div>
 
 <div class="container">
+
 <div class="card p-3 form-div">
+    
 <form *ngIf="!addAppealResponse" [formGroup]="addAppealForm" (ngSubmit)="addAppeal()">
+    <div class=" text-center"><h5>Предложения, пожелания и замечания можете отправить нам заполнив форму.</h5></div>
+
     <div class="input-field">
         <input type="text" class="p-2" formControlName="name" placeholder="Введите Ваше имя"  formControlName="name" id="name">
         
@@ -46,14 +49,15 @@
     
     
 
-    <input type="button" value="Очистить" class="btn btn-danger m-1" (click)="clearFormAll(addAppealForm)">
+    <input type="button" value="Очистить" class="btn btn-danger m-1 red" (click)="clearFormAll(addAppealForm)">
     <input type="submit" value="Добавить" class="btn btn-success m-1" [disabled]="addAppealForm.invalid">
 </form>
-<div *ngIf="addAppealResponse">
-    <div class="text-center" >
-        <span class="color-green">Ваше обращение отправилось!</span>
+        <div *ngIf="addAppealResponse">
+            <div class="text-center" >
+                <span class="color-green">Ваше обращение отправилось!</span>
+            </div>
+        </div>
     </div>
-</div></div>
 </div>
 
 
