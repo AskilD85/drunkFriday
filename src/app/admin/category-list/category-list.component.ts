@@ -17,6 +17,7 @@ export class CategoryListComponent implements OnInit, OnDestroy {
 
   sCategories: Subscription;
   sUsers: Subscription;
+  sDestroyCateg: Subscription;
 
   ngOnInit() {
     this.sCategories = this.httpService.getCategories().subscribe( (categ: Categories[]) => { this.categories = categ; });
@@ -27,11 +28,22 @@ export class CategoryListComponent implements OnInit, OnDestroy {
     if (this.sCategories) {
       this.sCategories.unsubscribe();
     }
+    if (this.sUsers) {
+      this.sUsers.unsubscribe();
+    }
+    if (this.sDestroyCateg) {
+      this.sDestroyCateg.unsubscribe();
+    }
   }
 
    getUserById(id: string) {
     if (this.users) {
       return this.users.filter((c) => c.id === id);
     }
+  }
+  destroy(id: string) {
+    this.sDestroyCateg = this.httpService.destroyCategory(id).subscribe(
+      () => { this.categories = this.categories.filter(c => c.id !== id); },
+    );
   }
 }
