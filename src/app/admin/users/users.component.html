@@ -3,6 +3,7 @@
       <div class="card">
         <div class="card-content">
           <span class="card-title">{{ user.name}}</span>
+          <i class="material-icons right darkred " (click)="destroy(user.id)">delete</i>
           <div>О себе: </div>
           <div>Роль пользователя: <b>{{user.type}}</b></div>
           <div>Создан: <b>{{user.created_at}}</b></div>
