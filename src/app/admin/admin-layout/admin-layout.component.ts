@@ -60,13 +60,14 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
 
-      this.authService.checkAuth();
+    this.isAuth = this.authService.isAuthenticated();
+      /*this.authService.checkAuth();
       this.sSub = this.authService.authEmit.subscribe(auth => {
         this.isAuth = auth;
         if (this.isAuth === true) {
-            this.router.navigate(['Admin', 'Lk']);
+            // this.router.navigate(['Admin', 'Lk']);
         }
-      });
+      });*/
 
 
 
