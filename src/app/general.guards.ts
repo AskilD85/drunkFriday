@@ -11,8 +11,7 @@ export class GeneralGuard implements CanActivate {
     canActivate(route2: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
 
         this.auth = localStorage.getItem('apikey');
-
-        if (this.auth) {
+        if (this.auth !== null) {
             return true;
         } else {
             this.route.navigate(['/Admin/login']);
