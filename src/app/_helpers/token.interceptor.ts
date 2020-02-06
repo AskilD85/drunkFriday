@@ -13,7 +13,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
         const token = localStorage.getItem('apikey');
 
-        if (token) {
+        if (token !== null) {
 
             request = request.clone({
                 setHeaders: {

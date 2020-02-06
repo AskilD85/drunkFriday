@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { RECAPTCHA_SETTINGS,  RecaptchaFormsModule, RecaptchaSettings, RecaptchaModule } from 'ng-recaptcha';
+import { TokenInterceptor } from '../_helpers/token.interceptor';
 
 @NgModule({
     declarations: [],
@@ -13,7 +14,7 @@ import { RECAPTCHA_SETTINGS,  RecaptchaFormsModule, RecaptchaSettings, Recaptcha
     exports: [
         HttpClientModule,
         RecaptchaModule,
-    RecaptchaFormsModule
+        RecaptchaFormsModule
     ]
     ,
     providers: [ {
@@ -21,7 +22,9 @@ import { RECAPTCHA_SETTINGS,  RecaptchaFormsModule, RecaptchaSettings, Recaptcha
         useValue: {
           siteKey: '6Lf2oacUAAAAAHDGk5rddlzxHBDQ2rhHk17fkguV',
         } as RecaptchaSettings,
-      }]
+      },
+      {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    ]
 })
 
 export class SharedModule {}
