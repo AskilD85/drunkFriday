@@ -15,7 +15,7 @@ import { InfoComponent } from './pages/info/info.component';
 
 
 const routes: Routes = [
-  { path: '', component: MainComponent  },
+  { path: '', component: UslugiComponent  },
   { path: 'About', component: AboutComponent},
   { path: 'Work', component: WorkComponent, canActivate: [ GeneralGuard ]},
   { path: 'Blog', component: BlogComponent, canActivate: [ GeneralGuard ]},
