@@ -1,6 +1,8 @@
 <div class="editForm container">
-    <i  [routerLink]="(['/Admin/Services'])" class="material-icons color-info m-3"> keyboard_backspace</i>
-
+    <div>
+        <i  [routerLink]="(['/Admin', 'Services'])" class="material-icons color-info m-3"> keyboard_backspace</i>
+        <span [ngStyle]="{'font-size':'23px', 'margin': 'auto'}">Редактирование  услуги</span>
+    </div>
     <div *ngIf="form" class=" p-3 card">
     <form  [formGroup]="form" (ngSubmit)="editArticleSubmit()">
         
