@@ -3,6 +3,7 @@
       <div class="card">
         <div class="card-content">
           <span class="card-title">{{ categ.name}}</span>
+          <i class="material-icons right darkred " (click)="destroy(categ.id)">delete</i>
           <p>{{categ.body}}</p>
           <div>Автор категории: <b>{{getUserById(categ.author_id)[0]?.name}}</b></div>
         </div>
