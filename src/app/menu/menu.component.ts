@@ -26,9 +26,14 @@ export class MenuComponent implements OnInit, OnDestroy {
       this.authService.checkAuth();
       this.authSub = this.authService.authEmit.subscribe(x => {
         this.auth = x;
+        if (this.auth === true) {
+          this.userSub = this.http.getUser(localStorage.getItem('user_id')).subscribe( (us: User) => { this.user = us; },
+          (err) => { console.log(err); this.authService.logout(); }
+            );
+        }
       });
+    
 
-      this.userSub = this.http.getUser(localStorage.getItem('user_id')).subscribe( (us: User) => {this.user = us; });
 
 
   }
