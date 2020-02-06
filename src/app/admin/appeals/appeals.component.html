@@ -1,0 +1,9 @@
+<div class="card p-3" *ngFor = "let appeal of appeals">
+    
+    <div><small>{{appeal?.created_at}}</small></div>
+    <div>{{appeal?.name}}<i class="material-icons right darkred" (click)="destroy(appeal.id)">delete</i></div>
+    <div>{{appeal?.body}}</div>
+    <hr>
+    <div *ngIf="appeal.user_id">Зарегистрирован как: {{ getUserById(appeal?.user_id)[0]?.name }}</div>
+    
+</div>
