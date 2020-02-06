@@ -16,7 +16,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
   addAppealForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     theme: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    body: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    body: new FormControl('', [Validators.required, Validators.minLength(2)]),
     recaptcha: new FormControl('', [Validators.required]),
   });
 

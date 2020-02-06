@@ -4,7 +4,6 @@ import { Article } from './../../model/Article';
 import { Subscription } from 'rxjs';
 import { AuthService } from './../auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { User } from 'src/app/model/User';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -58,20 +57,9 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-
-
     this.isAuth = this.authService.isAuthenticated();
-      /*this.authService.checkAuth();
-      this.sSub = this.authService.authEmit.subscribe(auth => {
-        this.isAuth = auth;
-        if (this.isAuth === true) {
-            // this.router.navigate(['Admin', 'Lk']);
-        }
-      });*/
-
-
-
   }
+  
   ngOnDestroy(): void {
     if (this.sSub) {
       this.sSub.unsubscribe();

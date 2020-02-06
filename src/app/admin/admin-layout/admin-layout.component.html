@@ -1,10 +1,10 @@
- 
-           
-
 <div *ngIf="isAuth;" class="container">
-    <div class="text-center"><h5>Админка</h5></div>
-      <router-outlet></router-outlet>
+    <div class="text-center"><h5 >
+        <a [routerLink]="['Lk']">Управление</a></h5>
+    </div>
+    <router-outlet></router-outlet>
 </div>
+
 <div *ngIf="!isAuth" class="text-center">
     <app-login-page></app-login-page>
 </div>

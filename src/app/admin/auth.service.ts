@@ -40,7 +40,7 @@ export class AuthService {
         localStorage.setItem('apikey', this.user.data['api_token']);
         localStorage.setItem('user_id', this.user.data.id);
         this.authEmit.emit(true);
-        this.route.navigate(['Admin']);
+        this.route.navigate(['Admin','Profile']);
       }
 
     }, (err: HttpErrorResponse) => {

@@ -48,12 +48,13 @@ imports: [
             { path: 'Services', component: UslugiListComponent },
             { path: 'Categories', component: CategoryListComponent },
             { path: 'Appeals', component: AppealsComponent },
+            { path: 'Profile', component: ProfileComponent },
         ],  canActivate: [GeneralGuard]   },
 
         { path: 'login', component: LoginPageComponent  },
         { path: 'Users', component: UsersComponent, canActivate: [ GeneralGuard ] },
         { path: 'Services/Detail/:id', component: DetailPageComponent, canActivate: [ GeneralGuard ] },
-        { path: 'Profile', component: ProfileComponent },
+        
 
     ]),
     MatFormFieldModule,
