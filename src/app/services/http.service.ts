@@ -178,4 +178,8 @@ export class HttpService {
   destroyResponse(id: string) {
     return this.http.delete(this.url + `response/${id}`);
   }
+
+  destroyCategory(id: string) {
+    return this.http.delete(this.url + `categories/${id}`);
+  }
 }
