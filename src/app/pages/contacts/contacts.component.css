@@ -23,3 +23,10 @@ input.ng-valid {
     width: 650px;
     margin: auto;
 }
+
+@media (max-width: 768px) {
+    .form-div {
+        width: 320px;
+        margin: auto;
+    }
+}

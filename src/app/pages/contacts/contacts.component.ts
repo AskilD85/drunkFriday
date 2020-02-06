@@ -3,7 +3,7 @@ import { SharedService } from './../../services/shared.service';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpService } from 'src/app/services/http.service';
-import { AddAppeal } from './../../model/Appeal';
+import { Appeal } from './../../model/Appeal';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -24,7 +24,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
   body = '';
   username = '';
   userId = localStorage.getItem('user_id');
-  addAppealResponse: AddAppeal;
+  addAppealResponse: Appeal;
   saddAppealResponse: Subscription;
 
   recaptchaSiteKey = environment.recaptchaSiteKey;
@@ -45,7 +45,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
   addAppeal() {
     if (this.addAppealForm.valid) {
       this.saddAppealResponse = this.http.addAppeal(this.addAppealForm.value)
-        .subscribe((response: AddAppeal) => { this.addAppealResponse = response; });
+        .subscribe((response: Appeal) => { this.addAppealResponse = response; });
       this.clearFormAll(this.addAppealForm);
     }
 
