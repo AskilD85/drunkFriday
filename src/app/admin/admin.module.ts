@@ -20,6 +20,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './users/users.component';
 import { UslugiListComponent } from './uslugi-list/uslugi-list.component';
 import { CategoryListComponent } from './category-list/category-list.component';
+import { AppealsComponent } from './appeals/appeals.component';
+
 
 @NgModule({
 declarations: [
@@ -31,6 +33,7 @@ declarations: [
     UsersComponent,
     UslugiListComponent,
     CategoryListComponent,
+    AppealsComponent,
 
 ],
 imports: [
@@ -44,7 +47,8 @@ imports: [
             { path: 'Users', component: UsersComponent },
             { path: 'Services', component: UslugiListComponent },
             { path: 'Categories', component: CategoryListComponent },
-        ],  canActivate: [GeneralGuard]  },
+            { path: 'Appeals', component: AppealsComponent },
+        ],  canActivate: [GeneralGuard]   },
 
         { path: 'login', component: LoginPageComponent  },
         { path: 'Users', component: UsersComponent, canActivate: [ GeneralGuard ] },
@@ -62,7 +66,8 @@ imports: [
 exports: [
     RouterModule
 ],
-providers: [],
+providers: [
+],
 
 })
 
