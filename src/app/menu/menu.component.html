@@ -1,26 +1,27 @@
 <nav>
   <div class="nav-wrapper bg-info">
-   <div class="container">
-    <a class="brand-logo" [routerLink] ="['/']">
-     Сервис
-    </a>
-    <a data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>    
-    <ul  class="right hide-on-med-and-down">
-     <li ><a [routerLink]="['./']"  class="">Главная</a></li>
-    <li><a [routerLink]="['./Info']" class="">Инфо</a></li>
-     <li routerLinkActive="active"><a [routerLink]="['./Contacts']" class="">Обратная связь</a></li>
-     <li *ngIf="!auth" ><a [routerLink]="['./Admin']" class="">Войти</a></li>
-     <li *ngIf="auth" routerLinkActive="active"><a [routerLink]="['./Admin', 'Profile']"  class="">Личный кабинет</a></li>
-     <li *ngIf="auth"><a (click)="logout()" routerLinkActive="active" class="">Выйти</a></li>
-    </ul>
-    <a *ngIf="auth" [routerLink]="['Admin', 'Lk']" class="right hide-on-large-only"><i class="material-icons">
-      perm_identity
-      </i>
-    </a>    
+    <div class="container">
+      <a class="brand-logo" [routerLink]="['/']">
+        Сервис
+      </a>
+      <a data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a [routerLink]="['./']" class="">Главная</a></li>
+        <li><a [routerLink]="['./Info']" class="">Инфо</a></li>
+        <li routerLinkActive="active"><a [routerLink]="['./Contacts']" class="">Обратная связь</a></li>
+        <li *ngIf="!auth"><a [routerLink]="['./Admin']" class="">Войти</a></li>
+        <li *ngIf="auth" routerLinkActive="active"><a [routerLink]="['Cabinet']" class="">Личный кабинет</a></li>
+        <li *ngIf="isAdmin === true" routerLinkActive="active"><a [routerLink]="['./Admin', 'Lk']" class="">Управление</a></li>
+        <li *ngIf="auth"><a (click)="logout()" routerLinkActive="active" class="">Выйти</a></li>
+      </ul>
+      <a *ngIf="auth" [routerLink]="['Admin', 'Lk']" class="right hide-on-large-only"><i class="material-icons">
+        perm_identity
+        </i>
+      </a>
 
-   </div>
+    </div>
   </div>
- </nav>
+</nav>
 
 <ul id="slide-out" class="sidenav">
   <li>
@@ -28,26 +29,30 @@
       <div class="background bg-info">
       </div>
       <div *ngIf="!auth">
-        <a  [routerLink]="['./Admin']" class="white-text sidenav-close" >Войти</a>
+        <a [routerLink]="['./Admin']" class="white-text sidenav-close">Войти</a>
       </div>
-      <div class="username" *ngIf="auth" > 
-        <a [routerLink]="['Admin', 'Profile']"><span class="white-text name sidenav-close">{{user?.name | titlecase}}</span></a>
-        <a [routerLink]="['./Admin', 'Lk']" class="white-text mx-1 sidenav-close">Личный кабинет </a>
+      <div class="username" *ngIf="auth">
+        <a [routerLink]="['Admin', 'Profile']"><span
+            class="white-text name sidenav-close">{{user?.name | titlecase}}</span></a>
+        <a [routerLink]="['Cabinet']" class="white-text mx-1 sidenav-close">Личный кабинет </a>
+        <a *ngIf="isAdmin === true" [routerLink]="['./Admin', 'Lk']" class="white-text mx-1 sidenav-close">Управление</a>
         <a class="mx-1 white-text sidenav-close right" (click)="logout()"> Выйти</a>
       </div>
-  </div>
-</li>
- 
- 
- 
-<li><a href="#" class="sidenav-close"><i class="material-icons ">home</i>Сервис поиска услуг</a></li>
-<li><a [routerLink]="['./']" class="sidenav-close">Список услуг</a></li>
+    </div>
+  </li>
 
-<li><a href="#" class="sidenav-close">Список категорий</a></li>
-<li><a href="#" class="sidenav-close">Список пользователей</a></li>
 
-<li><div class="divider background bg-info"></div></li>
-<li><a class="subheader">Дополнительная информация</a></li>
-<li><a [routerLink]="['./Info']" class="sidenav-close">О приложении</a></li>
-<li><a [routerLink]="['./Contacts']" class="sidenav-close">Обратная связь</a></li>
+
+  <li><a href="#" class="sidenav-close"><i class="material-icons ">home</i>Сервис поиска услуг</a></li>
+  <li><a [routerLink]="['./']" class="sidenav-close">Список услуг</a></li>
+
+  <li><a href="#" class="sidenav-close">Список категорий</a></li>
+  <li><a href="#" class="sidenav-close">Список пользователей</a></li>
+
+  <li>
+    <div class="divider background bg-info"></div>
+  </li>
+  <li><a class="subheader">Дополнительная информация</a></li>
+  <li><a [routerLink]="['./Info']" class="sidenav-close">О приложении</a></li>
+  <li><a [routerLink]="['./Contacts']" class="sidenav-close">Обратная связь</a></li>
 </ul>
