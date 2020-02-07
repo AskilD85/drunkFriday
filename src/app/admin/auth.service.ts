@@ -39,14 +39,24 @@ export class AuthService {
         // tslint:disable-next-line:no-string-literal
         localStorage.setItem('apikey', this.user.data['api_token']);
         localStorage.setItem('user_id', this.user.data.id);
+        localStorage.setItem('role', this.user.data.type);
         this.authEmit.emit(true);
-        this.route.navigate(['Admin','Profile']);
+        this.route.navigate(['Admin', 'Profile']);
       }
 
     }, (err: HttpErrorResponse) => {
       this.serverError.emit(err);
       console.log(err);
     });
+  }
+
+  isAdmin(): boolean {
+    const role = localStorage.getItem('role');
+    if ( role === 'admin') {
+      return  true;
+    } else {
+      return false;
+    }
   }
 
   isAuthenticated(): boolean {
@@ -76,7 +86,7 @@ export class AuthService {
   logout() {
     this.authEmit.emit(false);
     localStorage.clear();
-    this.route.navigate(['Admin', 'login']);
+    this.route.navigate(['login']);
   }
 
   register(regData) {

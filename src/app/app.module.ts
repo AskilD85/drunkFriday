@@ -34,7 +34,7 @@ import { MatSelectModule,
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InfoComponent } from './pages/info/info.component';
 
-import { registerLocaleData } from '@angular/common';
+import { registerLocaleData, CommonModule } from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
 import { CabinetComponent } from './pages/cabinet/cabinet.component';
 registerLocaleData(localeRu, 'ru');
@@ -59,7 +59,7 @@ registerLocaleData(localeRu, 'ru');
 
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
@@ -89,11 +89,13 @@ registerLocaleData(localeRu, 'ru');
     MatRippleModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    CommonModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'ru' }
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

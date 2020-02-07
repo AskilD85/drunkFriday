@@ -29,10 +29,5 @@ private url = 'http://laravel5.master702.ru/api/';
         ));
   }
 
-  getUsers() {
-    return this.http.get(this.url + 'users');
-  }
-  destroyAppeal(id: string) {
-    return this.http.delete(this.url + `appeals/${id}`);
-  }
+ 
 }

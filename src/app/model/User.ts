@@ -28,6 +28,7 @@ export class Data {
     alko: string;
     stage: string;
     age: string;
+    type: string;
     readytodrink: string;
     favorite: string;
     constructor(email: string) {

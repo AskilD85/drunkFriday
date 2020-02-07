@@ -4,7 +4,6 @@ import { Article } from './../../model/Article';
 import { Subscription } from 'rxjs';
 import { AuthService } from './../auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { User } from 'src/app/model/User';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -53,23 +52,15 @@ export class UslugiListComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthService,
               private http: HttpService,
-              private router: Router
+              private router: Router,
     ) { }
 
 
 
   ngOnInit() {
-    this.myUslugi();
+    this.getUslugi();
     this.getCategories();
 
-
-    /*this.authService.checkAuth();
-    this.sSub = this.authService.authEmit.subscribe(auth => {
-      this.isAuth = auth;
-      if (this.isAuth === true) {
-        
-      }
-    });*/
 
   }
   ngOnDestroy(): void {
@@ -88,15 +79,14 @@ export class UslugiListComponent implements OnInit, OnDestroy {
 
   }
 
-  myUslugi() {
-    const userid = localStorage.getItem('user_id');
-    if (userid != null && userid !== undefined) {
-      this.myUslugiSub = this.http.getArticleOfUser(userid).subscribe((uslugi: Article[]) => {
+  getUslugi() {
+    this.http.getArticles().subscribe(
+      (uslugi: Article[]) => {
         this.allArticles = uslugi;
-      });
-    }
-
+      }
+    );
   }
+
 
   delete(id: string) {
     this.sDeleteArticle = this.http.delete(id).subscribe(del => {
@@ -130,7 +120,7 @@ export class UslugiListComponent implements OnInit, OnDestroy {
       this.addArticle = add;
       this.addClick = false;
       this.addForm.reset();
-      this.myUslugi();
+      this.getUslugi();
       setTimeout ( () => this.router.navigate(['Admin', 'Services', 'Detail', this.addArticle.id ]) , 1000) ;
     });
   }

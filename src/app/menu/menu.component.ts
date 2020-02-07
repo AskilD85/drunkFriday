@@ -52,6 +52,7 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   logout() {
     this.authService.logout();
+    this.isAdmin = false;
   }
 }
 

@@ -7,12 +7,12 @@ import { WorkComponent } from './pages/work/work.component';
 import { BlogComponent } from './blog/blog.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { MainComponent } from './main/main.component';
 import { GeneralGuard } from './general.guards';
 import { UslugiComponent } from './pages/uslugi/uslugi.component';
 import { UsDetailComponent } from './pages/uslugi/us-detail/us-detail.component';
 import { InfoComponent } from './pages/info/info.component';
 import { CabinetComponent } from './pages/cabinet/cabinet.component';
+import { LoginPageComponent } from './admin/login-page/login-page.component';
 
 
 const routes: Routes = [
@@ -26,6 +26,8 @@ const routes: Routes = [
   { path: 'Info', component: InfoComponent },
   { path: 'alkouser', component: AlkousersComponent},
   { path: 'Cabinet', component: CabinetComponent },
+  { path: 'login', component: LoginPageComponent  },
+
   { path: 'Admin', loadChildren: './admin/admin.module#AdminModule'},
   { path: '**', component: NotFoundComponent }
 ];
