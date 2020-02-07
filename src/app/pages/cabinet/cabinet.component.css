@@ -1,0 +1,16 @@
+.material-icons.color {
+    color: red;
+}
+
+
+.reload {
+    color: green;
+}
+
+.material-icons:hover {
+    cursor: pointer;
+}
+
+.material-icons.darkred{
+    color: darkred;
+}

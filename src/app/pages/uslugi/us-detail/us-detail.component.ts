@@ -78,7 +78,7 @@ export class UsDetailComponent implements OnInit, OnDestroy {
   toDeal() {
     if (!this.formDeal.invalid) {
       this.sFormSubmit = this.http.toDeal(this.formDeal, this.id).subscribe(
-        (resp: UserComment) => { this.response = resp; console.log(this.response); },
+        (resp: UserComment) => { this.response = resp; setTimeout(() => { this.response = null; }, 3000); },
         (err) => { console.log(err); this.auth.logout(); },
         () => {
           this.sFormSubmit.unsubscribe();

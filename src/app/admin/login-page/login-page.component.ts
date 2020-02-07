@@ -9,7 +9,8 @@ import { User, Data } from 'src/app/model/User';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.css']
+  styleUrls: ['./login-page.component.css'],
+
 })
 export class LoginPageComponent implements OnInit, OnDestroy {
 

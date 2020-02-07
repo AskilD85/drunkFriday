@@ -28,14 +28,17 @@ import { MatSelectModule,
   MatSidenavModule,
   MatToolbarModule,
   MatRippleModule,
-  MatIconModule  } from '@angular/material';
+  MatIconModule,  
+  MatCheckboxModule} from '@angular/material';
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InfoComponent } from './pages/info/info.component';
 
-import { registerLocaleData } from '@angular/common';
+import { registerLocaleData, CommonModule } from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
+import { CabinetComponent } from './pages/cabinet/cabinet.component';
+import { AddArticleComponent } from './pages/cabinet/add-article/add-article.component';
 registerLocaleData(localeRu, 'ru');
 
 @NgModule({
@@ -54,10 +57,12 @@ registerLocaleData(localeRu, 'ru');
     UslugiComponent,
     UsDetailComponent,
     InfoComponent,
+    CabinetComponent,
+    AddArticleComponent,
 
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
@@ -74,6 +79,7 @@ registerLocaleData(localeRu, 'ru');
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
+    MatCheckboxModule
 
   ],
   exports: [
@@ -87,11 +93,14 @@ registerLocaleData(localeRu, 'ru');
     MatRippleModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    CommonModule,
+    MatCheckboxModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'ru' }
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

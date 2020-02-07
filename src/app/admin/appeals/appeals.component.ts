@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpService } from 'src/app/services/http.service';
 import { AuthService } from './../auth.service';
 import { User } from './../../model/User';
 import { Subscription } from 'rxjs';
@@ -16,6 +16,7 @@ export class AppealsComponent implements OnInit, OnDestroy {
 
   constructor(private adminService: AdminService,
               private auth: AuthService,
+              private httpService: HttpService
   ) { }
   appeals: Appeal[];
   sAppeals: Subscription;
@@ -23,7 +24,6 @@ export class AppealsComponent implements OnInit, OnDestroy {
 
   user: User;
   users: User[] = [];
-  private url = 'http://laravel5.master702.ru/api/';
 
   ngOnInit() {
     this.sAppeals = this.adminService.getAppeals().subscribe(
@@ -32,7 +32,7 @@ export class AppealsComponent implements OnInit, OnDestroy {
       },
       (err) => { console.log(err); },
     );
-    this.sUsers = this.adminService.getUsers().subscribe(
+    this.sUsers = this.httpService.getUsers().subscribe(
       (users: User[]) => { this.users = users; },
       (err) => { console.log(err), this.auth.logout(); }
     );
@@ -51,7 +51,8 @@ export class AppealsComponent implements OnInit, OnDestroy {
   }
 
   destroy(id: string) {
-    this.adminService.destroyAppeal(id).subscribe(
+
+    this.httpService.destroyAppeal(id).subscribe(
       () => {
         this.appeals = this.appeals.filter( ( ap ) => ap.id !== id);
       }

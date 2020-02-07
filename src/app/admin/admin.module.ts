@@ -1,7 +1,7 @@
+import { AdminGuard } from './admin.guards';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { SharedModule } from './../_shared/shared.module';
-import { NgModule, Injectable } from '@angular/core';
-import { LoginPageComponent } from './login-page/login-page.component';
+import { NgModule  } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -25,7 +25,6 @@ import { AppealsComponent } from './appeals/appeals.component';
 
 @NgModule({
 declarations: [
-    LoginPageComponent,
     AdminLayoutComponent,
     LkComponent,
     DetailPageComponent,
@@ -48,13 +47,11 @@ imports: [
             { path: 'Services', component: UslugiListComponent },
             { path: 'Categories', component: CategoryListComponent },
             { path: 'Appeals', component: AppealsComponent },
-            { path: 'Profile', component: ProfileComponent },
-        ],  canActivate: [GeneralGuard]   },
 
-        { path: 'login', component: LoginPageComponent  },
+        ],  canActivate: [GeneralGuard, AdminGuard]   },
+        { path: 'Profile', component: ProfileComponent, canActivate: [GeneralGuard] },
         { path: 'Users', component: UsersComponent, canActivate: [ GeneralGuard ] },
         { path: 'Services/Detail/:id', component: DetailPageComponent, canActivate: [ GeneralGuard ] },
-        
 
     ]),
     MatFormFieldModule,
@@ -65,9 +62,11 @@ imports: [
 
 ],
 exports: [
-    RouterModule
+    RouterModule,
+    SharedModule
 ],
 providers: [
+    AdminGuard
 ],
 
 })

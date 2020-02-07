@@ -21,21 +21,20 @@ export class MenuComponent implements OnInit, OnDestroy {
   user: User;
   userSub: Subscription;
   authSub: Subscription;
-  ngOnInit() {
+  isAdmin: boolean;
 
+
+  ngOnInit() {
       this.authService.checkAuth();
       this.authSub = this.authService.authEmit.subscribe(x => {
         this.auth = x;
+        this.isAdmin = this.authService.isAdmin();
         if (this.auth === true) {
           this.userSub = this.http.getUser(localStorage.getItem('user_id')).subscribe( (us: User) => { this.user = us; },
           (err) => { console.log(err); this.authService.logout(); }
             );
         }
       });
-    
-
-
-
   }
 
   ngOnDestroy(): void {
@@ -53,6 +52,7 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   logout() {
     this.authService.logout();
+    this.isAdmin = false;
   }
 }
 

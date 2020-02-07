@@ -1,0 +1,41 @@
+
+    
+    <form *ngIf="!success" [formGroup]="addForm" (ngSubmit)="addUsluga()">
+        <h5 class="text-center">Добавить услугу</h5>
+        <mat-form-field class="full-width">
+            <mat-label class="mat-label ">Категория</mat-label>
+            <mat-select formControlName="category_id" >
+                <mat-option value="">Не выбрано</mat-option>
+                <mat-option *ngFor="let categ of categories;" [value]="categ.id">
+                    {{ categ.name }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div class="input-field">
+            <input type="text" class="form-control m-1"  formControlName="title" id="title">
+            <label for="title">Введите название</label>
+        </div>
+        <div><textarea type="text" class="form-control m-1"  formControlName="body"></textarea></div>
+        
+        <div class=" m-2 p-3">
+            Активен
+            <mat-slide-toggle
+                [checked]="article?.active === 1 ? true : false"
+                color="primary"
+                formControlName="active"
+                class="mx-5">
+              <span class="OnOff">
+                {{ article?.active === 1 ? 'Да' : 'Нет' }}
+              </span>
+            </mat-slide-toggle>
+          </div>
+
+
+        <input type="button" value="Очистить" class="btn btn-danger m-1 bg-info red" (click)="addForm.reset()">
+        <input type="submit" value="Добавить" class="btn btn-success m-1 bg-info" [disabled]="addForm.invalid">
+    </form>
+
+    <div *ngIf="success" class="text-center">
+        <span class="color-green">Услугуа добавлена!</span>
+        <input type="button" (click)="addAgain()" value="Добавить ещё" class="btn m-3 bg-info">
+    </div>
