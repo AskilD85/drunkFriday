@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-uslugi-list',
   templateUrl: './uslugi-list.component.html',
-  styleUrls: ['./uslugi-list.component.css']
+  styleUrls: ['./uslugi-list.component.css'],
 })
 export class UslugiListComponent implements OnInit, OnDestroy {
 

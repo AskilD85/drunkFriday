@@ -1,11 +1,37 @@
 <div class="container">
-    <div class="card p-3">
-        <p>Список пользователей/ исполнителей</p>
-            - написать
-        <p>Список своих добавленных материалов</p>
-            - добавить.удалить. редактировать свой материал
-        <p>Сообщения</p>
-            ответить
-
+    <!-- <h4 class="text-center">Личный кабинет</h4> -->
+    <div class="px-3 ">
+        <i (click)="activePage('add')" [ngClass]="{color: page === 'add' ? true : false}" class="material-icons m-3">add_circle_outline</i>
+        <i (click)="activePage('people')" [ngClass]="{color: page === 'people' ? true : false}" class="material-icons m-3">people</i>
+        <i (click)="activePage('messages')" [ngClass]="{color: page === 'messages' ? true : false}" class="material-icons m-3">local_post_office</i>
+        <i (click)="activePage('myArticles')" [ngClass]="{color: page === 'myArticles' ? true : false}" class="material-icons m-3">storage</i>
     </div>
+    <div [ngSwitch]="page">
+        <div *ngSwitchCase = "'myArticles'" >
+           
+            <span class="text-center">Мои услуги</span>
+            <i class="material-icons m-4 reload" (click)="reload()">autorenew</i> 
+            <div *ngFor="let article of articles" class="card m-2 p-3">
+                <div>{{article.title}}
+                    <i class="material-icons right darkred" (click)="delete(article.id)">delete</i>
+                </div>
+                <hr>
+                <small>{{article.updated_at | date: 'longDate'}}</small>
+            </div>
+
+        </div>
+        <div *ngSwitchCase = "'add'">
+            <app-add-article ></app-add-article>
+            
+        </div>
+        <div *ngSwitchCase = "'people'">
+            Пользователи
+
+        </div>
+        <div *ngSwitchCase = "'messages'">
+            Сообщения
+
+        </div>
+    </div>
+
 </div>
