@@ -1,7 +1,7 @@
 import { AdminGuard } from './admin.guards';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { SharedModule } from './../_shared/shared.module';
-import { NgModule  } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -61,6 +61,7 @@ imports: [
     MatSlideToggleModule,
 
 ],
+schemas: [CUSTOM_ELEMENTS_SCHEMA],
 exports: [
     RouterModule,
     SharedModule

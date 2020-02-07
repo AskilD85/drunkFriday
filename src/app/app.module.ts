@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -28,7 +27,7 @@ import { MatSelectModule,
   MatSidenavModule,
   MatToolbarModule,
   MatRippleModule,
-  MatIconModule,  
+  MatIconModule,
   MatCheckboxModule} from '@angular/material';
 
 

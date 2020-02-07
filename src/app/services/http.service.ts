@@ -54,7 +54,9 @@ export class HttpService {
 
   addArticle(body) {
     body.user_id = localStorage.getItem('user_id');
-    console.log(333, body);
+    if (body.active == null) {
+      body.active = false;
+    }
     return this.http.post(this.url + `articles`, body);
   }
 
