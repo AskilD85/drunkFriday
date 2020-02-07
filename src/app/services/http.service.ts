@@ -140,7 +140,7 @@ export class HttpService {
   getUser(id: string) {
     return this.http.get(this.url + `users/${id}`);
   }
-  destroyUser(id: string) {
+  destroyUser(id: number) {
     return this.http.delete(this.url + `users/${id}`);
   }
 

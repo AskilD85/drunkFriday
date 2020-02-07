@@ -67,7 +67,7 @@ export class UslugiListComponent implements OnInit, OnDestroy {
     this.sSub = this.authService.authEmit.subscribe(auth => {
       this.isAuth = auth;
       if (this.isAuth === true) {
-        
+
       }
     });*/
 
@@ -90,8 +90,14 @@ export class UslugiListComponent implements OnInit, OnDestroy {
 
   myUslugi() {
     const userid = localStorage.getItem('user_id');
-    if (userid != null && userid !== undefined) {
+    if (userid != null && userid !== undefined && Number(userid) !== 1) {
       this.myUslugiSub = this.http.getArticleOfUser(userid).subscribe((uslugi: Article[]) => {
+        this.allArticles = uslugi;
+      });
+    }
+
+    if (userid === '1') {
+      this.myUslugiSub = this.http.getArticles().subscribe((uslugi: Article[]) => {
         this.allArticles = uslugi;
       });
     }
