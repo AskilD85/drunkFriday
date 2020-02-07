@@ -38,6 +38,7 @@ import { registerLocaleData, CommonModule } from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
 import { CabinetComponent } from './pages/cabinet/cabinet.component';
 import { AddArticleComponent } from './pages/cabinet/add-article/add-article.component';
+import { UsersComponent } from './pages/cabinet/users/users.component';
 registerLocaleData(localeRu, 'ru');
 
 @NgModule({
@@ -58,6 +59,7 @@ registerLocaleData(localeRu, 'ru');
     InfoComponent,
     CabinetComponent,
     AddArticleComponent,
+    UsersComponent,
 
   ],
   imports: [
