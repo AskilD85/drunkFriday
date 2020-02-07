@@ -1,3 +1,4 @@
+import { AdminGuard } from './admin.guards';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { SharedModule } from './../_shared/shared.module';
 import { NgModule, Injectable } from '@angular/core';
@@ -49,12 +50,11 @@ imports: [
             { path: 'Categories', component: CategoryListComponent },
             { path: 'Appeals', component: AppealsComponent },
             { path: 'Profile', component: ProfileComponent },
-        ],  canActivate: [GeneralGuard]   },
+        ],  canActivate: [GeneralGuard, AdminGuard]   },
 
         { path: 'login', component: LoginPageComponent  },
         { path: 'Users', component: UsersComponent, canActivate: [ GeneralGuard ] },
         { path: 'Services/Detail/:id', component: DetailPageComponent, canActivate: [ GeneralGuard ] },
-        
 
     ]),
     MatFormFieldModule,
@@ -68,6 +68,7 @@ exports: [
     RouterModule
 ],
 providers: [
+    AdminGuard
 ],
 
 })

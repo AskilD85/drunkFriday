@@ -12,6 +12,7 @@ import { GeneralGuard } from './general.guards';
 import { UslugiComponent } from './pages/uslugi/uslugi.component';
 import { UsDetailComponent } from './pages/uslugi/us-detail/us-detail.component';
 import { InfoComponent } from './pages/info/info.component';
+import { CabinetComponent } from './pages/cabinet/cabinet.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'Contacts', component: ContactsComponent},
   { path: 'Info', component: InfoComponent },
   { path: 'alkouser', component: AlkousersComponent},
+  { path: 'Cabinet', component: CabinetComponent },
   { path: 'Admin', loadChildren: './admin/admin.module#AdminModule'},
   { path: '**', component: NotFoundComponent }
 ];
