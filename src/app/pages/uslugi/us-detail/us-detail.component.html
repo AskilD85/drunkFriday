@@ -4,11 +4,13 @@
     <div class=" p-3 card">
         <div class="">
             <div class="">
-                <h4 class="card-title">{{usluga?.title}}</h4>
+            <small class="mx-1">создатель: {{detail?.author}}</small>
+            <small class="mx-1">Категория: {{detail?.category_name}}</small>
+                <h4 class="card-title">{{detail?.title}}</h4>
                 <div class="secondary-content">свободен</div>
             </div>
             
-            <p>{{usluga?.body}}</p>
+            <p>{{detail?.body}}</p>
             <div *ngIf="isAuth"> 
                 <div class="card-action2">
                     <input type="button"

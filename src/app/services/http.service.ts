@@ -77,7 +77,7 @@ export class HttpService {
     return this.http.get(this.url + 'users');
   }
 
-  getUser(id: string) {
+  getUser(id: number) {
     return this.http.get(this.url + `users/${id}`);
   }
   destroyUser(id: number) {
@@ -127,5 +127,8 @@ export class HttpService {
 
   destroyAppeal(id: string) {
     return this.http.delete(this.url + `appeals/${id}`);
+  }
+  getDetailArticle(id: number) {
+    return this.http.get(this.url + `articles/detail/${id}`);
   }
 }
