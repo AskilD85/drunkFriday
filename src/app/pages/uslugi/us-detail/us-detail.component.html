@@ -11,7 +11,11 @@
             <p>{{usluga?.body}}</p>
             <div *ngIf="isAuth"> 
                 <div class="card-action2">
-                    <input type="button" class="btn btn-outline-primary m-1 bg-info" (click)="deal = true" value="Написать автору">
+                    <input type="button"
+                    class="btn btn-outline-primary m-1 bg-info"
+                    (click)="deal = true"
+                    value="Откликнуться"
+                    [disabled]="disabled">
                 </div>
                 
                 <form *ngIf="deal" [formGroup]="formDeal" (ngSubmit)="toDeal()">
