@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: 'Contacts', component: ContactsComponent},
   { path: 'Info', component: InfoComponent },
   { path: 'alkouser', component: AlkousersComponent},
-  { path: 'Cabinet', component: CabinetComponent },
+  { path: 'Cabinet', component: CabinetComponent, canActivate: [GeneralGuard] },
   { path: 'login', component: LoginPageComponent  },
 
   { path: 'Admin', loadChildren: './admin/admin.module#AdminModule'},
