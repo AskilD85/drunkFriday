@@ -15,12 +15,7 @@ export class GeneralGuard implements CanActivate {
             return true;
         } else {
             this.route.navigate(['login']);
-            if (this.backUrl !== null) {
-                this.backUrl = localStorage.setItem('backUrl', state.url);
-                this.route.navigate([this.backUrl]);
-            }
-
-
+            localStorage.setItem('backUrl', state.url);
         }
     }
 }
