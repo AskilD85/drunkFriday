@@ -5,7 +5,7 @@
             <div class="p-2 item-card"  >
                 <div class="my-2">
                     <div class="card-title">{{article.title}}</div>
-                    <b>Категория:</b> {{ getCatById(article.category_id)[0]?.name}}
+                    <b>Категория:</b> {{article.category_name}}
                     <div class="secondary-content"> Обновлено: {{article.updated_at | date: 'longDate'}}</div>   
                     
                     

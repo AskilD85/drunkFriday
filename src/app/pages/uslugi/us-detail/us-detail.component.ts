@@ -10,14 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { map, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { User } from 'src/app/model/User';
 
-interface  Detail {
-  id: number;
-  author: string;
-  category_name: string;
-  active: string;
-  body: string;
-  title: string;
-}
+
 
 
 @Component({
@@ -39,7 +32,7 @@ export class UsDetailComponent implements OnInit, OnDestroy {
   disabled = false;
   users: User[];
 
-  detail: Detail;
+  detail: Article;
 
   deal = false;
   formDeal = new FormGroup({
@@ -54,7 +47,7 @@ export class UsDetailComponent implements OnInit, OnDestroy {
 
     this.sArticle = this.http.getDetailArticle(this.id)
       .subscribe(
-        (detail: Detail) => { this.detail = detail; }
+        (detail: Article) => { this.detail = detail; }
       );
 
 

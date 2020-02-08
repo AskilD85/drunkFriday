@@ -3,6 +3,9 @@ export class Article {
     title: string;
     body: string;
     active: number;
+    author: string;
+    // tslint:disable-next-line: variable-name
+    category_name: string;
     // tslint:disable-next-line:variable-name
     category_id: string;
     // tslint:disable-next-line:variable-name

@@ -16,7 +16,8 @@
                     <i class="material-icons right darkred" (click)="delete(article.id)">delete</i>
                 </div>
                 <hr>
-                <small>{{article.updated_at | date: 'longDate'}}</small>
+                <small class="mx-2">{{article.updated_at | date: 'longDate'}}</small>
+                <small class="mx-2">Категория:  {{article.category_name }}</small>
             </div>
 
         </div>

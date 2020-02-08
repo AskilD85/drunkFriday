@@ -18,7 +18,6 @@ export class UslugiComponent implements OnInit, OnDestroy {
   category: Categories[];
 
   sArticles: Subscription;
-  sCategory: Subscription;
 
   constructor(public http: HttpService) { }
 
@@ -30,28 +29,13 @@ export class UslugiComponent implements OnInit, OnDestroy {
         console.log('Ошибка', err);
 
       } );
-
-    this.sCategory = this.http.getCategories().subscribe( (categories: Categories[]) => {
-      this.categories = categories;
-
-    });
-
   }
 
   ngOnDestroy() {
     if (this.sArticles) {
       this.sArticles.unsubscribe();
     }
-    if (this.sCategory) {
-      this.sArticles.unsubscribe();
-    }
   }
 
 
-
-  getCatById(id: string) {
-    if (this.categories) {
-      return this.categories.filter((c) => c.id === id);
-    }
-  }
 }
