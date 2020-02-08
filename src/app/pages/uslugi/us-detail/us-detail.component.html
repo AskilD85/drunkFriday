@@ -37,8 +37,8 @@
         
     </div>
     <div *ngIf="myResponses.length > 0">
-        <div *ngFor="let resp of myResponses" class="card p-3">
-            
+        <div *ngFor="let resp of myResponses" class="card p-3" [ngClass]="{ 'myResp': 'visible' }">
+            <div><small>Пользователь: </small><b><a [routerLink]="['/Users', resp.user_id]">{{resp.username}}</a></b></div>
             <div class="">{{resp?.text}} <i class="material-icons right color" (click)="destroyResponse(resp.id)"> delete</i> </div>
             <hr>
             <small>создан: {{resp.created_at}}</small>

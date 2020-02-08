@@ -39,6 +39,7 @@ import localeRu from '@angular/common/locales/ru';
 import { CabinetComponent } from './pages/cabinet/cabinet.component';
 import { AddArticleComponent } from './pages/cabinet/add-article/add-article.component';
 import { UsersComponent } from './pages/cabinet/users/users.component';
+import { UserDetailComponent } from './pages/cabinet/users/user-detail/user-detail.component';
 registerLocaleData(localeRu, 'ru');
 
 @NgModule({
@@ -60,6 +61,7 @@ registerLocaleData(localeRu, 'ru');
     CabinetComponent,
     AddArticleComponent,
     UsersComponent,
+    UserDetailComponent,
 
   ],
   imports: [
@@ -96,7 +98,8 @@ registerLocaleData(localeRu, 'ru');
     MatToolbarModule,
     MatIconModule,
     CommonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    UserDetailComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'ru' }

@@ -13,6 +13,7 @@ import { UsDetailComponent } from './pages/uslugi/us-detail/us-detail.component'
 import { InfoComponent } from './pages/info/info.component';
 import { CabinetComponent } from './pages/cabinet/cabinet.component';
 import { LoginPageComponent } from './admin/login-page/login-page.component';
+import { UserDetailComponent } from './pages/cabinet/users/user-detail/user-detail.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'Info', component: InfoComponent },
   { path: 'alkouser', component: AlkousersComponent},
   { path: 'Cabinet', component: CabinetComponent, canActivate: [GeneralGuard] },
+  { path: 'Users/:id', component: UserDetailComponent, canActivate: [GeneralGuard] },
   { path: 'login', component: LoginPageComponent  },
 
   { path: 'Admin', loadChildren: './admin/admin.module#AdminModule'},
@@ -34,7 +36,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, {useHash: true}),
+RouterModule.forRoot(routes, {useHash: true}),
     SharedModule
   ],
   providers: [GeneralGuard],

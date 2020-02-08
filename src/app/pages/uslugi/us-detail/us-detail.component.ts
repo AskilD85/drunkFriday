@@ -36,7 +36,7 @@ export class UsDetailComponent implements OnInit, OnDestroy {
 
   deal = false;
   formDeal = new FormGroup({
-    text: new FormControl('', [Validators.required, Validators.minLength(4), Validators.pattern(/^[а-яА-Я\d]{2,}.*$/)])
+    text: new FormControl('', [Validators.required, Validators.pattern(/^[а-яА-Я\d]{1,}.*$/)])
   });
 
   isAuth = this.auth.isAuthenticated();

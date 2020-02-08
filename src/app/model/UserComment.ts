@@ -1,5 +1,6 @@
 export class UserComment {
     id: string;
+    username: string;
     // tslint:disable-next-line:variable-name
     user_id: string;
     // tslint:disable-next-line:variable-name
