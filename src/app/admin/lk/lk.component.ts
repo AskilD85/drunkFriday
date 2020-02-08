@@ -38,7 +38,7 @@ export class LkComponent implements OnInit, OnDestroy {
   getUser() {
     const userid = localStorage.getItem('user_id');
     if (userid !== null) {
-      this.http.getUser(userid).subscribe((user: User) => { this.user = user; });
+      this.http.getUser(Number(userid)).subscribe((user: User) => { this.user = user; });
     }
 
   }
