@@ -16,7 +16,6 @@ import { MatSelectModule,
     MatSlideToggleModule,
     } from '@angular/material';
 import { DetailPageComponent } from './uslugi-list/detail-page/detail-page.component';
-import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './users/users.component';
 import { UslugiListComponent } from './uslugi-list/uslugi-list.component';
 import { CategoryListComponent } from './category-list/category-list.component';
@@ -28,7 +27,6 @@ declarations: [
     AdminLayoutComponent,
     LkComponent,
     DetailPageComponent,
-    ProfileComponent,
     UsersComponent,
     UslugiListComponent,
     CategoryListComponent,
@@ -49,7 +47,6 @@ imports: [
             { path: 'Appeals', component: AppealsComponent },
 
         ],  canActivate: [GeneralGuard, AdminGuard]   },
-        { path: 'Profile', component: ProfileComponent, canActivate: [GeneralGuard] },
         { path: 'Users', component: UsersComponent, canActivate: [ GeneralGuard ] },
         { path: 'Services/Detail/:id', component: DetailPageComponent, canActivate: [ GeneralGuard ] },
 

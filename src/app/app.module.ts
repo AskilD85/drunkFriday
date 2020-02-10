@@ -82,7 +82,7 @@ registerLocaleData(localeRu, 'ru');
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
-    MatSlideToggleModule
+    
 
   ],
   exports: [
