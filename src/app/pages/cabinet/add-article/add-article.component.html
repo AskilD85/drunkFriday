@@ -17,20 +17,19 @@
         </div>
         <div><textarea type="text" class="form-control m-1"  formControlName="body"></textarea></div>
         
-        <div class=" m-2 ">
-            <span class="OnOff">
-                Активность
-              </span>
+        <div class=" m-2 p-3">
+            Активность
             <mat-slide-toggle
+                [(ngModel)] = "checked"
                 color="primary"
                 formControlName="active"
                 class="mx-5">
-              
+             
             </mat-slide-toggle>
           </div>
 
 
-        <input type="button" value="Очистить" class="btn btn-danger m-1 bg-info red" (click)="addForm.reset()">
+        <input type="button" value="Очистить" class="btn btn-danger m-1 bg-info red" (click)="this.addForm.reset();clear()">
         <input type="submit" value="Добавить" class="btn btn-success m-1 bg-info" [disabled]="addForm.invalid">
     </form>
 

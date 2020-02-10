@@ -30,9 +30,12 @@ export class UsersComponent implements OnInit, OnDestroy {
       this.sUsers.unsubscribe();
     }
   }
-  destroy(id: string) {
-    this.httpService.destroyUser(id).subscribe(
-      () => {this.users = this.users.filter( u => u.id !== id ); }
-    );
+  destroy(id: number) {
+    if (id !== 1) {
+      this.httpService.destroyUser(id).subscribe(
+        () => { this.users = this.users.filter(u => u.id !== id); }
+      );
+    }
+
   }
 }

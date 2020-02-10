@@ -4,14 +4,20 @@
     <div class=" p-3 card">
         <div class="">
             <div class="">
-                <h4 class="card-title">{{usluga?.title}}</h4>
+            <small class="mx-1">создатель: {{detail?.author}}</small>
+            <small class="mx-1">Категория: {{detail?.category_name}}</small>
+                <h4 class="card-title">{{detail?.title}}</h4>
                 <div class="secondary-content">свободен</div>
             </div>
             
-            <p>{{usluga?.body}}</p>
+            <p>{{detail?.body}}</p>
             <div *ngIf="isAuth"> 
                 <div class="card-action2">
-                    <input type="button" class="btn btn-outline-primary m-1 bg-info" (click)="deal = true" value="Написать автору">
+                    <input type="button"
+                    class="btn btn-outline-primary m-1 bg-info"
+                    (click)="deal = true"
+                    value="Откликнуться"
+                    [disabled]="disabled">
                 </div>
                 
                 <form *ngIf="deal" [formGroup]="formDeal" (ngSubmit)="toDeal()">
@@ -31,8 +37,8 @@
         
     </div>
     <div *ngIf="myResponses.length > 0">
-        <div *ngFor="let resp of myResponses" class="card p-3">
-            
+        <div *ngFor="let resp of myResponses" class="card p-3" [ngClass]="{ 'myResp': 'visible' }">
+            <div><small>Пользователь: </small><b><a [routerLink]="['/Users', resp.user_id]">{{resp.username}}</a></b></div>
             <div class="">{{resp?.text}} <i class="material-icons right color" (click)="destroyResponse(resp.id)"> delete</i> </div>
             <hr>
             <small>создан: {{resp.created_at}}</small>

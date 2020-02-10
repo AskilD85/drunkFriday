@@ -1,0 +1,5 @@
+<div *ngFor="let user of users" class="card m-3 p-3">
+    <div>{{user.name}}</div>
+    <hr>
+    <input type="button" value="Профиль" [routerLink]="['/Users', user.id]" class="btn bg-info">
+</div>

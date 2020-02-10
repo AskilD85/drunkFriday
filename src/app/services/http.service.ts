@@ -54,7 +54,9 @@ export class HttpService {
 
   addArticle(body) {
     body.user_id = localStorage.getItem('user_id');
-    console.log(333, body);
+    if (body.active == null) {
+      body.active = false;
+    }
     return this.http.post(this.url + `articles`, body);
   }
 
@@ -75,10 +77,10 @@ export class HttpService {
     return this.http.get(this.url + 'users');
   }
 
-  getUser(id: string) {
+  getUser(id: number) {
     return this.http.get(this.url + `users/${id}`);
   }
-  destroyUser(id: string) {
+  destroyUser(id: number) {
     return this.http.delete(this.url + `users/${id}`);
   }
 
@@ -125,5 +127,8 @@ export class HttpService {
 
   destroyAppeal(id: string) {
     return this.http.delete(this.url + `appeals/${id}`);
+  }
+  getDetailArticle(id: number) {
+    return this.http.get(this.url + `articles/detail/${id}`);
   }
 }

@@ -7,6 +7,11 @@ import { HttpService } from './../../../services/http.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { map, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { User } from 'src/app/model/User';
+
+
+
 
 @Component({
   selector: 'app-us-detail',
@@ -24,23 +29,26 @@ export class UsDetailComponent implements OnInit, OnDestroy {
   sFormSubmit: Subscription;
   sMyResponses: Subscription;
   sDestroy: Subscription;
+  disabled = false;
+  users: User[];
+
+  detail: Article;
 
   deal = false;
   formDeal = new FormGroup({
-    text: new FormControl('', [Validators.required, Validators.minLength(4), Validators.pattern(/^[а-яА-Я\d]{2,}.*$/)])
+    text: new FormControl('', [Validators.required, Validators.pattern(/^[а-яА-Я\d]{1,}.*$/)])
   });
 
   isAuth = this.auth.isAuthenticated();
   constructor(private route: ActivatedRoute, private http: HttpService, private auth: AuthService) { }
 
   ngOnInit() {
-    this.sArticle = this.http.getArticle(this.id).subscribe((usluga: Article) => { this.usluga = usluga; },
-      (err: HttpErrorResponse) => {
-        console.log('Ошибка деталки:  ', err);
-
-      });
-
     this.getMyResponses();
+
+    this.sArticle = this.http.getDetailArticle(this.id)
+      .subscribe(
+        (detail: Article) => { this.detail = detail; }
+      );
 
 
   }
@@ -98,4 +106,5 @@ export class UsDetailComponent implements OnInit, OnDestroy {
       (err) => { console.log(err); this.auth.logout(); }
     );
   }
+
 }

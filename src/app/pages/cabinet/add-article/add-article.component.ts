@@ -20,21 +20,20 @@ export class AddArticleComponent implements OnInit {
     title: new FormControl('', [Validators.required]),
     body: new FormControl('', [Validators.required]),
     category_id: new FormControl('', [Validators.required]),
-    active: new FormControl(''),
+    active: new FormControl(false),
   });
 
   getCategSub: Subscription;
   categories: Categories;
   articles: Article[];
   success = false;
-
+  checked = true;
   ngOnInit() {
 
 
     this.getCategSub = this.httpService.getCategories()
         .subscribe((categ: Categories) => {
           this.categories = categ;
-          console.log(this.categories);
       });
   }
 
@@ -46,6 +45,15 @@ export class AddArticleComponent implements OnInit {
   }
   addAgain() {
     this.success = false;
+    this.checked = true;
+  }
+  clear() {
+    this.addForm.setValue({
+      active: true,
+      title: null,
+      body: null,
+      category_id: null
+    });
   }
 
 }

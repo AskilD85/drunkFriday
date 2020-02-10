@@ -36,7 +36,7 @@ export class CategoryListComponent implements OnInit, OnDestroy {
     }
   }
 
-   getUserById(id: string) {
+   getUserById(id: number) {
     if (this.users) {
       return this.users.filter((c) => c.id === id);
     }

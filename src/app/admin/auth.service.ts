@@ -68,7 +68,7 @@ export class AuthService {
       const userId = localStorage.getItem('user_id');
       if (userId !== null && userId !== undefined) {
 
-        this.httpService.getUser(userId).subscribe( () => {
+        this.httpService.getUser(Number(userId)).subscribe( () => {
           this.authEmit.emit(true);
         },
           (err: HttpErrorResponse) => {
