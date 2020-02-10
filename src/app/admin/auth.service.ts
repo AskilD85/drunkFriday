@@ -41,7 +41,7 @@ export class AuthService {
         localStorage.setItem('user_id', this.user.data.id);
         localStorage.setItem('role', this.user.data.type);
         this.authEmit.emit(true);
-        this.route.navigate(['Admin', 'Profile']);
+        this.route.navigate(['Profile']);
       }
 
     }, (err: HttpErrorResponse) => {

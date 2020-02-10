@@ -8,7 +8,7 @@
 .material-icons.bg-color-green {
     color: green;
 }
-.material-icons.bg-color-green:hover {
+.material-icons:hover {
     cursor: pointer;
 }
 

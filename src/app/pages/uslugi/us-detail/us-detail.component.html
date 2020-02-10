@@ -37,7 +37,7 @@
         
     </div>
     <div *ngIf="myResponses?.length > 0">
-        <div *ngFor="let resp of myResponses" class="card p-3" [ngClass]="{ 'myResp': visible }">
+        <div *ngFor="let resp of myResponses" class="card p-3" [ngClass]="{ 'myComment': resp.user_id === userId ? true : false }">
             <div><small>Пользователь: </small><b><a [routerLink]="['/Users', resp.user_id]">{{resp.username}}</a></b></div>
             <div class="">{{resp?.text}} <i class="material-icons right color" (click)="destroyComment(resp.id)"> delete</i> </div>
             <hr>
