@@ -17,16 +17,15 @@
         </div>
         <div><textarea type="text" class="form-control m-1"  formControlName="body"></textarea></div>
         
-        <div class=" m-2 p-3">
-            Активен
+        <div class=" m-2 ">
+            <span class="OnOff">
+                Активность
+              </span>
             <mat-slide-toggle
-                [checked]="article?.active === 1 ? true : false"
                 color="primary"
                 formControlName="active"
                 class="mx-5">
-              <span class="OnOff">
-                {{ article?.active === 1 ? 'Да' : 'Нет' }}
-              </span>
+              
             </mat-slide-toggle>
           </div>
 

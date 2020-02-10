@@ -6,7 +6,6 @@ import { RECAPTCHA_SETTINGS,  RecaptchaFormsModule, RecaptchaSettings, Recaptcha
 import { TokenInterceptor } from '../_helpers/token.interceptor';
 import { LoginPageComponent } from '../admin/login-page/login-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatCheckboxModule } from '@angular/material';
 
 @NgModule({
     declarations: [LoginPageComponent],
@@ -16,8 +15,7 @@ import { MatCheckboxModule } from '@angular/material';
         RecaptchaFormsModule,
         FormsModule,
         ReactiveFormsModule,
-        CommonModule,
-        MatCheckboxModule
+        CommonModule
     ],
     exports: [
         HttpClientModule,
@@ -26,8 +24,7 @@ import { MatCheckboxModule } from '@angular/material';
         LoginPageComponent,
         FormsModule,
         ReactiveFormsModule,
-        CommonModule,
-        MatCheckboxModule
+        CommonModule
     ],
     schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
     providers: [ {

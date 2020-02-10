@@ -29,7 +29,7 @@ import { MatSelectModule,
   MatToolbarModule,
   MatRippleModule,
   MatIconModule,  
-  MatCheckboxModule} from '@angular/material';
+  MatSlideToggleModule} from '@angular/material';
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -79,7 +79,7 @@ registerLocaleData(localeRu, 'ru');
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
-    MatCheckboxModule
+    MatSlideToggleModule
 
   ],
   exports: [
@@ -95,7 +95,7 @@ registerLocaleData(localeRu, 'ru');
     MatToolbarModule,
     MatIconModule,
     CommonModule,
-    MatCheckboxModule
+    MatSlideToggleModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'ru' }
