@@ -31,14 +31,15 @@ export class UsDetailComponent implements OnInit, OnDestroy {
   sDestroy: Subscription;
   disabled = false;
   users: User[];
-
+  isAdmin = this.auth.isAdmin();
   detail: Article;
-
   deal = false;
+
   formDeal = new FormGroup({
     text: new FormControl('', [Validators.required, Validators.pattern(/^[а-яА-Я\d]{1,}.*$/)])
   });
 
+  userid = localStorage.getItem('user_id');
   isAuth = this.auth.isAuthenticated();
   constructor(private route: ActivatedRoute, private http: HttpService, private auth: AuthService) { }
 
@@ -71,10 +72,12 @@ export class UsDetailComponent implements OnInit, OnDestroy {
   getMyResponses() {
     if (this.isAuth) {
       this.sMyResponses = this.http.getUserResponse(this.id).subscribe(
-        (myResponses: UserComment[]) => { this.myResponses = myResponses; },
+        (myResponses: UserComment[]) => {
+          this.myResponses = myResponses;
+        },
         (err) => {
           console.log(err);
-          this.auth.logout();
+          // this.auth.logout();
         }
       );
     }
@@ -87,7 +90,7 @@ export class UsDetailComponent implements OnInit, OnDestroy {
     if (!this.formDeal.invalid) {
       this.sFormSubmit = this.http.toDeal(this.formDeal, this.id).subscribe(
         (resp: UserComment) => { this.response = resp; setTimeout(() => { this.response = null; }, 3000); },
-        (err) => { console.log(err); this.auth.logout(); },
+      (err) => { console.log(err); /*this.auth.logout();*/ },
         () => {
           this.sFormSubmit.unsubscribe();
           this.getMyResponses();
@@ -103,7 +106,7 @@ export class UsDetailComponent implements OnInit, OnDestroy {
       this.myResponses = this.myResponses.filter(resp => resp.id !== id);
       this.getMyResponses();
     },
-      (err) => { console.log(err); this.auth.logout(); }
+      (err) => { console.log(err); /*this.auth.logout();*/ }
     );
   }
 

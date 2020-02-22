@@ -37,9 +37,12 @@
         
     </div>
     <div *ngIf="myResponses.length > 0">
-        <div *ngFor="let resp of myResponses" class="card p-3" [ngClass]="{ 'myResp': 'visible' }">
+        <div *ngFor="let resp of myResponses" class="card p-3" [ngClass]="{ 'myResp': userid == resp?.user_id ? true : false}">
             <div><small>Пользователь: </small><b><a [routerLink]="['/Users', resp.user_id]">{{resp.username}}</a></b></div>
-            <div class="">{{resp?.text}} <i class="material-icons right color" (click)="destroyResponse(resp.id)"> delete</i> </div>
+        <div class="">{{resp?.text}} 
+            <i *ngIf="isAdmin; else isAdmin"  class="material-icons right color" (click)="destroyResponse(resp.id)"> delete</i> 
+            <ng-template #isAdmin><i *ngIf="resp?.user_id == userid" class="material-icons right color" (click)="destroyResponse(resp.id)"> delete</i></ng-template>
+        </div>
             <hr>
             <small>создан: {{resp.created_at}}</small>
         </div>

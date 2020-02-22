@@ -14,6 +14,7 @@ import { InfoComponent } from './pages/info/info.component';
 import { CabinetComponent } from './pages/cabinet/cabinet.component';
 import { LoginPageComponent } from './admin/login-page/login-page.component';
 import { UserDetailComponent } from './pages/cabinet/users/user-detail/user-detail.component';
+import { WebcamComponent } from './pages/webcam/webcam.component';
 
 
 const routes: Routes = [
@@ -29,8 +30,8 @@ const routes: Routes = [
   { path: 'Cabinet', component: CabinetComponent, canActivate: [GeneralGuard] },
   { path: 'Users/:id', component: UserDetailComponent, canActivate: [GeneralGuard] },
   { path: 'login', component: LoginPageComponent  },
-
-  { path: 'Admin', loadChildren: './admin/admin.module#AdminModule'},
+  { path: 'webcam', component: WebcamComponent },
+  { path: 'Admin', loadChildren: './admin/admin.module#AdminModule', canActivate: [GeneralGuard] },
   { path: '**', component: NotFoundComponent }
 ];
 

@@ -1,5 +1,16 @@
 <div class="container">
     <div class="card p-3">
-        Мастер: {{ user.name }}
+        <div class="profile">
+            <img class="float-left m-2 " src="assets/img/no-photo.png" alt="">
+        
+        <ul class="m-2">
+            <li>Мастер: {{ user?.name }}</li>
+            <li>E-mail: {{ user?.email }}</li>
+            <li>Специализация: {{user?.type}}</li>
+            <li>Зарегистрирован: {{user?.created_at}}</li>
+        </ul>
+        <input type="button" class="btn bg-info" value="Написать" (click)="writeToMaster()">
+        </div>
+       
     </div>
 </div>

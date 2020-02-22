@@ -83,13 +83,14 @@
                 <input type="button" class="btn btn-primary m-1 bg-info" value = "Есть аккаунт" (click)="authClick(); regForm.reset()">
             </div>
         </form>
+        <div *ngIf="regUser" class="color-green">
+        
+            <div>Пользователь создан!</div>
+            <div>Имя: {{regUser.name}}</div>
+            <div>e-mail: {{ regUser.email }}</div>
+        </div>
     </div>
-<div *ngIf="regUser" class="color-green">
 
-    <div>Пользователь создан!</div>
-    <div>Имя: {{regUser.name}}</div>
-    <div>e-mail: {{ regUser.email }}</div>
-</div>
 </div>
 
 

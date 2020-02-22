@@ -1,23 +1,43 @@
 
-<div *ngIf="articles?.length > 0">
+
+
+
+<div *ngIf="articles?.length > 0; else loading">
     <div class="container ">
-        <div *ngFor="let article of articles" class="card" [routerLink]="['/Uslugi', article.id]" >
-            <div class="p-2 item-card"  >
+        <div>
+            <mat-form-field class="full-width">
+                <mat-label class="mat-label ">Моя позиция</mat-label>
+                <mat-select [value]="position" (selectionChange)="selectionChange($event.value)">
+                    <mat-option value="usluga">Мне нужен мастер</mat-option>
+                    <mat-option value="needmaster">Я ищу работу </mat-option>
+        
+                </mat-select>
+            </mat-form-field>
+
+        </div>
+        <div *ngFor="let article of articles2" class="card" [routerLink]="['Uslugi', article.id]"  >
+            
+            <div class="p-2 item-card" >
                 <div class="my-2">
                     <div class="card-title">{{article.title}}</div>
                     <b>Категория:</b> {{article.category_name}}
                     <div class="secondary-content"> Обновлено: {{article.updated_at | date: 'longDate'}}</div>   
-                    
-                    
                 </div>
                
                 <!-- <div><b>Описание:</b>{{article.body | slice: 0:30 }}...</div> -->
             
                 <div class=""> 
                     Просмотры:  
-                    Комментарии:
-                </div> 
+                    Комментарии: 
+                </div>
             </div>
         </div>
     </div>
 </div>
+<ng-template #loading>
+    <div class="container text-center">
+        <div class="spinner-border text-info" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</ng-template>

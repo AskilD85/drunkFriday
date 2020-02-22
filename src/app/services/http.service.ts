@@ -17,7 +17,7 @@ export class HttpService {
 
   constructor(private http: HttpClient,
               private route: Router) { }
-  private url = 'http://laravel5.master702.ru/api/';
+   private url = 'http://laravel5.master702.ru/api/';
 
 
   apitoken = '';
@@ -103,22 +103,22 @@ export class HttpService {
   }
 
   getResponses(id: string) {
-    return this.http.get(this.url + `response/${id}`);
+    return this.http.get(this.url + `comments/${id}`);
   }
 
   getUserResponse(article: string) {
     const user = localStorage.getItem('user_id');
-    return this.http.get<Array<UserComment>>(this.url + `response/${user}/${article}`);
+    return this.http.get<Array<UserComment>>(this.url + `comments/${article}/${user}`);
   }
 
   toDeal(form: FormGroup, articlId: string  ) {
     const body = form.value;
     body.user_id = localStorage.getItem('user_id');
     body.article_id = articlId;
-    return this.http.post(this.url + 'response', body);
+    return this.http.post(this.url + 'comments', body);
   }
   destroyResponse(id: string) {
-    return this.http.delete(this.url + `response/${id}`);
+    return this.http.delete(this.url + `comments/${id}`);
   }
 
   destroyCategory(id: string) {

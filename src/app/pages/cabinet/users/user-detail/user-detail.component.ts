@@ -20,5 +20,7 @@ export class UserDetailComponent implements OnInit {
       (user: User) => { this.user = user; }
     );
   }
-
+  writeToMaster() {
+    console.log('writeToMaster');
+  }
 }
