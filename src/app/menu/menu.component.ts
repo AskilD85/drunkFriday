@@ -54,6 +54,9 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.authService.logout();
     this.isAdmin = false;
   }
+  changeTown() {
+    console.log('change town');
+  }
 }
 
 

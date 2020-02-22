@@ -1,13 +1,21 @@
 <nav>
   <div class="nav-wrapper bg-info">
     <div class="container">
-      <a class="brand-logo" [routerLink]="['/']">
-        Сервис
-      </a>
+      <div class="brand-logo">
+        <a (click)="changeTown()">
+          Аскарово
+        </a>
+      </div>
+      
+   
+
+
+      
       <a data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <li><a [routerLink]="['./']" class="">Главная</a></li>
         <li><a [routerLink]="['./Info']" class="">Инфо</a></li>
+        <li><a  [routerLink]="['/webcam']">Камера</a></li>
         <li routerLinkActive="active"><a [routerLink]="['./Contacts']" class="">Обратная связь</a></li>
         <li *ngIf="!auth"><a [routerLink]="['login']" class="">Войти</a></li>
         <li *ngIf="auth" routerLinkActive="active"><a [routerLink]="['Cabinet']" class="">Личный кабинет</a></li>
@@ -48,7 +56,7 @@
 
   <li><a href="#" class="sidenav-close">Список категорий</a></li>
   <li><a href="#" class="sidenav-close">Список пользователей</a></li>
-
+  <li><a class="sidenav-close" [routerLink]="['/webcam']">Камера</a></li>
   <li>
     <div class="divider background bg-info"></div>
   </li>
