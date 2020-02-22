@@ -37,7 +37,7 @@ export class UsDetailComponent implements OnInit, OnDestroy {
   deal = false;
 
   formDeal = new FormGroup({
-    text: new FormControl('', [Validators.required, Validators.pattern(/^[а-яА-Я\d]{1,}.*$/)])
+    text: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Zа-яА-Я\d]{1,}.*$/)])
   });
 
   userid = localStorage.getItem('user_id');
@@ -45,7 +45,6 @@ export class UsDetailComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private http: HttpService, private auth: AuthService) { }
 
   ngOnInit() {
-    console.log(this.userId, typeof this.userId);
     this.sArticle = this.http.getDetailArticle(this.id)
       .subscribe(
         (detail: Article) => { this.detail = detail; }
@@ -70,7 +69,7 @@ export class UsDetailComponent implements OnInit, OnDestroy {
   }
 
   getMyResponses() {
-    if (this.isAuth) {
+    if (this.isAuth === true) {
       this.sMyResponses = this.http.getUserResponse(this.id).subscribe(
         (myResponses: UserComment[]) => {
           this.myResponses = myResponses;
@@ -80,14 +79,11 @@ export class UsDetailComponent implements OnInit, OnDestroy {
             this.auth.logout();
           }
           console.log(err);
-          // this.auth.logout();
         }
       );
     }
   }
-  getComments() {
-    return this.response;
-  }
+
 
   toDeal() {
     if (!this.formDeal.invalid) {
@@ -113,4 +109,10 @@ export class UsDetailComponent implements OnInit, OnDestroy {
     );
   }
 
+  addBackUrl() {
+    const route = this.route.snapshot.url;
+    const backUrl = route[0].path + '/' + route[1].path;
+    localStorage.setItem('backUrl', backUrl);
+    console.log('back url: ', backUrl );
+  }
 }

@@ -36,12 +36,23 @@
         </div>
         
     </div>
-    <div *ngIf="myResponses?.length > 0">
-        <div *ngFor="let resp of myResponses" class="card p-3" [ngClass]="{ 'myComment': resp.user_id === userId ? true : false }">
-            <div><small>Пользователь: </small><b><a [routerLink]="['/Users', resp.user_id]">{{resp.username}}</a></b></div>
-            <div class="">{{resp?.text}} <i class="material-icons right color" (click)="destroyComment(resp.id)"> delete</i> </div>
-            <hr>
-            <small>создан: {{resp.created_at}}</small>
+    <div *ngIf="myResponses?.length > 0; else noComments">
+        <div *ngIf="isAuth == true">
+            <div *ngFor="let resp of myResponses" class="card p-3" [ngClass]="{ 'myComment': resp.user_id === userId ? true : false }">
+                <div><small>Пользователь: </small><b><a [routerLink]="['/Users', resp.user_id]">{{resp.username}}</a></b></div>
+                <div class="">{{resp?.text}} <i class="material-icons right color" (click)="destroyComment(resp.id)">delete</i></div>
+                <hr>
+                <small>создан: {{resp.created_at}}</small>
+            </div>
         </div>
-    </div> 
+    </div>
+    <div class="text-center" *ngIf="isAuth == false">
+        <span class="">Чтобы увидеть комментарии - <a [routerLink]="(['/login'])" (click)="addBackUrl()">авторизуйтесь</a>!</span>
+    </div>
 </div>
+<ng-template #noComments>
+    <div class="text-center" *ngIf="isAuth == true">
+        <span class="">Комментариев пока нет!</span>
+               
+    </div>
+</ng-template>
