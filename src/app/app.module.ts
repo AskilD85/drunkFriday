@@ -8,7 +8,6 @@ import { RandomimgComponent } from './randomimg/randomimg.component';
 import { MenuComponent } from './menu/menu.component';
 import { NotfridayComponent } from './notfriday/notfriday.component';
 import { AboutComponent } from './pages/about/about.component';
-import { MainComponent } from './main/main.component';
 import { WorkComponent } from './pages/work/work.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
 import { BlogComponent } from './blog/blog.component';
@@ -40,6 +39,8 @@ import { CabinetComponent } from './pages/cabinet/cabinet.component';
 import { AddArticleComponent } from './pages/cabinet/add-article/add-article.component';
 import { UsersComponent } from './pages/cabinet/users/users.component';
 import { UserDetailComponent } from './pages/cabinet/users/user-detail/user-detail.component';
+import { WebcamComponent } from './pages/webcam/webcam.component';
+import { WebcamModule } from 'ngx-webcam';
 registerLocaleData(localeRu, 'ru');
 
 @NgModule({
@@ -50,7 +51,6 @@ registerLocaleData(localeRu, 'ru');
     MenuComponent,
     NotfridayComponent,
     AboutComponent,
-    MainComponent,
     WorkComponent,
     ContactsComponent,
     BlogComponent,
@@ -62,6 +62,7 @@ registerLocaleData(localeRu, 'ru');
     AddArticleComponent,
     UsersComponent,
     UserDetailComponent,
+    WebcamComponent,
 
   ],
   imports: [
@@ -82,7 +83,8 @@ registerLocaleData(localeRu, 'ru');
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    WebcamModule
 
   ],
   exports: [
