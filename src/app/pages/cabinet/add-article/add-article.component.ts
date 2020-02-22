@@ -20,6 +20,7 @@ export class AddArticleComponent implements OnInit {
     title: new FormControl('', [Validators.required]),
     body: new FormControl('', [Validators.required]),
     category_id: new FormControl('', [Validators.required]),
+    type: new FormControl('', [Validators.required]),
     active: new FormControl(false),
   });
 
