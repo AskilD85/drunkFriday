@@ -49,7 +49,7 @@ export class HttpService {
   }
 
   getArticleOfUser(authorId) {
-    return this.http.get(this.url + `category/${authorId}`);
+    return this.http.get(this.url + `articles/${authorId}`);
   }
 
   addArticle(body) {
@@ -117,7 +117,7 @@ export class HttpService {
     body.article_id = articlId;
     return this.http.post(this.url + 'comments', body);
   }
-  destroyResponse(id: string) {
+  destroyComment(id: string) {
     return this.http.delete(this.url + `comments/${id}`);
   }
 

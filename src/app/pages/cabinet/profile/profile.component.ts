@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
   userId = localStorage.getItem('user_id');
   user: User;
   ngOnInit() {
-    this.httpService.getUser(Number(this.userId)).subscribe( (user: User) => { this.user = user; console.log(user) });
+    this.httpService.getUser(Number(this.userId)).subscribe( (user: User) => { this.user = user; });
     if (localStorage.getItem('backUrl') !== null) {
       this.route.navigate([localStorage.getItem('backUrl')]);
       localStorage.removeItem('backUrl');

@@ -14,7 +14,7 @@ export class CabinetComponent implements OnInit, OnDestroy {
   add = false;
   userPage = false;
   messagePage = false;
-  page = 'myArticles';
+  page = 'profile';
   visibility = false;
   sArticles: Subscription;
   sDeleteArticle: Subscription;

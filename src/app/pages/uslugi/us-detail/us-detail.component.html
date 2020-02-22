@@ -11,7 +11,7 @@
             </div>
             
             <p>{{detail?.body}}</p>
-            <div *ngIf="isAuth"> 
+            <div *ngIf="isAuth == true"> 
                 <div class="card-action2">
                     <input type="button"
                     class="btn btn-outline-primary m-1 bg-info"
@@ -36,13 +36,10 @@
         </div>
         
     </div>
-    <div *ngIf="myResponses.length > 0">
-        <div *ngFor="let resp of myResponses" class="card p-3" [ngClass]="{ 'myResp': userid == resp?.user_id ? true : false}">
+    <div *ngIf="myResponses?.length > 0">
+        <div *ngFor="let resp of myResponses" class="card p-3" [ngClass]="{ 'myComment': resp.user_id === userId ? true : false }">
             <div><small>Пользователь: </small><b><a [routerLink]="['/Users', resp.user_id]">{{resp.username}}</a></b></div>
-        <div class="">{{resp?.text}} 
-            <i *ngIf="isAdmin; else isAdmin"  class="material-icons right color" (click)="destroyResponse(resp.id)"> delete</i> 
-            <ng-template #isAdmin><i *ngIf="resp?.user_id == userid" class="material-icons right color" (click)="destroyResponse(resp.id)"> delete</i></ng-template>
-        </div>
+            <div class="">{{resp?.text}} <i class="material-icons right color" (click)="destroyComment(resp.id)"> delete</i> </div>
             <hr>
             <small>создан: {{resp.created_at}}</small>
         </div>

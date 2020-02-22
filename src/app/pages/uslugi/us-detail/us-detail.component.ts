@@ -32,6 +32,7 @@ export class UsDetailComponent implements OnInit, OnDestroy {
   disabled = false;
   users: User[];
   isAdmin = this.auth.isAdmin();
+  userId = Number(localStorage.getItem('user_id'));
   detail: Article;
   deal = false;
 
@@ -44,13 +45,12 @@ export class UsDetailComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private http: HttpService, private auth: AuthService) { }
 
   ngOnInit() {
-    this.getMyResponses();
-
+    console.log(this.userId, typeof this.userId);
     this.sArticle = this.http.getDetailArticle(this.id)
       .subscribe(
         (detail: Article) => { this.detail = detail; }
       );
-
+    this.getMyResponses();
 
   }
 
@@ -76,6 +76,9 @@ export class UsDetailComponent implements OnInit, OnDestroy {
           this.myResponses = myResponses;
         },
         (err) => {
+          if (err.status === 401) {
+            this.auth.logout();
+          }
           console.log(err);
           // this.auth.logout();
         }
@@ -101,8 +104,8 @@ export class UsDetailComponent implements OnInit, OnDestroy {
     }
 
   }
-  destroyResponse(id: string) {
-    this.sDestroy = this.http.destroyResponse(id).subscribe(() => {
+  destroyComment(id: string) {
+    this.sDestroy = this.http.destroyComment(id).subscribe(() => {
       this.myResponses = this.myResponses.filter(resp => resp.id !== id);
       this.getMyResponses();
     },

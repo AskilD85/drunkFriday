@@ -27,7 +27,7 @@ import { MatSelectModule,
   MatToolbarModule,
   MatRippleModule,
   MatIconModule,
-  MatCheckboxModule} from '@angular/material';
+  } from '@angular/material';
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -83,8 +83,8 @@ registerLocaleData(localeRu, 'ru');
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
-    MatCheckboxModule,
     WebcamModule
+
 
   ],
   exports: [
@@ -100,7 +100,6 @@ registerLocaleData(localeRu, 'ru');
     MatToolbarModule,
     MatIconModule,
     CommonModule,
-    MatCheckboxModule,
     UserDetailComponent
   ],
   providers: [

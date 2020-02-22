@@ -7,9 +7,10 @@ import { TokenInterceptor } from '../_helpers/token.interceptor';
 import { LoginPageComponent } from '../admin/login-page/login-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule, MatSlideToggleModule } from '@angular/material';
+import { ProfileComponent } from '../pages/cabinet/profile/profile.component';
 
 @NgModule({
-    declarations: [LoginPageComponent],
+    declarations: [LoginPageComponent, ProfileComponent],
     imports: [
         HttpClientModule,
         RecaptchaModule,
@@ -25,6 +26,7 @@ import { MatCheckboxModule, MatSlideToggleModule } from '@angular/material';
         RecaptchaModule,
         RecaptchaFormsModule,
         LoginPageComponent,
+        ProfileComponent,
         FormsModule,
         ReactiveFormsModule,
         CommonModule,

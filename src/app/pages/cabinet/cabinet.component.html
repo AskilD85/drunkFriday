@@ -1,6 +1,7 @@
 <div class="container">
     <!-- <h4 class="text-center">Личный кабинет</h4> -->
     <div class="px-3 ">
+        <i (click)="activePage('profile')" [ngClass]="{color: page === 'profile' ? true : false}" class="material-icons m-3">perm_identity</i>
         <i (click)="activePage('add')" [ngClass]="{color: page === 'add' ? true : false}" class="material-icons m-3">add_circle_outline</i>
         <i (click)="activePage('people')" [ngClass]="{color: page === 'people' ? true : false}" class="material-icons m-3">people</i>
         <i (click)="activePage('messages')" [ngClass]="{color: page === 'messages' ? true : false}" class="material-icons m-3">local_post_office</i>
@@ -39,6 +40,10 @@
         </div>
         <div *ngSwitchCase = "'messages'">
             Сообщения
+
+        </div>
+        <div *ngSwitchCase = "'profile'">
+            <app-profile></app-profile>
 
         </div>
     </div>

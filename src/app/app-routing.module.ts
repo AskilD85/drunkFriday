@@ -15,6 +15,7 @@ import { CabinetComponent } from './pages/cabinet/cabinet.component';
 import { LoginPageComponent } from './admin/login-page/login-page.component';
 import { UserDetailComponent } from './pages/cabinet/users/user-detail/user-detail.component';
 import { WebcamComponent } from './pages/webcam/webcam.component';
+import { ProfileComponent } from './pages/cabinet/profile/profile.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'Contacts', component: ContactsComponent},
   { path: 'Info', component: InfoComponent },
   { path: 'alkouser', component: AlkousersComponent},
+  { path: 'Profile', component: ProfileComponent, canActivate: [GeneralGuard] },
   { path: 'Cabinet', component: CabinetComponent, canActivate: [GeneralGuard] },
   { path: 'Users/:id', component: UserDetailComponent, canActivate: [GeneralGuard] },
   { path: 'login', component: LoginPageComponent  },
