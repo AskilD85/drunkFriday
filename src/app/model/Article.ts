@@ -3,6 +3,7 @@ export class Article {
     title: string;
     body: string;
     active: number;
+    type: string;
     author: string;
     // tslint:disable-next-line: variable-name
     category_name: string;
@@ -15,13 +16,14 @@ export class Article {
     // tslint:disable-next-line:variable-name
     user_id: number;
     // tslint:disable-next-line: variable-name
-    constructor(id: string, title: string, body: string, active: number, category_id: string, user_id: number) {
+    constructor(id: string, title: string, body: string, active: number, category_id: string, user_id: number, type: string) {
         this.id = id;
         this.title = title;
         this.body = body;
         this.user_id = user_id;
         this.active = active;
         this.category_id = category_id;
+        this.type = type;
     }
 
 }
