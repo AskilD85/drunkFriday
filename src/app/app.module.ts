@@ -100,7 +100,8 @@ registerLocaleData(localeRu, 'ru');
     MatToolbarModule,
     MatIconModule,
     CommonModule,
-    UserDetailComponent
+    UserDetailComponent,
+    SharedModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'ru' }

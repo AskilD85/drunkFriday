@@ -40,7 +40,7 @@
         <a [routerLink]="['login']" class="white-text sidenav-close">Войти</a>
       </div>
       <div class="username" *ngIf="auth">
-        <a [routerLink]="['Admin', 'Profile']"><span
+        <a [routerLink]="['Cabinet', 'Profile']"><span
             class="white-text name sidenav-close">{{user?.name | titlecase}}</span></a>
         <a [routerLink]="['Cabinet']" class="white-text mx-1 sidenav-close">Личный кабинет </a>
         <a *ngIf="isAdmin === true" [routerLink]="['./Admin', 'Lk']" class="white-text mx-1 sidenav-close">Управление</a>

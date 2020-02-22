@@ -19,7 +19,7 @@ import { ProfileComponent } from '../pages/cabinet/profile/profile.component';
         ReactiveFormsModule,
         CommonModule,
         MatCheckboxModule,
-        MatSlideToggleModule
+        MatSlideToggleModule,
     ],
     exports: [
         HttpClientModule,

@@ -59,7 +59,7 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.isAuth = this.authService.isAuthenticated();
   }
-  
+
   ngOnDestroy(): void {
     if (this.sSub) {
       this.sSub.unsubscribe();
