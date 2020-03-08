@@ -11,6 +11,10 @@ input.ng-valid {
     text-align: left;
 }
 
+.form-div {
+    max-width: 330px;
+    margin: auto;
+}
 .container {
     width: 100%;
 }
@@ -18,23 +22,4 @@ input.ng-valid {
 .input-field > input  {
     box-sizing: inherit;
     
-}
-
-.login-div {
-    max-width: 330px;
-    margin: auto;
-}
-
-.forgetPassw:hover {
-    cursor: pointer;
-}
-.forgetPassw {
-    color: var(--bg-info);
-}
-
-.link{
-    color: #17a2b8;
-}
-a:hover {
-    cursor: pointer;
 }

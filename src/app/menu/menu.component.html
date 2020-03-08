@@ -6,11 +6,7 @@
           Аскарово
         </a>
       </div>
-      
-   
 
-
-      
       <a data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <li><a [routerLink]="['./']" class="">Главная</a></li>
@@ -31,6 +27,7 @@
   </div>
 </nav>
 
+<!-- меню спрятано -->
 <ul id="slide-out" class="sidenav">
   <li>
     <div class="user-view">
@@ -40,8 +37,9 @@
         <a [routerLink]="['login']" class="white-text sidenav-close">Войти</a>
       </div>
       <div class="username" *ngIf="auth">
-        <a [routerLink]="['Cabinet', 'Profile']"><span
-            class="white-text name sidenav-close">{{user?.name | titlecase}}</span></a>
+        <a [routerLink]="['Cabinet']">
+          <span  class="white-text name sidenav-close">{{user?.name | titlecase}}</span>
+        </a>
         <a [routerLink]="['Cabinet']" class="white-text mx-1 sidenav-close">Личный кабинет </a>
         <a *ngIf="isAdmin === true" [routerLink]="['./Admin', 'Lk']" class="white-text mx-1 sidenav-close">Управление</a>
         <a class="mx-1 white-text sidenav-close right" (click)="logout()"> Выйти</a>
@@ -53,14 +51,11 @@
 
   <li><a href="#" class="sidenav-close"><i class="material-icons ">home</i>Сервис поиска услуг</a></li>
   <li><a [routerLink]="['./']" class="sidenav-close">Список услуг</a></li>
-
-  <li><a href="#" class="sidenav-close">Список категорий</a></li>
-  <li><a href="#" class="sidenav-close">Список пользователей</a></li>
-  <li><a class="sidenav-close" [routerLink]="['/webcam']">Камера</a></li>
-  <li>
+  <li class="line">
     <div class="divider background bg-info"></div>
   </li>
   <li><a class="subheader">Дополнительная информация</a></li>
   <li><a [routerLink]="['./Info']" class="sidenav-close">О приложении</a></li>
   <li><a [routerLink]="['./Contacts']" class="sidenav-close">Обратная связь</a></li>
+  <li><a href="mailto:info@master702.ru" ><small>info@master702.ru</small></a></li>
 </ul>

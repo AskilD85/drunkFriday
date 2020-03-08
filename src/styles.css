@@ -3,6 +3,7 @@
     --bg-info-hover: #d5f3f8;
     --min-font-size: 11px;
     --max-font-size: 14px;
+    --bg-info: #17a2b8;
   }
 
  body {
@@ -20,6 +21,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .color-green {
     color: green;
+}
+.color-red {
+    color: red;
 }
 
 

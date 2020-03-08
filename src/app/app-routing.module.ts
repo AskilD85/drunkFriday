@@ -16,6 +16,8 @@ import { LoginPageComponent } from './admin/login-page/login-page.component';
 import { UserDetailComponent } from './pages/cabinet/users/user-detail/user-detail.component';
 import { WebcamComponent } from './pages/webcam/webcam.component';
 import { ProfileComponent } from './pages/cabinet/profile/profile.component';
+import { VerificationEmailComponent } from './pages/verification-email/verification-email.component';
+import { ResetPasswComponent } from './pages/reset-passw/reset-passw.component';
 
 
 const routes: Routes = [
@@ -32,6 +34,8 @@ const routes: Routes = [
   { path: 'Cabinet', component: CabinetComponent, canActivate: [GeneralGuard] },
   { path: 'Users/:id', component: UserDetailComponent, canActivate: [GeneralGuard] },
   { path: 'login', component: LoginPageComponent  },
+  { path: 'verification/:token', component: VerificationEmailComponent },
+  { path: 'resetPassw/:token', component: ResetPasswComponent },
   { path: 'webcam', component: WebcamComponent },
   { path: 'Admin', loadChildren: './admin/admin.module#AdminModule', canActivate: [GeneralGuard] },
   { path: '**', component: NotFoundComponent }
@@ -39,9 +43,10 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-RouterModule.forRoot(routes, {useHash: true}),
-    SharedModule
+  RouterModule.forRoot(routes, {useHash: true}),
+  SharedModule
   ],
+
   providers: [GeneralGuard],
   exports: [
     RouterModule,

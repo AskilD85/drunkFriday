@@ -3,20 +3,28 @@ import { User } from './../model/User';
 import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { HttpService } from './../services/http.service';
+import { FormGroup } from '@angular/forms';
+
+export interface AuthData {
+  result: string;
+  text: string;
+  data: User;
+}
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
 
   private url = 'http://laravel5.master702.ru/api/';
   user: User;
   authEmit: EventEmitter<boolean> = new EventEmitter();
+  authData: EventEmitter<AuthData> = new EventEmitter();
   serverError: EventEmitter<HttpErrorResponse> = new EventEmitter();
   registerUser: EventEmitter<User> = new EventEmitter();
   userEmit: EventEmitter<User> = new EventEmitter();
   regUser;
-
   constructor(private http: HttpClient,
               private route: Router,
               private httpService: HttpService) { }
@@ -32,7 +40,13 @@ export class AuthService {
   }
 
   login(userlogin) {
-    this.authService(userlogin, 'login').subscribe(data => {
+    this.serverError.emit(null);
+    this.authService(userlogin, 'login').subscribe( (data) => {
+
+      if (data[ 'result' ] === 'noVerifyEmail') {
+        this.authData.emit(data as AuthData);
+      }
+
       this.user = data as User;
       this.userEmit.emit(this.user);
       if (this.user.data !== null && this.user.data !== undefined) {
@@ -48,6 +62,10 @@ export class AuthService {
       this.serverError.emit(err);
       console.log(err);
     });
+  }
+
+  login2(loginData) {
+    return this.http.post(this.url + 'login', loginData );
   }
 
   isAdmin(): boolean {
@@ -89,14 +107,32 @@ export class AuthService {
     this.route.navigate(['login']);
   }
 
-  register(regData) {
+  /*register(regData) {
     this.http.post(this.url + 'register', regData, { observe: 'response' }).subscribe(data => {
       this.regUser = data.body;
       this.registerUser.emit(this.regUser.data);
     }, (err: HttpErrorResponse) => {
       this.serverError.emit(err);
     });
+  }*/
+
+  register(regData) {
+    return this.http.post(this.url + 'register', regData);
   }
 
-
+  resetPasswCheckToken(token: string) {
+    const body = {
+      token
+    };
+    return this.http.post(this.url + 'checkToken', body);
+  }
+  saveNewPass(data, token: string) {
+    console.log(data);
+    const body = {
+      password: data.password,
+      token
+    };
+    console.log(body);
+    return this.http.post(this.url + 'saveNewPass', body);
+  }
 }

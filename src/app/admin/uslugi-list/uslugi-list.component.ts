@@ -88,7 +88,7 @@ export class UslugiListComponent implements OnInit, OnDestroy {
   }
 
 
-  delete(id: string) {
+  delete(id: number) {
     this.sDeleteArticle = this.http.delete(id).subscribe(del => {
       this.del = del;
       this.allArticles = this.allArticles.filter( articles => articles.id !== id);

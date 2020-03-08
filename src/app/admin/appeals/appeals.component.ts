@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { Appeal } from './../../model/Appeal';
 import { AdminService } from './../Services/admin.service';
 import { Component, OnInit, OnDestroy, ɵConsole } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-appeals',
@@ -16,7 +17,8 @@ export class AppealsComponent implements OnInit, OnDestroy {
 
   constructor(private adminService: AdminService,
               private auth: AuthService,
-              private httpService: HttpService
+              private httpService: HttpService,
+              private route: ActivatedRoute,
   ) { }
   appeals: Appeal[];
   sAppeals: Subscription;
@@ -28,9 +30,13 @@ export class AppealsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sAppeals = this.adminService.getAppeals().subscribe(
       (appeals: Appeal[]) => {
-        this.appeals = appeals; console.log(appeals);
+        this.appeals = appeals;
       },
-      (err) => { console.log(err); },
+      (err) => {
+        console.log(err);
+        this.auth.logout();
+        this.addBackUrl();
+       },
     );
     this.sUsers = this.httpService.getUsers().subscribe(
       (users: User[]) => { this.users = users; },
@@ -57,5 +63,11 @@ export class AppealsComponent implements OnInit, OnDestroy {
         this.appeals = this.appeals.filter( ( ap ) => ap.id !== id);
       }
     );
+  }
+  addBackUrl() {
+    const route = this.route.snapshot.url;
+    const backUrl = route[0].path + '/' + route[1].path;
+    localStorage.setItem('backUrl', backUrl);
+    console.log('back url: ', backUrl);
   }
 }

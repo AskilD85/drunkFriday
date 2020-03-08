@@ -83,7 +83,7 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
 
   }
 
-  delete(id: string) {
+  delete(id: number) {
     this.http.delete(id).subscribe(del => { this.del = del;  this.myUslugi();  });
   }
   getCategories() {

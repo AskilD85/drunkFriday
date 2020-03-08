@@ -4,7 +4,6 @@ import { HttpService } from './../../services/http.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subscription, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-uslugi',
@@ -15,6 +14,7 @@ export class UslugiComponent implements OnInit, OnDestroy {
 
   articles: Article[];
   articles2: Article[];
+  articlesCount: number;
   categories: Categories[] = [];
   category: Categories[];
   position = localStorage.getItem('position') !== null ? localStorage.getItem('position') : 'usluga';
@@ -23,20 +23,19 @@ export class UslugiComponent implements OnInit, OnDestroy {
   constructor(public http: HttpService) { }
 
   ngOnInit() {
-    this.sArticles = this.http.getArticles().subscribe((articles: Article[]) => {
-      this.articles = articles;
-      console.log(localStorage.getItem('position'));
+    this.sArticles = this.http.getArticles().subscribe((data: Article[]) => {
+    this.articles = data;
 
       /*if (localStorage.getItem('position') !== null && localStorage.getItem('position') !== undefined) {
         this.selectionChange(localStorage.getItem('position'));
       }*/
-      this.selectionChange(this.position);
+    this.selectionChange(this.position);
     },
       (err: HttpErrorResponse) => {
         console.log('Ошибка', err);
 
       } );
-    
+
 
   }
 
@@ -46,7 +45,6 @@ export class UslugiComponent implements OnInit, OnDestroy {
     }
   }
   selectionChange(val) {
-    //console.log(val);
     this.articles2 = this.articles.filter( art => art.type === val);
     localStorage.setItem('position', val);
   }

@@ -19,5 +19,8 @@ export class UsersComponent implements OnInit {
       ( user: User[]) => { this.users = user; }
     );
   }
+  writeToMaster() {
+    console.log('написал мастеру');
+  }
 
 }

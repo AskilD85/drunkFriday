@@ -8,9 +8,11 @@ import { LoginPageComponent } from '../admin/login-page/login-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule, MatSlideToggleModule } from '@angular/material';
 import { ProfileComponent } from '../pages/cabinet/profile/profile.component';
+import { ResetPasswComponent } from '../pages/reset-passw/reset-passw.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-    declarations: [LoginPageComponent, ProfileComponent],
+    declarations: [LoginPageComponent, ProfileComponent, ResetPasswComponent],
     imports: [
         HttpClientModule,
         RecaptchaModule,
@@ -20,6 +22,7 @@ import { ProfileComponent } from '../pages/cabinet/profile/profile.component';
         CommonModule,
         MatCheckboxModule,
         MatSlideToggleModule,
+        RouterModule
     ],
     exports: [
         HttpClientModule,
@@ -27,11 +30,13 @@ import { ProfileComponent } from '../pages/cabinet/profile/profile.component';
         RecaptchaFormsModule,
         LoginPageComponent,
         ProfileComponent,
+        ResetPasswComponent,
         FormsModule,
         ReactiveFormsModule,
         CommonModule,
         MatCheckboxModule,
-        MatSlideToggleModule
+        MatSlideToggleModule,
+        RouterModule
     ],
     schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
     providers: [

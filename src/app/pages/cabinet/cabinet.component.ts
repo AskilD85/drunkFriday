@@ -37,14 +37,16 @@ export class CabinetComponent implements OnInit, OnDestroy {
   myUslugi() {
     const userid = localStorage.getItem('user_id');
     this.sArticles = this.httpService.getArticleOfUser(userid).subscribe(
-      ( articles: Article[]) => { this.articles = articles; }
+      ( articles: Article[]) => {
+        console.log(11, articles) ;
+        this.articles = articles; }
     );
   }
 
   reload() {
     this.myUslugi();
   }
-  delete(id: string) {
+  delete(id: number) {
     this.sDeleteArticle = this.httpService.delete(id).subscribe(() => {
       this.articles = this.articles.filter( articles => articles.id !== id);
     });

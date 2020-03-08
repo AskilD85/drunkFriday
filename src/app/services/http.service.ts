@@ -69,7 +69,7 @@ export class HttpService {
     }
     return this.http.put(this.url + `articles/${id}`, body);
   }
-  delete(id: string) {
+  delete(id: number) {
     return this.http.delete(this.url + `articles/${id}`);
   }
 
@@ -130,5 +130,23 @@ export class HttpService {
   }
   getDetailArticle(id: number) {
     return this.http.get(this.url + `articles/detail/${id}`);
+  }
+
+  verification(token: string) {
+    console.log(this.url + `verify/${token}`);
+    return this.http.get(this.url + `verify/${token}`);
+  }
+
+  reSendEmail(email: string) {
+    const body = {
+      email
+    };
+    return this.http.post(this.url + `forgetpass`, body);
+  }
+  sendVerifyEmail(email: string) {
+    const body = {
+      email
+    };
+    return this.http.post(this.url + `sendVerifyEmail`, body);
   }
 }
