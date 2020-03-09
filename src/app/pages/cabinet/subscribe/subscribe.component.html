@@ -10,11 +10,30 @@
             <i  class="mx-2 material-icons">refresh</i>
         </div>
         <div>
-            <ul>
-                <li>Услуга 1 </li>
-                <li>Услуга 2</li>
-                <li>Услуга 3</li>
-            </ul>
+            <form [formGroup]="subscribeForm" (ngSubmit) = saveForm()>
+                <div  *ngFor="let field of formData.controls; let i=index" >
+                    <mat-form-field class="full-width m-1">
+                        <mat-label class="mat-label ">Категория</mat-label>
+                        <mat-select >
+                            <mat-option value="">Не выбрано</mat-option>
+                            <mat-option *ngFor="let categ of categories;" [value]="categ.id">
+                                {{ categ.name }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="full-width m-1">
+                        <mat-label class="mat-label ">Город</mat-label>
+                        <mat-select >
+                            <mat-option value="">Не выбрано</mat-option>
+                            <mat-option value="1">Аскарово</mat-option>
+                    
+                        </mat-select>
+                    </mat-form-field>
+                    <input class=" m-1 btn bg-danger btn-primary " type="button" value="Удалить" (click)="destroy(i)" >
+                </div>
+                    <input class=" m-1 btn btn-primary bg-info"  type="button" value="Добавить" (click)="add()">
+                    <input class=" m-1 btn btn-primary bg-info" type="submit" value="Сохранить" >
+            </form>
+           
         </div>
     </div>
     
