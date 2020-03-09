@@ -42,6 +42,9 @@ import { UserDetailComponent } from './pages/cabinet/users/user-detail/user-deta
 import { WebcamComponent } from './pages/webcam/webcam.component';
 import { WebcamModule } from 'ngx-webcam';
 import { VerificationEmailComponent } from './pages/verification-email/verification-email.component';
+import { SubscribeComponent } from './pages/cabinet/subscribe/subscribe.component';
+
+
 registerLocaleData(localeRu, 'ru');
 
 @NgModule({
@@ -65,6 +68,7 @@ registerLocaleData(localeRu, 'ru');
     UserDetailComponent,
     WebcamComponent,
     VerificationEmailComponent,
+    SubscribeComponent,
 
   ],
   imports: [
