@@ -43,6 +43,7 @@ import { WebcamComponent } from './pages/webcam/webcam.component';
 import { WebcamModule } from 'ngx-webcam';
 import { VerificationEmailComponent } from './pages/verification-email/verification-email.component';
 import { SubscribeComponent } from './pages/cabinet/subscribe/subscribe.component';
+import { SubscribeService } from './services/subscribe.service';
 
 
 registerLocaleData(localeRu, 'ru');
@@ -72,7 +73,7 @@ registerLocaleData(localeRu, 'ru');
 
   ],
   imports: [
-    CommonModule,
+  CommonModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
@@ -111,7 +112,8 @@ registerLocaleData(localeRu, 'ru');
     SharedModule
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'ru' }
+    { provide: LOCALE_ID, useValue: 'ru' },
+    SubscribeService
   ],
 
   bootstrap: [AppComponent]

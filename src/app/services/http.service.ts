@@ -8,7 +8,7 @@ import { User } from '../model/User';
 import { map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { UserComment } from '../model/UserComment';
-
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +17,8 @@ export class HttpService {
 
   constructor(private http: HttpClient,
               private route: Router) { }
-   private url = 'http://laravel5.master702.ru/api/';
-
+  // private url = 'http://laravel5.master702.ru/api/';
+  private url = environment.BackendDBUrl;
 
   apitoken = '';
   username = '';
@@ -41,6 +41,7 @@ export class HttpService {
   }
 
   getArticles() {
+
     return this.http.get(this.url + 'articles');
   }
 
@@ -148,5 +149,11 @@ export class HttpService {
       email
     };
     return this.http.post(this.url + `sendVerifyEmail`, body);
+  }
+  /***********ПОДПИСКА**************/
+
+  subscribe(body) {
+    console.log(body);
+    return this.http.post(this.url + 'subscribes', body);
   }
 }

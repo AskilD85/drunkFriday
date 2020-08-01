@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { HttpService } from './../services/http.service';
 import { FormGroup } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 export interface AuthData {
   result: string;
@@ -17,7 +18,8 @@ export interface AuthData {
 
 export class AuthService {
 
-  private url = 'http://laravel5.master702.ru/api/';
+  // private url = 'http://laravel5.master702.ru/api/';
+  private url = environment.BackendDBUrl;
   user: User;
   authEmit: EventEmitter<boolean> = new EventEmitter();
   authData: EventEmitter<AuthData> = new EventEmitter();

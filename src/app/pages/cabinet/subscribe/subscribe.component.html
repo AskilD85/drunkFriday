@@ -21,22 +21,24 @@
                         </mat-select>
                     </mat-form-field>
                     <mat-form-field class="full-width m-1">
+                        <mat-label class="mat-label ">Город</mat-label>
+                        <mat-select [formControl]="field.get('city_id')">
+                            
+                            <mat-option value="">Не выбрано</mat-option>
+                            <mat-option *ngFor="let city of cities;" [value]="city.id">
+                                {{ city.name }}</mat-option>
+                            <!-- <mat-option value="1">Аскарово</mat-option> -->
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="full-width m-1">
                         <mat-label class="mat-label ">Тип </mat-label>
                         <mat-select [formControl]="field.get('type')">
                             <mat-option value="">Не выбрано</mat-option>
                             <mat-option value="needmaster">Ищу исполнителя</mat-option>
                             <mat-option value="usluga">Ищу заказ</mat-option>
-                    
                         </mat-select>
                     </mat-form-field>
-                    <mat-form-field class="full-width m-1">
-                        <mat-label class="mat-label ">Город</mat-label>
-                        <mat-select [formControl]="field.get('city_id')">
-                            <mat-option value="">Не выбрано</mat-option>
-                            <mat-option value="1">Аскарово</mat-option>
                     
-                        </mat-select>
-                    </mat-form-field>
                     <input class=" m-1 btn bg-danger btn-primary " type="button" value="Удалить" (click)="destroy(i)" >
                 </div>
                     <input class=" m-1 btn btn-primary bg-info"
