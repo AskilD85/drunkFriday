@@ -20,6 +20,10 @@ export class SubscribeComponent implements OnInit, OnDestroy {
     ])
   });
   getCategSub: Subscription;
+  sDeleteSubscribe: Subscription;
+
+  subscribes: Subscribe[];
+  disabled = false;
   success = false;
   message: string;
   cities = [{ name: 'Аскарово', id: 1 }
@@ -46,15 +50,23 @@ export class SubscribeComponent implements OnInit, OnDestroy {
     if (this.getCategSub) {
       this.getCategSub.unsubscribe();
     }
+    if (this.sDeleteSubscribe) {
+      this.sDeleteSubscribe.unsubscribe();
+    }
+
   }
 
   getSubscribes() {
     const userId = localStorage.getItem('user_id');
     this.subscribeService.getSubscribes(userId).subscribe(
       (data: Subscribe[]) => {
-        console.log(data);
+        console.log('here - ' + data[0]);
+        this.subscribes = data;
         // заполнить форму подписками
-        this.fillForm(data);
+        if (this.subscribes.length > 0) {
+          this.fillForm(this.subscribes);
+        }
+
       }
     );
   }
@@ -86,8 +98,17 @@ export class SubscribeComponent implements OnInit, OnDestroy {
   }
 
 
-  destroy(i: number) {
-    this.formData.removeAt(i);
+  destroy(id: number, i: number) {
+    console.log(this.subscribes[i].id);
+    this.disabled = true;
+    this.subscribeService.destroy(this.subscribes[i].id).subscribe(
+      () => { 
+        this.formData.removeAt(i);
+        this.disabled = false;
+       },
+      (err) => { console.log(err); }
+    );
+
   }
 
   saveForm() {
@@ -95,7 +116,7 @@ export class SubscribeComponent implements OnInit, OnDestroy {
     if (this.subscribeForm.invalid) {
       console.log('ивыавлид');
     } else {
-      this.httpService.subscribe(this.subscribeForm.value.subscribe).subscribe(
+      this.subscribeService.saveForm(this.subscribeForm.value.subscribe).subscribe(
         (data: any) => {
           console.log(data);
           if (data.res === 'OK') {

@@ -13,6 +13,16 @@ export class SubscribeService {
 
   getSubscribes(userId: number | string) {
     console.log(userId);
-    return this.http.get(this.url + `subscribes/${userId}`);
+    const body = {};
+    return this.http.post(this.url + `subscribes/${userId}`, body);
+  }
+  destroy(id: number) {
+    return this.http.delete(this.url + `subscribes/${id}`);
+  }
+
+  saveForm(body) {
+    console.log(body);
+    body.author_id = localStorage.getItem('user_id');
+    return this.http.post(this.url + 'subscribes', body);
   }
 }

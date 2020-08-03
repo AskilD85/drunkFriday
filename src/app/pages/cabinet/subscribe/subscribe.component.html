@@ -5,13 +5,17 @@
 
 <div class="">
     <div class="p-2 rounded shadow">
-        <div >
-            <i  class="mx-2 material-icons">add</i>
-            <i  class="mx-2 material-icons">refresh</i>
-        </div>
+        
         <div class="main">
-            <form [formGroup]="subscribeForm" (ngSubmit) = saveForm()>
-                <div  *ngFor="let field of formData.controls; let i=index" >
+            <div>
+                <i class="mx-2 material-icons">add</i>
+                <i class="mx-2 material-icons">refresh</i>
+            </div>
+            <div class="">
+            <form [formGroup]="subscribeForm" 
+                    (ngSubmit) = "saveForm()"
+                    >
+                <div  *ngFor="let field of formData?.controls; let i=index" class="rounded shadow m-2 " >
                     <mat-form-field class="full-width m-1">
                         <mat-label class="mat-label ">Категория</mat-label>
                         <mat-select [formControl]="field.get('category_id')">
@@ -20,16 +24,7 @@
                                 {{ categ.name }}</mat-option>
                         </mat-select>
                     </mat-form-field>
-                    <mat-form-field class="full-width m-1">
-                        <mat-label class="mat-label ">Город</mat-label>
-                        <mat-select [formControl]="field.get('city_id')">
-                            
-                            <mat-option value="">Не выбрано</mat-option>
-                            <mat-option *ngFor="let city of cities;" [value]="city.id">
-                                {{ city.name }}</mat-option>
-                            <!-- <mat-option value="1">Аскарово</mat-option> -->
-                        </mat-select>
-                    </mat-form-field>
+                    
                     <mat-form-field class="full-width m-1">
                         <mat-label class="mat-label ">Тип </mat-label>
                         <mat-select [formControl]="field.get('type')">
@@ -38,8 +33,23 @@
                             <mat-option value="usluga">Ищу заказ</mat-option>
                         </mat-select>
                     </mat-form-field>
+                    <mat-form-field class="full-width m-1">
+                        <mat-label class="mat-label ">Город</mat-label>
+                        <mat-select [formControl]="field.get('city_id')">
                     
-                    <input class=" m-1 btn bg-danger btn-primary " type="button" value="Удалить" (click)="destroy(i)" >
+                            <mat-option value="">Не выбрано</mat-option>
+                            <mat-option *ngFor="let city of cities;" [value]="city.id">
+                                {{ city.name }}</mat-option>
+                            <!-- <mat-option value="1">Аскарово</mat-option> -->
+                        </mat-select>
+                    </mat-form-field>
+                    <input 
+                        class=" m-1 btn bg-danger btn-primary " 
+                        type="button" 
+                        value="Удалить" 
+                        [disabled] = "disabled"
+                        (click)="destroy(field.get('id'), i)" 
+                    >
                 </div>
                     <input class=" m-1 btn btn-primary bg-info"
                     type="button" 
@@ -54,7 +64,7 @@
                         
                         >
             </form>
-           
+           </div>
         </div>
     </div>
     
@@ -62,3 +72,12 @@
 <div *ngIf="success" class="text-center">
     <span class="color-green">{{message}}</span>
 </div>
+
+<ng-template #loading>
+    <div class="container text-center">
+        <div class="spinner-border text-info" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+
+    </div>
+</ng-template>
