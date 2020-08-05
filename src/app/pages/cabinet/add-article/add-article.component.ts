@@ -4,7 +4,7 @@ import { Categories } from './../../../model/Categories';
 import { HttpService } from 'src/app/services/http.service';
 import { Subscription } from 'rxjs';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -12,7 +12,7 @@ import { map } from 'rxjs/operators';
   templateUrl: './add-article.component.html',
   styleUrls: ['./add-article.component.css']
 })
-export class AddArticleComponent implements OnInit {
+export class AddArticleComponent implements OnInit, OnDestroy {
 
   constructor(private httpService: HttpService, private router: Router) { }
 
@@ -25,6 +25,7 @@ export class AddArticleComponent implements OnInit {
   });
 
   getCategSub: Subscription;
+  addArticleSub: Subscription;
   categories: Categories;
   articles: Article[];
   success = false;
@@ -37,13 +38,24 @@ export class AddArticleComponent implements OnInit {
           this.categories = categ;
       });
   }
+  ngOnDestroy(): void {
+    if (this.getCategSub) {
+      this.getCategSub.unsubscribe();
+    }
+    if (this.addArticleSub) {
+      this.addArticleSub.unsubscribe();
+    }
+  }
 
   addUsluga() {
-    this.httpService.addArticle(this.addForm.value).subscribe((add: Article) => {
+    this.addArticleSub = this.httpService.addArticle(this.addForm.value).subscribe((add: Article) => {
+      console.log('here -' + this.addForm.value);
       this.addForm.reset();
       this.success = true;
-    });
+    },
+      err => { console.log(err), console.log('here -' + this.addForm.value); });
   }
+
   addAgain() {
     this.success = false;
     this.checked = true;
