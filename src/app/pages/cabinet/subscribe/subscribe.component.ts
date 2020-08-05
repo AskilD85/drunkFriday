@@ -7,6 +7,7 @@ import { SubscribeService } from './../../../services/subscribe.service';
 import { Subscribe } from 'src/app/model/Subscribe';
 import { MatProgressSpinnerModule } from '@angular/material';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/admin/auth.service';
 @Component({
   selector: 'app-subscribe',
   templateUrl: './subscribe.component.html',
@@ -33,7 +34,8 @@ export class SubscribeComponent implements OnInit, OnDestroy {
           , { name: 'Екатеринбург', id: 4 }];
   constructor(private httpService: HttpService,
               private subscribeService: SubscribeService,
-              private router: Router) { }
+              private router: Router,
+              private authService: AuthService) { }
 
 get formData() { return this.subscribeForm.get('subscribe') as FormArray; }
 
@@ -75,7 +77,7 @@ get formData() { return this.subscribeForm.get('subscribe') as FormArray; }
       (err) => {
         console.log(err.status);
         if (err.status === 401) {
-          this.router.navigate(['login']);
+          this.authService.logout();
         }
        }
     );
