@@ -48,7 +48,7 @@
                         type="button" 
                         value="Удалить" 
                         [disabled] = "disabled"
-                        (click)="destroy(field.get('id'), i)" 
+                        (click)="destroy(i)" 
                     >
                 </div>
                     <input class=" m-1 btn btn-primary bg-info"
@@ -57,7 +57,7 @@
                     (click)="add()"
                     [disabled] = "!subscribeForm.valid"
                     >
-                    <input *ngIf="formData.controls.length > 0" class=" m-1 btn btn-primary bg-info" 
+                    <input  class=" m-1 btn btn-primary bg-info" 
                         type="submit"
                         value="Сохранить"
                         [disabled] = "!subscribeForm.valid"
@@ -81,3 +81,7 @@
 
     </div>
 </ng-template>
+
+<span class="spinner" aria-hidden="true">
+<mat-spinner *ngIf="showSpinner" [diameter]="40" class="mat-spinner"></mat-spinner>
+</span>

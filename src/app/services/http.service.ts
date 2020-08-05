@@ -150,10 +150,5 @@ export class HttpService {
     };
     return this.http.post(this.url + `sendVerifyEmail`, body);
   }
-  /***********ПОДПИСКА**************/
 
-  subscribe(body) {
-    console.log(body);
-    return this.http.post(this.url + 'subscribes', body);
-  }
 }

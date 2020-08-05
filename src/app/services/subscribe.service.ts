@@ -21,8 +21,6 @@ export class SubscribeService {
   }
 
   saveForm(body) {
-    console.log(body);
-    body.author_id = localStorage.getItem('user_id');
     return this.http.post(this.url + 'subscribes', body);
   }
 }

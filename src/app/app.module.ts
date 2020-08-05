@@ -27,6 +27,7 @@ import { MatSelectModule,
   MatToolbarModule,
   MatRippleModule,
   MatIconModule,
+  MatProgressSpinnerModule
   } from '@angular/material';
 
 
@@ -73,7 +74,8 @@ registerLocaleData(localeRu, 'ru');
 
   ],
   imports: [
-  CommonModule,
+
+    CommonModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
@@ -91,7 +93,7 @@ registerLocaleData(localeRu, 'ru');
     MatToolbarModule,
     MatIconModule,
     WebcamModule,
-
+    MatProgressSpinnerModule
 
 
   ],
@@ -109,7 +111,8 @@ registerLocaleData(localeRu, 'ru');
     MatIconModule,
     CommonModule,
     UserDetailComponent,
-    SharedModule
+    SharedModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'ru' },

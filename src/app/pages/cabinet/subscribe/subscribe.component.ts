@@ -5,7 +5,8 @@ import { Categories } from 'src/app/model/Categories';
 import { Subscription } from 'rxjs';
 import { SubscribeService } from './../../../services/subscribe.service';
 import { Subscribe } from 'src/app/model/Subscribe';
-
+import { MatProgressSpinnerModule } from '@angular/material';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-subscribe',
   templateUrl: './subscribe.component.html',
@@ -21,7 +22,7 @@ export class SubscribeComponent implements OnInit, OnDestroy {
   });
   getCategSub: Subscription;
   sDeleteSubscribe: Subscription;
-
+  showSpinner = false;
   subscribes: Subscribe[];
   disabled = false;
   success = false;
@@ -31,8 +32,10 @@ export class SubscribeComponent implements OnInit, OnDestroy {
           , { name: 'Уфа', id: 3 }
           , { name: 'Екатеринбург', id: 4 }];
   constructor(private httpService: HttpService,
-              private subscribeService: SubscribeService) { }
-  get formData() { return this.subscribeForm.get('subscribe') as FormArray; }
+              private subscribeService: SubscribeService,
+              private router: Router) { }
+
+get formData() { return this.subscribeForm.get('subscribe') as FormArray; }
 
   ngOnInit() {
 
@@ -57,6 +60,7 @@ export class SubscribeComponent implements OnInit, OnDestroy {
   }
 
   getSubscribes() {
+    this.showSpinner = true;
     const userId = localStorage.getItem('user_id');
     this.subscribeService.getSubscribes(userId).subscribe(
       (data: Subscribe[]) => {
@@ -66,8 +70,14 @@ export class SubscribeComponent implements OnInit, OnDestroy {
         if (this.subscribes.length > 0) {
           this.fillForm(this.subscribes);
         }
-
-      }
+        this.showSpinner = false;
+      },
+      (err) => {
+        console.log(err.status);
+        if (err.status === 401) {
+          this.router.navigate(['login']);
+        }
+       }
     );
   }
 
@@ -81,7 +91,8 @@ export class SubscribeComponent implements OnInit, OnDestroy {
         new FormGroup({
           category_id: new FormControl(arr[i].category_id, [Validators.required]),
           type: new FormControl(arr[i].type, [Validators.required]),
-          city_id: new FormControl(arr[i].city_id, [Validators.required])
+          city_id: new FormControl(arr[i].city_id, [Validators.required]),
+          author_id: new FormControl(localStorage.getItem('user_id'), [Validators.required])
        }));
     }
   }
@@ -98,11 +109,11 @@ export class SubscribeComponent implements OnInit, OnDestroy {
   }
 
 
-  destroy(id: number, i: number) {
+  destroy(i: number) {
     console.log(this.subscribes[i].id);
     this.disabled = true;
     this.subscribeService.destroy(this.subscribes[i].id).subscribe(
-      () => { 
+      () => {
         this.formData.removeAt(i);
         this.disabled = false;
        },
