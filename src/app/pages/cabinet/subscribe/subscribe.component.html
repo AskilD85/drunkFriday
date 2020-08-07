@@ -47,8 +47,8 @@
                         class=" m-1 btn bg-danger btn-primary " 
                         type="button" 
                         value="Удалить" 
-                        [disabled] = "disabled"
-                        (click)="destroy(i)" 
+                        [disabled] = "disabled || showSpinner"
+                        (click)="destroy(i, field.get('id')?.value)" 
                     >
                 </div>
                     <input class=" m-1 btn btn-primary bg-info"
@@ -60,7 +60,7 @@
                     <input  class=" m-1 btn btn-primary bg-info" 
                         type="submit"
                         value="Сохранить"
-                        [disabled] = "!subscribeForm.valid"
+                        [disabled] = "!subscribeForm.valid || subscribeForm.pristine"
                         
                         >
             </form>
