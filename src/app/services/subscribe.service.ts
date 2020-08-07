@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { User } from './../model/User';
+import { FormArray, FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -23,4 +24,14 @@ export class SubscribeService {
   saveForm(body) {
     return this.http.post(this.url + 'subscribes', body);
   }
+
+  clearForm(form: FormArray | FormGroup, field: string) {
+    if ((form.get(field) as FormArray).length > 0) {
+      while ((form.get(field) as FormArray).length !== 0) {
+        (form.get(field) as FormArray).removeAt(0);
+      }
+      form.reset();
+    }
+  }
+
 }
