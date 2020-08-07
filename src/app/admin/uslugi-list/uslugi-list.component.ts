@@ -36,6 +36,7 @@ export class UslugiListComponent implements OnInit, OnDestroy {
     title: new FormControl('', [Validators.required]),
     body: new FormControl('', [Validators.required]),
     category_id: new FormControl('', [Validators.required]),
+    type: new FormControl('', [Validators.required]),
   });
   addCategForm = new FormGroup({
    //  author_id: new FormControl(localStorage.getItem('user_id'), [Validators.required]),
@@ -47,6 +48,7 @@ export class UslugiListComponent implements OnInit, OnDestroy {
     title: new FormControl('', [Validators.required]),
     body: new FormControl('', [Validators.required]),
     category_id: new FormControl('', [Validators.required]),
+    type: new FormControl('', [Validators.required]),
   });
 
 
@@ -116,6 +118,8 @@ export class UslugiListComponent implements OnInit, OnDestroy {
     console.log('addCateg', this.addCategForm.value, this.addCategForm );
   }
   addUsluga() {
+    console.log(this.addForm.value);
+    
     this.http.addArticle(this.addForm.value).subscribe((add: Article) => {
       this.addArticle = add;
       this.addClick = false;

@@ -42,6 +42,16 @@
                     {{ categ.name }}</mat-option>
             </mat-select>
         </mat-form-field>
+        
+        <mat-form-field class="full-width m-1">
+            <mat-label class="mat-label ">Тип </mat-label>
+            <mat-select formControlName="type">
+                <mat-option value="">Не выбрано</mat-option>
+                <mat-option value="usluga">Услуга</mat-option>
+                <mat-option value="needmaster">Поиск мастера</mat-option>
+        
+            </mat-select>
+        </mat-form-field>
 
         <div class="input-field">
             <input type="text" class="form-control m-1"  formControlName="title" id="title">

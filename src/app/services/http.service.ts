@@ -46,7 +46,7 @@ export class HttpService {
   }
 
   getArticle(id) {
-    return this.http.get(this.url + `articles/${id}`);
+    return this.http.get(this.url + `articles/detail/${id}`);
   }
 
   getArticleOfUser(authorId) {
