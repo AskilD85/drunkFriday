@@ -2,6 +2,7 @@ import { Subscription } from 'rxjs';
 import { Article } from './../../model/Article';
 import { HttpService } from 'src/app/services/http.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cabinet',
@@ -10,16 +11,20 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 })
 export class CabinetComponent implements OnInit, OnDestroy {
 
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService,
+              private activateRoute: ActivatedRoute) {
+
+               }
   add = false;
   userPage = false;
   messagePage = false;
-  page = 'profile';
+  page = '';
   visibility = false;
   sArticles: Subscription;
   sDeleteArticle: Subscription;
   articles: Article[];
   ngOnInit() {
+    this.page = this.activateRoute.snapshot.params.page;
     this.myUslugi();
   }
   ngOnDestroy() {
