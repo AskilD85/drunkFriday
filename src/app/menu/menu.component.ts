@@ -12,7 +12,8 @@ import { Subscription } from 'rxjs';
 })
 export class MenuComponent implements OnInit, OnDestroy {
 
-  constructor(private http: HttpService, private authService: AuthService) { }
+  constructor(private http: HttpService,
+              private authService: AuthService) { }
 
   token = this.http.apitoken;
 

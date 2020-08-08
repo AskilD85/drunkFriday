@@ -31,7 +31,7 @@ const routes: Routes = [
   { path: 'Info', component: InfoComponent },
   { path: 'alkouser', component: AlkousersComponent},
   { path: 'Profile', component: ProfileComponent, canActivate: [GeneralGuard] },
-  { path: 'Cabinet', component: CabinetComponent,  },
+  { path: 'Cabinet/:page', component: CabinetComponent,  },
   { path: 'Users/:id', component: UserDetailComponent, canActivate: [GeneralGuard] },
   { path: 'login', component: LoginPageComponent  },
   { path: 'verification/:token', component: VerificationEmailComponent },
