@@ -17,7 +17,7 @@ input.ng-valid {
 
 .input-field > input  {
     box-sizing: inherit;
-    
+    width: 100%;
 }
 
 .login-div {
@@ -25,16 +25,19 @@ input.ng-valid {
     margin: auto;
 }
 
-.forgetPassw:hover {
-    cursor: pointer;
-}
+
 .forgetPassw {
     color: var(--bg-info);
+    a:hover {
+        cursor: pointer;
+    } 
 }
 
 .link{
-    color: #17a2b8;
+    color: #17a2b8 !important;
+    &:hover {
+        cursor: pointer;
+        color: #17a2b8;
+    }
 }
-a:hover {
-    cursor: pointer;
-}
+
