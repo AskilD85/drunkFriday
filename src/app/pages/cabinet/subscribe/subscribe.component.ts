@@ -146,6 +146,11 @@ get formData() { return this.subscribeForm.get('subscribe') as FormArray; }
           }
 
         },
+        (err) => {
+          if (err.status === 401) {
+            this.authService.logout();
+          }
+        }
       );
     }
 

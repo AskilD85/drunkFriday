@@ -8,12 +8,11 @@
         
         <div class="main">
             <div>
-                <i class="mx-2 material-icons">add</i>
-                <i class="mx-2 material-icons">refresh</i>
+                <button class="btn btn-primary bg-info"><i class="mx-2 material-icons" (click)="getSubscribes()">refresh</i></button>
             </div>
             <div class="">
             <form [formGroup]="subscribeForm" 
-                    (ngSubmit) = "saveForm()"
+                    
                     >
                 <div  *ngFor="let field of formData?.controls; let i=index" class="rounded shadow m-2 " >
                     <mat-form-field class="full-width m-1">
@@ -51,20 +50,34 @@
                         (click)="destroy(i, field.get('id')?.value)" 
                     >
                 </div>
-                    <input class=" m-1 btn btn-primary bg-info"
-                    type="button" 
-                    value="Добавить" 
-                    (click)="add()"
-                    [disabled] = "!subscribeForm.valid"
-                    >
-                    <input  class=" m-1 btn btn-primary bg-info" 
-                        type="submit"
-                        value="Сохранить"
-                        [disabled] = "!subscribeForm.valid || subscribeForm.pristine"
-                        
-                        >
+                
+                    
             </form>
            </div>
+
+        <div *ngIf="formData?.controls.length === 0 && !showSpinner">
+            <div class="text-center">
+                <span>Нет ни одной подписки!</span>
+            </div>
+        </div>
+
+
+        <input  
+            class=" m-1 btn btn-primary bg-info" 
+            type="button" 
+            value="Добавить" 
+            (click)="add()"
+            [disabled]="!subscribeForm.valid"
+        >
+
+        <input  
+            class="m-1 btn btn-primary bg-info"
+            type="submit" 
+            value="Сохранить"
+            (click) = "saveForm()"
+            [disabled]="!subscribeForm.valid || subscribeForm.pristine"
+        >
+
         </div>
     </div>
     
