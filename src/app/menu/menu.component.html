@@ -52,7 +52,7 @@
 
   <li><a href="#" class="sidenav-close"><i class="material-icons ">home</i>Сервис поиска услуг</a></li>
   <li><a [routerLink]="['./']" class="sidenav-close">Список услуг</a></li>
-  <li><a [routerLink]="['Cabinet', 'subscribe']" class="sidenav-close">Мои Подписки</a></li>
+  <li *ngIf="auth"><a [routerLink]="['Cabinet', 'subscribe']" class="sidenav-close">Мои Подписки</a></li>
   <li class="line">
     <div class="divider background bg-info"></div>
   </li>
