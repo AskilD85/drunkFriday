@@ -40,9 +40,10 @@ export class HttpService {
 
   }
 
-  getArticles() {
+  // tslint:disable-next-line: variable-name
+  getArticles(city_id: number) {
 
-    return this.http.get(this.url + 'articles');
+    return this.http.get(this.url + `articles/${city_id}`);
   }
 
   getArticle(id) {
@@ -149,6 +150,11 @@ export class HttpService {
       email
     };
     return this.http.post(this.url + `sendVerifyEmail`, body);
+  }
+
+
+  getCities() {
+    return this.http.get(this.url + `cities`);
   }
 
 }
