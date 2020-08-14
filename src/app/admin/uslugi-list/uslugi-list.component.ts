@@ -6,6 +6,7 @@ import { AuthService } from './../auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AdminService } from '../Services/admin.service';
 
 @Component({
   selector: 'app-uslugi-list',
@@ -55,6 +56,7 @@ export class UslugiListComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService,
               private http: HttpService,
               private router: Router,
+              private adminService: AdminService
     ) { }
 
 
@@ -82,7 +84,7 @@ export class UslugiListComponent implements OnInit, OnDestroy {
   }
 
   getUslugi() {
-    this.http.getArticles().subscribe(
+    this.adminService.getArticles().subscribe(
       (uslugi: Article[]) => {
         this.allArticles = uslugi;
       }
@@ -119,7 +121,7 @@ export class UslugiListComponent implements OnInit, OnDestroy {
   }
   addUsluga() {
     console.log(this.addForm.value);
-    
+
     this.http.addArticle(this.addForm.value).subscribe((add: Article) => {
       this.addArticle = add;
       this.addClick = false;

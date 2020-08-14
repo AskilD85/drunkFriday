@@ -30,5 +30,7 @@ export class AdminService {
         ));
   }
 
- 
+  getArticles() {
+    return this.http.get(this.url + `admin/articles`);
+  }
 }
