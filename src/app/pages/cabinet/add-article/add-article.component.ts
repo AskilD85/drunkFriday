@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { City } from 'src/app/model/City';
 
 @Component({
   selector: 'app-add-article',
@@ -22,6 +23,7 @@ export class AddArticleComponent implements OnInit, OnDestroy {
     category_id: new FormControl('', [Validators.required]),
     type: new FormControl('', [Validators.required]),
     active: new FormControl(false),
+    city_id: new FormControl(localStorage.getItem('location'), [Validators.required])
   });
 
   getCategSub: Subscription;
@@ -30,13 +32,16 @@ export class AddArticleComponent implements OnInit, OnDestroy {
   articles: Article[];
   success = false;
   checked = true;
+  cities: City[];
+  location = localStorage.getItem('location') !== null ? localStorage.getItem('location') : 1;
+
+
   ngOnInit() {
-
-
-    this.getCategSub = this.httpService.getCategories()
+  this.getCategSub = this.httpService.getCategories()
         .subscribe((categ: Categories) => {
           this.categories = categ;
       });
+  this.getCities();
   }
   ngOnDestroy(): void {
     if (this.getCategSub) {
@@ -46,7 +51,13 @@ export class AddArticleComponent implements OnInit, OnDestroy {
       this.addArticleSub.unsubscribe();
     }
   }
-
+  getCities() {
+    this.httpService.getCities().subscribe(
+      (data: City[]) => {
+        this.cities = data;
+      }
+    );
+  }
   addUsluga() {
     this.addArticleSub = this.httpService.addArticle(this.addForm.value).subscribe((add: Article) => {
       console.log('here -' + this.addForm.value);

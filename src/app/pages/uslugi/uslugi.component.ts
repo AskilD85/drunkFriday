@@ -4,6 +4,7 @@ import { HttpService } from './../../services/http.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subscription, Observable } from 'rxjs';
+import { City } from 'src/app/model/City';
 
 @Component({
   selector: 'app-uslugi',
@@ -17,13 +18,19 @@ export class UslugiComponent implements OnInit, OnDestroy {
   articlesCount: number;
   categories: Categories[] = [];
   category: Categories[];
+  cities: City[];
   position = localStorage.getItem('position') !== null ? localStorage.getItem('position') : 'usluga';
+  location = '1';
   sArticles: Subscription;
   showSpinner = false;
-  constructor(public http: HttpService) { }
+  constructor(public http: HttpService) {
+  }
 
   ngOnInit() {
-    this.getArticles();
+    this.location = localStorage.getItem('location');
+    console.log(0, this.location);
+    this.getCities();
+    this.getArticles(+this.location);
   }
 
   ngOnDestroy() {
@@ -32,21 +39,36 @@ export class UslugiComponent implements OnInit, OnDestroy {
     }
   }
 
-  getArticles() {
+  // tslint:disable-next-line: variable-name
+  getArticles(city_id: number) {
     this.showSpinner = true;
-    this.sArticles = this.http.getArticles().subscribe((data: Article[]) => {
+    this.articles = [];
+    this.sArticles = this.http.getArticles(city_id).subscribe((data: Article[]) => {
       this.articles = data;
       this.showSpinner = false;
-      this.selectionChange(this.position);
+      this.selectionChange('usluga');
     },
       (err: HttpErrorResponse) => {
         console.log('Ошибка', err);
 
       });
   }
-
+  getCities() {
+    this.http.getCities().subscribe(
+      (data: City[]) => {
+        this.cities = data;
+        console.log(this.cities);
+      }
+    );
+  }
   selectionChange(val) {
     this.articles2 = this.articles.filter( art => art.type === val);
     localStorage.setItem('position', val);
+  }
+
+  selectionChangeCity(val: string) {
+    localStorage.setItem('location', val);
+    this.location = localStorage.getItem('location');
+    this.getArticles(+this.location);
   }
 }

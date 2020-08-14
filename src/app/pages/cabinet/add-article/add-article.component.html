@@ -3,6 +3,14 @@
     <form *ngIf="!success" [formGroup]="addForm" (ngSubmit)="addUsluga()">
         <h5 class="text-center">Добавить услугу</h5>
         <mat-form-field class="full-width m-1">
+            <mat-label class="mat-label ">Город </mat-label>
+            <mat-select [value]="location" formControlName="city_id">
+                <mat-option value="">Не выбрано</mat-option>
+                <mat-option *ngFor="let city of cities" value="{{city.id}}">{{city.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="full-width m-1">
             <mat-label class="mat-label ">Категория</mat-label>
             <mat-select formControlName="category_id" >
                 <mat-option value="">Не выбрано</mat-option>

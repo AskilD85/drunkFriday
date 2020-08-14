@@ -33,4 +33,11 @@ export class AdminService {
   getArticles() {
     return this.http.get(this.url + `admin/articles`);
   }
+
+  addCity(body) {
+    body.user_id = localStorage.getItem('user_id');
+    body.active = 1;
+    return this.http.post(this.url + `admin/cities`, body);
+  }
+
 }
