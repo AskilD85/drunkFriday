@@ -1,12 +1,18 @@
-.material-icons:hover {
+.container {
+    width: 100%;
+}
+
+.item {
+    cursor: pointer;
+}
+.card:hover {
+    background-color: #d5f3f8;
     cursor: pointer;
 }
 
-.main {
-    margin: auto;
-    form { margin: auto; }
+.secondary-content {
+    float: unset;
 }
-
 .spinner {
     position: fixed;
     left: 50%;

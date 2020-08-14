@@ -24,3 +24,18 @@ a:hover {
     cursor: pointer;
     color: #97e4f0;
 }
+
+.spinner {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+
+    .matSpinner{
+        color: var(--bg-info);
+    }
+
+}
+
+.mat-spinner::ng-deep circle{
+stroke:  var(--bg-info) !important;
+}

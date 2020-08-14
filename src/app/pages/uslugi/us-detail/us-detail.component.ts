@@ -16,7 +16,7 @@ import { User } from 'src/app/model/User';
 @Component({
   selector: 'app-us-detail',
   templateUrl: './us-detail.component.html',
-  styleUrls: ['./us-detail.component.css']
+  styleUrls: ['./us-detail.component.scss']
 })
 export class UsDetailComponent implements OnInit, OnDestroy {
 
@@ -35,7 +35,7 @@ export class UsDetailComponent implements OnInit, OnDestroy {
   userId = Number(localStorage.getItem('user_id'));
   detail: Article;
   deal = false;
-
+  showSpinner = false;
   formDeal = new FormGroup({
     text: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Zа-яА-Я\d]{1,}.*$/)])
   });
@@ -45,12 +45,8 @@ export class UsDetailComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private http: HttpService, private auth: AuthService) { }
 
   ngOnInit() {
-    this.sArticle = this.http.getDetailArticle(this.id)
-      .subscribe(
-        (detail: Article) => { this.detail = detail; }
-      );
+    this.getDetailArticle();
     this.getMyResponses();
-
   }
 
   ngOnDestroy() {
@@ -66,6 +62,18 @@ export class UsDetailComponent implements OnInit, OnDestroy {
     if (this.sDestroy) {
       this.sDestroy.unsubscribe();
     }
+  }
+
+  getDetailArticle() {
+    this.showSpinner = true;
+    this.sArticle = this.http.getDetailArticle(this.id)
+      .subscribe(
+        (detail: Article) => {
+          this.detail = detail;
+          this.showSpinner = false;
+
+        }
+      );
   }
 
   getMyResponses() {

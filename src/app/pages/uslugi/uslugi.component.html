@@ -2,7 +2,7 @@
 
 
 
-<div *ngIf="articles?.length > 0; else loading">
+<div *ngIf="articles?.length > 0">
     <div class="container ">
         <div>
             <mat-form-field class="full-width">
@@ -35,11 +35,8 @@
     </div>
 </div>
 
-<ng-template #loading>
-    <div class="container text-center">
-        <div class="spinner-border text-info" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-       
-    </div>
-</ng-template>
+
+
+<span class="spinner" aria-hidden="true">
+    <mat-spinner *ngIf="showSpinner" [diameter]="40" class="mat-spinner"></mat-spinner>
+</span>
