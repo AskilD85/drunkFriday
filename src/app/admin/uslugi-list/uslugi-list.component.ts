@@ -6,7 +6,8 @@ import { AuthService } from './../auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AdminService } from '../Services/admin.service';
+import { AdminService } from '../services/admin.service';
+import { City } from 'src/app/model/City';
 
 @Component({
   selector: 'app-uslugi-list',
@@ -32,12 +33,14 @@ export class UslugiListComponent implements OnInit, OnDestroy {
   myArticles = false;
   addCategPage = false;
   editPage = false;
-
+  location = localStorage.getItem('location') !== null ? localStorage.getItem('location') : 1;
+  cities: City[];
   addForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
     body: new FormControl('', [Validators.required]),
     category_id: new FormControl('', [Validators.required]),
     type: new FormControl('', [Validators.required]),
+    city_id: new FormControl(localStorage.getItem('location'), [Validators.required])
   });
   addCategForm = new FormGroup({
    //  author_id: new FormControl(localStorage.getItem('user_id'), [Validators.required]),
@@ -62,6 +65,7 @@ export class UslugiListComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
+    this.getCities();
     this.getUslugi();
     this.getCategories();
 
@@ -81,6 +85,13 @@ export class UslugiListComponent implements OnInit, OnDestroy {
       this.sDeleteArticle.unsubscribe();
     }
 
+  }
+  getCities() {
+    this.http.getCities().subscribe(
+      (data: City[]) => {
+        this.cities = data;
+      }
+    );
   }
 
   getUslugi() {
