@@ -2,7 +2,7 @@
 
 
 
-<div *ngIf="articles?.length > 0">
+<div>
     <div class="container ">
         <div>
             <mat-form-field class="full-width">
@@ -22,6 +22,7 @@
             </mat-form-field>
 
         </div>
+        <div *ngIf="articles?.length > 0; else noContent">
         <div *ngFor="let article of articles2" class="card" [routerLink]="['Uslugi', article.id]"  >
             
             <div class="p-2 item-card" >
@@ -39,6 +40,7 @@
                 </div>
             </div>
         </div>
+        </div>
     </div>
 </div>
 
@@ -47,3 +49,10 @@
 <span class="spinner" aria-hidden="true">
     <mat-spinner *ngIf="showSpinner" [diameter]="40" class="mat-spinner"></mat-spinner>
 </span>
+
+<ng-template #noContent>
+    <div *ngIf="!showSpinner"
+        class="text-center shadow rounded p-3">
+        В данном городе нет услуг!
+    </div>
+</ng-template>
