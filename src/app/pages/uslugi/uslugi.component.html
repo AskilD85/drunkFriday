@@ -7,8 +7,8 @@
         <div>
             <mat-form-field class="full-width">
                 <mat-label class="mat-label ">Моя позиция</mat-label>
-                <mat-select [value]="position" (selectionChange)="selectionChange($event.value)">
-                    <mat-option value="usluga">Ищу мастера</mat-option>
+                <mat-select [(value)]="position" (selectionChange)="selectionChange($event.value)">
+                    <mat-option value="needjob">Ищу мастера</mat-option>
                     <mat-option value="needmaster">Ищу работу </mat-option>
         
                 </mat-select>
