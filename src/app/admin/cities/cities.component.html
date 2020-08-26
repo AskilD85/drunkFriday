@@ -16,7 +16,9 @@
 <div class="container">
     <div class="">
         <div *ngFor="let city of cities"class="card">
-            <div class="p-2 item-card">{{city.name}}</div>
+            <div class="p-2 item-card">{{city.name}}
+            <i class="material-icons right darkred shadow" (click)="deleteCity(city.id)">delete</i>
+            </div>
         </div>
     </div>
 

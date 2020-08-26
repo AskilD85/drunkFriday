@@ -27,12 +27,25 @@ export class CitiesComponent implements OnInit {
     this.httpService.getCities().subscribe(
       (data: City[]) => {
         this.cities = data;
+        console.log(data);
       }
     );
   }
   create() {
     this.adminService.addCity(this.addCityForm.value).subscribe(
-      data => {console.log(data);
+      data => {
+        console.log(data);
+        this.addCityForm.reset();
+        this.getCities();
+      }
+    );
+  }
+
+  deleteCity(cityId: number) {
+    this.adminService.deleteCity(cityId).subscribe(
+      () => {
+        this.cities = this.cities.filter(city => city.id !== cityId);
+
       }
     );
   }

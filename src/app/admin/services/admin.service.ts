@@ -14,7 +14,7 @@ export class AdminService {
         private route: Router) {}
 
   // private url = 'http://laravel5.master702.ru/api/';
-  private url = environment.BackendDBUrl;   
+  private url = environment.BackendDBUrl;
 
   getAppeals() {
     return this.http.get(this.url + 'appeals');
@@ -39,5 +39,7 @@ export class AdminService {
     body.active = 1;
     return this.http.post(this.url + `admin/cities`, body);
   }
-
+  deleteCity(cityId: number) {
+    return this.http.delete(this.url + `admin/cities/${cityId}`);
+  }
 }
