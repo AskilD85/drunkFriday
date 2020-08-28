@@ -19,8 +19,13 @@
         <li *ngIf="isAdmin === true" routerLinkActive="active"><a [routerLink]="['./Admin', 'Lk']" class="">Управление</a></li>
         <li *ngIf="auth"><a (click)="logout()" routerLinkActive="active" class="">Выйти</a></li>
       </ul>
-      <a *ngIf="auth" [routerLink]="['Admin', 'Lk']" class="right hide-on-large-only"><i class="material-icons">
+      <a *ngIf="auth && isAdmin" [routerLink]="['Admin', 'Lk']" class="right hide-on-large-only"><i class="material-icons">
         perm_identity
+        </i>
+      </a>
+
+      <a *ngIf="auth && !isAdmin" [routerLink]="['Cabinet', 'profile']" class="right hide-on-large-only"><i class="material-icons">
+          perm_identity
         </i>
       </a>
 
