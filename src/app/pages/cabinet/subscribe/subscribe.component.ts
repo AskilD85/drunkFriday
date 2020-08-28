@@ -29,10 +29,7 @@ export class SubscribeComponent implements OnInit, OnDestroy {
   disabled = false;
   success = false;
   message: string;
-  cities = [{ name: 'Аскарово', id: 1 }
-           , { name: 'Магнитогорск', id: 2 }
-          , { name: 'Уфа', id: 3 }
-          , { name: 'Екатеринбург', id: 4 }];
+
   constructor(private httpService: HttpService,
               private subscribeService: SubscribeService,
               private router: Router,

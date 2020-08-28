@@ -43,17 +43,18 @@
                 <div *ngIf="!isLoginForm" class="color-green text-center">
                     <p>Письмо отправлено!</p>
                 </div>
-
+                <div *ngIf="text">
+                  <div class="color-red text-center">{{text}}</div>
+                  <div><input class="btn btn-primary m-1 bg-info " (click)="sendVerifyEmail()"
+                      value="выслать email повторно"></div>
+                </div>
                 <div>
                     <span>Впервые у нас?</span>
                     <span (click)="regClick(); form.reset()" class="m-1"><a class="link">Зарегистрируйтесь!</a></span>
                 </div>
                 
                 
-                <div *ngIf="text" >
-                    <div class="color-red text-center">{{text}}</div>
-                    <div><input class="btn btn-primary m-1 bg-info " (click)="sendVerifyEmail()" value="выслать email повторно"></div>
-                </div>
+                
             </div>
             <div *ngSwitchCase="'reg'">
                 <!-- форма регистрации -->

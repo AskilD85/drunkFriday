@@ -75,16 +75,15 @@
 
 
 <div *ngIf="allArticles && !addClick">
-<div *ngFor="let article of allArticles" class=" m-1 p-2 shadow rounded" [ngClass]=" article?.active === 1 ? {'no-active': false} : {'no-active': true}">
-    <div><b>{{ article.title }}</b></div>
-    <div>{{article.body}}</div>
-    <input type="button" class="btn m-2 bg-info" [routerLink]="(['Detail', article.id])" value="открыть">
-    <i class="material-icons right darkred" (click)="delete(article.id)">delete</i>
-   
-    <hr>
-    <b>Активность:</b> {{article?.active === 1 ? 'Да' : 'Нет'}} &nbsp;<b>Просмотров:</b>  &nbsp; <b>Комментариев:  </b>&nbsp; <b>Откликов:</b> 
-</div>
-
+    <div *ngFor="let article of allArticles" class=" m-1 p-2 shadow rounded" [ngClass]=" article?.active === 1 ? {'no-active': false} : {'no-active': true}">
+        <div><b>{{ article.title }}</b></div>
+        <div>{{article.body}}</div>
+        <input type="button" class="btn m-2 bg-info" [routerLink]="(['Detail', article.id])" value="открыть">
+        <i class="material-icons right darkred" (click)="delete(article.id)">delete</i>
+    
+        <hr>
+        <b>Активность:</b> {{article?.active === 1 ? 'Да' : 'Нет'}} &nbsp;<b>Просмотров:</b>  &nbsp; <b>Комментариев:  </b>&nbsp; <b>Откликов:</b> 
+    </div>
 </div>
 
 
