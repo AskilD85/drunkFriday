@@ -4,7 +4,8 @@
 
 <div>
     <div class="container ">
-        <div>
+        <div class="row">
+            <div class="col-mx-6 mx-3">
             <mat-form-field class="full-width">
                 <mat-label class="mat-label ">Моя позиция</mat-label>
                 <mat-select [(value)]="position" (selectionChange)="selectionChange($event.value)">
@@ -13,14 +14,15 @@
         
                 </mat-select>
             </mat-form-field>
-
-            <mat-form-field class="full-width right">
-                <mat-label class="mat-label ">Мой город</mat-label>
-                <mat-select disabled="disabled" [value]="location" (selectionChange)="selectionChangeCity($event.value)">
-                    <mat-option *ngFor ="let city of cities" value="{{city.id}}">{{city.name}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-
+            </div>
+            <div class="col-mx-6 mx-3 ">
+                <mat-form-field class="full-width right">
+                    <mat-label class="mat-label ">Мой город</mat-label>
+                    <mat-select disabled="disabled" [value]="location" (selectionChange)="selectionChangeCity($event.value)">
+                        <mat-option *ngFor ="let city of cities" value="{{city.id}}">{{city.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
         </div>
         <div *ngIf="articles?.length > 0; else noContent">
         <div *ngFor="let article of articles2" class="card" [routerLink]="['Uslugi', article.id]"  >
