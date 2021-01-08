@@ -1,0 +1,49 @@
+<div class="center"></div>
+<div class="text-center"><h4>Посчитай, сколько дней прошло с даты твоего рождения</h4></div>
+<div class="container ">
+    <div class=" text-center">
+        <div class="">
+           <form [formGroup]="form" >
+ 
+                <input matInput readonly 
+                        [matDatepicker]="picker" 
+                        class="date-input m-3" 
+                        formControlName="date1" 
+                        id="date1" 
+                        autocomplete="off" 
+                        (click)="picker.open(); this.showResult = false"
+                        placeholder="Выберите дату справа нажав на кнопку">
+
+                <mat-datepicker #picker></mat-datepicker>
+                
+                <input type="submit" 
+                        class=" m-3 btn btn-primary m-auto  bg-info" 
+                        value="Посчитать"
+                        (click) = "sendForm();"
+                        [disabled]="form.invalid">
+            </form>
+        </div>
+       
+    </div>
+    <div  *ngIf = "showResult" class="text-center">
+        <div class="">Выбранная дата - <b>{{chooseDate}} </b></div>
+
+    <div>{{ message }}</div>
+    <div class="wow fadeInDown" data-wow-delay="0.5s">
+        дней: <b>{{days }}</b>
+    </div>
+    <div class="wow fadeInDown" data-wow-delay="1.0s">
+        часов: <b>{{hours}}</b>
+    </div>
+    <div class="wow fadeInDown" data-wow-delay="1.5s">
+        минут: <b>{{minutes}}</b>
+    </div>
+    <div class="wow fadeInDown" data-wow-delay="2.0s">
+        секунд: <b>{{seconds}}</b>
+    </div>
+</div>
+</div>
+
+
+
+
