@@ -23,9 +23,9 @@ export interface ServerResponse {
 
 export class LoginPageComponent implements OnInit, OnDestroy {
 
-  isRegForm = true;
-  isLoginForm = true;
-  email = '';
+  isRegForm = true; /** проверка активна ли форма регистрации */
+  isLoginForm = true; /** проверка активна ли форма авторизации */
+  email = ''; 
   password = '';
   serverError;
   regUser: User;
@@ -91,7 +91,9 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     }
   }
 
-
+/** завершить сеанс - кнопка выход
+ *
+ */
   logout() {
     this.authService.logout();
   }
@@ -166,6 +168,9 @@ export class LoginPageComponent implements OnInit, OnDestroy {
  resolved(event) {
   this.sharedService.resolved(event);
 }
+/**
+ * Отправка письма для подтверждения email
+ */
   sendVerifyEmail() {
     const email = this.form.value.email;
     this.httpService.sendVerifyEmail(email).subscribe(

@@ -2,6 +2,7 @@
     <!-- <h4 class="text-center">Личный кабинет</h4> -->
     <div class="px-3 ">
         <i (click)="activePage('profile')" [ngClass]="{color: page === 'profile' ? true : false}" class="material-icons m-3">perm_identity</i>
+        <i (click)="activePage('app-blog-admin')" [ngClass]="{color: page === 'app-blog-admin' ? true : false}" class="material-icons m-3">create</i>
         <i (click)="activePage('add')" [ngClass]="{color: page === 'add' ? true : false}" class="material-icons m-3">post_add</i>
         <i (click)="activePage('people')" [ngClass]="{color: page === 'people' ? true : false}" class="material-icons m-3">people</i>
         <i (click)="activePage('messages')" [ngClass]="{color: page === 'messages' ? true : false}" class="material-icons m-3">local_post_office</i>
@@ -40,6 +41,10 @@
                     <span>У Вас пока нет постов</span>
                 </div>
             </ng-template>
+        </div>
+        <div *ngSwitchCase = "'app-blog-admin'">
+            <app-blog-admin ></app-blog-admin>
+            
         </div>
         <div *ngSwitchCase = "'add'">
             <app-add-article ></app-add-article>

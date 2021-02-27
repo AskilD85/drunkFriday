@@ -22,7 +22,6 @@ export class CreateComponent implements OnInit, OnDestroy {
   addArticleSub: Subscription;
 
   ngOnInit() {
-    this.checkModalW();
   }
 
   ngOnDestroy(): void {

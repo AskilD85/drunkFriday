@@ -1,0 +1,17 @@
+<div>
+     <input type="button" (click)="activePage('create')" value="Добавить статью" class="btn m-1 bg-info " >
+     <input type="button" (click)="activePage('');getAllArticles()" value="Все статьи" class="btn m-1 bg-info " >
+</div>
+<div [ngSwitch]="page">
+    <div *ngSwitchCase = "'create'">
+        <app-create></app-create>
+    </div>
+        
+    <div *ngSwitchCase = "''">
+        <div *ngFor = "let article of articles" class="shadow p-3 m-3 ">
+        <div><span class="p-2">редактировать</span><span class="p-2">Удалить</span></div>
+        <h5>{{article.title}}</h5>
+        <div [innerHTML]="article.body"></div>
+
+    </div>
+</div>

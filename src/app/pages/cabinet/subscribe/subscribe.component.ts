@@ -9,6 +9,7 @@ import { MatProgressSpinnerModule, MatFormField } from '@angular/material';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/admin/auth.service';
 import { SharedService } from 'src/app/services/shared.service';
+import { City } from 'src/app/model/City';
 @Component({
   selector: 'app-subscribe',
   templateUrl: './subscribe.component.html',
@@ -29,7 +30,7 @@ export class SubscribeComponent implements OnInit, OnDestroy {
   disabled = false;
   success = false;
   message: string;
-
+  cities: City;
   constructor(private httpService: HttpService,
               private subscribeService: SubscribeService,
               private router: Router,
