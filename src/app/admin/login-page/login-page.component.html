@@ -17,6 +17,7 @@
                 
                     <div class="p-2 input-field"><input class="p-2" name="password" formControlName="password" onCopy="return false"
                             onCut="return false" type="password" placeholder="Введите password">
+                            
                         <div class="validation" *ngIf="form.get('password').invalid && form.get('password').touched">
                             <small *ngIf="form.get('password').errors.required">Поле password не может быть пустым!</small>
                             <small *ngIf="form.get('password').errors.minlength">
@@ -29,21 +30,31 @@
                     <div class="validation" *ngIf="serverError">
                         <div><small>{{serverError.error.errors.email}}</small></div>
                     </div>
+                    <div class="forgetPassw"><a (click)="forgetPassw()"><b>Забыли пароль?</b></a></div>
                     <re-captcha  formControlName ="recaptcha" siteKey="{{recaptchaSiteKey}}" ></re-captcha>
                 
                     <div class="p-2 input-field text-center">
-                        <input type="submit" class="btn btn-primary m-1 bg-info" value="Войти" [disabled]="form.invalid">
-                        <input type="button" class="btn btn-primary m-1 bg-info" value="Регистрация" (click)="regClick(); form.reset()">
+                        <input type="submit" class="btn btn-primary m-auto  bg-info" value="Войти" [disabled]="form.invalid">
+                        
                        
                     </div>
+
                 </form>
                 <div *ngIf="!isLoginForm" class="color-green text-center">
                     <p>Письмо отправлено!</p>
                 </div>
-                <div *ngIf="text" >
-                    <div class="color-red text-center">{{text}}</div>
-                    <div><input class="btn btn-primary m-1 bg-info " (click)="sendVerifyEmail()" value="выслать email повторно"></div>
+                <div *ngIf="text">
+                  <div class="color-red text-center">{{text}}</div>
+                  <div><input class="btn btn-primary m-1 bg-info " (click)="sendVerifyEmail()"
+                      value="выслать email повторно"></div>
                 </div>
+                <div>
+                    <span>Впервые у нас?</span>
+                    <span (click)="regClick(); form.reset()" class="m-1"><a class="link">Зарегистрируйтесь!</a></span>
+                </div>
+                
+                
+                
             </div>
             <div *ngSwitchCase="'reg'">
                 <!-- форма регистрации -->
@@ -74,6 +85,7 @@
                                 сейчас {{regForm.get('password').errors.minlength.actualLength}} символов
                             </small>
                         </div>
+                        
                     </div>
                     <div class="p-2 input-field"><input class="p-2" type="password" formControlName="password_confirmation"
                             placeholder="Повторите password">
@@ -111,15 +123,16 @@
                         <div class="validation" *ngIf="forgetPasswForm.get('email').invalid && forgetPasswForm.get('email').touched">
                             <small *ngIf="forgetPasswForm.get('email').errors.required">Поле e-mail не может быть пустым!</small>
                             <small *ngIf="forgetPasswForm.get('email').errors.email">Введите корректный email!</small>
+                            <small *ngIf="forgetPasswForm.get('email').errors.emailNotFound">{{emailNotFoundText}}</small>
                         </div>
-                        <div class="validation" *ngIf="emailNotFound">
-                            <small >Такой  E-mail не найден!</small>
-                        </div>
-                    </div>
+
+                    
                     <re-captcha formControlName="recaptcha" siteKey="{{recaptchaSiteKey}}"></re-captcha>
+                    <input type="submit" value="Отправить" class="btn bg-info m-1" [disabled]="forgetPasswForm.invalid">
                     <div class=" p-2 text-center">
-                        <input type="submit" value="Отправить" class="btn bg-info m-1" [disabled] = "forgetPasswForm.invalid"> 
-                        <input type="button" class="btn btn-primary m-1 bg-info" (click)="authClick();" value="Войти">
+                        
+                        <a class="link" (click)="authClick();" >Ввести учётные данные</a>
+                    </div>
                     </div>
                 </form>
                 <ng-template #isNotForgetPasswForm>
@@ -129,14 +142,7 @@
                 </ng-template>
 
             </div>
-
-
-
-            <div class="p-2 input-field text-center" *ngIf="isForgetPasswForm" >
-                
-                <div (click)="forgetPassw()" class="forgetPassw"><a>Забыли пароль?</a></div>
-            </div>
-            
+           
 
         </div>
            

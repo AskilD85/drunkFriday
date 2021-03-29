@@ -6,6 +6,8 @@ import { AuthService } from './../auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AdminService } from '../services/admin.service';
+import { City } from 'src/app/model/City';
 
 @Component({
   selector: 'app-uslugi-list',
@@ -31,11 +33,14 @@ export class UslugiListComponent implements OnInit, OnDestroy {
   myArticles = false;
   addCategPage = false;
   editPage = false;
-
+  location = localStorage.getItem('location') !== null ? localStorage.getItem('location') : 1;
+  cities: City[];
   addForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
     body: new FormControl('', [Validators.required]),
     category_id: new FormControl('', [Validators.required]),
+    type: new FormControl('', [Validators.required]),
+    city_id: new FormControl(localStorage.getItem('location'), [Validators.required])
   });
   addCategForm = new FormGroup({
    //  author_id: new FormControl(localStorage.getItem('user_id'), [Validators.required]),
@@ -47,17 +52,20 @@ export class UslugiListComponent implements OnInit, OnDestroy {
     title: new FormControl('', [Validators.required]),
     body: new FormControl('', [Validators.required]),
     category_id: new FormControl('', [Validators.required]),
+    type: new FormControl('', [Validators.required]),
   });
 
 
   constructor(private authService: AuthService,
               private http: HttpService,
               private router: Router,
+              private adminService: AdminService
     ) { }
 
 
 
   ngOnInit() {
+    this.getCities();
     this.getUslugi();
     this.getCategories();
 
@@ -78,9 +86,16 @@ export class UslugiListComponent implements OnInit, OnDestroy {
     }
 
   }
+  getCities() {
+    this.http.getCities().subscribe(
+      (data: City[]) => {
+        this.cities = data;
+      }
+    );
+  }
 
   getUslugi() {
-    this.http.getArticles().subscribe(
+    this.adminService.getArticles().subscribe(
       (uslugi: Article[]) => {
         this.allArticles = uslugi;
       }
@@ -116,6 +131,8 @@ export class UslugiListComponent implements OnInit, OnDestroy {
     console.log('addCateg', this.addCategForm.value, this.addCategForm );
   }
   addUsluga() {
+    console.log(this.addForm.value);
+
     this.http.addArticle(this.addForm.value).subscribe((add: Article) => {
       this.addArticle = add;
       this.addClick = false;

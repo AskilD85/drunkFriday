@@ -27,6 +27,7 @@ import { MatSelectModule,
   MatToolbarModule,
   MatRippleModule,
   MatIconModule,
+  MatProgressSpinnerModule
   } from '@angular/material';
 
 
@@ -43,6 +44,7 @@ import { WebcamComponent } from './pages/webcam/webcam.component';
 import { WebcamModule } from 'ngx-webcam';
 import { VerificationEmailComponent } from './pages/verification-email/verification-email.component';
 import { SubscribeComponent } from './pages/cabinet/subscribe/subscribe.component';
+import { SubscribeService } from './services/subscribe.service';
 
 
 registerLocaleData(localeRu, 'ru');
@@ -72,6 +74,7 @@ registerLocaleData(localeRu, 'ru');
 
   ],
   imports: [
+
     CommonModule,
     AppRoutingModule,
     ReactiveFormsModule,
@@ -90,7 +93,7 @@ registerLocaleData(localeRu, 'ru');
     MatToolbarModule,
     MatIconModule,
     WebcamModule,
-
+    MatProgressSpinnerModule
 
 
   ],
@@ -108,10 +111,12 @@ registerLocaleData(localeRu, 'ru');
     MatIconModule,
     CommonModule,
     UserDetailComponent,
-    SharedModule
+    SharedModule,
+    MatProgressSpinnerModule
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'ru' }
+    { provide: LOCALE_ID, useValue: 'ru' },
+    SubscribeService
   ],
 
   bootstrap: [AppComponent]

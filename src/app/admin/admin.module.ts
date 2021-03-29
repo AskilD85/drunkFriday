@@ -20,6 +20,7 @@ import { UsersComponent } from './users/users.component';
 import { UslugiListComponent } from './uslugi-list/uslugi-list.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { AppealsComponent } from './appeals/appeals.component';
+import { CitiesComponent } from './cities/cities.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ declarations: [
     UslugiListComponent,
     CategoryListComponent,
     AppealsComponent,
+    CitiesComponent,
 
 ],
 imports: [
@@ -45,7 +47,7 @@ imports: [
             { path: 'Services', component: UslugiListComponent },
             { path: 'Categories', component: CategoryListComponent },
             { path: 'Appeals', component: AppealsComponent },
-
+            { path: 'Cities', component: CitiesComponent },
         ],  canActivate: [GeneralGuard, AdminGuard]   },
         { path: 'Users', component: UsersComponent, canActivate: [ GeneralGuard ] },
         { path: 'Services/Detail/:id', component: DetailPageComponent, canActivate: [ GeneralGuard ] },

@@ -12,7 +12,8 @@ import { Subscription } from 'rxjs';
 })
 export class MenuComponent implements OnInit, OnDestroy {
 
-  constructor(private http: HttpService, private authService: AuthService) { }
+  constructor(private http: HttpService,
+              private authService: AuthService) { }
 
   token = this.http.apitoken;
 
@@ -32,7 +33,7 @@ export class MenuComponent implements OnInit, OnDestroy {
         this.isAdmin = this.authService.isAdmin();
         if (this.auth === true) {
           this.userSub = this.http.getUser(Number(localStorage.getItem('user_id'))).subscribe( (us: User) => { this.user = us; },
-          (err) => { console.log(err); this.authService.logout(); }
+            (err) => { console.log(err); this.logout();  }
             );
         }
       });
