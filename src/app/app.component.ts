@@ -35,7 +35,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   isTodayFriday() {
     const today = new Date();
-    if (today.getDay() === 5) {
+    if (today.getDay() === 4) {
       return true;
     }
     return true;
