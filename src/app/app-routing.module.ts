@@ -23,7 +23,7 @@ import { DayCalculatorComponent } from './pages/day-calculator/day-calculator.co
 
 const routes: Routes = [
   // { path: '', component: UslugiComponent  },
-  { path: '', component: BlogComponent },
+  { path: '', component: UslugiComponent },
   { path: 'About', component: AboutComponent},
   { path: 'Work', component: WorkComponent, canActivate: [ GeneralGuard ]},
   { path: 'Blog', component: BlogComponent},

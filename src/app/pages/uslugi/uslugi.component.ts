@@ -19,7 +19,7 @@ export class UslugiComponent implements OnInit, OnDestroy {
   categories: Categories[] = [];
   category: Categories[];
   cities: City[];
-  position = localStorage.getItem('position') !== null ? localStorage.getItem('position') : 'usluga';
+  position = localStorage.getItem('position') !== null ? localStorage.getItem('position') : 'master';
   location = '1';
   sArticles: Subscription;
   showSpinner = false;
@@ -28,7 +28,6 @@ export class UslugiComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.location = localStorage.getItem('location') || '2';
-    console.log(0, this.location);
     this.getCities();
     this.getArticles(+this.location);
 
@@ -47,7 +46,7 @@ export class UslugiComponent implements OnInit, OnDestroy {
     this.sArticles = this.http.getArticles(city_id).subscribe((data: Article[]) => {
       this.articles = data;
       this.showSpinner = false;
-      this.selectionChange('needjob');
+      this.selectionChange('job');
     },
       (err: HttpErrorResponse) => {
         console.log('Ошибка', err);
@@ -62,14 +61,14 @@ export class UslugiComponent implements OnInit, OnDestroy {
       }
     );
   }
-  selectionChange(val) {
+  selectionChange(val: string) {
     this.articles2 = this.articles.filter( art => art.type === val);
     localStorage.setItem('position', val);
   }
 
   selectionChangeCity(val: string) {
     localStorage.setItem('location', val);
-    localStorage.setItem('position', 'needjob');
+    localStorage.setItem('position', 'job');
     this.position = localStorage.getItem('position');
     this.location = localStorage.getItem('location');
     this.getArticles(+this.location);
