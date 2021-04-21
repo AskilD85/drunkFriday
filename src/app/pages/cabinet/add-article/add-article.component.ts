@@ -8,6 +8,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { City } from 'src/app/model/City';
 
+
 @Component({
   selector: 'app-add-article',
   templateUrl: './add-article.component.html',
@@ -23,6 +24,7 @@ export class AddArticleComponent implements OnInit, OnDestroy {
     category_id: new FormControl('', [Validators.required]),
     type: new FormControl('', [Validators.required]),
     active: new FormControl(false),
+    myfile: new FormControl(''),
     city_id: new FormControl(localStorage.getItem('location'), [Validators.required])
   });
 
@@ -64,7 +66,7 @@ export class AddArticleComponent implements OnInit, OnDestroy {
       this.addForm.reset();
       this.success = true;
     },
-      err => { console.log(err), console.log('here -' + this.addForm.value); });
+      err => { console.log(err), console.log('here err-' + this.addForm.value); });
   }
 
   addAgain() {

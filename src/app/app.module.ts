@@ -54,6 +54,10 @@ import { BlogAdminComponent } from './pages/cabinet/blog-admin/blog-admin.compon
 import { CreateComponent } from './pages/cabinet/blog-admin/create/create.component';
 // import { QuillModule } from 'ngx-quill';
 import { QuillModule } from 'ngx-quill-v2';
+import { MatFileUploadModule } from 'angular-material-fileupload';
+
+
+
 
 registerLocaleData(localeRu, 'ru');
 
@@ -108,8 +112,8 @@ registerLocaleData(localeRu, 'ru');
     WebcamModule,
     MatProgressSpinnerModule,
     NgwWowModule,
-    QuillModule
-    
+    QuillModule,
+    MatFileUploadModule
 
   ],
   exports: [
@@ -131,7 +135,8 @@ registerLocaleData(localeRu, 'ru');
     SharedModule,
     MatProgressSpinnerModule,
     NgwWowModule,
-    TextMaskModule
+    TextMaskModule,
+    MatFileUploadModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'ru' },
