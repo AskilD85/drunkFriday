@@ -19,6 +19,20 @@
             </mat-select>
         </mat-form-field>
 
+        
+        <label for="myfile">Upload file</label>
+<input id="myfile"
+     type="file" 
+     formControlName="myfile"
+     
+     
+     />
+<br>
+
+
+
+
+
         <mat-form-field class="full-width m-1">
             <mat-label class="mat-label ">Тип </mat-label>
             <mat-select formControlName="type">
@@ -48,8 +62,10 @@
 
 
         <input type="button" value="Очистить" class="btn btn-danger m-1 bg-info red" (click)="this.addForm.reset();clear()">
-        <input type="submit" value="Добавить" class="btn btn-success m-1 bg-info" [disabled]="addForm.invalid">
+        <input type="submit" value="Добавить" class="btn btn-success m-1 bg-info" >
     </form>
+
+
 
     <div *ngIf="success" class="text-center">
         <span class="color-green">Услугуа добавлена!</span>

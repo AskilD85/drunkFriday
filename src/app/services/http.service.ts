@@ -55,12 +55,33 @@ export class HttpService {
   }
 
   addArticle(body) {
+    console.log(body);
+    const formData: FormData = new FormData();
+    /*const body = {
+      'title': 'title',
+    };*/
+
+  
+
     body.user_id = localStorage.getItem('user_id');
     if (body.active == null) {
       body.active = false;
     }
-    return this.http.post(this.url + `articles`, body);
+    formData.append('title', body.title);
+    formData.append('body', body.body);
+    formData.append('type', body.type);
+    formData.append('user_id', body.user_id);
+    formData.append('city_id', body.city_id);
+    formData.append('category_id', body.category_id);
+    formData.append('myfile', body.myfile);
+
+
+    console.log(formData);
+
+    return this.http.post(this.url + `articles`, formData);
   }
+
+
 
   editArticle(body, id) {
     if ( body.active === true) {
@@ -158,3 +179,4 @@ export class HttpService {
   }
 
 }
+
