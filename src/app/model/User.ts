@@ -4,11 +4,14 @@ export class User {
     age: string;
     email: string;
     sex: string;
+    desc: string;
     admin: boolean;
     type: string;
     stage: string;
     favorite: string;
     readytodrink: number;
+    ava: string;
+    phone: string;
     // tslint:disable-next-line:variable-name
     created_at: Date;
     data: Data;

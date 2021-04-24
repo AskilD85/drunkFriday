@@ -1,13 +1,43 @@
 <div class="container">
-    <div class="p-2">
-        <div>Имя: {{user?.name}}</div>
-        <div>Роль: {{user?.type}}</div>
-        <div>Зарегистрирован: {{user?.created_at | date: 'longDate' }}</div>
+    <div class="text-center p-2"><h5> Профиль</h5> </div>
+    <form [formGroup]="addForm" (ngSubmit)="editForm()">
+
+    <div class="row">
+            <div class="col-3 border ">
+                    <div class="text-center">
+                        <img class="m-2 float-left " src="assets/img/no-photo.png" alt="">
+                    </div>
+    
+                    <label for="file">Сменить аватар</label>
+                    <input type="file"
+                           id="ava"
+                           formControlName="ava"
+                           name="ava"
+                          >
+            </div>
+
+
+
+            <div class="col-9 border p-3">
+                <div class=" ">
+                    <div class="input-field">
+                        <input type="text" class="form-control m-1" value="{{user?.name}}"  formControlName="name" id="name">
+                    </div>
+                    <div class="input-field">
+                        <input type="text" aria-label="описание" class="form-control m-1" value="{{user?.phone}}"  formControlName="phone" id="phone">
+                    </div>
+                    <div class="input-field">
+                        <input type="textarea" aria-label="описание" class="form-control m-1" value="{{user?.desc}}"  formControlName="desc" id="desc">
+                    </div>
+                    <div>Роль: {{user?.type}}</div>
+                    <div>Зарегистрирован: {{user?.created_at | date: 'longDate' }}</div>
+                </div>
+            </div>
+           
+            <input type="submit" value="Сохранить" class="btn btn-success m-1 bg-info" >
     </div>
-    <div class="form-group">
-        <label for="file">Choose File</label>
-        <input type="file"
-               id="file"
-               (change)="handleFileInput($event.target.files)">
-    </div>
+ 
+
+</form>  
 </div>
+

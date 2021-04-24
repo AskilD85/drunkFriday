@@ -1,4 +1,4 @@
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormArray } from '@angular/forms';
 import { Categories } from './../model/Categories';
 import { Article } from './../model/Article';
 import { Router } from '@angular/router';
@@ -9,6 +9,7 @@ import { map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { UserComment } from '../model/UserComment';
 import { environment } from 'src/environments/environment';
+import { Key } from 'selenium-webdriver';
 
 @Injectable({
   providedIn: 'root'
@@ -81,6 +82,33 @@ export class HttpService {
     return this.http.post(this.url + `articles`, formData);
   }
 
+
+  editUserInfo(body: User) {
+
+    const formData: FormData = new FormData();
+    const id = localStorage.getItem('user_id');
+/*
+    if (body.desc != null && body.desc !== undefined) {
+      formData.append('desc', body.desc);
+    }
+    if (body.ava != null && body.ava !== undefined) {
+      formData.append('ava', body.ava);
+    }
+    if (body.ava != null && body.ava !== undefined) {
+      formData.append('ava', body.ava);
+    }*/
+    for (const key in body) {
+
+      if (`${body[key]}` !== 'null' && `${body[key]}` !== undefined) {
+        formData.append(`${key}`, `${body[key]}`);
+      }
+    }
+
+    // formData.append('phone', body.phone);
+    formData.append('id', id);
+
+    return this.http.patch(this.url + `users`, formData);
+  }
 
 
   editArticle(body, id) {
