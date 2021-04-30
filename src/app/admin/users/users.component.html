@@ -1,0 +1,21 @@
+<div *ngIf="users.length > 0; else loading">
+    <div class="" *ngFor="let user of users">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">{{ user.name}}</span>
+          <i *ngIf="user.type !== 'admin'" class="material-icons right darkred " (click)="destroy(user.id)">delete</i>
+          <div>О себе: </div>
+          <div>Роль пользователя: <b>{{user.type}}</b></div>
+          <div>Создан: <b>{{user.created_at}}</b></div>
+        </div>
+        <div class="card-action">
+          <div >Подробнее: <a [routerLink]="['/Users', user.id]"> Профиль</a></div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+<ng-template #loading> 
+    Идёт загрузка...
+</ng-template>

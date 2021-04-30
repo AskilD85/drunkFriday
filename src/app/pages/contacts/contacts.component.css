@@ -1,0 +1,32 @@
+h3 {
+    text-align: center;
+}
+
+input.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
+
+input.ng-valid {
+    border: 1px solid green;
+}
+
+.validation {
+    color: red;
+    text-align: left;
+}
+
+.input-field > input  {
+    box-sizing: inherit;
+}
+
+.form-div {
+    width: 650px;
+    margin: auto;
+}
+
+@media (max-width: 768px) {
+    .form-div {
+        width: 320px;
+        margin: auto;
+    }
+}

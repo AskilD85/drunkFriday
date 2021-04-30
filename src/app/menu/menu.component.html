@@ -1,0 +1,73 @@
+<nav>
+  <div class="nav-wrapper bg-info">
+    <div class="container">
+      <div class="brand-logo">
+        <a [routerLink]="['./']">
+          Мой сервис
+        </a>
+      </div>
+
+      
+      <a data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a [routerLink]="['./']" class="">Главная</a></li>
+        <li><a [routerLink]="['./Day-calculator']" class="">Калькулятор расчёта дней</a></li>
+        <li><a [routerLink]="['./Blog']" class="">Блог</a></li>
+        <li><a [routerLink]="['./Info']" class="">Инфо</a></li>
+        <!-- <li><a [routerLink]="['./Uslugi']" class="">Услуги</a></li> -->
+        <li><a  [routerLink]="['/webcam']">Камера</a></li>
+        <li routerLinkActive="active"><a [routerLink]="['./Contacts']" class="">Обратная связь</a></li>
+        <li *ngIf="!auth"><a [routerLink]="['login']" class="">Войти</a></li>
+        <li *ngIf="auth" routerLinkActive="active"><a [routerLink]="['Cabinet', 'profile']" class="">Личный кабинет</a></li>
+        <!-- <li *ngIf="auth" routerLinkActive="active"><a [routerLink]="['Cabinet', 'subscribe']" class="">Мои подписки</a></li> -->
+        <li *ngIf="isAdmin === true" routerLinkActive="active"><a [routerLink]="['./Admin', 'Lk']" class="">Управление</a></li>
+        <li *ngIf="auth"><a (click)="logout()" routerLinkActive="active" class="">Выйти</a></li>
+      </ul>
+      <a *ngIf="auth && isAdmin" [routerLink]="['Admin', 'Lk']" class="right hide-on-large-only"><i class="material-icons">
+        perm_identity
+        </i>
+      </a>
+
+      <a *ngIf="auth && !isAdmin" [routerLink]="['Cabinet', 'profile']" class="right hide-on-large-only"><i class="material-icons">
+          perm_identity
+        </i>
+      </a>
+
+    </div>
+  </div>
+</nav>
+
+<!-- меню спрятано -->
+<ul id="slide-out" class="sidenav">
+  <li>
+    <div class="user-view">
+      <div class="background bg-info">
+      </div>
+      <div *ngIf="!auth">
+        <a [routerLink]="['login']" class="white-text sidenav-close">Войти</a>
+      </div>
+      <div class="username" *ngIf="auth">
+        <a [routerLink]="['Cabinet', 'profile']">
+          <span  class="white-text name sidenav-close">{{user?.name | titlecase}}</span>
+        </a>
+        <a [routerLink]="['Cabinet', 'profile']" class="white-text mx-1 sidenav-close">Личный кабинет </a>
+        <a *ngIf="isAdmin === true" [routerLink]="['./Admin', 'Lk']" class="white-text mx-1 sidenav-close">Управление</a>
+        <a class="mx-1 white-text sidenav-close right" (click)="logout()"> Выйти</a>
+      </div>
+    </div>
+  </li>
+
+
+
+  <li><a href="#" class="sidenav-close"><i class="material-icons ">home</i>Мой блог</a></li>
+  <li><a [routerLink]="['./']" class="sidenav-close">Мой блог</a></li>
+  <li><a [routerLink]="['./Day-calculator']" class="sidenav-close">Калькулятор расчёта дней</a></li>
+  <li *ngIf="auth"><a [routerLink]="['Cabinet', 'subscribe']" class="sidenav-close">Мои Подписки</a></li>
+  <li class="line">
+    <div class="divider background bg-info"></div>
+  </li>
+  <li><a class="subheader">Дополнительная информация</a></li>
+  <li><a [routerLink]="['./Info']" class="sidenav-close">О приложении</a></li>
+  <li><a [routerLink]="['./Contacts']" class="sidenav-close">Обратная связь</a></li>
+  <li><a href="mailto:info@master702.ru" ><small>info@master702.ru</small></a></li>
+</ul>

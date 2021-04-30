@@ -1,0 +1,60 @@
+
+
+
+
+<div>
+    <div class="container ">
+        <div class="row">
+            <div class="col-mx-6 mx-3">
+            <mat-form-field class="full-width">
+                <mat-label class="mat-label ">Моя позиция</mat-label>
+                <mat-select [(value)]="position" (selectionChange)="selectionChange($event.value)">
+                    <mat-option value="master">Услуги</mat-option>
+                    <mat-option value="job">Ищу работу </mat-option>
+        
+                </mat-select>
+            </mat-form-field>
+            </div>
+            <div class="col-mx-6 mx-3 ">
+                <mat-form-field class="full-width right">
+                    <mat-label class="mat-label ">Мой город</mat-label>
+                    <mat-select disabled="disabled" [value]="location" (selectionChange)="selectionChangeCity($event.value)">
+                        <mat-option *ngFor ="let city of cities" value="{{city.id}}">{{city.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div *ngIf="articles?.length > 0; else noContent">
+        <div *ngFor="let article of articles2" class="card" [routerLink]="['/Uslugi', article.id]"  >
+            
+            <div class="p-2 item-card" >
+                <div class="my-2">
+                    <div class="card-title">{{article.title}}</div>
+                    <b>Категория:</b> {{article.category_name}}
+                    <div class="secondary-content"> Обновлено: {{article.updated_at | date: 'longDate'}}</div>   
+                </div>
+               
+                <!-- <div><b>Описание:</b>{{article.body | slice: 0:30 }}...</div> -->
+            
+                <div class=""> 
+                    Просмотры:  
+                    Комментарии: 
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+
+<span class="spinner" aria-hidden="true">
+    <mat-spinner *ngIf="showSpinner" [diameter]="40" class="mat-spinner"></mat-spinner>
+</span>
+
+<ng-template #noContent>
+    <div *ngIf="!showSpinner"
+        class="text-center shadow rounded p-3">
+        В данном городе нет услуг!
+    </div>
+</ng-template>

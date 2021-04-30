@@ -1,0 +1,100 @@
+<div class="text-center"><small>Отображаются все добавленные услуги</small></div>
+<input type="button" class="btn btn-outline-primary m-1 bg-info" value="Добавить услугу"
+(click)="addClick=true; myArticles=false">
+
+<hr>
+
+<div *ngIf="addClick">
+    <h3>Добавить услугу</h3>
+    <input type="button" value="Добавить категорию" class="btn m-2 bg-info" (click)="addCategPage = true">
+
+    <div *ngIf="addCategPage" class="addCategPage shadow m-3 p-3">
+        
+        <p>Добавить категорию</p>
+        <form [formGroup]="addCategForm" (ngSubmit)="addCategSubmit()" >
+            <div class="input-field" >
+                <input type="text" 
+                        id="name" 
+                        formControlName="name">
+                <label for="name">название категории</label>
+            </div>
+            <div class="input-field">
+                <input type="text" 
+                        id="body" 
+                        formControlName="body">
+                <label for="body">Описание</label>
+            </div>
+            <!-- <input type="text" hidden formControlName="author_id"> -->
+
+        <input type="submit" value="Добавить категорию" class="btn m-2 bg-info" [disabled]="addCategForm.invalid">
+        <input type="button" value="Закрыть" class="btn m-2 red" (click)="addCategPage = false">
+        
+        </form>
+    </div>
+
+                    
+    <form [formGroup]="addForm" (ngSubmit)="addUsluga()">
+        <mat-form-field class="full-width">
+            <mat-label class="mat-label ">Категория</mat-label>
+            <mat-select formControlName="category_id" >
+                <mat-option value="">Не выбрано</mat-option>
+                <mat-option *ngFor="let categ of categories;" [value]="categ.id">
+                    {{ categ.name }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field class="full-width m-1">
+            <mat-label class="mat-label ">Тип </mat-label>
+            <mat-select formControlName="type">
+                <mat-option value="">Не выбрано</mat-option>
+                <mat-option value="needjob">Услуга</mat-option>
+                <mat-option value="needmaster">Поиск мастера</mat-option>
+        
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="full-width m-1">
+            <mat-label class="mat-label ">Город </mat-label>
+            <mat-select [value]="location" formControlName="city_id">
+                <mat-option value="">Не выбрано</mat-option>
+                <mat-option *ngFor="let city of cities" value="{{city.id}}">{{city.name}}</mat-option>
+            </mat-select>(
+        </mat-form-field>
+
+        <div class="input-field">
+            <input type="text" class="form-control m-1"  formControlName="title" id="title">
+            <label for="title">Введите название</label>
+        </div>
+        <div><textarea type="text" class="form-control m-1"  formControlName="body"></textarea></div>
+        <input type="button" value="Очистить" class="btn btn-danger m-1 bg-info" (click)="addForm.reset()">
+        <input type="submit" value="Добавить" class="btn btn-success m-1 bg-info" [disabled]="addForm.invalid">
+        <input type="button" value="Закрыть" class="btn m-2 red" (click)="addClick = false">
+    </form>
+
+</div>
+
+
+<div *ngIf="allArticles && !addClick">
+    <div *ngFor="let article of allArticles" class=" m-1 p-2 shadow rounded" [ngClass]=" article?.active === 1 ? {'no-active': false} : {'no-active': true}">
+        <div><b>{{ article.title }}</b></div>
+        <div>{{article.body}}</div>
+        <input type="button" class="btn m-2 bg-info" [routerLink]="(['Detail', article.id])" value="открыть">
+        <i class="material-icons right darkred" (click)="delete(article.id)">delete</i>
+    
+        <hr>
+        <b>Активность:</b> {{article?.active === 1 ? 'Да' : 'Нет'}} &nbsp;<b>Просмотров:</b>  &nbsp; <b>Комментариев:  </b>&nbsp; <b>Откликов:</b> 
+    </div>
+</div>
+
+
+
+
+
+
+<!-- {{addForm.value | json}} -->
+<div *ngIf="addArticle">
+<p class="color-green">Услуга добавлена!</p>
+<div><small>Название:</small> {{addArticle.title}}</div>
+<div><small>Описание:</small> {{addArticle.body}}</div>
+
+</div>

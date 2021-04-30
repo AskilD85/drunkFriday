@@ -1,0 +1,25 @@
+input.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
+
+input.ng-valid {
+    border: 1px solid green;
+}
+
+.validation {
+    color: red;
+    text-align: left;
+}
+
+.form-div {
+    max-width: 330px;
+    margin: auto;
+}
+.container {
+    width: 100%;
+}
+
+.input-field > input  {
+    box-sizing: inherit;
+    
+}

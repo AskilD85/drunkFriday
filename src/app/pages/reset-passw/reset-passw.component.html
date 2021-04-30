@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="text-center form-div card p-2">
+        <div *ngIf="isValidToken">
+            
+            <form [formGroup]="resetPassForm" class="" *ngIf="isResetPassForm" (ngSubmit)="saveNewPass()">
+                <p>Введите новый пароль</p>
+                <div class="p-2 input-field"><input class="p-2" type="password" formControlName="password"
+                        placeholder="Введите password">
+                    <div class="validation" *ngIf="resetPassForm.get('password').invalid && resetPassForm.get('password').touched">
+                        <small *ngIf="resetPassForm.get('password').errors.required">Поле password не может быть пустым!</small>
+                        <small *ngIf="resetPassForm.get('password').errors.minlength">
+                            Поле password должно быть не менее {{resetPassForm.get('password').errors.minlength.requiredLength}} символов
+                            ,
+                            сейчас {{resetPassForm.get('password').errors.minlength.actualLength}} символов
+                        </small>
+                    </div>
+                </div>
+                <div class="p-2 input-field"><input class="p-2" type="password" formControlName="password_confirmation"
+                        placeholder="Повторите password">
+                    <div class="validation"
+                        *ngIf="resetPassForm.get('password_confirmation').invalid && resetPassForm.get('password_confirmation').touched">
+                        <small *ngIf="resetPassForm.get('password_confirmation').errors.required">Поле не может быть пустым!</small>
+                
+                    </div>
+                    <div class="validation" *ngIf="!(resetPassForm.get('password').value === resetPassForm.get('password_confirmation').value)">
+                        <small>Пароли не совпадают!</small>
+                    </div>
+                </div>
+                <re-captcha formControlName="recaptcha" siteKey="{{recaptchaSiteKey}}"></re-captcha>
+            
+                
+
+                <input type="submit" value="Сохранить" class="btn bg-info m-1" [disabled] = "resetPassForm.invalid">
+            </form>
+            <div class="text-center color-green " *ngIf="!isResetPassForm">
+                <p>{{text}} <a [routerLink]="['/login']" >Авторизуйтесь!</a></p>
+
+            </div>
+        </div>
+        <div *ngIf="!isValidToken">
+            {{text}}
+        </div>
+    </div>
+    
+</div>

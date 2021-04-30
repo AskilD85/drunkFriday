@@ -1,0 +1,20 @@
+
+<div class="container">
+    <div class="row">
+        <div class="border rounded shadow m-1 p-2" *ngFor="let user of users; ">
+            <img class="m-2 float-left " src="assets/img/no-photo.png" alt="">
+            <ul class="ul m-2">
+                <li><small>Мастер:</small> {{ user?.name }}</li>
+                <li><small>E-mail:</small> {{ user?.email }}</li>
+                <li><small>Специализация:</small> {{user?.type}}</li>
+                <li><small>На сайте с : </small>{{user?.created_at | date:'longDate'}}</li>
+            </ul>
+            <input type="button" class="btn bg-info" value="Написать" (click)="writeToMaster()">
+        </div>
+    </div>    
+            
+            
+           
+       
+
+</div>

@@ -1,0 +1,14 @@
+.no-active {
+    background-color: #cccccc78;
+}
+
+.container {
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+a:hover {
+    cursor: pointer;
+}

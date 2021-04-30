@@ -1,0 +1,127 @@
+// @import '~quill/dist/quill.core.css';
+ @import '~quill/dist/quill.bubble.css';
+  @import '~quill/dist/quill.snow.css';
+
+
+/* You can add global styles to this file, and also import other style files */
+:root {
+    --bg-info-hover: #d5f3f8;
+    --min-font-size: 11px;
+    --max-font-size: 14px;
+    --bg-info: #17a2b8;
+  }
+
+ body {
+    position: relative;
+    padding-bottom: 58px;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    height: 58px;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.color-green {
+    color: green;
+}
+.color-red {
+    color: red;
+}
+
+
+/*--------------------------------*/
+
+.navbar-brand {
+    font-family: 'ZemlemerFont';
+    font-size: 36px;
+}
+
+/* Carousel */
+.carousel-caption {
+    text-align: left;
+    top: 40%;
+    left: 20%;
+}
+.carousel-caption h3 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 36px;
+}
+.carousel-item img {
+    width: 100%;
+    height: auto;
+    min-width: 720px;
+    min-height: 360px;
+}
+.carousel-control-prev .fa-chevron-circle-left, .carousel-control-next .fa-chevron-circle-right {    
+    font-size: 40px;
+    color: #ffc107;
+}
+.carousel-indicators li {
+    width: 12px;
+    height: 12px;
+    margin: 10px;
+    text-indent: 0;
+    cursor: pointer;
+    border: none;
+    border-radius: 50%; 
+}
+.carousel-indicators .active {
+    width: 12px;
+    height: 12px;
+    margin: 10px;
+    background-color: #ffc107;
+}
+
+section {
+    padding-top: 80px;
+    padding-bottom: 60px;
+}
+
+#services, #contacts {
+    background-color: rgba(211, 211, 211, 0.4);
+}
+
+@media (max-width: 767px) {
+    .navbar-brand {
+        padding-left: 50px;
+        font-size: 27px;
+    }
+    .navbar-brand img {
+        width: 28px;
+    }
+    .carousel-caption h3 {
+      font-size: 20px;
+    }
+}
+  
+@media (max-width: 480px) {
+    .navbar-brand {
+        padding-left: 5px;
+        font-size: 21px;
+    }
+    .navbar-brand img {
+        width: 22px;
+    }
+    .carousel-caption h3 {
+      font-size: 16px;
+    }
+    .date-input {
+    width: 100%;
+    }
+   
+}
+.material-icons.color-info { color: #17a2b8; }
+
+.container {
+    width: 100% !important;
+}
+
+
+/*редактор текста*/
+.ql-container {
+  height: 300px !important;
+}
+

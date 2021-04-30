@@ -1,0 +1,11 @@
+div.card:hover {
+    background-color: var(--bg-info-hover);
+}
+
+.material-icons.darkred{
+    color: darkred;
+}
+
+.material-icons:hover{
+    cursor: pointer;
+}

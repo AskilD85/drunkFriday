@@ -1,0 +1,70 @@
+<div class="container">
+    <!-- <h4 class="text-center">Личный кабинет</h4> -->
+    <div class="px-3 ">
+        <i (click)="activePage('profile')" [ngClass]="{color: page === 'profile' ? true : false}" class="material-icons m-3">perm_identity</i>
+        <i (click)="activePage('app-blog-admin')" [ngClass]="{color: page === 'app-blog-admin' ? true : false}" class="material-icons m-3">create</i>
+        <i (click)="activePage('add')" [ngClass]="{color: page === 'add' ? true : false}" class="material-icons m-3">post_add</i>
+        <i (click)="activePage('people')" [ngClass]="{color: page === 'people' ? true : false}" class="material-icons m-3">people</i>
+        <i (click)="activePage('messages')" [ngClass]="{color: page === 'messages' ? true : false}" class="material-icons m-3">local_post_office</i>
+        <i (click)="activePage('myArticles')" [ngClass]="{color: page === 'myArticles' ? true : false}" class="material-icons m-3">storage</i>
+        <i (click)="activePage('subscribe')" [ngClass]="{color: page === 'subscribe' ? true : false}" class="material-icons m-3">event_available</i>
+    </div>
+    <div [ngSwitch]="page">
+        <div *ngSwitchCase = "'myArticles'" >
+           
+            <span class="text-center">Мои услуги</span>
+            <i class="material-icons m-4 reload" (click)="reload()">autorenew</i>
+            
+            <div *ngIf="articles?.length !== 0; else noPosts">
+                <div *ngIf="articles?.length > 0; else loading">
+                    <div *ngFor="let article of articles" class="card m-2 p-3">
+                        <div>
+                            <i class="material-icons right darkred" (click)="delete(article.id)">delete</i>
+                            {{article.title}}
+                        </div>
+                        <hr>
+                        <small class="mx-2">{{article.updated_at | date: 'longDate'}}</small>
+                        <small class="mx-2">Категория:  {{article.category_name }}</small>
+                    </div>
+                </div>
+            </div>
+
+            <ng-template #loading>
+                <div class="container text-center">
+                    <div class="spinner-border text-info" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template #noPosts>
+                <div class="container text-center">
+                    <span>У Вас пока нет постов</span>
+                </div>
+            </ng-template>
+        </div>
+        <div *ngSwitchCase = "'app-blog-admin'">
+            <app-blog-admin ></app-blog-admin>
+            
+        </div>
+        <div *ngSwitchCase = "'add'">
+            <app-add-article ></app-add-article>
+            
+        </div>
+        <div *ngSwitchCase = "'people'">
+            <app-users></app-users>
+
+        </div>
+        <div *ngSwitchCase = "'messages'">
+            Сообщения
+
+        </div>
+        <div *ngSwitchCase = "'profile'">
+            <app-profile></app-profile>
+
+        </div>
+        <div *ngSwitchCase="'subscribe'">
+            <app-subscribe></app-subscribe>
+        </div>
+    </div>
+
+</div>

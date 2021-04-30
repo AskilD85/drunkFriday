@@ -1,0 +1,29 @@
+.container {
+    width: 100%;
+}
+
+.item {
+    cursor: pointer;
+}
+.card:hover {
+    background-color: #d5f3f8;
+    cursor: pointer;
+}
+
+.secondary-content {
+    float: unset;
+}
+.spinner {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+
+    .matSpinner{
+        color: var(--bg-info);
+    }
+
+}
+
+.mat-spinner::ng-deep circle{
+stroke:  var(--bg-info) !important;
+}

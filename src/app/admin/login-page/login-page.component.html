@@ -1,0 +1,153 @@
+<div class="container ">
+    <div class="text-center"><h3>{{title}}</h3></div>
+    <div class="card p-2  login-div" >
+        <div class="" [ngSwitch]="page">
+            <div *ngSwitchCase="'login'">
+                <!-- форма авторизации -->
+                <form *ngIf="isLoginForm" class="" [formGroup]="form" (ngSubmit)="login()">
+                
+                    <div class="p-2 input-field">
+                        <input name="email" class="p-2" formControlName="email" type="email" placeholder="Введите email">
+                
+                        <div class="validation" *ngIf="form.get('email').invalid && form.get('email').touched">
+                            <small *ngIf="form.get('email').errors.required">Поле e-mail не может быть пустым!</small>
+                            <small *ngIf="form.get('email').errors.email">Введите корректный email!</small>
+                        </div>
+                    </div>
+                
+                    <div class="p-2 input-field"><input class="p-2" name="password" formControlName="password" onCopy="return false"
+                            onCut="return false" type="password" placeholder="Введите password">
+                            
+                        <div class="validation" *ngIf="form.get('password').invalid && form.get('password').touched">
+                            <small *ngIf="form.get('password').errors.required">Поле password не может быть пустым!</small>
+                            <small *ngIf="form.get('password').errors.minlength">
+                                Поле password должно быть не менее {{form.get('password').errors.minlength.requiredLength}} символов ,
+                                сейчас {{form.get('password').errors.minlength.actualLength}} символов
+                            </small>
+                        </div>
+                    </div>
+                
+                    <div class="validation" *ngIf="serverError">
+                        <div><small>{{serverError.error.errors.email}}</small></div>
+                    </div>
+                    <div class="forgetPassw"><a (click)="forgetPassw()"><b>Забыли пароль?</b></a></div>
+                    <re-captcha  formControlName ="recaptcha" siteKey="{{recaptchaSiteKey}}" ></re-captcha>
+                
+                    <div class="p-2 input-field text-center">
+                        <input type="submit" class="btn btn-primary m-auto  bg-info" value="Войти" [disabled]="form.invalid">
+                        
+                       
+                    </div>
+
+                </form>
+                <div *ngIf="!isLoginForm" class="color-green text-center">
+                    <p>Письмо отправлено!</p>
+                </div>
+                <div *ngIf="text">
+                  <div class="color-red text-center">{{text}}</div>
+                  <div><input class="btn btn-primary m-1 bg-info " (click)="sendVerifyEmail()"
+                      value="выслать email повторно"></div>
+                </div>
+                <div>
+                    <span>Впервые у нас?</span>
+                    <span (click)="regClick(); form.reset()" class="m-1"><a class="link">Зарегистрируйтесь!</a></span>
+                </div>
+                
+                
+                
+            </div>
+            <div *ngSwitchCase="'reg'">
+                <!-- форма регистрации -->
+                <form *ngIf="isRegForm" class="reg-div" [formGroup]="regForm" (ngSubmit)="regSubmit()">
+                    <div class=" px-2 input-field">
+                        <input class="p-2" type="text" formControlName="name" placeholder="Введите имя">
+                        <div class="validation" *ngIf="regForm.get('name').invalid && regForm.get('name').touched">
+                            <small *ngIf="regForm.get('name').errors.required">Поле Имя не может быть пустым!</small>
+                            <small *ngIf="regForm.get('name').errors.minlength">
+                                Поле Имя должно быть не менее {{regForm.get('name').errors.minlength.requiredLength}} символов ,
+                                сейчас {{regForm.get('name').errors.minlength.actualLength}} символов
+                            </small>
+                        </div>
+                    </div>
+                    <div class="p-2 input-field"><input class="p-2" type="text" formControlName="email" placeholder="Введите email">
+                        <div class="validation" *ngIf="regForm.get('email').invalid && regForm.get('email').touched">
+                            <small *ngIf="regForm.get('email').errors.required">Поле e-mail не может быть пустым!</small>
+                            <small *ngIf="regForm.get('email').errors.email">Введите корректный email!</small>
+                        </div>
+                    </div>
+                    <div class="p-2 input-field"><input class="p-2" type="password" formControlName="password"
+                            placeholder="Введите password">
+                        <div class="validation" *ngIf="regForm.get('password').invalid && regForm.get('password').touched">
+                            <small *ngIf="regForm.get('password').errors.required">Поле password не может быть пустым!</small>
+                            <small *ngIf="regForm.get('password').errors.minlength">
+                                Поле password должно быть не менее {{regForm.get('password').errors.minlength.requiredLength}} символов
+                                ,
+                                сейчас {{regForm.get('password').errors.minlength.actualLength}} символов
+                            </small>
+                        </div>
+                        
+                    </div>
+                    <div class="p-2 input-field"><input class="p-2" type="password" formControlName="password_confirmation"
+                            placeholder="Повторите password">
+                        <div class="validation"
+                            *ngIf="regForm.get('password_confirmation').invalid && regForm.get('password_confirmation').touched">
+                            <small *ngIf="regForm.get('password_confirmation').errors.required">Поле не может быть пустым!</small>
+                
+                        </div>
+                        <div class="validation" *ngIf="!(regForm.get('password').value === regForm.get('password_confirmation').value)">
+                            <small>Пароли не совпадают!</small>
+                        </div>
+                
+                    </div>
+                    <re-captcha formControlName ="recaptcha" siteKey="{{recaptchaSiteKey}}" ></re-captcha>
+                    <div class="p-2 input-field">
+                        <input type="submit" class="btn btn-primary m-1 bg-info" value="Регистрация"
+                            [disabled]="regForm.invalid || !(regForm.get('password').value === regForm.get('password_confirmation').value)">
+                        <input type="button" class="btn btn-primary m-1 bg-info" value="Есть аккаунт"
+                            (click)="authClick(); regForm.reset()">
+                    </div>
+                </form>
+                <div *ngIf="!isRegForm" class="text-center color-green">
+                    <p>{{ text }}</p>
+                    <p>
+                        <input type="button" class="btn btn-primary m-1 bg-info" value="Авторизация" (click)="authClick(); regForm.reset()"></p>
+                </div>
+            </div>
+
+
+
+            <div *ngSwitchCase="'forgetPassw'">
+                <form [formGroup]="forgetPasswForm" *ngIf="isForgetPasswForm; else isNotForgetPasswForm" (ngSubmit) ="reSendEmail()">
+                    <div class="p-2 input-field">
+                        <input class="p-2" type="text" formControlName="email"  placeholder="Введите email">
+                        <div class="validation" *ngIf="forgetPasswForm.get('email').invalid && forgetPasswForm.get('email').touched">
+                            <small *ngIf="forgetPasswForm.get('email').errors.required">Поле e-mail не может быть пустым!</small>
+                            <small *ngIf="forgetPasswForm.get('email').errors.email">Введите корректный email!</small>
+                            <small *ngIf="forgetPasswForm.get('email').errors.emailNotFound">{{emailNotFoundText}}</small>
+                        </div>
+
+                    
+                    <re-captcha formControlName="recaptcha" siteKey="{{recaptchaSiteKey}}"></re-captcha>
+                    <input type="submit" value="Отправить" class="btn bg-info m-1" [disabled]="forgetPasswForm.invalid">
+                    <div class=" p-2 text-center">
+                        
+                        <a class="link" (click)="authClick();" >Ввести учётные данные</a>
+                    </div>
+                    </div>
+                </form>
+                <ng-template #isNotForgetPasswForm>
+                    <div class="text-center color-green">
+                        {{text}}
+                    </div>
+                </ng-template>
+
+            </div>
+           
+
+        </div>
+           
+    </div>
+
+</div>
+
+

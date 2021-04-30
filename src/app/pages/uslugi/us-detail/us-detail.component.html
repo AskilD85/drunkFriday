@@ -1,0 +1,64 @@
+
+<div class="container ">
+    <button [routerLink]="['/']" class="btn bg-info">Назад</button>
+    <div class=" p-3 card">
+        <div class="">
+            <div class="">
+            <small class="mx-1">создатель: {{detail?.author}}</small>
+            <small class="mx-1">Категория: {{detail?.category_name}}</small>
+                <h4 class="card-title">{{detail?.title}}</h4>
+                <div class="secondary-content">свободен</div>
+            </div>
+            
+            <p>{{detail?.body}}</p>
+            <div *ngIf="isAuth == true"> 
+                <div class="card-action2">
+                    <input type="button"
+                    class="btn btn-outline-primary m-1 bg-info"
+                    (click)="deal = true"
+                    value="Откликнуться"
+                    [disabled]="disabled">
+                </div>
+                
+                <form *ngIf="deal" [formGroup]="formDeal" (ngSubmit)="toDeal()">
+                    <div class="input-field">
+                        <input type="text" formControlName="text">
+                    </div>
+                    <input type="submit" class="btn bg-info" [disabled]="formDeal.invalid" value="Отправить">
+                    <input type="button" class="btn m-2 red" (click)="deal = false; formDeal.reset()" value="Закрыть">
+                </form>
+                <div *ngIf="response">
+                    <span class="color-green">Отправлено!</span>
+                </div>
+            </div>
+          
+
+        </div>
+        
+    </div>
+    <div *ngIf="myResponses?.length > 0; else noComments">
+        <div *ngIf="isAuth == true">
+            <div *ngFor="let resp of myResponses" class="card p-3" [ngClass]="{ 'myComment': resp.user_id === userId ? true : false }">
+                <div><small>Пользователь: </small><b><a [routerLink]="['/Users', resp.user_id]">{{resp.username}}</a></b></div>
+                <div class="">{{resp?.text}}
+                    <i  *ngIf="resp.user_id === userId || isAdmin"  class="material-icons right color" (click)="destroyComment(resp.id)">delete</i>
+                </div>
+                <hr>
+                <small>создан: {{resp.created_at}}</small>
+            </div>  
+        </div>
+    </div>
+    <div class="text-center" *ngIf="isAuth == false">
+        <span class="">Чтобы увидеть комментарии - <a [routerLink]="(['/login'])" (click)="addBackUrl()">авторизуйтесь</a>!</span>
+    </div>
+</div>
+<ng-template #noComments>
+    <div class="text-center" *ngIf="isAuth == true">
+        <span class="">Комментариев пока нет!</span>
+               
+    </div>
+</ng-template>
+
+<span class="spinner" aria-hidden="true">
+    <mat-spinner *ngIf="showSpinner" [diameter]="40" class="mat-spinner"></mat-spinner>
+</span>
