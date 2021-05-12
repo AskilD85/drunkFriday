@@ -30,7 +30,7 @@ export class UslugiComponent implements OnInit, OnDestroy {
     this.location = localStorage.getItem('location') || '2';
     this.getCities();
     this.getArticles(+this.location);
-
+    console.log(66, this.position);
   }
 
   ngOnDestroy() {
@@ -46,7 +46,7 @@ export class UslugiComponent implements OnInit, OnDestroy {
     this.sArticles = this.http.getArticles(city_id).subscribe((data: Article[]) => {
       this.articles = data;
       this.showSpinner = false;
-      this.selectionChange('job');
+      this.selectionChange(this.position);
     },
       (err: HttpErrorResponse) => {
         console.log('Ошибка', err);
