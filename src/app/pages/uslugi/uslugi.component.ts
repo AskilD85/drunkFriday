@@ -5,6 +5,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subscription, Observable } from 'rxjs';
 import { City } from 'src/app/model/City';
+import { ArticleType } from 'src/app/model/ArticleTypes';
 
 @Component({
   selector: 'app-uslugi',
@@ -23,20 +24,35 @@ export class UslugiComponent implements OnInit, OnDestroy {
   location = '1';
   sArticles: Subscription;
   showSpinner = false;
+  articleType : ArticleType[];
   constructor(public http: HttpService) {
   }
 
   ngOnInit() {
+    this.dataload();
     this.location = localStorage.getItem('location') || '2';
     this.getCities();
     this.getArticles(+this.location);
-    console.log(66, this.position);
+
+
   }
 
   ngOnDestroy() {
     if (this.sArticles) {
       this.sArticles.unsubscribe();
     }
+  }
+
+  dataload() {
+     this.http.getArticlesType().subscribe(
+       (data: ArticleType[] ) => {
+          this.articleType = data;
+          
+       },
+       (err) => {
+
+       }
+      )
   }
 
   // tslint:disable-next-line: variable-name

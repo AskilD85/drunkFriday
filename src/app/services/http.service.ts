@@ -152,6 +152,9 @@ export class HttpService {
     return this.http.post(this.url + `sendVerifyEmail`, body);
   }
 
+  getArticlesType() {
+    return this.http.get(this.url + `articlesType`);
+  } 
 
   getCities() {
     return this.http.get(this.url + `cities`);

@@ -7,6 +7,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { City } from 'src/app/model/City';
+import { ArticleType } from 'src/app/model/ArticleTypes';
 
 @Component({
   selector: 'app-add-article',
@@ -33,6 +34,7 @@ export class AddArticleComponent implements OnInit, OnDestroy {
   success = false;
   checked = true;
   cities: City[];
+  articleType: ArticleType[];
   location = localStorage.getItem('location') !== null ? localStorage.getItem('location') : 1;
 
 
@@ -41,6 +43,7 @@ export class AddArticleComponent implements OnInit, OnDestroy {
         .subscribe((categ: Categories) => {
           this.categories = categ;
       });
+  this.getTypeArticles();
   this.getCities();
   }
   ngOnDestroy(): void {
@@ -65,6 +68,16 @@ export class AddArticleComponent implements OnInit, OnDestroy {
       this.success = true;
     },
       err => { console.log(err), console.log('here -' + this.addForm.value); });
+  }
+
+  getTypeArticles() {
+    this.httpService.getArticlesType().subscribe(
+      (data: ArticleType[]) => {
+        this.articleType=data;
+      },
+      (err)=> {console.log(err)}
+      
+    )
   }
 
   addAgain() {
