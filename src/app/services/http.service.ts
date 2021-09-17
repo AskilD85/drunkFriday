@@ -8,7 +8,7 @@ import { User } from '../model/User';
 import { map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { UserComment } from '../model/UserComment';
-
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +17,9 @@ export class HttpService {
 
   constructor(private http: HttpClient,
               private route: Router) { }
-   private url = 'http://laravel5.master702.ru/api/';
-
-
+  // private url = 'http://laravel5.master702.ru/api/';
+  private url = 'http://localhost:8000/api/';
+  private url2 = environment.BackendDBUrl;
   apitoken = '';
   username = '';
   errorText = '';
@@ -41,6 +41,8 @@ export class HttpService {
   }
 
   getArticles() {
+    console.log('ghbdtrn' + this.url2);
+    
     return this.http.get(this.url + 'articles');
   }
 

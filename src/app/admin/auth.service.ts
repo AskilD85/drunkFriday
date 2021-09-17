@@ -17,7 +17,9 @@ export interface AuthData {
 
 export class AuthService {
 
-  private url = 'http://laravel5.master702.ru/api/';
+  // private url = 'http://laravel5.master702.ru/api/';
+
+  private url = 'http://localhost:8000/api/';
   user: User;
   authEmit: EventEmitter<boolean> = new EventEmitter();
   authData: EventEmitter<AuthData> = new EventEmitter();

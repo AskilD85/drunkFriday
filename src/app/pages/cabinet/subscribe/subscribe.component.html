@@ -6,32 +6,36 @@
 <div class="">
     <div class="p-2 rounded shadow">
         <div >
-            <i  class="mx-2 material-icons">add</i>
             <i  class="mx-2 material-icons">refresh</i>
         </div>
         <div>
             <form [formGroup]="subscribeForm" (ngSubmit) = saveForm()>
-                <div  *ngFor="let field of formData.controls; let i=index" >
-                    <mat-form-field class="full-width m-1">
+                <div  *ngFor="let field of formData.controls; let i=index"  >
+                    <!-- <div formArrayName="subscribe"> -->
+                     <mat-form-field class="full-width m-1" >
                         <mat-label class="mat-label ">Категория</mat-label>
-                        <mat-select >
+                        <mat-select  [formControl]="field.controls['title']"
+                            (selectionChange) = "selectionChange(i)"
+                        >
                             <mat-option value="">Не выбрано</mat-option>
-                            <mat-option *ngFor="let categ of categories;" [value]="categ.id">
+                            <mat-option *ngFor="let categ of categories;let i = index;" [value]="categ.id">
                                 {{ categ.name }}</mat-option>
                         </mat-select>
                     </mat-form-field>
-                    <mat-form-field class="full-width m-1">
+                    <mat-form-field class="full-width m-1"  >
                         <mat-label class="mat-label ">Город</mat-label>
-                        <mat-select >
+                        <mat-select   [disabled]=true  [formControl]="field.controls['city']" >
                             <mat-option value="">Не выбрано</mat-option>
-                            <mat-option value="1">Аскарово</mat-option>
-                    
+                            <mat-option value="1" >Аскарово</mat-option>
                         </mat-select>
-                    </mat-form-field>
+                    </mat-form-field> 
+                   
+                  
                     <input class=" m-1 btn bg-danger btn-primary " type="button" value="Удалить" (click)="destroy(i)" >
-                </div>
+                    </div>
+                <!-- </div> -->
                     <input class=" m-1 btn btn-primary bg-info"  type="button" value="Добавить" (click)="add()">
-                    <input class=" m-1 btn btn-primary bg-info" type="submit" value="Сохранить" >
+                    <input class=" m-1 btn btn-primary bg-info" type="submit" value="Сохранить" [disabled]="subscribeForm.invalid" >
             </form>
            
         </div>

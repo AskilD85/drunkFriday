@@ -32,7 +32,7 @@ export class UslugiComponent implements OnInit, OnDestroy {
     this.selectionChange(this.position);
     },
       (err: HttpErrorResponse) => {
-        console.log('Ошибка', err);
+        console.log('Ошибка ', err);
 
       } );
 

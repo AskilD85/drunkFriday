@@ -29,7 +29,7 @@
                     <div class="validation" *ngIf="serverError">
                         <div><small>{{serverError.error.errors.email}}</small></div>
                     </div>
-                    <re-captcha  formControlName ="recaptcha" siteKey="{{recaptchaSiteKey}}" ></re-captcha>
+                    <!-- <re-captcha  formControlName ="recaptcha" siteKey="{{recaptchaSiteKey}}" ></re-captcha> -->
                 
                     <div class="p-2 input-field text-center">
                         <input type="submit" class="btn btn-primary m-1 bg-info" value="Войти" [disabled]="form.invalid">
