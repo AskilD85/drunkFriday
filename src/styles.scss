@@ -5,11 +5,14 @@
 
 /* You can add global styles to this file, and also import other style files */
 :root {
-    --bg-info-hover: #d5f3f8;
+    --bg-info2-hover: #d5f3f8;
     --min-font-size: 11px;
     --max-font-size: 14px;
-    --bg-info: #17a2b8;
+    --bg-info2: #14af4a !important;
   }
+.bg-info2 {
+background-color: #14af4a !important;
+}
 
  body {
     position: relative;
