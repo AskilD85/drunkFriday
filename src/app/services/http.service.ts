@@ -3,7 +3,7 @@ import { Categories } from './../model/Categories';
 import { Article } from './../model/Article';
 import { Router } from '@angular/router';
 import { Injectable, EventEmitter } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { User } from '../model/User';
 import { map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -18,8 +18,8 @@ export class HttpService {
   constructor(private http: HttpClient,
               private route: Router) { }
   // private url = 'http://laravel5.master702.ru/api/';
-  private url = 'http://localhost:8000/api/';
-  private url2 = environment.BackendDBUrl;
+  private url = environment.BackendDBUrl;
+
   apitoken = '';
   username = '';
   errorText = '';
@@ -40,14 +40,14 @@ export class HttpService {
 
   }
 
-  getArticles() {
-    console.log('ghbdtrn' + this.url2);
-    
-    return this.http.get(this.url + 'articles');
+  // tslint:disable-next-line: variable-name
+  getArticles(city_id: number) {
+
+    return this.http.get(this.url + `articles/${city_id}`);
   }
 
   getArticle(id) {
-    return this.http.get(this.url + `articles/${id}`);
+    return this.http.get(this.url + `articles/detail/${id}`);
   }
 
   getArticleOfUser(authorId) {
@@ -151,4 +151,25 @@ export class HttpService {
     };
     return this.http.post(this.url + `sendVerifyEmail`, body);
   }
+
+  getArticlesType() {
+    return this.http.get(this.url + `articlesType`);
+  }
+
+  getCities() {
+    return this.http.get(this.url + `cities`);
+  }
+
+  // загрузка файла
+ /* postFile(fileToUpload: File): Observable<boolean> {
+
+    const endpoint = this.url;
+    const headers = new HttpHeaders({});
+    const formData: FormData = new FormData();
+    formData.append('fileKey', fileToUpload, fileToUpload.name);
+    return this.http
+      .post(endpoint, formData, { headers: headers })
+      .map(() => { return true; })
+      .catch((e) => this.handleError(e));
+}*/
 }

@@ -16,7 +16,8 @@
     ],
     "types": [
       "jquery",
-      "materialize-css"
+      "materialize-css",
+      "jest"
     ],
     "lib": [
       "es2018",
@@ -26,5 +27,11 @@
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true
+  },
+  "typedocOptions": {
+    "entryPoints": [
+      "src/index.ts"
+    ],
+    "out": "docs"
   }
 }

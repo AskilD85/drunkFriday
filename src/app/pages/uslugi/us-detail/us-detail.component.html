@@ -1,6 +1,6 @@
 
 <div class="container ">
-    <button [routerLink]="['/']" class="btn bg-info">Назад</button>
+    <button [routerLink]="['/']" class="btn bg-info2">Назад</button>
     <div class=" p-3 card">
         <div class="">
             <div class="">
@@ -14,7 +14,7 @@
             <div *ngIf="isAuth == true"> 
                 <div class="card-action2">
                     <input type="button"
-                    class="btn btn-outline-primary m-1 bg-info"
+                    class="btn btn-outline-primary m-1 bg-info2"
                     (click)="deal = true"
                     value="Откликнуться"
                     [disabled]="disabled">
@@ -24,7 +24,7 @@
                     <div class="input-field">
                         <input type="text" formControlName="text">
                     </div>
-                    <input type="submit" class="btn bg-info" [disabled]="formDeal.invalid" value="Отправить">
+                    <input type="submit" class="btn bg-info2" [disabled]="formDeal.invalid" value="Отправить">
                     <input type="button" class="btn m-2 red" (click)="deal = false; formDeal.reset()" value="Закрыть">
                 </form>
                 <div *ngIf="response">
@@ -58,3 +58,7 @@
                
     </div>
 </ng-template>
+
+<span class="spinner" aria-hidden="true">
+    <mat-spinner *ngIf="showSpinner" [diameter]="40" class="mat-spinner"></mat-spinner>
+</span>

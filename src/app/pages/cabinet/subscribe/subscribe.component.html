@@ -5,40 +5,96 @@
 
 <div class="">
     <div class="p-2 rounded shadow">
-        <div >
-            <i  class="mx-2 material-icons">refresh</i>
-        </div>
-        <div>
-            <form [formGroup]="subscribeForm" (ngSubmit) = saveForm()>
-                <div  *ngFor="let field of formData.controls; let i=index"  >
-                    <!-- <div formArrayName="subscribe"> -->
-                     <mat-form-field class="full-width m-1" >
+
+        <div class="main">
+            <div>
+                <button class="btn btn-primary bg-info2"><i class="mx-2 material-icons" (click)="getSubscribes()">refresh</i></button>
+            </div>
+            <div class="">
+            <form [formGroup]="subscribeForm"
+
+                    >
+                <div  *ngFor="let field of formData?.controls; let i=index" class="rounded shadow m-2 " >
+                    <mat-form-field class="full-width m-1">
                         <mat-label class="mat-label ">Категория</mat-label>
-                        <mat-select  [formControl]="field.controls['title']"
-                            (selectionChange) = "selectionChange(i)"
-                        >
+                        <mat-select [formControl]="field.get('category_id')">
                             <mat-option value="">Не выбрано</mat-option>
                             <mat-option *ngFor="let categ of categories;let i = index;" [value]="categ.id">
                                 {{ categ.name }}</mat-option>
                         </mat-select>
                     </mat-form-field>
-                    <mat-form-field class="full-width m-1"  >
-                        <mat-label class="mat-label ">Город</mat-label>
-                        <mat-select   [disabled]=true  [formControl]="field.controls['city']" >
+
+                    <mat-form-field class="full-width m-1">
+                        <mat-label class="mat-label ">Тип </mat-label>
+                        <mat-select [formControl]="field.get('type')">
                             <mat-option value="">Не выбрано</mat-option>
-                            <mat-option value="1" >Аскарово</mat-option>
+                            <mat-option value="needmaster">Ищу исполнителя</mat-option>
+                            <mat-option value="usluga">Ищу заказ</mat-option>
                         </mat-select>
-                    </mat-form-field> 
-                   
-                  
-                    <input class=" m-1 btn bg-danger btn-primary " type="button" value="Удалить" (click)="destroy(i)" >
-                    </div>
-                <!-- </div> -->
-                    <input class=" m-1 btn btn-primary bg-info"  type="button" value="Добавить" (click)="add()">
-                    <input class=" m-1 btn btn-primary bg-info" type="submit" value="Сохранить" [disabled]="subscribeForm.invalid" >
+                    </mat-form-field>
+                    <mat-form-field class="full-width m-1">
+                        <mat-label class="mat-label ">Город</mat-label>
+                        <mat-select [formControl]="field.get('city_id')">
+
+                            <mat-option value="">Не выбрано</mat-option>
+                            <mat-option *ngFor="let city of cities;" [value]="city.id">
+                                {{ city.name }}</mat-option>
+                            <!-- <mat-option value="1">Аскарово</mat-option> -->
+                        </mat-select>
+                    </mat-form-field>
+                    <input
+                        class=" m-1 btn bg-danger btn-primary "
+                        type="button"
+                        value="Удалить"
+                        [disabled] = "disabled || showSpinner"
+                        (click)="destroy(i, field.get('id')?.value)"
+                    >
+                </div>
+
+
             </form>
-           
+           </div>
+
+        <div *ngIf="formData?.controls.length === 0 && !showSpinner">
+            <div class="text-center">
+                <span>Нет ни одной подписки!</span>
+            </div>
+        </div>
+
+
+        <input
+            class=" m-1 btn btn-primary bg-info2"
+            type="button"
+            value="Добавить"
+            (click)="add()"
+            [disabled]="!subscribeForm.valid"
+        >
+
+        <input
+            class="m-1 btn btn-primary bg-info2"
+            type="submit"
+            value="Сохранить"
+            (click) = "saveForm()"
+            [disabled]="!subscribeForm.valid || subscribeForm.pristine"
+        >
+
         </div>
     </div>
-    
+
 </div>
+<div *ngIf="success" class="text-center">
+    <span class="color-green">{{message}}</span>
+</div>
+
+<ng-template #loading>
+    <div class="container text-center">
+        <div class="spinner-border text-info" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+
+    </div>
+</ng-template>
+
+<span class="spinner" aria-hidden="true">
+<mat-spinner *ngIf="showSpinner" [diameter]="40" class="mat-spinner"></mat-spinner>
+</span>

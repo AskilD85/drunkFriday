@@ -1,0 +1,23 @@
+.material-icons:hover {
+    cursor: pointer;
+}
+
+.main {
+    margin: auto;
+    form { margin: auto; }
+}
+
+.spinner {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+
+    .matSpinner{
+        color: var(--bg-info2);
+    }
+
+}
+
+.mat-spinner::ng-deep circle{
+stroke:  var(--bg-info2) !important;
+}

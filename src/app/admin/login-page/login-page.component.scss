@@ -1,0 +1,43 @@
+input.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
+
+input.ng-valid {
+    border: 1px solid green;
+}
+
+.validation {
+    color: red;
+    text-align: left;
+}
+
+.container {
+    width: 100%;
+}
+
+.input-field > input  {
+    box-sizing: inherit;
+    width: 100%;
+}
+
+.login-div {
+    max-width: 330px;
+    margin: auto;
+}
+
+
+.forgetPassw {
+    color: var(--bg-info2);
+    a:hover {
+        cursor: pointer;
+    } 
+}
+
+.link{
+    color: #17a2b8 !important;
+    &:hover {
+        cursor: pointer;
+        color: #17a2b8;
+    }
+}
+

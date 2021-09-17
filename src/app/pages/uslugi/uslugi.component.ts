@@ -4,11 +4,13 @@ import { HttpService } from './../../services/http.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subscription, Observable } from 'rxjs';
+import { City } from 'src/app/model/City';
+import { ArticleType } from 'src/app/model/ArticleTypes';
 
 @Component({
   selector: 'app-uslugi',
   templateUrl: './uslugi.component.html',
-  styleUrls: ['./uslugi.component.css']
+  styleUrls: ['./uslugi.component.scss']
 })
 export class UslugiComponent implements OnInit, OnDestroy {
 
@@ -17,24 +19,20 @@ export class UslugiComponent implements OnInit, OnDestroy {
   articlesCount: number;
   categories: Categories[] = [];
   category: Categories[];
-  position = localStorage.getItem('position') !== null ? localStorage.getItem('position') : 'usluga';
+  cities: City[];
+  position = localStorage.getItem('position') !== null ? localStorage.getItem('position') : 'master';
+  location = '1';
   sArticles: Subscription;
-
-  constructor(public http: HttpService) { }
+  showSpinner = false;
+  articleType : ArticleType[];
+  constructor(public http: HttpService) {
+  }
 
   ngOnInit() {
-    this.sArticles = this.http.getArticles().subscribe((data: Article[]) => {
-    this.articles = data;
-
-      /*if (localStorage.getItem('position') !== null && localStorage.getItem('position') !== undefined) {
-        this.selectionChange(localStorage.getItem('position'));
-      }*/
-    this.selectionChange(this.position);
-    },
-      (err: HttpErrorResponse) => {
-        console.log('Ошибка ', err);
-
-      } );
+    this.dataload();
+    this.location = localStorage.getItem('location') || '2';
+    this.getCities();
+    this.getArticles(+this.location);
 
 
   }
@@ -44,8 +42,51 @@ export class UslugiComponent implements OnInit, OnDestroy {
       this.sArticles.unsubscribe();
     }
   }
-  selectionChange(val) {
+
+  dataload() {
+     this.http.getArticlesType().subscribe(
+       (data: ArticleType[] ) => {
+          this.articleType = data;
+
+       },
+       (err) => {
+
+       }
+      )
+  }
+
+  // tslint:disable-next-line: variable-name
+  getArticles(city_id: number) {
+    this.showSpinner = true;
+    this.articles = [];
+    this.sArticles = this.http.getArticles(city_id).subscribe((data: Article[]) => {
+      this.articles = data;
+      this.showSpinner = false;
+      this.selectionChange(this.position);
+    },
+      (err: HttpErrorResponse) => {
+        console.log('Ошибка', err);
+
+      });
+  }
+  getCities() {
+    this.http.getCities().subscribe(
+      (data: City[]) => {
+        this.cities = data;
+        // console.log(this.cities);
+      }
+    );
+  }
+  selectionChange(val: string) {
     this.articles2 = this.articles.filter( art => art.type === val);
     localStorage.setItem('position', val);
+  }
+
+  selectionChangeCity(val: string) {
+    localStorage.setItem('location', val);
+    localStorage.setItem('position', 'job');
+    this.position = localStorage.getItem('position');
+    this.location = localStorage.getItem('location');
+    this.getArticles(+this.location);
   }
 }

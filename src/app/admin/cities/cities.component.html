@@ -1,0 +1,25 @@
+<form [formGroup]="addCityForm" (ngSubmit)="create()">
+    <div class="input-field">
+        <input type="text" id="name" formControlName="name">
+        <label for="name">название города</label>
+    </div>
+    
+    <input 
+        type="submit" 
+        value="Добавить" 
+        class="btn m-2 bg-info2"
+        [disabled] = "!addCityForm.valid"
+    >
+
+</form>
+
+<div class="container">
+    <div class="">
+        <div *ngFor="let city of cities"class="card">
+            <div class="p-2 item-card">{{city.name}}
+            <i class="material-icons right darkred" (click)="deleteCity(city.id)">delete</i>
+            </div>
+        </div>
+    </div>
+
+</div>

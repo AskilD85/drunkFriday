@@ -17,15 +17,15 @@ export interface ServerResponse {
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.css'],
+  styleUrls: ['./login-page.component.scss'],
 
 })
 
 export class LoginPageComponent implements OnInit, OnDestroy {
 
-  isRegForm = true;
-  isLoginForm = true;
-  email = '';
+  isRegForm = true; /** проверка активна ли форма регистрации */
+  isLoginForm = true; /** проверка активна ли форма авторизации */
+  email = ''; 
   password = '';
   serverError;
   regUser: User;
@@ -34,6 +34,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   text: string;
   isForgetPasswForm = true;
   emailNotFound: boolean;
+  emailNotFoundText: string;
   form = new FormGroup({
     email: new FormControl('', [Validators.email, Validators.required] ),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
@@ -90,12 +91,15 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     }
   }
 
-
+/** завершить сеанс - кнопка выход
+ *
+ */
   logout() {
     this.authService.logout();
   }
 
   regClick() {
+
     this.page = 'reg';
     this.title = 'Регистрация';
   }
@@ -114,18 +118,25 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   forgetPassw() {
     this.page = 'forgetPassw';
     this.title = 'Восстановление пароля';
+    this.forgetPasswForm.reset();
+
   }
 
   reSendEmail() {
     this.httpService.reSendEmail(this.forgetPasswForm.value.email).subscribe(
       (data: ServerResponse) => {
+        console.log(data);
+        
         if (data.result === 'OK') {
           this.text = data.text;
           this.isForgetPasswForm = false;
           setTimeout(() => { this.page = 'login'; this.text = null; }, 3000);
         }
         if (data.result === 'error') {
-          this.emailNotFound = true;
+          this.forgetPasswForm.controls.email.setErrors({ emailNotFound: true });
+          this.emailNotFoundText = data.text;
+          console.log(this.forgetPasswForm.controls.email.errors.emailNotFound);
+          
         }
        },
       err => { console.log(err); }
@@ -157,6 +168,9 @@ export class LoginPageComponent implements OnInit, OnDestroy {
  resolved(event) {
   this.sharedService.resolved(event);
 }
+/**
+ * Отправка письма для подтверждения email
+ */
   sendVerifyEmail() {
     const email = this.form.value.email;
     this.httpService.sendVerifyEmail(email).subscribe(

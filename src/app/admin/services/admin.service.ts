@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,8 @@ export class AdminService {
         private http: HttpClient,
         private route: Router) {}
 
-private url = 'http://laravel5.master702.ru/api/';
-
+  // private url = 'http://laravel5.master702.ru/api/';
+  private url = environment.BackendDBUrl;
 
   getAppeals() {
     return this.http.get(this.url + 'appeals');
@@ -29,5 +30,16 @@ private url = 'http://laravel5.master702.ru/api/';
         ));
   }
 
- 
+  getArticles() {
+    return this.http.get(this.url + `admin/articles`);
+  }
+
+  addCity(body) {
+    body.user_id = localStorage.getItem('user_id');
+    body.active = 1;
+    return this.http.post(this.url + `admin/cities`, body);
+  }
+  deleteCity(cityId: number) {
+    return this.http.delete(this.url + `admin/cities/${cityId}`);
+  }
 }

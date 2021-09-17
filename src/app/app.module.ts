@@ -10,7 +10,7 @@ import { NotfridayComponent } from './notfriday/notfriday.component';
 import { AboutComponent } from './pages/about/about.component';
 import { WorkComponent } from './pages/work/work.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
-import { BlogComponent } from './blog/blog.component';
+import { BlogComponent } from './pages/blog/blog.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SharedModule } from './_shared/shared.module';
 import { UslugiComponent } from './pages/uslugi/uslugi.component';
@@ -18,6 +18,7 @@ import { UslugiComponent } from './pages/uslugi/uslugi.component';
 import { AgmCoreModule } from '@agm/core';
 import { UsDetailComponent } from './pages/uslugi/us-detail/us-detail.component';
 
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { MatSelectModule,
   MatButtonModule,
@@ -26,7 +27,9 @@ import { MatSelectModule,
   MatSidenavModule,
   MatToolbarModule,
   MatRippleModule,
+  MatNativeDateModule,
   MatIconModule,
+  MatProgressSpinnerModule
   } from '@angular/material';
 
 
@@ -43,7 +46,14 @@ import { WebcamComponent } from './pages/webcam/webcam.component';
 import { WebcamModule } from 'ngx-webcam';
 import { VerificationEmailComponent } from './pages/verification-email/verification-email.component';
 import { SubscribeComponent } from './pages/cabinet/subscribe/subscribe.component';
-
+import { SubscribeService } from './services/subscribe.service';
+import { DayCalculatorComponent } from './pages/day-calculator/day-calculator.component';
+import { NgwWowModule } from 'ngx-wow';
+import { TextMaskModule } from 'angular2-text-mask';
+import { BlogAdminComponent } from './pages/cabinet/blog-admin/blog-admin.component';
+import { CreateComponent } from './pages/cabinet/blog-admin/create/create.component';
+// import { QuillModule } from 'ngx-quill';
+import { QuillModule } from 'ngx-quill-v2';
 
 registerLocaleData(localeRu, 'ru');
 
@@ -69,9 +79,13 @@ registerLocaleData(localeRu, 'ru');
     WebcamComponent,
     VerificationEmailComponent,
     SubscribeComponent,
+    DayCalculatorComponent,
+    BlogAdminComponent,
+    CreateComponent,
 
   ],
   imports: [
+
     CommonModule,
     AppRoutingModule,
     ReactiveFormsModule,
@@ -89,9 +103,13 @@ registerLocaleData(localeRu, 'ru');
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
     WebcamModule,
-
-
+    MatProgressSpinnerModule,
+    NgwWowModule,
+    QuillModule
+    
 
   ],
   exports: [
@@ -106,12 +124,18 @@ registerLocaleData(localeRu, 'ru');
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     CommonModule,
     UserDetailComponent,
-    SharedModule
+    SharedModule,
+    MatProgressSpinnerModule,
+    NgwWowModule,
+    TextMaskModule
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'ru' }
+    { provide: LOCALE_ID, useValue: 'ru' },
+    SubscribeService
   ],
 
   bootstrap: [AppComponent]

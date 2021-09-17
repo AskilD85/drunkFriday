@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, CanActivate, Routes } from '@angular/router';
 import { AboutComponent } from './pages/about/about.component';
 import { WorkComponent } from './pages/work/work.component';
-import { BlogComponent } from './blog/blog.component';
+import { BlogComponent } from './pages/blog/blog.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { GeneralGuard } from './general.guards';
@@ -18,32 +18,36 @@ import { WebcamComponent } from './pages/webcam/webcam.component';
 import { ProfileComponent } from './pages/cabinet/profile/profile.component';
 import { VerificationEmailComponent } from './pages/verification-email/verification-email.component';
 import { ResetPasswComponent } from './pages/reset-passw/reset-passw.component';
+import { DayCalculatorComponent } from './pages/day-calculator/day-calculator.component';
+import { AdminGuard } from './admin.guards';
 
 
 const routes: Routes = [
-  { path: '', component: UslugiComponent  },
+  // { path: '', component: UslugiComponent  },
+  { path: '', component: UslugiComponent },
   { path: 'About', component: AboutComponent},
   { path: 'Work', component: WorkComponent, canActivate: [ GeneralGuard ]},
-  { path: 'Blog', component: BlogComponent, canActivate: [ GeneralGuard ]},
+  { path: 'Blog', component: BlogComponent, canActivate: [ GeneralGuard, AdminGuard ]},
   { path: 'Uslugi', component: UslugiComponent },
   { path: 'Uslugi/:id', component: UsDetailComponent },
   { path: 'Contacts', component: ContactsComponent},
   { path: 'Info', component: InfoComponent },
   { path: 'alkouser', component: AlkousersComponent},
   { path: 'Profile', component: ProfileComponent, canActivate: [GeneralGuard] },
-  { path: 'Cabinet', component: CabinetComponent,  },
+  { path: 'Cabinet/:page', component: CabinetComponent,  },
   { path: 'Users/:id', component: UserDetailComponent, canActivate: [GeneralGuard] },
   { path: 'login', component: LoginPageComponent  },
   { path: 'verification/:token', component: VerificationEmailComponent },
   { path: 'resetPassw/:token', component: ResetPasswComponent },
   { path: 'webcam', component: WebcamComponent },
+  { path: 'Day-calculator', component: DayCalculatorComponent },
   { path: 'Admin', loadChildren: './admin/admin.module#AdminModule', canActivate: [GeneralGuard] },
   { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
   imports: [
-  RouterModule.forRoot(routes, {useHash: true}),
+RouterModule.forRoot(routes, {useHash: true}),
   SharedModule
   ],
 
