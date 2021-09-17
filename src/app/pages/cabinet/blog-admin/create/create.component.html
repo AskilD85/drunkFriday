@@ -26,11 +26,11 @@
         </div>
 
 
-        <input type="button" value="Очистить" class="btn btn-danger m-1 bg-info red" (click)="this.addForm.reset();">
-        <input type="submit" value="Добавить" class="btn btn-success m-1 bg-info" [disabled]="addForm.invalid">
+        <input type="button" value="Очистить" class="btn btn-danger m-1 bg-info2 red" (click)="this.addForm.reset();">
+        <input type="submit" value="Добавить" class="btn btn-success m-1 bg-info2" [disabled]="addForm.invalid">
     </form>
 
     <div *ngIf="success" class="text-center">
         <span class="color-green">Статья добавлена!</span>
-        <input type="button"  value="Добавить ещё" class="btn m-3 bg-info">
+        <input type="button"  value="Добавить ещё" class="btn m-3 bg-info2">
     </div>

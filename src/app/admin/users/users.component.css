@@ -1,5 +1,5 @@
 div.card:hover {
-    background-color: var(--bg-info-hover);
+    background-color: var(--bg-info2-hover);
 }
 
 .material-icons.darkred{

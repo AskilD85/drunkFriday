@@ -31,11 +31,11 @@ a:hover {
     top: 50%;
 
     .matSpinner{
-        color: var(--bg-info);
+        color: var(--bg-info2);
     }
 
 }
 
 .mat-spinner::ng-deep circle{
-stroke:  var(--bg-info) !important;
+stroke:  var(--bg-info2) !important;
 }

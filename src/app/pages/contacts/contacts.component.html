@@ -50,7 +50,7 @@
     
 
     <input type="button" value="Очистить" class="btn btn-danger m-1 red" (click)="clearFormAll(addAppealForm)">
-    <input type="submit" value="Добавить" class="btn btn-success m-1" [disabled]="addAppealForm.invalid">
+    <input type="submit" value="Добавить" class="btn btn-success m-1 bg-info2" [disabled]="addAppealForm.invalid">
 </form>
         <div *ngIf="addAppealResponse">
             <div class="text-center" >

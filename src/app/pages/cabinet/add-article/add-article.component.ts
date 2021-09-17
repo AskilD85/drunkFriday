@@ -5,7 +5,6 @@ import { HttpService } from 'src/app/services/http.service';
 import { Subscription } from 'rxjs';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { map } from 'rxjs/operators';
 import { City } from 'src/app/model/City';
 import { ArticleType } from 'src/app/model/ArticleTypes';
 
