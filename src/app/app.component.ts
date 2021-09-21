@@ -23,7 +23,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.isTodayFriday();
+    // this.isTodayFriday();
     this.today = new Date().toLocaleString('ru', { weekday: 'long' }) + ', ' + new Date().toLocaleString('ru', {
       year: 'numeric', month: 'long', day: 'numeric'
     });

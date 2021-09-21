@@ -54,6 +54,7 @@ import { BlogAdminComponent } from './pages/cabinet/blog-admin/blog-admin.compon
 import { CreateComponent } from './pages/cabinet/blog-admin/create/create.component';
 // import { QuillModule } from 'ngx-quill';
 import { QuillModule } from 'ngx-quill-v2';
+import { AdminGuard } from './admin/admin.guards';
 
 registerLocaleData(localeRu, 'ru');
 
@@ -109,7 +110,7 @@ registerLocaleData(localeRu, 'ru');
     MatProgressSpinnerModule,
     NgwWowModule,
     QuillModule
-    
+
 
   ],
   exports: [
@@ -135,7 +136,8 @@ registerLocaleData(localeRu, 'ru');
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'ru' },
-    SubscribeService
+    SubscribeService,
+    AdminGuard
   ],
 
   bootstrap: [AppComponent]

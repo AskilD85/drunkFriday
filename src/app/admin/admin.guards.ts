@@ -10,10 +10,11 @@ export class AdminGuard implements CanActivate {
     canActivate(route2: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
 
         this.role = localStorage.getItem('role');
+
         if (this.role === 'admin') {
             return true;
         } else {
-            this.route.navigate(['Cabinet']);
+            this.route.navigate(['Cabinet', 'profile']);
             localStorage.setItem('backUrl', state.url);
 
         }

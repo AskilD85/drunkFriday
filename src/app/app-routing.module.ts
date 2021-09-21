@@ -19,7 +19,7 @@ import { ProfileComponent } from './pages/cabinet/profile/profile.component';
 import { VerificationEmailComponent } from './pages/verification-email/verification-email.component';
 import { ResetPasswComponent } from './pages/reset-passw/reset-passw.component';
 import { DayCalculatorComponent } from './pages/day-calculator/day-calculator.component';
-import { AdminGuard } from './admin.guards';
+import { AdminGuard } from './admin/admin.guards';
 
 
 const routes: Routes = [
@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: '', component: UslugiComponent },
   { path: 'About', component: AboutComponent},
   { path: 'Work', component: WorkComponent, canActivate: [ GeneralGuard ]},
-  { path: 'Blog', component: BlogComponent, canActivate: [ GeneralGuard, AdminGuard ]},
+  { path: 'Blog', component: BlogComponent, canActivate: [GeneralGuard, AdminGuard ]},
   { path: 'Uslugi', component: UslugiComponent },
   { path: 'Uslugi/:id', component: UsDetailComponent },
   { path: 'Contacts', component: ContactsComponent},

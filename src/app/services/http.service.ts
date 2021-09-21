@@ -108,6 +108,9 @@ export class HttpService {
     return this.http.get(this.url + `comments/${id}`);
   }
 
+
+
+
   getUserResponse(article: string) {
     const user = localStorage.getItem('user_id');
     return this.http.get<Array<UserComment>>(this.url + `comments/${article}/${user}`);

@@ -84,7 +84,8 @@ export class AuthService {
   }
 
   checkAuth() {
-    if (this.isAuthenticated()) {
+    // if (this.isAuthenticated()) {
+    if (this.checktoken()) {
       const userId = localStorage.getItem('user_id');
       if (userId !== null && userId !== undefined) {
 
@@ -107,6 +108,7 @@ export class AuthService {
     this.authEmit.emit(false);
     localStorage.clear();
     this.route.navigate(['login']);
+    return this.http.get(this.url + 'logout');
   }
 
   /*register(regData) {
@@ -137,4 +139,9 @@ export class AuthService {
     console.log(body);
     return this.http.post(this.url + 'saveNewPass', body);
   }
+
+  checktoken() {
+    return this.http.get(this.url + `checktoken`);
+  }
+
 }

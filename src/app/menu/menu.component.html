@@ -7,21 +7,21 @@
         </a>
       </div>
 
-      
+
       <a data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <li><a [routerLink]="['./']" class="">Главная</a></li>
         <!-- <li><a [routerLink]="['./Day-calculator']" class="">Калькулятор расчёта дней</a></li> -->
-        <li *ngIf="isAdmin === true"><a [routerLink]="['./Blog']" class="">Блог</a></li>
+        <li *ngIf="isAdmin"><a [routerLink]="['./Blog']" class="">Блог</a></li>
         <li><a [routerLink]="['./Info']" class="">Инфо</a></li>
         <!-- <li><a [routerLink]="['./Uslugi']" class="">Услуги</a></li> -->
         <!-- <li><a  [routerLink]="['/webcam']">Камера</a></li> -->
         <li routerLinkActive="active"><a [routerLink]="['./Contacts']" class="">Обратная связь</a></li>
-        <li *ngIf="!auth"><a [routerLink]="['login']" class="">Войти</a></li>
-        <li *ngIf="auth" routerLinkActive="active"><a [routerLink]="['Cabinet', 'profile']" class="">Личный кабинет</a></li>
+        <li *ngIf="!isAuth"><a [routerLink]="['login']" class="">Войти</a></li>
+        <li *ngIf="isAuth" routerLinkActive="active"><a [routerLink]="['Cabinet', 'profile']" class="">Личный кабинет</a></li>
         <!-- <li *ngIf="auth" routerLinkActive="active"><a [routerLink]="['Cabinet', 'subscribe']" class="">Мои подписки</a></li> -->
         <li *ngIf="isAdmin === true" routerLinkActive="active"><a [routerLink]="['./Admin', 'Lk']" class="">Управление</a></li>
-        <li *ngIf="auth"><a (click)="logout()" routerLinkActive="active" class="">Выйти</a></li>
+        <li *ngIf="isAuth"><a (click)="logout()" routerLinkActive="active" class="">Выйти</a></li>
       </ul>
       <a *ngIf="auth && isAdmin" [routerLink]="['Admin', 'Lk']" class="right hide-on-large-only"><i class="material-icons">
         perm_identity
@@ -43,10 +43,10 @@
     <div class="user-view">
       <div class="background bg-info2">
       </div>
-      <div *ngIf="!auth">
+      <div *ngIf="!isAuth">
         <a [routerLink]="['login']" class="white-text sidenav-close">Войти</a>
       </div>
-      <div class="username" *ngIf="auth">
+      <div class="username" *ngIf="isAuth">
         <a [routerLink]="['Cabinet', 'profile']">
           <span  class="white-text name sidenav-close">{{user?.name | titlecase}}</span>
         </a>
