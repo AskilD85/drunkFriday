@@ -29,14 +29,14 @@ export class MenuComponent implements OnInit, OnDestroy {
     
       this.authService.checkAuth();
       this.authSub = this.authService.authEmit.subscribe(x => {
-        this.auth = x;
-        this.isAdmin = this.authService.isAdmin();
-        if (this.auth === true) {
-          this.userSub = this.http.getUser(Number(localStorage.getItem('user_id'))).subscribe( (us: User) => { this.user = us; },
-            (err) => { console.log(err); this.logout();  }
-            );
-        }
-      });
+      this.auth = x;
+      this.isAdmin = this.authService.isAdmin();
+      if (this.auth === true) {
+        this.userSub = this.http.getUser(Number(localStorage.getItem('user_id'))).subscribe( (us: User) => { this.user = us; },
+          (err) => { console.log(err); this.logout();  }
+          );
+      }
+    });
   }
 
   ngOnDestroy(): void {

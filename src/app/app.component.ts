@@ -19,14 +19,15 @@ export class AppComponent implements OnInit, OnDestroy {
   auth: boolean;
   username: string;
   user: User;
-
+  
 
   ngOnInit() {
 
-    this.isTodayFriday();
     this.today = new Date().toLocaleString('ru', { weekday: 'long' }) + ', ' + new Date().toLocaleString('ru', {
       year: 'numeric', month: 'long', day: 'numeric'
     });
+    
+    
   }
 
   ngOnDestroy(): void {

@@ -45,7 +45,6 @@ get formData() { return this.subscribeForm.get('subscribe') as FormArray; }
     this.getCategSub = this.httpService.getCategories()
       .subscribe((categ: Categories) => {
         this.categories = categ;
-        console.log(categ);
 
       });
   }

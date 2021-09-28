@@ -7,6 +7,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { City } from 'src/app/model/City';
 import { ArticleType } from 'src/app/model/ArticleTypes';
+import { AuthService } from 'src/app/admin/auth.service';
 
 @Component({
   selector: 'app-add-article',
@@ -15,7 +16,10 @@ import { ArticleType } from 'src/app/model/ArticleTypes';
 })
 export class AddArticleComponent implements OnInit, OnDestroy {
 
-  constructor(private httpService: HttpService, private router: Router) { }
+  constructor(private httpService: HttpService, 
+              private router: Router,
+              private authService: AuthService
+              ) { }
 
   addForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
@@ -23,28 +27,38 @@ export class AddArticleComponent implements OnInit, OnDestroy {
     category_id: new FormControl('', [Validators.required]),
     type: new FormControl('', [Validators.required]),
     active: new FormControl(false),
-    city_id: new FormControl(localStorage.getItem('location'), [Validators.required])
+    city_id: new FormControl(localStorage.getItem('location')!== null ? '2' : '2', [Validators.required])
   });
 
   getCategSub: Subscription;
   addArticleSub: Subscription;
+  sAuth: Subscription;
   categories: Categories;
   articles: Article[];
   success = false;
   checked = true;
   cities: City[];
   articleType: ArticleType[];
-  location = localStorage.getItem('location') !== null ? localStorage.getItem('location') : 1;
-
+  location = localStorage.getItem('location') !== null ? localStorage.getItem('location') : '2';
 
   ngOnInit() {
+  this.sAuth = this.authService.checkToken().subscribe(
+    (data)=> { console.log(data);
+    }
+  );
+
   this.getCategSub = this.httpService.getCategories()
         .subscribe((categ: Categories) => {
           this.categories = categ;
       });
   this.getTypeArticles();
   this.getCities();
+
+
   }
+
+
+
   ngOnDestroy(): void {
     if (this.getCategSub) {
       this.getCategSub.unsubscribe();

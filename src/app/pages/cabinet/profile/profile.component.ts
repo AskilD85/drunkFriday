@@ -2,6 +2,7 @@ import { HttpService } from 'src/app/services/http.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/model/User';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/admin/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,7 +11,8 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private httpService: HttpService, private route: Router) { }
+  constructor(private httpService: HttpService, private route: Router,
+              private authService: AuthService) { }
   userId = localStorage.getItem('user_id');
   user: User;
   fileToUpload: File = null;
@@ -18,7 +20,13 @@ export class ProfileComponent implements OnInit {
 
 
   ngOnInit() {
-    this.httpService.getUser(Number(this.userId)).subscribe( (user: User) => { this.user = user; });
+    this.httpService.getUser(Number(this.userId)).subscribe( 
+      (user: User) => { this.user = user; },
+      (err) => {
+        this.authService.logout();  
+      }      
+      );
+
     if (localStorage.getItem('backUrl') !== null) {
       this.route.navigate([localStorage.getItem('backUrl')]);
       localStorage.removeItem('backUrl');

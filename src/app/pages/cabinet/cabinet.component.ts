@@ -23,8 +23,10 @@ export class CabinetComponent implements OnInit, OnDestroy {
   sArticles: Subscription;
   sDeleteArticle: Subscription;
   articles: Article[];
+
   ngOnInit() {
     this.page = this.activateRoute.snapshot.params.page;
+    this.activePage(this.page)
     this.myUslugi();
   }
   ngOnDestroy() {
@@ -37,6 +39,8 @@ export class CabinetComponent implements OnInit, OnDestroy {
   }
   activePage(page) {
     this.page = page;
+    
+    
     this.visibility = true;
   }
   myUslugi() {

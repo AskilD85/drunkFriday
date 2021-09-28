@@ -19,7 +19,7 @@ import { ProfileComponent } from './pages/cabinet/profile/profile.component';
 import { VerificationEmailComponent } from './pages/verification-email/verification-email.component';
 import { ResetPasswComponent } from './pages/reset-passw/reset-passw.component';
 import { DayCalculatorComponent } from './pages/day-calculator/day-calculator.component';
-import { AdminGuard } from './admin.guards';
+import { AdminGuard } from './admin/admin.guards';
 
 
 const routes: Routes = [
@@ -27,21 +27,21 @@ const routes: Routes = [
   { path: '', component: UslugiComponent },
   { path: 'About', component: AboutComponent},
   { path: 'Work', component: WorkComponent, canActivate: [ GeneralGuard ]},
-  { path: 'Blog', component: BlogComponent, canActivate: [ GeneralGuard, AdminGuard ]},
+  { path: 'Blog', component: BlogComponent},
   { path: 'Uslugi', component: UslugiComponent },
   { path: 'Uslugi/:id', component: UsDetailComponent },
   { path: 'Contacts', component: ContactsComponent},
   { path: 'Info', component: InfoComponent },
   { path: 'alkouser', component: AlkousersComponent},
-  { path: 'Profile', component: ProfileComponent, canActivate: [GeneralGuard] },
-  { path: 'Cabinet/:page', component: CabinetComponent,  },
+  { path: 'Profile', component: ProfileComponent , canActivate: [GeneralGuard] },
+  { path: 'Cabinet/:page', component: CabinetComponent },
   { path: 'Users/:id', component: UserDetailComponent, canActivate: [GeneralGuard] },
   { path: 'login', component: LoginPageComponent  },
   { path: 'verification/:token', component: VerificationEmailComponent },
   { path: 'resetPassw/:token', component: ResetPasswComponent },
   { path: 'webcam', component: WebcamComponent },
   { path: 'Day-calculator', component: DayCalculatorComponent },
-  { path: 'Admin', loadChildren: './admin/admin.module#AdminModule', canActivate: [GeneralGuard] },
+  { path: 'Admin', loadChildren: './admin/admin.module#AdminModule', canActivate: [GeneralGuard,AdminGuard] },
   { path: '**', component: NotFoundComponent }
 ];
 
@@ -51,7 +51,7 @@ RouterModule.forRoot(routes, {useHash: true}),
   SharedModule
   ],
 
-  providers: [GeneralGuard],
+  providers: [GeneralGuard, AdminGuard],
   exports: [
     RouterModule,
     SharedModule,

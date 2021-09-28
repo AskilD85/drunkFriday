@@ -137,4 +137,8 @@ export class AuthService {
     console.log(body);
     return this.http.post(this.url + 'saveNewPass', body);
   }
+checkToken() {
+    const token = localStorage.getItem('apikey');
+    return this.http.get(this.url + 'checktoken?token='+token);
+  }
 }

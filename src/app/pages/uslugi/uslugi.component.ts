@@ -21,7 +21,7 @@ export class UslugiComponent implements OnInit, OnDestroy {
   category: Categories[];
   cities: City[];
   position = localStorage.getItem('position') !== null ? localStorage.getItem('position') : 'master';
-  location = '1';
+  location = '2';
   sArticles: Subscription;
   showSpinner = false;
   articleType : ArticleType[];
@@ -30,10 +30,8 @@ export class UslugiComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.dataload();
-    this.location = localStorage.getItem('location') || '2';
     this.getCities();
     this.getArticles(+this.location);
-
 
   }
 

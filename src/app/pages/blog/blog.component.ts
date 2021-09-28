@@ -12,12 +12,16 @@ export class BlogComponent implements OnInit {
   constructor(private apiBlog: BlogAdminService) { }
 
   ngOnInit() {
+    
     this.getAllArticles();
+    
   }
 
   getAllArticles() {
     this.apiBlog.getAllArticles().subscribe(
-      (data: Article[]) => { this.articles = data; }
+      (data: Article[]) => { 
+        
+        this.articles = data; }
     );
   }
 }

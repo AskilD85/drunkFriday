@@ -38,7 +38,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   form = new FormGroup({
     email: new FormControl('', [Validators.email, Validators.required] ),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-    // recaptcha: new FormControl('', [Validators.required])
+    recaptcha: new FormControl('', [Validators.required])
   });
 
   regForm = new FormGroup({
@@ -73,6 +73,8 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
     this.sAuth = this.authService.authData.subscribe(
       (data: AuthData) => {
+        console.log(data);
+        
         this.text = data.text;
       }
 
