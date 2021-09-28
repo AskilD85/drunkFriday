@@ -48,9 +48,8 @@ export class UslugiComponent implements OnInit, OnDestroy {
 
        },
        (err) => {
-
        }
-      )
+      );
   }
 
   // tslint:disable-next-line: variable-name

@@ -110,7 +110,7 @@ registerLocaleData(localeRu, 'ru');
     MatProgressSpinnerModule,
     NgwWowModule,
     QuillModule
-    
+
 
   ],
   exports: [

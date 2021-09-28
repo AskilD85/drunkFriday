@@ -25,7 +25,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
   isRegForm = true; /** проверка активна ли форма регистрации */
   isLoginForm = true; /** проверка активна ли форма авторизации */
-  email = ''; 
+  email = '';
   password = '';
   serverError;
   regUser: User;
@@ -128,7 +128,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     this.httpService.reSendEmail(this.forgetPasswForm.value.email).subscribe(
       (data: ServerResponse) => {
         console.log(data);
-        
+
         if (data.result === 'OK') {
           this.text = data.text;
           this.isForgetPasswForm = false;
@@ -138,7 +138,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
           this.forgetPasswForm.controls.email.setErrors({ emailNotFound: true });
           this.emailNotFoundText = data.text;
           console.log(this.forgetPasswForm.controls.email.errors.emailNotFound);
-          
+
         }
        },
       err => { console.log(err); }

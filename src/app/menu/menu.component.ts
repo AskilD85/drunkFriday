@@ -1,6 +1,6 @@
 import { AuthService } from './../admin/auth.service';
 import { HttpService } from './../services/http.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, EventEmitter } from '@angular/core';
 import { User } from '../model/User';
 import { Subscription } from 'rxjs';
 
@@ -23,6 +23,7 @@ export class MenuComponent implements OnInit, OnDestroy {
   userSub: Subscription;
   authSub: Subscription;
   isAdmin: boolean;
+  isAuth: EventEmitter<any> = new EventEmitter();
 
 
   ngOnInit() {
@@ -53,7 +54,10 @@ export class MenuComponent implements OnInit, OnDestroy {
   }
 
   logout() {
-    this.authService.logout();
+    this.authService.logout().subscribe(
+      (data) => { console.log('logout', data );
+      }
+    );
     this.isAdmin = false;
   }
   changeTown() {

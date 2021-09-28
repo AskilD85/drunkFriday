@@ -2,7 +2,8 @@ import { Subscription } from 'rxjs';
 import { Article } from './../../model/Article';
 import { HttpService } from 'src/app/services/http.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/admin/auth.service';
 
 @Component({
   selector: 'app-cabinet',
@@ -12,7 +13,9 @@ import { ActivatedRoute } from '@angular/router';
 export class CabinetComponent implements OnInit, OnDestroy {
 
   constructor(private httpService: HttpService,
-              private activateRoute: ActivatedRoute) {
+              private activateRoute: ActivatedRoute,
+              private authService: AuthService,
+              private route: Router) {
 
                }
   add = false;
@@ -25,6 +28,17 @@ export class CabinetComponent implements OnInit, OnDestroy {
   articles: Article[];
 
   ngOnInit() {
+
+    this.authService.authEmit.subscribe(
+      (data) => {
+        console.log(55555555555);
+
+          if (!data) {
+            this.route.navigate(['login']);
+          }
+      }
+    );
+
     this.page = this.activateRoute.snapshot.params.page;
     this.activePage(this.page)
     this.myUslugi();
