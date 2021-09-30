@@ -1,13 +1,13 @@
-import { environment } from './../../../environments/environment';
-import { SharedService } from './../../services/shared.service';
-import { AuthService } from './../auth.service';
+import { environment } from '../../../environments/environment';
+import { SharedService } from '../../services/shared.service';
+import { AuthService } from '../../admin/auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { User, Data } from 'src/app/model/User';
 import { HttpService } from 'src/app/services/http.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { AuthData } from './../auth.service';
+import { AuthData } from '../../admin/auth.service';
 
 export interface ServerResponse {
   result: string;

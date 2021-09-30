@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment.prod';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from './../../admin/auth.service';
 import { Subscription } from 'rxjs';
-import { ServerResponse } from './../../admin/login-page/login-page.component';
+import { ServerResponse } from '../login-page/login-page.component';
 
 
 @Component({

@@ -12,7 +12,7 @@ import { UslugiComponent } from './pages/uslugi/uslugi.component';
 import { UsDetailComponent } from './pages/uslugi/us-detail/us-detail.component';
 import { InfoComponent } from './pages/info/info.component';
 import { CabinetComponent } from './pages/cabinet/cabinet.component';
-import { LoginPageComponent } from './admin/login-page/login-page.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { UserDetailComponent } from './pages/cabinet/users/user-detail/user-detail.component';
 import { WebcamComponent } from './pages/webcam/webcam.component';
 import { ProfileComponent } from './pages/cabinet/profile/profile.component';

@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 import { TokenInterceptor } from '../_helpers/token.interceptor';
-import { LoginPageComponent } from '../admin/login-page/login-page.component';
+import { LoginPageComponent } from '../pages/login-page/login-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule, MatSlideToggleModule } from '@angular/material';
 import { ProfileComponent } from '../pages/cabinet/profile/profile.component';
