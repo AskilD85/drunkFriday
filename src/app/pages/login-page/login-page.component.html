@@ -33,6 +33,8 @@
                     <div class="forgetPassw"><a (click)="forgetPassw()"><b>Забыли пароль?</b></a></div>
                     <re-captcha  formControlName ="recaptcha" siteKey="{{recaptchaSiteKey}}" ></re-captcha>
 
+                    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+
                     <div class="p-2 input-field text-center">
                         <input type="submit" class="btn btn-primary m-auto  bg-info2" value="Войти" [disabled]="form.invalid">
 
