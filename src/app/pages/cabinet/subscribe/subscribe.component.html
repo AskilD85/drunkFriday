@@ -34,7 +34,7 @@
                     </mat-form-field>
                     <mat-form-field class="full-width m-1">
                         <mat-label class="mat-label ">Город</mat-label>
-                        <mat-select [formControl]="field.get('city_id')">
+                        <mat-select  disabled [value]="location" [formControl]="field.get('city_id')">
 
                             <mat-option value="">Не выбрано</mat-option>
                             <mat-option *ngFor="let city of cities;" [value]="city.id">

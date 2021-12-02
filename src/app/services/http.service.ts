@@ -164,15 +164,13 @@ export class HttpService {
   }
 
   // загрузка файла
- /* postFile(fileToUpload: File): Observable<boolean> {
+  postFile(fileToUpload: File) {
 
     const endpoint = this.url;
     const headers = new HttpHeaders({});
     const formData: FormData = new FormData();
-    formData.append('fileKey', fileToUpload, fileToUpload.name);
+    formData.append('image', fileToUpload, fileToUpload.name);
     return this.http
-      .post(endpoint, formData, { headers: headers })
-      .map(() => { return true; })
-      .catch((e) => this.handleError(e));
-}*/
+      .post(endpoint + 'uploadTest', formData, { headers: headers });
+}
 }

@@ -29,7 +29,8 @@ export class SubscribeComponent implements OnInit, OnDestroy {
   disabled = false;
   success = false;
   message: string;
-  cities: City;
+  cities: City[];
+  location = '2';
   constructor(private httpService: HttpService,
               private subscribeService: SubscribeService,
               private router: Router,
@@ -41,7 +42,7 @@ get formData() { return this.subscribeForm.get('subscribe') as FormArray; }
   ngOnInit() {
 
     this.getSubscribes();
-
+    this.getCities();
     this.getCategSub = this.httpService.getCategories()
       .subscribe((categ: Categories) => {
         this.categories = categ;
@@ -57,6 +58,15 @@ get formData() { return this.subscribeForm.get('subscribe') as FormArray; }
       this.sDeleteSubscribe.unsubscribe();
     }
 
+  }
+
+  getCities() {
+    this.httpService.getCities().subscribe(
+      (data: City[]) => {
+        this.cities = data;
+        // console.log(this.cities);
+      }
+    );
   }
 
   getSubscribes() {
