@@ -56,6 +56,31 @@ import { CreateComponent } from './pages/cabinet/blog-admin/create/create.compon
 import { QuillModule } from 'ngx-quill-v2';
 import { AdminGuard } from './admin/admin.guards';
 
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider
+} from 'angularx-social-login';
+
+/*const config = new SocialAuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider('528961187921-ld24b25466u4t2lacn9r35asg000lfis.apps.googleusercontent.com')
+  },
+  // {
+  //   id: FacebookLoginProvider.PROVIDER_ID,
+  //   provider: new FacebookLoginProvider('561602290896109')
+  // },
+  // {
+  //   id: LinkedInLoginProvider.PROVIDER_ID,
+  //   provider: new LinkedInLoginProvider("78iqy5cu2e1fgr")
+  // }
+]);*/
+/*
+export function provideConfig() {
+  return config;
+}*/
+
 registerLocaleData(localeRu, 'ru');
 
 @NgModule({
@@ -109,7 +134,8 @@ registerLocaleData(localeRu, 'ru');
     WebcamModule,
     MatProgressSpinnerModule,
     NgwWowModule,
-    QuillModule
+    QuillModule,
+    SocialLoginModule
 
 
   ],
@@ -136,6 +162,29 @@ registerLocaleData(localeRu, 'ru');
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'ru' },
+    {
+      provide: 'SocialAuthServiceConfig',
+      // useFactory: provideConfig,
+
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              'clientId'
+            )
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('clientId')
+          }
+        ],
+        onError: (err) => {
+          console.error(err);
+        }
+      } ,
+    },
     SubscribeService,
     AdminGuard
   ],

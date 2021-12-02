@@ -1,6 +1,6 @@
 import { environment } from '../../../environments/environment';
 import { SharedService } from '../../services/shared.service';
-import { AuthService } from '../../admin/auth.service';
+import { AuthService as Auth2 } from '../../admin/auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -8,6 +8,9 @@ import { User, Data } from 'src/app/model/User';
 import { HttpService } from 'src/app/services/http.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthData } from '../../admin/auth.service';
+
+import { SocialAuthService, SocialUser } from 'angularx-social-login';
+import { FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
 
 export interface ServerResponse {
   result: string;
@@ -60,25 +63,35 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   recaptchaSiteKey = environment.recaptchaSiteKey;
 
   constructor(
-    private authService: AuthService,
+    private authService2: Auth2,
     private sharedService: SharedService,
-    private httpService: HttpService) { }
+    private httpService: HttpService,
+    private authService: SocialAuthService) { }
+
+  user: SocialUser;
+  loggedIn: boolean;
 
   ngOnInit() {
-    this.sServerError = this.authService.serverError.subscribe(err => {this.serverError = err ; });
-    this.sRegisterUser = this.authService.registerUser.subscribe(  (x: User)  => {
+    this.sServerError = this.authService2.serverError.subscribe(err => {this.serverError = err ; });
+    this.sRegisterUser = this.authService2.registerUser.subscribe(  (x: User)  => {
       this.regUser = x;
       this.isRegForm = false;
       }) ;
 
-    this.sAuth = this.authService.authData.subscribe(
+    this.sAuth = this.authService2.authData.subscribe(
       (data: AuthData) => {
         console.log(data);
-        
+
         this.text = data.text;
       }
 
     );
+
+
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = (user != null);
+    });
   }
 
   ngOnDestroy(): void {
@@ -93,11 +106,28 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     }
   }
 
+
+  signInWithGoogle(): void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
+
+  signInWithFB(): void {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
+  signOut(): void {
+    this.authService.signOut();
+  }
+
+  /*refreshToken(): void {
+    this.authService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
+  }*/
+
 /** завершить сеанс - кнопка выход
  *
  */
   logout() {
-    this.authService.logout();
+    this.authService2.logout();
   }
 
   regClick() {
@@ -113,7 +143,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
   login() {
     if (this.form.valid) {
-      this.authService.login(this.form.value);
+      this.authService2.login(this.form.value);
     }
   }
 
@@ -147,7 +177,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
   regSubmit() {
     if (!this.regForm.invalid) {
-      this.authService.register(this.regForm.value).subscribe( (data: ServerResponse) => {
+      this.authService2.register(this.regForm.value).subscribe( (data: ServerResponse) => {
         console.log(data);
         if (data.result === 'OK') {
           this.isRegForm = false;
