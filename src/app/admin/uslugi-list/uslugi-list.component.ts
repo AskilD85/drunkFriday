@@ -32,6 +32,7 @@ export class UslugiListComponent implements OnInit, OnDestroy {
   addClick = false;
   myArticles = false;
   addCategPage = false;
+  addTypePage = false;
   editPage = false;
   location = localStorage.getItem('location') !== null ? localStorage.getItem('location') : 1;
   cities: City[];
@@ -130,6 +131,8 @@ export class UslugiListComponent implements OnInit, OnDestroy {
     }
     console.log('addCateg', this.addCategForm.value, this.addCategForm );
   }
+
+
   addUsluga() {
     console.log(this.addForm.value);
 

@@ -52,9 +52,10 @@ import { NgwWowModule } from 'ngx-wow';
 import { TextMaskModule } from 'angular2-text-mask';
 import { BlogAdminComponent } from './pages/cabinet/blog-admin/blog-admin.component';
 import { CreateComponent } from './pages/cabinet/blog-admin/create/create.component';
-// import { QuillModule } from 'ngx-quill';
 import { QuillModule } from 'ngx-quill-v2';
 import { AdminGuard } from './admin/admin.guards';
+
+
 
 registerLocaleData(localeRu, 'ru');
 
