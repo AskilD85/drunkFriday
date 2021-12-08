@@ -9,8 +9,6 @@ import { HttpService } from 'src/app/services/http.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthData } from '../../admin/auth.service';
 
-import { SocialAuthService, SocialUser } from 'angularx-social-login';
-import { FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
 
 export interface ServerResponse {
   result: string;
@@ -65,11 +63,8 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   constructor(
     private authService2: Auth2,
     private sharedService: SharedService,
-    private httpService: HttpService,
-    private authService: SocialAuthService) { }
+    private httpService: HttpService) { }
 
-  user: SocialUser;
-  loggedIn: boolean;
 
   ngOnInit() {
     this.sServerError = this.authService2.serverError.subscribe(err => {this.serverError = err ; });
@@ -88,10 +83,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     );
 
 
-    this.authService.authState.subscribe((user) => {
-      this.user = user;
-      this.loggedIn = (user != null);
-    });
+
   }
 
   ngOnDestroy(): void {
@@ -106,18 +98,6 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     }
   }
 
-
-  signInWithGoogle(): void {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-  }
-
-  signInWithFB(): void {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-  }
-
-  signOut(): void {
-    this.authService.signOut();
-  }
 
   /*refreshToken(): void {
     this.authService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);

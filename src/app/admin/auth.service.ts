@@ -3,7 +3,6 @@ import { User } from './../model/User';
 import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { HttpService } from './../services/http.service';
-import { FormGroup } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 
 export interface AuthData {
@@ -57,7 +56,7 @@ export class AuthService {
         localStorage.setItem('user_id', this.user.data.id);
         localStorage.setItem('role', this.user.data.type);
         this.authEmit.emit(true);
-        this.route.navigate(['Cabinet','profile']);
+        this.route.navigate(['Cabinet', 'profile']);
       }
 
     }, (err: HttpErrorResponse) => {
@@ -141,6 +140,6 @@ export class AuthService {
   }
 checkToken() {
     const token = localStorage.getItem('apikey');
-    return this.http.get(this.url + 'checktoken?token='+token);
+    return this.http.get(this.url + 'checktoken?token=' + token);
   }
 }
