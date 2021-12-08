@@ -1,26 +1,29 @@
 <div class="text-center"><small>Отображаются все добавленные услуги</small></div>
-<input type="button" class="btn btn-outline-primary m-1 bg-info2" value="Добавить услугу"
+<input type="button" class="btn btn-outline-primary m-1 bg-info2" value="Добавить объявление"
 (click)="addClick=true; myArticles=false">
 
+<input type="button" class="btn btn-outline-primary m-1 bg-info2" value="Добавить тип объявления"
+(click)="addClick=true; myArticles=false">
 <hr>
 
 <div *ngIf="addClick">
     <h3>Добавить услугу</h3>
-    <input type="button" value="Добавить категорию" class="btn m-2 bg-info2" (click)="addCategPage = true">
+    <input type="button" value="Добавить категорию объявления" class="btn m-2 bg-info2" (click)="addCategPage = true">
+    <input type="button" value="Добавить тип объявления" class="btn m-2 bg-info2" (click)="addTypePage = true">
 
     <div *ngIf="addCategPage" class="addCategPage shadow m-3 p-3">
-        
+
         <p>Добавить категорию</p>
         <form [formGroup]="addCategForm" (ngSubmit)="addCategSubmit()" >
             <div class="input-field" >
-                <input type="text" 
-                        id="name" 
+                <input type="text"
+                        id="name"
                         formControlName="name">
                 <label for="name">название категории</label>
             </div>
             <div class="input-field">
-                <input type="text" 
-                        id="body" 
+                <input type="text"
+                        id="body"
                         formControlName="body">
                 <label for="body">Описание</label>
             </div>
@@ -28,11 +31,35 @@
 
         <input type="submit" value="Добавить категорию" class="btn m-2 bg-info2" [disabled]="addCategForm.invalid">
         <input type="button" value="Закрыть" class="btn m-2 red" (click)="addCategPage = false">
-        
+
         </form>
     </div>
 
-                    
+    <div *ngIf="addTypePage" class="addCategPage shadow m-3 p-3">
+
+        <p>Добавить Тип объявления</p>
+        <form [formGroup]="addCategForm" (ngSubmit)="addCategSubmit()" >
+            <div class="input-field" >
+                <input type="text"
+                        id="name"
+                        formControlName="name">
+                <label for="name">название типа</label>
+            </div>
+            <div class="input-field">
+                <input type="text"
+                        id="body"
+                        formControlName="body">
+                <label for="body">Описание</label>
+            </div>
+            <!-- <input type="text" hidden formControlName="author_id"> -->
+
+        <input type="submit" value="Добавить категорию" class="btn m-2 bg-info2" [disabled]="addCategForm.invalid">
+        <input type="button" value="Закрыть" class="btn m-2 red" (click)="addTypePage = false">
+
+        </form>
+    </div>
+
+
     <form [formGroup]="addForm" (ngSubmit)="addUsluga()">
         <mat-form-field class="full-width">
             <mat-label class="mat-label ">Категория</mat-label>
@@ -42,14 +69,14 @@
                     {{ categ.name }}</mat-option>
             </mat-select>
         </mat-form-field>
-        
+
         <mat-form-field class="full-width m-1">
             <mat-label class="mat-label ">Тип </mat-label>
             <mat-select formControlName="type">
                 <mat-option value="">Не выбрано</mat-option>
-                <mat-option value="needjob">Услуга</mat-option>
-                <mat-option value="needmaster">Поиск мастера</mat-option>
-        
+                <mat-option value="job">Услуга</mat-option>
+                <mat-option value="master">Поиск мастера</mat-option>
+
             </mat-select>
         </mat-form-field>
 
@@ -80,9 +107,9 @@
         <div>{{article.body}}</div>
         <input type="button" class="btn m-2 bg-info2" [routerLink]="(['Detail', article.id])" value="открыть">
         <i class="material-icons right darkred" (click)="delete(article.id)">delete</i>
-    
+
         <hr>
-        <b>Активность:</b> {{article?.active === 1 ? 'Да' : 'Нет'}} &nbsp;<b>Просмотров:</b>  &nbsp; <b>Комментариев:  </b>&nbsp; <b>Откликов:</b> 
+        <b>Активность:</b> {{article?.active === 1 ? 'Да' : 'Нет'}} &nbsp;<b>Просмотров:</b>  &nbsp; <b>Комментариев:  </b>&nbsp; <b>Откликов:</b>
     </div>
 </div>
 

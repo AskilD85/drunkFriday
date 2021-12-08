@@ -71,12 +71,12 @@ export class AuthService {
   }
 
   isAdmin(): boolean {
+    // надо сделать проверку из бекенда на админство
     const role = localStorage.getItem('role');
     if ( role === 'admin') {
       return  true;
-    } else {
-      return false;
     }
+    return false;
   }
 
   isAuthenticated(): boolean {

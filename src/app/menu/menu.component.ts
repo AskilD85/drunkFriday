@@ -27,7 +27,6 @@ export class MenuComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-    
       this.authService.checkAuth();
       this.authSub = this.authService.authEmit.subscribe(x => {
       this.auth = x;
