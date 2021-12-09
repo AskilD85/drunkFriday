@@ -8,6 +8,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AdminService } from '../services/admin.service';
 import { City } from 'src/app/model/City';
+import { Types } from 'src/app/model/LK/Types';
 
 @Component({
   selector: 'app-uslugi-list',
@@ -29,6 +30,9 @@ export class UslugiListComponent implements OnInit, OnDestroy {
   addCateg: Categories;
   categories: Categories;
 
+  addType: Types;
+  types: Types;
+
   addClick = false;
   myArticles = false;
   addCategPage = false;
@@ -36,6 +40,8 @@ export class UslugiListComponent implements OnInit, OnDestroy {
   editPage = false;
   location = localStorage.getItem('location') !== null ? localStorage.getItem('location') : 1;
   cities: City[];
+
+
   addForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
     body: new FormControl('', [Validators.required]),
@@ -48,6 +54,11 @@ export class UslugiListComponent implements OnInit, OnDestroy {
     name: new FormControl('', [Validators.required]),
     body: new FormControl('', [Validators.required]),
   });
+
+  addTypeForm = new FormGroup({
+     name: new FormControl('', [Validators.required]),
+   });
+
   editArticleForm = new FormGroup({
     user_id: new FormControl(localStorage.getItem('user_id'), [Validators.required]),
     title: new FormControl('', [Validators.required]),
@@ -116,6 +127,12 @@ export class UslugiListComponent implements OnInit, OnDestroy {
     });
   }
 
+  getTypes() {
+    this.getCategSub = this.http.getTypes().subscribe((types: Types) => {
+      this.types = types;
+    });
+  }
+
   addCategSubmit() {
     if (this.addCategForm.valid) {
       this.http.addCategories(this.addCategForm.value).subscribe((categ: Categories) => {
@@ -130,6 +147,22 @@ export class UslugiListComponent implements OnInit, OnDestroy {
         });
     }
     console.log('addCateg', this.addCategForm.value, this.addCategForm );
+  }
+
+  addTypeSubmit() {
+    if (this.addTypeForm.valid) {
+      this.http.addTypes(this.addTypeForm.value).subscribe((types: Types) => {
+        this.addType = types;
+        this.getTypes();
+        this.addTypePage = false;
+        this.addTypeForm.reset();
+      }, (err) => { console.log(err); },
+        () => {
+          this.getTypes();
+          this.addTypePage = false;
+        });
+    }
+    console.log('addType', this.addTypeForm.value, this.addTypeForm );
   }
 
 

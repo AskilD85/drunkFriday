@@ -4,9 +4,6 @@ import { Article } from './../model/Article';
 import { Router } from '@angular/router';
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { User } from '../model/User';
-import { map, tap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 import { UserComment } from '../model/UserComment';
 import { environment } from 'src/environments/environment';
 
@@ -90,6 +87,10 @@ export class HttpService {
     return this.http.get(this.url + 'categories');
   }
 
+  getTypes() {
+    return this.http.get(this.url + 'types');
+  }
+
   getCatregoryById(id: string) {
     return this.http.get<Categories>(this.url + `categories/${id}`);
   }
@@ -97,6 +98,11 @@ export class HttpService {
   addCategories(body) {
     body.author_id = localStorage.getItem('user_id');
     return this.http.post(this.url + 'categories', body);
+  }
+
+  addTypes(body) {
+    body.author_id = localStorage.getItem('user_id');
+    return this.http.post(this.url + 'types', body);
   }
 
   addAppeal(body) {
@@ -170,7 +176,8 @@ export class HttpService {
     const headers = new HttpHeaders({});
     const formData: FormData = new FormData();
     formData.append('image', fileToUpload, fileToUpload.name);
+    formData.append('user_id', localStorage.getItem('user_id'));
     return this.http
-      .post(endpoint + 'uploadTest', formData, { headers: headers });
+      .post(endpoint + 'uploadFile', formData, { headers: headers });
 }
 }

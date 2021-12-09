@@ -2,8 +2,6 @@
 <input type="button" class="btn btn-outline-primary m-1 bg-info2" value="Добавить объявление"
 (click)="addClick=true; myArticles=false">
 
-<input type="button" class="btn btn-outline-primary m-1 bg-info2" value="Добавить тип объявления"
-(click)="addClick=true; myArticles=false">
 <hr>
 
 <div *ngIf="addClick">
@@ -38,22 +36,15 @@
     <div *ngIf="addTypePage" class="addCategPage shadow m-3 p-3">
 
         <p>Добавить Тип объявления</p>
-        <form [formGroup]="addCategForm" (ngSubmit)="addCategSubmit()" >
+        <form [formGroup]="addTypeForm" (ngSubmit)="addTypeSubmit()" >
             <div class="input-field" >
                 <input type="text"
                         id="name"
                         formControlName="name">
                 <label for="name">название типа</label>
             </div>
-            <div class="input-field">
-                <input type="text"
-                        id="body"
-                        formControlName="body">
-                <label for="body">Описание</label>
-            </div>
-            <!-- <input type="text" hidden formControlName="author_id"> -->
 
-        <input type="submit" value="Добавить категорию" class="btn m-2 bg-info2" [disabled]="addCategForm.invalid">
+        <input type="submit" value="Добавить тип" class="btn m-2 bg-info2" [disabled]="addTypeForm.invalid">
         <input type="button" value="Закрыть" class="btn m-2 red" (click)="addTypePage = false">
 
         </form>
