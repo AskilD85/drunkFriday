@@ -1,6 +1,9 @@
 export class User {
     id: number;
-    name: string;
+    // tslint:disable-next-line:variable-name
+    first_name: string;
+    // tslint:disable-next-line:variable-name
+    last_name: string;
     age: string;
     email: string;
     sex: string;
@@ -9,6 +12,8 @@ export class User {
     stage: string;
     favorite: string;
     readytodrink: number;
+    // tslint:disable-next-line:variable-name
+    ava_url: string;
     // tslint:disable-next-line:variable-name
     created_at: Date;
     data: Data;

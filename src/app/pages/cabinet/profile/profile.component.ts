@@ -4,11 +4,12 @@ import { User } from 'src/app/model/User';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/admin/auth.service';
 import { environment } from 'src/environments/environment';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
 
@@ -17,15 +18,18 @@ export class ProfileComponent implements OnInit {
   userId = localStorage.getItem('user_id');
   user: User;
   fileToUpload: File = null;
-  img_url: string;
+  imgUrl: string;
   private url = environment.BackendDBUrl;
 
   ngOnInit() {
-    this.httpService.getUser(Number(this.userId)).subscribe( 
+    this.httpService.getUser(Number(this.userId)).pipe(
+      map((v: any) => v.data.users[0])
+    ).subscribe(
       (user: User) => { this.user = user; },
       (err) => {
-        this.authService.logout();  
-      }      
+        console.log(err);
+        this.authService.logout();
+      }
       );
 
     if (localStorage.getItem('backUrl') !== null) {
@@ -40,12 +44,14 @@ export class ProfileComponent implements OnInit {
   }
 
   uploadFileToActivity() {
-    this.httpService.postFile(this.fileToUpload).subscribe(data => {
+    this.httpService.postFile(this.fileToUpload).pipe(map((v: any) => v.data.users[0])).subscribe(data => {
       // do something, if upload success
       console.log(data);
-      this.img_url = this.url + data;
-      console.log(this.img_url);
-      
+      this.user.ava_url = data.ava_url;
+      this.fileToUpload = null;
+      console.log(this.imgUrl);
+      console.log(this.fileToUpload);
+      document.getElementById('file').value = '';
       }, error => {
         console.log(error);
       });

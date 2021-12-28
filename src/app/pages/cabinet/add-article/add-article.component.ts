@@ -16,7 +16,7 @@ import { AuthService } from 'src/app/admin/auth.service';
 })
 export class AddArticleComponent implements OnInit, OnDestroy {
 
-  constructor(private httpService: HttpService, 
+  constructor(private httpService: HttpService,
               private router: Router,
               private authService: AuthService
               ) { }
@@ -84,13 +84,12 @@ export class AddArticleComponent implements OnInit, OnDestroy {
   }
 
   getTypeArticles() {
-    this.httpService.getArticlesType().subscribe(
+    this.httpService.getTypes().subscribe(
       (data: ArticleType[]) => {
-        this.articleType=data;
+        this.articleType = data;
       },
-      (err)=> {console.log(err)}
-      
-    )
+      (err) => {console.log(err); }
+      );
   }
 
   addAgain() {

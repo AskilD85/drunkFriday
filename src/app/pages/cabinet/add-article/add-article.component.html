@@ -1,5 +1,5 @@
 
-    
+
     <form *ngIf="!success" [formGroup]="addForm" (ngSubmit)="addUsluga()">
         <h5 class="text-center">Добавить услугу</h5>
         <mat-form-field class="full-width m-1">
@@ -22,7 +22,7 @@
             <mat-label class="mat-label ">Тип </mat-label>
             <mat-select formControlName="type">
                 <mat-option value="">Не выбрано</mat-option>
-                <mat-option value="{{types.id_name}}" *ngFor="let types of articleType">{{types.name}}</mat-option>
+                <mat-option value="{{types.id}}" *ngFor="let types of articleType">{{types.name}}</mat-option>
             </mat-select>
         </mat-form-field>
 
@@ -31,7 +31,7 @@
             <label for="title">Введите название</label>
         </div>
         <div><textarea type="text" class="form-control m-1"  formControlName="body"></textarea></div>
-        
+
         <div class=" m-2 p-3">
             Активность
             <mat-slide-toggle
@@ -39,7 +39,7 @@
                 color="primary"
                 formControlName="active"
                 class="mx-5">
-             
+
             </mat-slide-toggle>
           </div>
 

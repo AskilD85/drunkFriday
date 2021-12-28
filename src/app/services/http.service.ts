@@ -172,12 +172,11 @@ export class HttpService {
   // загрузка файла
   postFile(fileToUpload: File) {
 
-    const endpoint = this.url;
     const headers = new HttpHeaders({});
     const formData: FormData = new FormData();
-    formData.append('image', fileToUpload, fileToUpload.name);
+    formData.append('avatar', fileToUpload, fileToUpload.name);
     formData.append('user_id', localStorage.getItem('user_id'));
     return this.http
-      .post(endpoint + 'uploadFile', formData, { headers: headers });
+      .post(this.url + 'users', formData, {headers});
 }
 }

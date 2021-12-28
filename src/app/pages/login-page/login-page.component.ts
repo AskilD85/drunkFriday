@@ -45,8 +45,8 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   regForm = new FormGroup({
     name : new FormControl('', [Validators.minLength(3), Validators.required] ),
     email : new FormControl('', [Validators.email, Validators.required] ),
-    password: new FormControl('', [Validators.required, Validators.minLength(8)] ),
-    password_confirmation: new FormControl('', [Validators.required, Validators.minLength(8)] ),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)] ),
+    password_confirmation: new FormControl('', [Validators.required, Validators.minLength(6)] ),
     recaptcha: new FormControl('', [Validators.required])
   }, );
 

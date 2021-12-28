@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { Observable } from 'rxjs';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
+import { SharedService } from 'src/app/services/shared.service';
+import { map, distinctUntilChanged, debounceTime, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-webcam',
@@ -19,7 +21,9 @@ export class WebcamComponent implements OnInit {
     // height: {ideal: 576}
   };
   public errors: WebcamInitError[] = [];
-
+  counter: BehaviorSubject<number>;
+  count = 0 ;
+  date1 = 0 ;
   // latest snapshot
   public webcamImage: WebcamImage = null;
 
@@ -28,11 +32,38 @@ export class WebcamComponent implements OnInit {
   // switch to next / previous / specific webcam; true/false: forward/backwards, string: deviceId
   private nextWebcam: Subject<boolean | string> = new Subject<boolean | string>();
 
+  constructor(public sharedService: SharedService) {
+
+  }
   public ngOnInit(): void {
     WebcamUtil.getAvailableVideoInputs()
       .then((mediaDevices: MediaDeviceInfo[]) => {
         this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
       });
+  }
+
+  myFunc() {
+
+    this.count++;
+    this.sharedService.sub$.next(this.count);
+    this.sharedService.sub$.pipe(
+      debounceTime(1000),
+      startWith(false),
+      map(v => v)
+    ).subscribe(
+      (v) => {
+        console.log('r: ', v);
+
+      },
+      ()=>{},
+      ()=>{console.log(55);
+      }
+
+    );
+
+  }
+
+  myObserv() {
   }
 
   public triggerSnapshot(): void {

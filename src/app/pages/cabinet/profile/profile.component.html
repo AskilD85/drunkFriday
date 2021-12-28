@@ -1,14 +1,18 @@
 <div class="container">
     <div class="p-2">
-        <div>Имя: {{user?.name}}</div>
+        <div *ngIf="user.ava_url.length > 0">
+          <img src="{{user.ava_url}}">
+        </div>
+        <div>Имя: {{user?.first_name}}</div>
+        <div>Фамилия: {{user?.last_name}}</div>
         <div>Роль: {{user?.type}}</div>
         <div>Зарегистрирован: {{user?.created_at | date: 'longDate' }}</div>
     </div>
+
     <div class="form-group">
-        <label for="file">Choose File</label>
+        <label for="file">Сменить аватар</label>
         <input type="file"
                id="file"
                (change)="handleFileInput($event.target.files)">
     </div>
-    <img src="{{img_url}}">
 </div>

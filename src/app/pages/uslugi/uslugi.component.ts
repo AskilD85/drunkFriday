@@ -20,11 +20,11 @@ export class UslugiComponent implements OnInit, OnDestroy {
   categories: Categories[] = [];
   category: Categories[];
   cities: City[];
-  position = localStorage.getItem('position') !== null ? localStorage.getItem('position') : 'master';
-  location = '2';
+  position = localStorage.getItem('position') !== null ? localStorage.getItem('position') : '1';
+  location = '1';
   sArticles: Subscription;
   showSpinner = false;
-  articleType : ArticleType[];
+  articleType: ArticleType[];
   constructor(public http: HttpService) {
   }
 
@@ -42,12 +42,12 @@ export class UslugiComponent implements OnInit, OnDestroy {
   }
 
   dataload() {
-     this.http.getArticlesType().subscribe(
+     this.http.getTypes().subscribe(
        (data: ArticleType[] ) => {
-          this.articleType = data;
-
+         console.log(data);
+         this.articleType = data;
        },
-       (err) => {
+       (err) => { console.log(err);
        }
       );
   }
@@ -57,6 +57,8 @@ export class UslugiComponent implements OnInit, OnDestroy {
     this.showSpinner = true;
     this.articles = [];
     this.sArticles = this.http.getArticles(city_id).subscribe((data: Article[]) => {
+      console.log(1, data);
+
       this.articles = data;
       this.showSpinner = false;
       this.selectionChange(this.position);
@@ -75,6 +77,8 @@ export class UslugiComponent implements OnInit, OnDestroy {
     );
   }
   selectionChange(val: string) {
+    console.log(this.articles);
+
     this.articles2 = this.articles.filter( art => art.type === val);
     localStorage.setItem('position', val);
   }

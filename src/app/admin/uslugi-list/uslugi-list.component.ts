@@ -80,7 +80,7 @@ export class UslugiListComponent implements OnInit, OnDestroy {
     this.getCities();
     this.getUslugi();
     this.getCategories();
-
+    this.getTypes();
 
   }
   ngOnDestroy(): void {
@@ -129,7 +129,7 @@ export class UslugiListComponent implements OnInit, OnDestroy {
 
   getTypes() {
     this.getCategSub = this.http.getTypes().subscribe((types: Types) => {
-      this.types = types;
+    this.types = types;
     });
   }
 

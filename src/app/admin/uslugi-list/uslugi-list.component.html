@@ -1,15 +1,12 @@
 <div class="text-center"><small>Отображаются все добавленные услуги</small></div>
 <input type="button" class="btn btn-outline-primary m-1 bg-info2" value="Добавить объявление"
 (click)="addClick=true; myArticles=false">
-
+<input type="button" value="Добавить категорию объявления" class="btn m-2 bg-info2" (click)="addCategPage = true">
+<input type="button" value="Добавить тип объявления" class="btn m-2 bg-info2" (click)="addTypePage = true">
 <hr>
 
-<div *ngIf="addClick">
-    <h3>Добавить услугу</h3>
-    <input type="button" value="Добавить категорию объявления" class="btn m-2 bg-info2" (click)="addCategPage = true">
-    <input type="button" value="Добавить тип объявления" class="btn m-2 bg-info2" (click)="addTypePage = true">
 
-    <div *ngIf="addCategPage" class="addCategPage shadow m-3 p-3">
+<div *ngIf="addCategPage" class="addCategPage shadow m-3 p-3">
 
         <p>Добавить категорию</p>
         <form [formGroup]="addCategForm" (ngSubmit)="addCategSubmit()" >
@@ -33,7 +30,7 @@
         </form>
     </div>
 
-    <div *ngIf="addTypePage" class="addCategPage shadow m-3 p-3">
+   <div *ngIf="addTypePage" class="addCategPage shadow m-3 p-3">
 
         <p>Добавить Тип объявления</p>
         <form [formGroup]="addTypeForm" (ngSubmit)="addTypeSubmit()" >
@@ -50,6 +47,14 @@
         </form>
     </div>
 
+<div *ngIf="addClick">
+    <h3>Добавить объявление</h3>
+
+
+
+
+
+
 
     <form [formGroup]="addForm" (ngSubmit)="addUsluga()">
         <mat-form-field class="full-width">
@@ -65,8 +70,9 @@
             <mat-label class="mat-label ">Тип </mat-label>
             <mat-select formControlName="type">
                 <mat-option value="">Не выбрано</mat-option>
-                <mat-option value="job">Услуга</mat-option>
-                <mat-option value="master">Поиск мастера</mat-option>
+                 <mat-option *ngFor="let type of types;" [value]="type.id">
+                    {{ type.name }}
+                  </mat-option>
 
             </mat-select>
         </mat-form-field>
@@ -76,7 +82,7 @@
             <mat-select [value]="location" formControlName="city_id">
                 <mat-option value="">Не выбрано</mat-option>
                 <mat-option *ngFor="let city of cities" value="{{city.id}}">{{city.name}}</mat-option>
-            </mat-select>(
+            </mat-select>
         </mat-form-field>
 
         <div class="input-field">

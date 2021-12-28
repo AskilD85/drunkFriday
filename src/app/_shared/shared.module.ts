@@ -10,11 +10,12 @@ import { MatCheckboxModule, MatSlideToggleModule } from '@angular/material';
 import { ProfileComponent } from '../pages/cabinet/profile/profile.component';
 import { ResetPasswComponent } from '../pages/reset-passw/reset-passw.component';
 import { RouterModule } from '@angular/router';
+import { MaterialExampleModule } from './../material.module';
 
 @NgModule({
     declarations: [LoginPageComponent, ProfileComponent, ResetPasswComponent],
     imports: [
-        HttpClientModule,
+    HttpClientModule,
         RecaptchaModule,
         RecaptchaFormsModule,
         FormsModule,
@@ -22,7 +23,8 @@ import { RouterModule } from '@angular/router';
         CommonModule,
         MatCheckboxModule,
         MatSlideToggleModule,
-        RouterModule
+        RouterModule,
+      MaterialExampleModule
     ],
     exports: [
         HttpClientModule,
@@ -36,7 +38,8 @@ import { RouterModule } from '@angular/router';
         CommonModule,
         MatCheckboxModule,
         MatSlideToggleModule,
-        RouterModule
+        RouterModule,
+      MaterialExampleModule
     ],
     schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
     providers: [
