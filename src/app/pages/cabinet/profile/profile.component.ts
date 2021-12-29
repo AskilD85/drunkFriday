@@ -51,7 +51,10 @@ export class ProfileComponent implements OnInit {
       this.fileToUpload = null;
       console.log(this.imgUrl);
       console.log(this.fileToUpload);
-      document.getElementById('file').value = '';
+      const id = document.getElementById('file') as HTMLInputElement;
+      id.value = '';
+
+
       }, error => {
         console.log(error);
       });

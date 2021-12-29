@@ -43,21 +43,12 @@ export class AddArticleComponent implements OnInit, OnDestroy {
   success = false;
   checked = true;
   cities: City[];
-  addFormFlag: Boolean = false;
-  postType: ArticleType[];
-  location : string;
-  sPosts: Subscription;
-  sDeletePost: Subscription;
-  fileToUpload: File = null;
-  img_url: string;
-  private url = environment.BackendDBUrl;
-  
-  imgUrls = new Array<string>();
-  reader = new FileReader();
+  articleType: ArticleType[];
+  location = localStorage.getItem('location') !== null ? localStorage.getItem('location') : '1';
 
   ngOnInit() {
   this.sAuth = this.authService.checkToken().subscribe(
-    (data)=> { console.log(data);
+    (data) => { console.log(data);
     }
   );
   this.getCategSub = this.httpService.getCategories()
@@ -66,7 +57,7 @@ export class AddArticleComponent implements OnInit, OnDestroy {
       });
   this.getPostTypes();
   this.getCities();
-  this.getPosts();    
+  this.getPosts();
   }
 
 
@@ -81,7 +72,7 @@ export class AddArticleComponent implements OnInit, OnDestroy {
     if (this.sDeletePost) {
       this.sDeletePost.unsubscribe();
     }
-    
+
   }
   getCities() {
     this.httpService.getCities().subscribe(
@@ -94,7 +85,7 @@ export class AddArticleComponent implements OnInit, OnDestroy {
   addPost() {
     console.log(this.addForm.value);
     return;
-    
+
     this.addPostSub = this.httpService.addPost(this.addForm.value).subscribe((add: Article) => {
       console.log('here -' + this.addForm.value);
       this.addForm.reset();
@@ -106,17 +97,10 @@ export class AddArticleComponent implements OnInit, OnDestroy {
       err => { console.log(err), console.log('here -' + this.addForm.value); });
   }
 
-<<<<<<< Updated upstream
-  getTypeArticles() {
-    this.httpService.getTypes().subscribe(
-      (data: ArticleType[]) => {
-        this.articleType = data;
-=======
   getPostTypes() {
     this.httpService.getPostTypes().subscribe(
       (data: ArticleType[]) => {
         this.postType=data;
->>>>>>> Stashed changes
       },
       (err) => {console.log(err); }
       );
@@ -169,7 +153,7 @@ export class AddArticleComponent implements OnInit, OnDestroy {
           fileSource: element
         });
       });
-      
+
     }
 
     if (files) {
@@ -184,7 +168,7 @@ export class AddArticleComponent implements OnInit, OnDestroy {
 
 
     this.fileToUpload = files[0];
-    
+
     // this.uploadFileToActivity();
   }
 
@@ -194,12 +178,12 @@ export class AddArticleComponent implements OnInit, OnDestroy {
       console.log(data);
       this.img_url = this.url + data;
       console.log(this.img_url);
-      
+
       }, error => {
         console.log(error);
       });
   }
 
 
-  
+
 }
