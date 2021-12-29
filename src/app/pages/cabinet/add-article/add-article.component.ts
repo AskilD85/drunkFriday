@@ -8,6 +8,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { City } from 'src/app/model/City';
 import { ArticleType } from 'src/app/model/ArticleTypes';
 import { AuthService } from 'src/app/admin/auth.service';
+import { CabinetService } from 'src/app/services/cabinet.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-add-article',
@@ -18,7 +20,8 @@ export class AddArticleComponent implements OnInit, OnDestroy {
 
   constructor(private httpService: HttpService,
               private router: Router,
-              private authService: AuthService
+              private authService: AuthService,
+              private cabinetService: CabinetService
               ) { }
 
   addForm = new FormGroup({
@@ -27,34 +30,43 @@ export class AddArticleComponent implements OnInit, OnDestroy {
     category_id: new FormControl('', [Validators.required]),
     type: new FormControl('', [Validators.required]),
     active: new FormControl(false),
-    city_id: new FormControl(localStorage.getItem('location')!== null ? '2' : '2', [Validators.required])
+    image: new FormControl(''),
+    fileSource: new FormControl('', [Validators.required]),
+    city_id: new FormControl('', [Validators.required])
   });
 
   getCategSub: Subscription;
-  addArticleSub: Subscription;
+  addPostSub: Subscription;
   sAuth: Subscription;
   categories: Categories;
-  articles: Article[];
+  posts: Article[];
   success = false;
   checked = true;
   cities: City[];
-  articleType: ArticleType[];
-  location = localStorage.getItem('location') !== null ? localStorage.getItem('location') : '2';
+  addFormFlag: Boolean = false;
+  postType: ArticleType[];
+  location : string;
+  sPosts: Subscription;
+  sDeletePost: Subscription;
+  fileToUpload: File = null;
+  img_url: string;
+  private url = environment.BackendDBUrl;
+  
+  imgUrls = new Array<string>();
+  reader = new FileReader();
 
   ngOnInit() {
   this.sAuth = this.authService.checkToken().subscribe(
     (data)=> { console.log(data);
     }
   );
-
   this.getCategSub = this.httpService.getCategories()
         .subscribe((categ: Categories) => {
           this.categories = categ;
       });
-  this.getTypeArticles();
+  this.getPostTypes();
   this.getCities();
-
-
+  this.getPosts();    
   }
 
 
@@ -63,9 +75,13 @@ export class AddArticleComponent implements OnInit, OnDestroy {
     if (this.getCategSub) {
       this.getCategSub.unsubscribe();
     }
-    if (this.addArticleSub) {
-      this.addArticleSub.unsubscribe();
+    if (this.addPostSub) {
+      this.addPostSub.unsubscribe();
     }
+    if (this.sDeletePost) {
+      this.sDeletePost.unsubscribe();
+    }
+    
   }
   getCities() {
     this.httpService.getCities().subscribe(
@@ -74,19 +90,33 @@ export class AddArticleComponent implements OnInit, OnDestroy {
       }
     );
   }
-  addUsluga() {
-    this.addArticleSub = this.httpService.addArticle(this.addForm.value).subscribe((add: Article) => {
+
+  addPost() {
+    console.log(this.addForm.value);
+    return;
+    
+    this.addPostSub = this.httpService.addPost(this.addForm.value).subscribe((add: Article) => {
       console.log('here -' + this.addForm.value);
       this.addForm.reset();
       this.success = true;
+      setTimeout(()=>{this.success = false;},1000)
+      this.addFormActive(false);
+      this.posts.unshift(add);
     },
       err => { console.log(err), console.log('here -' + this.addForm.value); });
   }
 
+<<<<<<< Updated upstream
   getTypeArticles() {
     this.httpService.getTypes().subscribe(
       (data: ArticleType[]) => {
         this.articleType = data;
+=======
+  getPostTypes() {
+    this.httpService.getPostTypes().subscribe(
+      (data: ArticleType[]) => {
+        this.postType=data;
+>>>>>>> Stashed changes
       },
       (err) => {console.log(err); }
       );
@@ -104,5 +134,72 @@ export class AddArticleComponent implements OnInit, OnDestroy {
       category_id: null
     });
   }
+  addFormActive(bool: boolean) {
+    this.addForm.controls.city_id.setValue('1');
+    this.addFormFlag = bool;
+    if (bool === false) {
+      this.imgUrls = [];
+      this.addForm.reset()
+    }
+  }
 
+  getPosts() {
+    const userid = localStorage.getItem('user_id');
+    this.sPosts = this.httpService.getPostsOfUser(userid).subscribe(
+      ( posts: Article[]) => {
+        this.posts = posts; }
+    );
+  }
+
+  delete(id: number) {
+    this.sDeletePost = this.httpService.delete(id).subscribe(() => {
+      this.posts = this.posts.filter( posts => posts.id !== id);
+    },
+    (err)=> {console.log(err);
+    });
+  }
+
+  handleFileInput(event) {
+    let files = event.target.files;
+    if (files.length > 0) {
+      const file = files[0];
+      console.log(typeof files);
+      files.forEach(element => {
+        this.addForm.patchValue({
+          fileSource: element
+        });
+      });
+      
+    }
+
+    if (files) {
+      for (let file of files) {
+        let reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.imgUrls.push(e.target.result);
+        }
+        reader.readAsDataURL(file);
+      }
+    }
+
+
+    this.fileToUpload = files[0];
+    
+    // this.uploadFileToActivity();
+  }
+
+  uploadFileToActivity() {
+    this.httpService.postImage(this.fileToUpload).subscribe(data => {
+      // do something, if upload success
+      console.log(data);
+      this.img_url = this.url + data;
+      console.log(this.img_url);
+      
+      }, error => {
+        console.log(error);
+      });
+  }
+
+
+  
 }

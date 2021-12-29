@@ -47,11 +47,11 @@ export class HttpService {
     return this.http.get(this.url + `articles/detail/${id}`);
   }
 
-  getArticleOfUser(authorId) {
+  getPostsOfUser(authorId) {
     return this.http.get(this.url + `articles/${authorId}`);
   }
 
-  addArticle(body) {
+  addPost(body) {
     body.user_id = localStorage.getItem('user_id');
     if (body.active == null) {
       body.active = false;
@@ -161,7 +161,7 @@ export class HttpService {
     return this.http.post(this.url + `sendVerifyEmail`, body);
   }
 
-  getArticlesType() {
+  getPostTypes() {
     return this.http.get(this.url + `articlesType`);
   }
 
@@ -178,5 +178,16 @@ export class HttpService {
     formData.append('user_id', localStorage.getItem('user_id'));
     return this.http
       .post(this.url + 'users', formData, {headers});
+}
+
+ // загрузка файла
+ postImage(fileToUpload: File) {
+
+  const endpoint = this.url;
+  const headers = new HttpHeaders({});
+  const formData: FormData = new FormData();
+  formData.append('image', fileToUpload, fileToUpload.name);
+  return this.http
+    .post(endpoint + 'article', formData, { headers: headers });
 }
 }

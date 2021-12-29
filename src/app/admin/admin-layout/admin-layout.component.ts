@@ -76,7 +76,7 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
   myUslugi() {
     const userid = localStorage.getItem('user_id');
     if (userid != null && userid !== undefined) {
-      this.myUslugiSub = this.http.getArticleOfUser(userid).subscribe((uslugi: Article[]) => {
+      this.myUslugiSub = this.http.getPostsOfUser(userid).subscribe((uslugi: Article[]) => {
         this.allArticles = uslugi;
       });
     }
@@ -109,7 +109,7 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
   }
   addUsluga() {
     console.log('addUsluga', this.addForm.value);
-    this.http.addArticle(this.addForm.value).subscribe((add: Article) => {
+    this.http.addPost(this.addForm.value).subscribe((add: Article) => {
       this.addArticle = add;
       this.addClick = false;
       this.addForm.reset();

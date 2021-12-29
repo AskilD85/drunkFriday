@@ -17,7 +17,6 @@ export interface AuthData {
 
 export class AuthService {
 
-  // private url = 'http://laravel5.master702.ru/api/';
   private url = environment.BackendDBUrl;
   user: User;
   authEmit: EventEmitter<boolean> = new EventEmitter();

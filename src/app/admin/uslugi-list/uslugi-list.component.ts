@@ -169,7 +169,7 @@ export class UslugiListComponent implements OnInit, OnDestroy {
   addUsluga() {
     console.log(this.addForm.value);
 
-    this.http.addArticle(this.addForm.value).subscribe((add: Article) => {
+    this.http.addPost(this.addForm.value).subscribe((add: Article) => {
       this.addArticle = add;
       this.addClick = false;
       this.addForm.reset();
