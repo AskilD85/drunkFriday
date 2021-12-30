@@ -31,7 +31,7 @@ export class AddArticleComponent implements OnInit, OnDestroy {
     type: new FormControl('', [Validators.required]),
     active: new FormControl(false),
     image: new FormControl(''),
-    fileSource: new FormControl('', [Validators.required]),
+    fileSource: new FormControl(''),
     city_id: new FormControl('', [Validators.required])
   });
 
@@ -43,12 +43,21 @@ export class AddArticleComponent implements OnInit, OnDestroy {
   success = false;
   checked = true;
   cities: City[];
-  articleType: ArticleType[];
-  location = localStorage.getItem('location') !== null ? localStorage.getItem('location') : '1';
+  addFormFlag: Boolean = false;
+  postType: ArticleType[];
+  location : string;
+  sPosts: Subscription;
+  sDeletePost: Subscription;
+  fileToUpload: File = null;
+  img_url: string;
+  private url = environment.BackendDBUrl;
+  
+  imgUrls = new Array<string>();
+  reader = new FileReader();
 
   ngOnInit() {
   this.sAuth = this.authService.checkToken().subscribe(
-    (data) => { console.log(data);
+    (data)=> { console.log(data);
     }
   );
   this.getCategSub = this.httpService.getCategories()
@@ -57,7 +66,7 @@ export class AddArticleComponent implements OnInit, OnDestroy {
       });
   this.getPostTypes();
   this.getCities();
-  this.getPosts();
+  this.getPosts();    
   }
 
 
@@ -72,7 +81,7 @@ export class AddArticleComponent implements OnInit, OnDestroy {
     if (this.sDeletePost) {
       this.sDeletePost.unsubscribe();
     }
-
+    
   }
   getCities() {
     this.httpService.getCities().subscribe(
@@ -83,11 +92,9 @@ export class AddArticleComponent implements OnInit, OnDestroy {
   }
 
   addPost() {
-    console.log(this.addForm.value);
-    return;
-
+    console.log('here -' + this.addForm);
     this.addPostSub = this.httpService.addPost(this.addForm.value).subscribe((add: Article) => {
-      console.log('here -' + this.addForm.value);
+      
       this.addForm.reset();
       this.success = true;
       setTimeout(()=>{this.success = false;},1000)
@@ -148,12 +155,11 @@ export class AddArticleComponent implements OnInit, OnDestroy {
     if (files.length > 0) {
       const file = files[0];
       console.log(typeof files);
-      files.forEach(element => {
-        this.addForm.patchValue({
-          fileSource: element
-        });
-      });
 
+        this.addForm.patchValue({
+          fileSource: file
+        });
+      
     }
 
     if (files) {
@@ -166,24 +172,15 @@ export class AddArticleComponent implements OnInit, OnDestroy {
       }
     }
 
-
+    console.log();
+    
     this.fileToUpload = files[0];
-
+    
     // this.uploadFileToActivity();
   }
 
-  uploadFileToActivity() {
-    this.httpService.postImage(this.fileToUpload).subscribe(data => {
-      // do something, if upload success
-      console.log(data);
-      this.img_url = this.url + data;
-      console.log(this.img_url);
-
-      }, error => {
-        console.log(error);
-      });
-  }
+ 
 
 
-
+  
 }

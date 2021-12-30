@@ -14,3 +14,11 @@
 .material-icons.darkred{
     color: darkred;
 }
+
+.img{
+    float: left;
+}
+
+.example-card {
+    max-width: 400px;
+  }

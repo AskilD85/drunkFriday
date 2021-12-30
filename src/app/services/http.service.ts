@@ -56,6 +56,24 @@ export class HttpService {
     if (body.active == null) {
       body.active = false;
     }
+    console.log(body);
+    
+
+    const endpoint = this.url;
+    const headers = new HttpHeaders({});
+    const formData: FormData = new FormData();
+    formData.append('title', body.title);
+    formData.append('body', body.body);
+    formData.append('user_id', body.user_id);
+    formData.append('active', body.active === true ? '1' : '0');
+    formData.append('type', body.type);
+    formData.append('city_id', body.city_id);
+    formData.append('category_id', body.category_id);
+    formData.append('image', body.fileSource, body.fileSource.name);
+   
+    return this.http.post(this.url + 'articles', formData, {headers});
+
+
     return this.http.post(this.url + `articles`, body);
   }
 
@@ -180,14 +198,4 @@ export class HttpService {
       .post(this.url + 'users', formData, {headers});
 }
 
- // загрузка файла
- postImage(fileToUpload: File) {
-
-  const endpoint = this.url;
-  const headers = new HttpHeaders({});
-  const formData: FormData = new FormData();
-  formData.append('image', fileToUpload, fileToUpload.name);
-  return this.http
-    .post(endpoint + 'article', formData, { headers: headers });
-}
 }

@@ -1,8 +1,4 @@
 
-<<<<<<< Updated upstream
-
-    <form *ngIf="!success" [formGroup]="addForm" (ngSubmit)="addUsluga()">
-=======
     <h3>Раздел постов</h3>
 
     <div>
@@ -11,7 +7,6 @@
    </div>
 
     <form *ngIf="addFormFlag" [formGroup]="addForm" (ngSubmit)="addPost()">
->>>>>>> Stashed changes
         <h5 class="text-center">Добавить услугу</h5>
         <mat-form-field class="full-width m-1">
             <mat-label class="mat-label ">Город </mat-label>
@@ -33,11 +28,7 @@
             <mat-label class="mat-label ">Тип </mat-label>
             <mat-select formControlName="type">
                 <mat-option value="">Не выбрано</mat-option>
-<<<<<<< Updated upstream
-                <mat-option value="{{types.id}}" *ngFor="let types of articleType">{{types.name}}</mat-option>
-=======
                 <mat-option *ngFor="let types of postType" [value]="types.id">{{types.name}}</mat-option>
->>>>>>> Stashed changes
             </mat-select>
         </mat-form-field>
 
@@ -46,8 +37,6 @@
             <label for="title">Введите название</label>
         </div>
         <div><textarea type="text" class="form-control m-1"  formControlName="body"></textarea></div>
-<<<<<<< Updated upstream
-=======
         
         <div class="img-field">
             <input type="file" class=" m-1"  formControlName="image" id="image"
@@ -59,7 +48,6 @@
                 <img *ngFor="let url of imgUrls" [src]="url" class="rounded mb-3" width="180">
             </div>
         </div>
->>>>>>> Stashed changes
 
         <div class=" m-2 p-3">
             Активность
@@ -74,24 +62,28 @@
 
 
         <input type="button" value="Очистить" class="btn btn-danger m-1 bg-info2 grey" (click)="this.addForm.reset();clear()">
-        <input type="submit" value="Добавить" class="btn btn-success m-1 bg-info2" [disabled]="addForm.invalid">
+        <input type="submit" value="Добавить" class="btn btn-success m-1 bg-info2" >
+        <!-- [disabled]="addForm.invalid" -->
         <input type="button" value="Отмена" class="btn btn-danger m-1 bg-info2 red" (click)="addFormActive(false)">
     </form>
 
     <div *ngIf="success" class="text-center">
         <span class="color-green">Услугуа добавлена!</span>
-<<<<<<< Updated upstream
-        <input type="button" (click)="addAgain()" value="Добавить ещё" class="btn m-3 bg-info2">
-    </div>
-=======
     </div>
 
 
+    
+
+<!-- вывод постов -->
 <div *ngIf="posts?.length !== 0; else noPosts">
     <div *ngFor="let post of posts" class="card m-2 p-3">
-        <img src="post.img_url" alt="">
+        
+        <picture>
+            <source media='(min-width:0px)' srcset="{{post.img_url}}">
+            <img mat-card-image src="" alt="Photo of a Shiba Inu" width="200" height="200">
+         </picture>
         <div>{{post.title}}</div>
-        <div>{{post.desc}}<i class="material-icons right darkred" (click)="delete(post.id)">delete</i></div>
+        <div>{{post.body}}<i class="material-icons right darkred" (click)="delete(post.id)">delete</i></div>
         
         <div>
             <hr>
@@ -100,6 +92,10 @@
         </div>
     </div>
 </div>
+<!--/ вывод постов -->
+
+
+
 
 <ng-template #loading>
     <div class="container text-center">
@@ -113,4 +109,3 @@
         <span>У Вас пока нет постов</span>
     </div>
 </ng-template>
->>>>>>> Stashed changes
