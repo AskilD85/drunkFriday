@@ -20,11 +20,7 @@ export class UslugiComponent implements OnInit, OnDestroy {
   categories: Categories[] = [];
   category: Categories[];
   cities: City[];
-<<<<<<< Updated upstream
-  position = localStorage.getItem('position') !== null ? localStorage.getItem('position') : '1';
-=======
   position = localStorage.getItem('position') !== null ? localStorage.getItem('position') : 'master';
->>>>>>> Stashed changes
   location = '1';
   sArticles: Subscription;
   showSpinner = false;
@@ -46,11 +42,7 @@ export class UslugiComponent implements OnInit, OnDestroy {
   }
 
   dataload() {
-<<<<<<< Updated upstream
-     this.http.getTypes().subscribe(
-=======
      this.http.getPostTypes().subscribe(
->>>>>>> Stashed changes
        (data: ArticleType[] ) => {
          console.log(data);
          this.articleType = data;

@@ -1,15 +1,8 @@
 <div class="container">
     <div class="p-2">
-<<<<<<< Updated upstream
-        <div *ngIf="user.ava_url.length > 0">
-          <img src="{{user.ava_url}}">
-        </div>
-        <div>Имя: {{user?.first_name}}</div>
+        <img src="{{user.ava_url}}">
+        <div>Имя: {{user.name}}</div> 
         <div>Фамилия: {{user?.last_name}}</div>
-=======
-        <div>Имя: {{url}}</div> 
-        <div>Имя: {{user?.name}}</div>
->>>>>>> Stashed changes
         <div>Роль: {{user?.type}}</div>
         <div>Зарегистрирован: {{user?.created_at | date: 'longDate' }}</div>
     </div>
