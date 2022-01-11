@@ -34,6 +34,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   title = 'Авторизация';
   text: string;
   isForgetPasswForm = true;
+  showButtonSendVerifyMail = false;
   emailNotFound: boolean;
   emailNotFoundText: string;
   form = new FormGroup({
@@ -75,9 +76,11 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
     this.sAuth = this.authService2.authData.subscribe(
       (data: AuthData) => {
-        console.log(data);
-
+        this.showButtonSendVerifyMail = false;
         this.text = data.text;
+        if (data.result === 'noVerifyEmail') {
+          this.showButtonSendVerifyMail = true;
+        }
       }
 
     );

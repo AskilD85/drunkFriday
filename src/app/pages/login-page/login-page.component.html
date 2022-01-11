@@ -48,8 +48,10 @@
                 </div>
                 <div *ngIf="text">
                   <div class="color-red text-center">{{text}}</div>
-                  <div><input class="btn btn-primary m-1 bg-info2 " (click)="sendVerifyEmail()"
-                      value="выслать email повторно"></div>
+                  <div *ngIf="showButtonSendVerifyMail">
+                    <input class="btn btn-primary m-1 bg-info2 " (click)="sendVerifyEmail()"
+                    value="выслать email повторно">
+                  </div>
                 </div>
                 <div>
                     <span>Впервые у нас?</span>

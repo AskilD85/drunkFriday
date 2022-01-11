@@ -57,7 +57,9 @@ export class AuthService {
         this.authEmit.emit(true);
         this.route.navigate(['Cabinet', 'profile']);
       }
-
+      if (data['result'] === 'error') {
+        this.authData.emit(data as AuthData);
+      }
     }, (err: HttpErrorResponse) => {
       this.serverError.emit(err);
       console.log(err);
