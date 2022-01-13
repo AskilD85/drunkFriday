@@ -20,7 +20,7 @@ export class UslugiComponent implements OnInit, OnDestroy {
   categories: Categories[] = [];
   category: Categories[];
   cities: City[];
-  position = localStorage.getItem('position') !== null ? localStorage.getItem('position') : 'master';
+  position = localStorage.getItem('position') !== null ? localStorage.getItem('position') : '1';
   location = '1';
   sArticles: Subscription;
   showSpinner = false;
@@ -77,8 +77,6 @@ export class UslugiComponent implements OnInit, OnDestroy {
     );
   }
   selectionChange(val: string) {
-    console.log(this.articles);
-
     this.articles2 = this.articles.filter( art => art.type === val);
     localStorage.setItem('position', val);
   }
