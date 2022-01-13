@@ -46,6 +46,7 @@
                 <div *ngIf="!isLoginForm" class="color-green text-center">
                     <p>Письмо отправлено!</p>
                 </div>
+                <!-- Вывод сообщения -->
                 <div *ngIf="text">
                   <div class="color-red text-center">{{text}}</div>
                   <div *ngIf="showButtonSendVerifyMail">
@@ -53,11 +54,10 @@
                     value="выслать email повторно">
                   </div>
                 </div>
-                <div>
+                <div class="text-center">
                     <span>Впервые у нас?</span>
                     <span (click)="regClick(); form.reset()" class="m-1"><a class="link">Зарегистрируйтесь!</a></span>
                 </div>
-
 
 
             </div>

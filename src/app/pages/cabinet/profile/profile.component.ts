@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
       (user: User) => { this.user = user; },
       (err) => {
         console.log(err);
-        this.authService.logout();
+        // this.authService.logout();
       }
       );
 
