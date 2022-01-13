@@ -48,7 +48,7 @@ export class HttpService {
   }
 
   getPostsOfUser(authorId) {
-    return this.http.get(this.url + `articles/${authorId}`);
+    return this.http.get(this.url + `articles/user/${authorId}`);
   }
 
   addPost(body) {

@@ -1,7 +1,7 @@
 <div class="container">
     <div class="p-2">
         <img src="{{user.ava_url}}">
-        <div>Имя: {{user.name}}</div> 
+        <div>Имя: {{user.first_name}}</div> 
         <div>Фамилия: {{user?.last_name}}</div>
         <div>Роль: {{user?.type}}</div>
         <div>Зарегистрирован: {{user?.created_at | date: 'longDate' }}</div>

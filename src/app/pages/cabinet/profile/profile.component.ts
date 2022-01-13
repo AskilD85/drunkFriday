@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.httpService.getUser(Number(this.userId)).pipe(
-      map((v: any) => v.data.users[0])
+      map((v: any) => v.data)
     ).subscribe(
       (user: User) => { this.user = user; },
       (err) => {
@@ -44,7 +44,7 @@ export class ProfileComponent implements OnInit {
   }
 
   uploadFileToActivity() {
-    this.httpService.postFile(this.fileToUpload).pipe(map((v: any) => v.data.users[0])).subscribe(data => {
+    this.httpService.postFile(this.fileToUpload).pipe(map((v: any) => v.data)).subscribe(data => {
       // do something, if upload success
       console.log(data);
       this.user.ava_url = data.ava_url;
