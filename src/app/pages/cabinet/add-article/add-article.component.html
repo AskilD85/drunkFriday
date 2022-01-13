@@ -3,7 +3,6 @@
 
     <div>
         <input type="button" (click)="addFormActive(true)" value="Добавить объявление" class="btn m-1 bg-info2 " >
-        <input type="button" (click)="activePage('');getAllArticles()" value="Список добавленных объявлений" class="btn m-1 bg-info2 " >
    </div>
 
     <form *ngIf="addFormFlag" [formGroup]="addForm" (ngSubmit)="addPost()">
@@ -78,24 +77,26 @@
 <div *ngIf="posts?.length !== 0; else noPosts">
     <div *ngFor="let post of posts" class="card m-2 p-3">
         
-        <picture>
+        <picture *ngIf="post.img_url">
             <source media='(min-width:0px)' srcset="{{post.img_url}}">
-            <img mat-card-image src="" alt="Photo of a Shiba Inu" width="200" height="200">
+            <img mat-card-image src="" alt="Photo of a Post" width="200" height="200">
          </picture>
         <div>{{post.title}}</div>
-        <div>{{post.body}}<i class="material-icons right darkred" (click)="delete(post.id)">delete</i></div>
+        <div>{{post.body}}
+            <i class="material-icons right darkred" (click)="delete(post.id)">delete</i>
+            <i class="material-icons right darkgrey" (click)="edit(post.id)">edit</i>
+        </div>
         
         <div>
             <hr>
-            <small class="mx-2">{{post.updated_at | date: 'longDate'}}</small>
-            <small class="mx-2">Категория:  {{post.category_name }}</small>
+            <small class="mx-2">{{post.updated_at | date: 'longDate'}}</small> |
+            <small class="mx-2">Категория: {{post.category_name }}</small>|
+            <small class="mx-2">Тип объявления: {{post.typeName}}</small>|
+            <small class="mx-2">Активность: {{post.active=== 1 ? 'Да' : 'Нет'}}</small>|
         </div>
     </div>
 </div>
 <!--/ вывод постов -->
-
-
-
 
 <ng-template #loading>
     <div class="container text-center">
@@ -109,3 +110,7 @@
         <span>У Вас пока нет постов</span>
     </div>
 </ng-template>
+ <!--SPINNER-->
+ <span class="spinner" aria-hidden="true">
+    <mat-spinner  *ngIf="showSpinner" [diameter]="40"></mat-spinner>
+  </span>

@@ -10,11 +10,12 @@ import { ArticleType } from 'src/app/model/ArticleTypes';
 import { AuthService } from 'src/app/admin/auth.service';
 import { CabinetService } from 'src/app/services/cabinet.service';
 import { environment } from 'src/environments/environment';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-article',
   templateUrl: './add-article.component.html',
-  styleUrls: ['./add-article.component.css']
+  styleUrls: ['./add-article.component.scss']
 })
 export class AddArticleComponent implements OnInit, OnDestroy {
 
@@ -51,7 +52,7 @@ export class AddArticleComponent implements OnInit, OnDestroy {
   fileToUpload: File = null;
   img_url: string;
   private url = environment.BackendDBUrl;
-  
+  showSpinner = false;
   imgUrls = new Array<string>();
   reader = new FileReader();
 
@@ -136,9 +137,18 @@ export class AddArticleComponent implements OnInit, OnDestroy {
 
   getPosts() {
     const userid = localStorage.getItem('user_id');
-    this.sPosts = this.httpService.getPostsOfUser(userid).subscribe(
+    this.showSpinner = true;
+    this.sPosts = this.httpService.getPostsOfUser(userid).pipe(
+      map((v:any) => v.data)
+    )
+    .subscribe(
       ( posts: Article[]) => {
-        this.posts = posts; }
+        this.showSpinner = false;
+        this.posts = posts; },
+        (err)=> {
+          console.log(err);
+          this.showSpinner = false;
+        }
     );
   }
 
@@ -171,9 +181,7 @@ export class AddArticleComponent implements OnInit, OnDestroy {
         reader.readAsDataURL(file);
       }
     }
-
-    console.log();
-    
+   
     this.fileToUpload = files[0];
     
     // this.uploadFileToActivity();
