@@ -20,7 +20,12 @@ import { VerificationEmailComponent } from './pages/verification-email/verificat
 import { ResetPasswComponent } from './pages/reset-passw/reset-passw.component';
 import { DayCalculatorComponent } from './pages/day-calculator/day-calculator.component';
 import { AdminGuard } from './admin/admin.guards';
+import { DetailComponent } from './pages/cabinet/add-article/detail/detail.component';
 
+// определение дочерних маршрутов
+const itemRoutes: Routes = [
+  { path: 'detail/:id', component: DetailComponent},
+];
 
 const routes: Routes = [
   // { path: '', component: UslugiComponent  },
@@ -34,7 +39,8 @@ const routes: Routes = [
   { path: 'Info', component: InfoComponent },
   { path: 'alkouser', component: AlkousersComponent},
   { path: 'Profile', component: ProfileComponent , canActivate: [GeneralGuard] },
-  { path: 'Cabinet/:page', component: CabinetComponent },
+  // { path: 'Cabinet/:page', component: CabinetComponent },
+  { path: 'Cabinet/:page', component: CabinetComponent, children: itemRoutes },
   { path: 'Users/:id', component: UserDetailComponent, canActivate: [GeneralGuard] },
   { path: 'login', component: LoginPageComponent  },
   { path: 'verification/:token', component: VerificationEmailComponent },

@@ -56,6 +56,7 @@ import { QuillModule } from 'ngx-quill-v2';
 import { AdminGuard } from './admin/admin.guards';
 import { MatCardModule } from '@angular/material/card';
 import { MaterialExampleModule } from './material.module';
+import { DetailComponent } from './pages/cabinet/add-article/detail/detail.component';
 
 
 registerLocaleData(localeRu, 'ru');
@@ -84,7 +85,8 @@ registerLocaleData(localeRu, 'ru');
     SubscribeComponent,
     DayCalculatorComponent,
     BlogAdminComponent,
-    CreateComponent
+    CreateComponent,
+    DetailComponent
   ],
   imports: [
 
@@ -134,7 +136,7 @@ registerLocaleData(localeRu, 'ru');
     MatProgressSpinnerModule,
     NgwWowModule,
     TextMaskModule,
-    MatCardModule
+    MatCardModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'ru' },
