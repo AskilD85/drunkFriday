@@ -21,7 +21,7 @@ export class CabinetComponent implements OnInit, OnDestroy {
   add = false;
   userPage = false;
   messagePage = false;
-  page = '';
+  page = this.activateRoute.snapshot.params.page;
   visibility = false;
 
   ngOnInit() {
@@ -33,8 +33,6 @@ export class CabinetComponent implements OnInit, OnDestroy {
           }
       }
     );
-
-    this.page = this.activateRoute.snapshot.params.page;
     this.activePage(this.page)
   }
   ngOnDestroy() {
@@ -42,8 +40,6 @@ export class CabinetComponent implements OnInit, OnDestroy {
   }
   activePage(page) {
     this.page = page;
-    
-    
     this.visibility = true;
   }
   
