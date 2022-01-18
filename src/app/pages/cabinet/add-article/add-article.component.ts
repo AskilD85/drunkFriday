@@ -1,10 +1,10 @@
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Article } from './../../../model/Article';
 import { Categories } from './../../../model/Categories';
 import { HttpService } from 'src/app/services/http.service';
 import { Subscription } from 'rxjs';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { City } from 'src/app/model/City';
 import { ArticleType } from 'src/app/model/ArticleTypes';
 import { AuthService } from 'src/app/admin/auth.service';
@@ -22,7 +22,8 @@ export class AddArticleComponent implements OnInit, OnDestroy {
   constructor(private httpService: HttpService,
               private router: Router,
               private authService: AuthService,
-              private cabinetService: CabinetService
+              private cabinetService: CabinetService,
+              private activateRoute: ActivatedRoute,
               ) { }
 
   addForm = new FormGroup({
@@ -55,24 +56,39 @@ export class AddArticleComponent implements OnInit, OnDestroy {
   showSpinner = false;
   imgUrls = new Array<string>();
   reader = new FileReader();
-
+  routeSubscription:Subscription;
+  route = '';
+  detail: boolean;
   ngOnInit() {
   this.sAuth = this.authService.checkToken().subscribe(
-    (data)=> { console.log(data);
+    (data)=> { 
+      console.log(data);
+      if (data.result === 'error') {
+        this.authService.logout();
+        
+      }
     }
   );
   this.getCategSub = this.httpService.getCategories()
         .subscribe((categ: Categories) => {
           this.categories = categ;
       });
+
+
   this.getPostTypes();
   this.getCities();
-  this.getPosts();    
+  
+  this.getPosts();  
+
+  console.log(this.detail);
+  console.log();
+  
   }
 
 
 
   ngOnDestroy(): void {
+    this.detail = false;
     if (this.getCategSub) {
       this.getCategSub.unsubscribe();
     }
@@ -102,7 +118,10 @@ export class AddArticleComponent implements OnInit, OnDestroy {
       this.addFormActive(false);
       this.posts.unshift(add);
     },
-      err => { console.log(err), console.log('here -' + this.addForm.value); });
+      err => { console.log(err),
+        
+        console.log('here -' + this.addForm.value); 
+        });
   }
 
   getPostTypes() {
@@ -136,8 +155,11 @@ export class AddArticleComponent implements OnInit, OnDestroy {
   }
 
   getPosts() {
+    this.posts=[];
     const userid = localStorage.getItem('user_id');
     this.showSpinner = true;
+    this.detail=false;
+    this.router.navigate(['/Cabinet/posts']);
     this.sPosts = this.httpService.getPostsOfUser(userid).pipe(
       map((v:any) => v.data)
     )
@@ -189,6 +211,10 @@ export class AddArticleComponent implements OnInit, OnDestroy {
 
  
 
-
+  detailPage() {
+    this.detail = true;
+    console.log(this.detail);
+    
+  }
   
 }
