@@ -57,7 +57,7 @@ export class HttpService {
       body.active = false;
     }
     console.log(body);
-    
+
 
     const endpoint = this.url;
     const headers = new HttpHeaders({});
@@ -70,7 +70,7 @@ export class HttpService {
     formData.append('city_id', body.city_id);
     formData.append('category_id', body.category_id);
     formData.append('image', body.fileSource, body.fileSource.name);
-   
+
     return this.http.post(this.url + 'articles', formData, {headers});
 
 

@@ -17,7 +17,7 @@
         <i (click)="activePage('subscribes')" [ngClass]="{color: page === 'subscribes' ? true : false}" class="div-icon material-icons m-3" [routerLink]="['/Cabinet', 'subscribes']">event_available</i>
     </div>
     <div [ngSwitch]="page">
-           
+
 
         <div *ngSwitchCase = "'blog'">
             <app-blog-admin ></app-blog-admin>
