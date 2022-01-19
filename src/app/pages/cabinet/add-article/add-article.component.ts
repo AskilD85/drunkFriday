@@ -10,6 +10,7 @@ import { ArticleType } from 'src/app/model/ArticleTypes';
 import { AuthService } from 'src/app/admin/auth.service';
 import { CabinetService } from 'src/app/services/cabinet.service';
 import { environment } from 'src/environments/environment';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-article',
@@ -35,6 +36,17 @@ export class AddArticleComponent implements OnInit, OnDestroy {
     city_id: new FormControl('', [Validators.required])
   });
 
+  postForm = new FormGroup({
+    title: new FormControl('', [Validators.required]),
+    body: new FormControl('', [Validators.required]),
+    category_id: new FormControl('', [Validators.required]),
+    type: new FormControl('', [Validators.required]),
+    active: new FormControl(false),
+    image: new FormControl(''),
+    fileSource: new FormControl(''),
+    city_id: new FormControl('', [Validators.required])
+  });
+
   getCategSub: Subscription;
   addPostSub: Subscription;
   sAuth: Subscription;
@@ -43,21 +55,22 @@ export class AddArticleComponent implements OnInit, OnDestroy {
   success = false;
   checked = true;
   cities: City[];
-  addFormFlag: Boolean = false;
+  addFormFlag = false;
   postType: ArticleType[];
-  location : string;
+  location = '1';
   sPosts: Subscription;
   sDeletePost: Subscription;
   fileToUpload: File = null;
+  // tslint:disable-next-line:variable-name
   img_url: string;
   private url = environment.BackendDBUrl;
-  
+
   imgUrls = new Array<string>();
   reader = new FileReader();
 
   ngOnInit() {
   this.sAuth = this.authService.checkToken().subscribe(
-    (data)=> { console.log(data);
+    (data) => { console.log(data);
     }
   );
   this.getCategSub = this.httpService.getCategories()
@@ -66,7 +79,8 @@ export class AddArticleComponent implements OnInit, OnDestroy {
       });
   this.getPostTypes();
   this.getCities();
-  this.getPosts();    
+  this.getPosts();
+
   }
 
 
@@ -81,7 +95,7 @@ export class AddArticleComponent implements OnInit, OnDestroy {
     if (this.sDeletePost) {
       this.sDeletePost.unsubscribe();
     }
-    
+
   }
   getCities() {
     this.httpService.getCities().subscribe(
@@ -94,10 +108,10 @@ export class AddArticleComponent implements OnInit, OnDestroy {
   addPost() {
     console.log('here -' + this.addForm);
     this.addPostSub = this.httpService.addPost(this.addForm.value).subscribe((add: Article) => {
-      
+
       this.addForm.reset();
       this.success = true;
-      setTimeout(()=>{this.success = false;},1000)
+      setTimeout(() => {this.success = false; }, 1000);
       this.addFormActive(false);
       this.posts.unshift(add);
     },
@@ -107,7 +121,7 @@ export class AddArticleComponent implements OnInit, OnDestroy {
   getPostTypes() {
     this.httpService.getPostTypes().subscribe(
       (data: ArticleType[]) => {
-        this.postType=data;
+        this.postType = data;
       },
       (err) => {console.log(err); }
       );
@@ -130,7 +144,7 @@ export class AddArticleComponent implements OnInit, OnDestroy {
     this.addFormFlag = bool;
     if (bool === false) {
       this.imgUrls = [];
-      this.addForm.reset()
+      this.addForm.reset();
     }
   }
 
@@ -138,7 +152,8 @@ export class AddArticleComponent implements OnInit, OnDestroy {
     const userid = localStorage.getItem('user_id');
     this.sPosts = this.httpService.getPostsOfUser(userid).subscribe(
       ( posts: Article[]) => {
-        this.posts = posts; }
+        this.posts = posts;
+      }
     );
   }
 
@@ -146,41 +161,38 @@ export class AddArticleComponent implements OnInit, OnDestroy {
     this.sDeletePost = this.httpService.delete(id).subscribe(() => {
       this.posts = this.posts.filter( posts => posts.id !== id);
     },
-    (err)=> {console.log(err);
+    (err) => {console.log(err);
     });
   }
 
   handleFileInput(event) {
-    let files = event.target.files;
+    const files = event.target.files;
     if (files.length > 0) {
       const file = files[0];
       console.log(typeof files);
 
-        this.addForm.patchValue({
+      this.addForm.patchValue({
           fileSource: file
         });
-      
     }
 
     if (files) {
-      for (let file of files) {
-        let reader = new FileReader();
+      for (const file of files) {
+        const reader = new FileReader();
         reader.onload = (e: any) => {
           this.imgUrls.push(e.target.result);
-        }
+        };
         reader.readAsDataURL(file);
       }
     }
-
     console.log();
-    
+
     this.fileToUpload = files[0];
-    
-    // this.uploadFileToActivity();
+
   }
 
- 
 
 
-  
+
+
 }

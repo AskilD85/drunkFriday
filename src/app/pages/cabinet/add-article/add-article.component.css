@@ -15,10 +15,23 @@
     color: darkred;
 }
 
-.img{
-    float: left;
-}
-
 .example-card {
     max-width: 400px;
-  }
+}
+
+.action-buttons {
+  cursor: pointer;
+}
+.action-buttons:hover {
+  color: red;
+}
+
+.post-img {
+  margin: 0 20px;
+}
+
+.card-content {
+  margin: 0 20px;
+  padding: 10px;
+  position: relative;
+}
