@@ -191,7 +191,8 @@ export class HttpService {
     const headers = new HttpHeaders({});
     const formData: FormData = new FormData();
     formData.append('avatar', fileToUpload, fileToUpload.name);
-    formData.append('user_id', localStorage.getItem('user_id'));
+    formData.append('id', localStorage.getItem('user_id'));
+    // formData.append('user_id', localStorage.getItem('user_id'));
     return this.http
       .post(this.url + 'users', formData, {headers});
 }

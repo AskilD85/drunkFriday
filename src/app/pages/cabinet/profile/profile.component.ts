@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/admin/auth.service';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -19,7 +20,19 @@ export class ProfileComponent implements OnInit {
   user: User;
   fileToUpload: File = null;
   imgUrl: string;
+  imgUrls = new Array<string>();
   private url = environment.BackendDBUrl;
+
+  addForm = new FormGroup({
+    title: new FormControl('', [Validators.required]),
+    body: new FormControl('', [Validators.required]),
+    category_id: new FormControl('', [Validators.required]),
+    type: new FormControl('', [Validators.required]),
+    active: new FormControl(false),
+    image: new FormControl(''),
+    fileSource: new FormControl(''),
+    city_id: new FormControl('', [Validators.required])
+  });
 
   ngOnInit() {
     this.httpService.getUser(Number(this.userId)).pipe(
@@ -38,20 +51,20 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  handleFileInput(files: FileList) {
+  /*handleFileInput(files: FileList) {
     this.fileToUpload = files.item(0);
     this.uploadFileToActivity();
-  }
+  }*/
 
   uploadFileToActivity() {
     this.httpService.postFile(this.fileToUpload).pipe(map((v: any) => v.data)).subscribe(data => {
       // do something, if upload success
       console.log(data);
-      this.user.ava_url = data.ava_url;
+      this.user.ava_url = data.users[0].ava_url;
       this.fileToUpload = null;
       console.log(this.imgUrl);
-      console.log(this.fileToUpload);
-      const id = document.getElementById('file') as HTMLInputElement;
+      this.imgUrls = [];
+      const id = document.getElementById('image') as HTMLInputElement;
       id.value = '';
 
 
@@ -60,4 +73,28 @@ export class ProfileComponent implements OnInit {
       });
   }
 
+  handleFileInput(event) {
+    let files = event.target.files;
+    if (files.length > 0) {
+      const file = files[0];
+        this.addForm.patchValue({
+          fileSource: file
+        });
+      
+    }
+
+    if (files) {
+      for (let file of files) {
+        let reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.imgUrls.push(e.target.result);
+        }
+        reader.readAsDataURL(file);
+      }
+    }
+   
+    this.fileToUpload = files[0];
+    
+    // this.uploadFileToActivity();
+  }
 }

@@ -186,8 +186,6 @@ export class AddArticleComponent implements OnInit, OnDestroy {
     let files = event.target.files;
     if (files.length > 0) {
       const file = files[0];
-      console.log(typeof files);
-
         this.addForm.patchValue({
           fileSource: file
         });

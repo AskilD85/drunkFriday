@@ -7,10 +7,17 @@
         <div>Зарегистрирован: {{user?.created_at | date: 'longDate' }}</div>
     </div>
 
-    <div class="form-group">
-        <label for="file">Сменить аватар</label>
-        <input type="file"
-               id="file"
-               (change)="handleFileInput($event.target.files)">
-    </div>
+    <form [formGroup]="addForm" (ngSubmit)="uploadFileToActivity()">
+        <div class="img-field">
+            <input type="file" class=" m-1"  formControlName="image" id="image"
+            (change)="handleFileInput($event)"
+            multiple 
+            accept=".jpg, .jpeg, .png">
+            
+            <div>
+                <img *ngFor="let url of imgUrls" [src]="url" class="rounded mb-3" width="180">
+            </div>
+        </div>
+        <input *ngIf="imgUrls.length > 0" type="submit" value="Сохранить">
+    </form>
 </div>
