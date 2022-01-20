@@ -63,9 +63,9 @@ export class AddArticleComponent implements OnInit, OnDestroy {
   this.sAuth = this.authService.checkToken().subscribe(
     (data)=> { 
       console.log(data);
-      if (data.result === 'error') {
+      if (data['result'] === 'error') {
         this.authService.logout();
-        
+
       }
     }
   );

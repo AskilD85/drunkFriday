@@ -26,6 +26,10 @@
                 <img src="" >
               </div>
                 <div class="my-2">
+                    <picture *ngIf="article.img_url">
+                        <source media='(min-width:0px)' srcset="{{article.img_url}}">
+                        <img mat-card-image src="" alt="Photo of a Post" width="200" height="200">
+                     </picture>
                     <div class="card-title">{{article.title}}</div>
                     <b>Категория:</b> {{article.category_name}}
                     <div class="secondary-content"> Обновлено: {{article.updated_at | date: 'longDate'}}</div>

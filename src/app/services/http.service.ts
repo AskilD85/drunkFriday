@@ -6,6 +6,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { UserComment } from '../model/UserComment';
 import { environment } from 'src/environments/environment';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +45,7 @@ export class HttpService {
   }
 
   getArticle(id) {
-    return this.http.get(this.url + `articles/detail/${id}`);
+    return this.http.get(this.url + `articles/detail/${id}`).pipe(map((v:any)=>v.data));
   }
 
   getPostsOfUser(authorId) {
@@ -156,9 +157,6 @@ export class HttpService {
 
   destroyAppeal(id: string) {
     return this.http.delete(this.url + `appeals/${id}`);
-  }
-  getDetailArticle(id: number) {
-    return this.http.get(this.url + `articles/detail/${id}`);
   }
 
   verification(token: string) {
