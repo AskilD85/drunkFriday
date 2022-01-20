@@ -74,6 +74,7 @@ export class ProfileComponent implements OnInit {
   }
 
   handleFileInput(event) {
+    this.imgUrls = [];
     let files = event.target.files;
     if (files.length > 0) {
       const file = files[0];
