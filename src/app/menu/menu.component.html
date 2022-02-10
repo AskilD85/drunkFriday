@@ -7,7 +7,7 @@
         </a>
       </div>
 
-
+<!-- основное меню -->
       <a data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <li><a [routerLink]="['./']" class="">Главная</a></li>
@@ -62,6 +62,7 @@
   <li><a href="#" class="sidenav-close"><i class="material-icons ">home</i>Мой блог</a></li>
   <li *ngIf="isAdmin === true"><a [routerLink]="['./Blog']" class="sidenav-close">Мой блог</a></li>
   <li><a [routerLink]="['./Day-calculator']" class="sidenav-close">Калькулятор расчёта дней</a></li>
+  <li><a [routerLink]="['./Alco']" class="sidenav-close">Затраты на алкоголь</a></li>
   <li *ngIf="auth"><a [routerLink]="['Cabinet', 'subscribe']" class="sidenav-close">Мои Подписки</a></li>
   <li class="line">
     <div class="divider background bg-info2"></div>

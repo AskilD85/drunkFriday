@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // BackendDBUrl: 'http://localhost:8000/api/',
-  BackendDBUrl: 'http://laravel5.master702.ru/api/',
+  BackendDBUrl: 'http://localhost:8000/api/',
+  // BackendDBUrl: 'http://laravel5.master702.ru/api/',
   recaptchaSiteKey: '6LemNtUUAAAAANV1lDNoUYKm3-Wkwq8eQquFd4-1'
 };
 

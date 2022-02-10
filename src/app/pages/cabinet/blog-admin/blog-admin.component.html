@@ -3,6 +3,11 @@
      <input type="button" (click)="activePage('create')" value="Добавить статью" class="btn m-1 bg-info2 " >
      <input type="button" (click)="activePage('');getAllArticles()" value="Все статьи" class="btn m-1 bg-info2 " >
 </div>
+
+<button mat-button (click)="openDialog()">Open dialog</button>
+
+
+
 <div [ngSwitch]="page">
     <div *ngSwitchCase = "'create'">
         <app-create></app-create>
@@ -10,9 +15,17 @@
         
     <div *ngSwitchCase = "''">
         <div *ngFor = "let article of articles" class="shadow p-3 m-3 ">
-        <div><span class="p-2">редактировать</span><span class="p-2">Удалить</span></div>
+        <div>
+            <button mat-mini-fab color="accent">
+                <mat-icon class="add-course-btn" (click)="editPost(article)">edit</mat-icon>
+            </button>
+          | 
+          <button mat-mini-fab color="warn">
+            <mat-icon class="add-course-btn" (click)="DeletePost(article)">delete</mat-icon>
+          </button></div>
+        <hr>
         <h5>{{article.title}}</h5>
         <div [innerHTML]="article.body"></div>
-
+        <div>Здесь картинка</div>
     </div>
 </div>

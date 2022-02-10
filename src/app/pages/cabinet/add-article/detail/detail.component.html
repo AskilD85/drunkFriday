@@ -1,33 +1,9 @@
-<form  [formGroup]="form" (ngSubmit)="editPost()">
-<!--     
-    <mat-form-field class="full-width m-1">
-        <mat-label class="mat-label ">Город </mat-label>
-        <mat-select disabled [(value)]="location"  formControlName="city_id" >
-            <mat-option *ngFor="let city of cities" value="{{city.id}}">{{city.name}}</mat-option>
-        </mat-select>
-    </mat-form-field>
-
-    <mat-form-field class="full-width m-1">
-        <mat-label class="mat-label ">Категория</mat-label>
-        <mat-select formControlName="category_id" >
-            <mat-option value="">Не выбрано</mat-option>
-            <mat-option *ngFor="let categ of categories;" [value]="categ.id">
-                {{ categ.name }}</mat-option>
-        </mat-select>
-    </mat-form-field>
-
-    <mat-form-field class="full-width m-1">
-        <mat-label class="mat-label ">Тип </mat-label>
-        <mat-select formControlName="type">
-            <mat-option value="">Не выбрано</mat-option>
-            <mat-option *ngFor="let types of postType" [value]="types.id">{{types.name}}</mat-option>
-        </mat-select>
-    </mat-form-field> -->
+<form  [formGroup]="editForm" (ngSubmit)="editPost()">
 
     <div class="input-field">
         <input type="text" class="form-control m-1"  formControlName="title" id="title" >
     </div>
-    <div><textarea type="text" class="form-control m-1"  formControlName="body">{{post.body}}</textarea></div>
+    <div><textarea type="text" class="form-control m-1"  formControlName="body">{{post?.body}}</textarea></div>
     
     <div class="img-field">
         <input type="file" class=" m-1"  formControlName="image" id="image"
@@ -52,6 +28,6 @@
       </div>
 
 
-    <input type="button" value="Очистить" class="btn btn-danger m-1 bg-info2 grey" (click)="form.reset();clear()">
-    <input type="submit" value="Сохранить" [disabled]="form.invalid" class="btn btn-success m-1 bg-info2" >
+    <input type="button" value="Очистить" class="btn btn-danger m-1 bg-info2 grey" (click)="editForm.reset(); imgUrls=[]">
+    <input type="submit" value="Сохранить" [disabled]="editForm.invalid" class="btn btn-success m-1 bg-info2" >
 </form>

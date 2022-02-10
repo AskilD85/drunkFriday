@@ -57,6 +57,7 @@ import { AdminGuard } from './admin/admin.guards';
 import { MatCardModule } from '@angular/material/card';
 import { MaterialExampleModule } from './material.module';
 import { DetailComponent } from './pages/cabinet/add-article/detail/detail.component';
+import { AlcoComponent } from './pages/cabinet/alco/alco.component';
 
 
 registerLocaleData(localeRu, 'ru');
@@ -86,7 +87,9 @@ registerLocaleData(localeRu, 'ru');
     DayCalculatorComponent,
     BlogAdminComponent,
     CreateComponent,
-    DetailComponent
+    DetailComponent,
+    AlcoComponent
+
   ],
   imports: [
 
@@ -137,6 +140,7 @@ registerLocaleData(localeRu, 'ru');
     NgwWowModule,
     TextMaskModule,
     MatCardModule,
+    DialogOverviewExampleDialog
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'ru' },

@@ -59,6 +59,7 @@ export class AddArticleComponent implements OnInit, OnDestroy {
   routeSubscription:Subscription;
   route = '';
   detail: boolean;
+  disabled = false;
   ngOnInit() {
   this.sAuth = this.authService.checkToken().subscribe(
     (data)=> { 
@@ -109,9 +110,10 @@ export class AddArticleComponent implements OnInit, OnDestroy {
   }
 
   addPost() {
+    this.disabled = true;
     console.log('here -' + this.addForm);
     this.addPostSub = this.httpService.addPost(this.addForm.value).subscribe((add: Article) => {
-      
+      this.disabled = false;
       this.addForm.reset();
       this.success = true;
       setTimeout(()=>{this.success = false;},1000)
@@ -119,7 +121,8 @@ export class AddArticleComponent implements OnInit, OnDestroy {
       this.posts.unshift(add);
     },
       err => { console.log(err),
-        
+        this.disabled = false;
+
         console.log('here -' + this.addForm.value); 
         });
   }
@@ -214,5 +217,8 @@ export class AddArticleComponent implements OnInit, OnDestroy {
     console.log(this.detail);
     
   }
-  
+  editPost(id: number) {
+    console.log('edit post '+ id );
+    
+  }
 }

@@ -62,7 +62,7 @@
 
 
         <input type="button" value="Очистить" class="btn btn-danger m-1 bg-info2 grey" (click)="this.addForm.reset();clear()">
-        <input type="submit" value="Добавить" class="btn btn-success m-1 bg-info2" >
+        <input type="submit" value="Добавить" class="btn btn-success m-1 bg-info2" [disabled]="disabled" >
         <!-- [disabled]="addForm.invalid" -->
         <input type="button" value="Отмена" class="btn btn-danger m-1 bg-info2 red" (click)="addFormActive(false)">
     </form>
@@ -81,24 +81,24 @@
     </div>
     
     <div *ngIf="detail !== true">
-        <div *ngFor="let post of posts" class="card m-2 p-3" [routerLink]="['detail/', post.id]" (click)="detailPage()" >
-        
-        <picture *ngIf="post.img_url">
+        <div *ngFor="let post of posts" class="card m-2 p-3" (click)="detailPage()" >
+            <div  [routerLink]="['detail/', post.id]">
+                <picture *ngIf="post.img_url">
                 <source media='(min-width:0px)' srcset="{{post.img_url}}">
                 <img mat-card-image src="" alt="Photo of a Post" width="200" height="200">
-             </picture>
-            <div>{{post.title}}</div>
-            <div>{{post.body}}
-                <i class="material-icons right darkred" (click)="delete(post.id)" >delete</i>
-                <i class="material-icons right darkgrey" (click)="edit(post.id) " >edit</i>
+                </picture>
+                <div>{{post.title}}</div>
+                <div>{{post.body}}</div>
+               
             </div>
-            
             <div>
                 <hr>
                 <small class="mx-2">{{post.updated_at | date: 'longDate'}}</small> |
                 <small class="mx-2">Категория: {{post.category_name }}</small>|
                 <small class="mx-2">Тип объявления: {{post.typeName}}</small>|
                 <small class="mx-2">Активность: {{post.active=== 1 ? 'Да' : 'Нет'}}</small>|
+                <small><i class="material-icons right darkred" (click)="delete(post.id)" >delete</i></small> 
+
             </div>
         </div>
     </div>

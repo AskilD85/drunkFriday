@@ -2,6 +2,7 @@ export class User {
     id: number;
     // tslint:disable-next-line:variable-name
     first_name: string;
+    name: string;
     // tslint:disable-next-line:variable-name
     last_name: string;
     age: string;

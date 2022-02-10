@@ -20,7 +20,7 @@ export class UslugiComponent implements OnInit, OnDestroy {
   categories: Categories[] = [];
   category: Categories[];
   cities: City[];
-  position = localStorage.getItem('position') !== null ? localStorage.getItem('position') : '1';
+  position = localStorage.getItem('position') !== null ? localStorage.getItem('position') : '2';
   location = '1';
   sArticles: Subscription;
   showSpinner = false;
@@ -44,7 +44,6 @@ export class UslugiComponent implements OnInit, OnDestroy {
   dataload() {
      this.http.getPostTypes().subscribe(
        (data: ArticleType[] ) => {
-         console.log(data);
          this.articleType = data;
        },
        (err) => { console.log(err);
@@ -57,7 +56,6 @@ export class UslugiComponent implements OnInit, OnDestroy {
     this.showSpinner = true;
     this.articles = [];
     this.sArticles = this.http.getArticles(city_id).subscribe((data: Article[]) => {
-      console.log(1, data);
 
       this.articles = data;
       this.showSpinner = false;
@@ -83,7 +81,7 @@ export class UslugiComponent implements OnInit, OnDestroy {
 
   selectionChangeCity(val: string) {
     localStorage.setItem('location', val);
-    localStorage.setItem('position', 'job');
+    localStorage.setItem('position', '2');
     this.position = localStorage.getItem('position');
     this.location = localStorage.getItem('location');
     this.getArticles(+this.location);

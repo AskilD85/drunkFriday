@@ -10,8 +10,8 @@
             
             </div>
             <div>
-                <picture *ngIf="detail.img_url">
-                    <source media='(min-width:0px)' srcset="{{detail.img_url}}">
+                <picture *ngIf="detail?.img_url">
+                    <source media='(min-width:0px)' srcset="{{detail?.img_url}}">
                     <img mat-card-image src="" alt="Photo of a Post" width="200" height="200">
                 </picture>
             </div>
