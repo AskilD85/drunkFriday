@@ -15,6 +15,7 @@ import { ArticleType } from 'src/app/model/ArticleTypes';
 export class UslugiComponent implements OnInit, OnDestroy {
 
   articles: Article[];
+  no_post_img = '../../../assets/img/no-image.png';
   articles2: Article[];
   articlesCount: number;
   categories: Categories[] = [];
