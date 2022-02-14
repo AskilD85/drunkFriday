@@ -5,7 +5,6 @@ import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Article } from 'src/app/model/Article';
 import { HttpService } from 'src/app/services/http.service';
-import { AddArticleComponent } from '../add-article.component';
 
 @Component({
   selector: 'app-detail',
@@ -16,17 +15,13 @@ export class DetailComponent implements OnInit, OnDestroy {
 
   constructor(private activateRoute: ActivatedRoute,
     private httpService: HttpService,
-    private router: Router,
-    private addArticleComponent:AddArticleComponent
+    private router: Router
   ) { }
 
-  checked: boolean;
   sgetPost: Subscription;
   id: any;
   private routeSubscription: Subscription;
   post: Article;
-  imgUrls = new Array<string>();;
-  fileToUpload: File = null;
   editForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
     body: new FormControl('', [Validators.required]),
@@ -57,19 +52,19 @@ export class DetailComponent implements OnInit, OnDestroy {
       this.sgetPost.unsubscribe();
     }
   }
-
   getDetailPost(id: number) {
     this.showSpinner = true;
     this.sgetPost = this.httpService.getArticle(this.id).pipe(
-      map((res:any) => res.data)
+      map(res => res.data)
     ).subscribe(
 
 
       (data: Article) => {
         console.log(data);
         this.post = data;
+        this.showSpinner = false;
         this.editForm = new FormGroup(
-          { title: new FormControl(data.title, [Validators.required]),
+          {title: new FormControl(data.title, [Validators.required]),
           body: new FormControl(data.body, [Validators.required]),
           category_id: new FormControl(data.category_id, [Validators.required]),
           type: new FormControl(data.type, [Validators.required]),
@@ -96,34 +91,32 @@ export class DetailComponent implements OnInit, OnDestroy {
     );
   }
 
-
-
   handleFileInput(event) {
-    let files = event.target.files;
+    const files = event.target.files;
     if (files.length > 0) {
       const file = files[0];
-        this.editForm.patchValue({
-          fileSource: file
-        });
+      console.log(typeof files);
 
+      this.editForm.patchValue({
+        fileSource: file
+      });
     }
-
     if (files) {
-      for (let file of files) {
-        let reader = new FileReader();
+      for (const file of files) {
+        const reader = new FileReader();
         reader.onload = (e: any) => {
           this.imgUrls.push(e.target.result);
-        }
+        };
         reader.readAsDataURL(file);
       }
+      this.fileToUpload = files[0];
     }
-
-    this.fileToUpload = files[0];
-
-    // this.uploadFileToActivity();
+    if (!files) {
+      this.fileToUpload = null;
+    }
   }
-  editPost(){
-    console.log('editPost');
 
+  getComments(id: number) {
+    this.comments = `${id} - комментарии загружены!`;
   }
 }

@@ -139,8 +139,7 @@ registerLocaleData(localeRu, 'ru');
     MatProgressSpinnerModule,
     NgwWowModule,
     TextMaskModule,
-    MatCardModule,
-    DialogOverviewExampleDialog
+    MatCardModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'ru' },
