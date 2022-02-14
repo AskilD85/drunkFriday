@@ -21,6 +21,7 @@ import { ResetPasswComponent } from './pages/reset-passw/reset-passw.component';
 import { DayCalculatorComponent } from './pages/day-calculator/day-calculator.component';
 import { AdminGuard } from './admin/admin.guards';
 import { DetailComponent } from './pages/cabinet/add-article/detail/detail.component';
+import { AlcoComponent } from './pages/cabinet/alco/alco.component';
 
 // определение дочерних маршрутов
 const itemRoutes: Routes = [
@@ -47,6 +48,7 @@ const routes: Routes = [
   { path: 'resetPassw/:token', component: ResetPasswComponent },
   { path: 'webcam', component: WebcamComponent },
   { path: 'Day-calculator', component: DayCalculatorComponent },
+  { path: 'Alco', component: AlcoComponent },
   { path: 'Admin', loadChildren: './admin/admin.module#AdminModule', canActivate: [GeneralGuard,AdminGuard] },
   { path: '**', component: NotFoundComponent }
 ];
@@ -66,3 +68,4 @@ RouterModule.forRoot(routes, {useHash: true}),
 export class AppRoutingModule {
 
  }
+

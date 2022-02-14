@@ -125,6 +125,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   }
 
   login() {
+    
     if (this.form.valid) {
       this.authService2.login(this.form.value);
     }

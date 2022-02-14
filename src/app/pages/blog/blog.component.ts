@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogAdminService } from './../../services/blog-admin.service';
-import { Article } from './../../model/Article';
+import { Post } from 'src/app/model/Post';
 
 @Component({
   selector: 'app-blog',
@@ -8,7 +8,7 @@ import { Article } from './../../model/Article';
   styleUrls: ['./blog.component.scss']
 })
 export class BlogComponent implements OnInit {
-  articles: Article[];
+  posts: Post[];
   constructor(private apiBlog: BlogAdminService) { }
 
   ngOnInit() {
@@ -19,9 +19,8 @@ export class BlogComponent implements OnInit {
 
   getAllArticles() {
     this.apiBlog.getAllArticles().subscribe(
-      (data: Article[]) => { 
-        
-        this.articles = data; }
+      (data: Post[]) => { 
+        this.posts = data; }
     );
   }
 }

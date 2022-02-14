@@ -60,7 +60,7 @@
 
 
         <input type="button" value="Очистить" class="btn btn-danger m-1 bg-info2 grey" (click)="this.addForm.reset();clear()">
-        <input type="submit" value="Добавить" [disabled]="disabled" class="btn btn-success m-1 bg-info2" >
+        <input type="submit" value="Добавить" class="btn btn-success m-1 bg-info2" [disabled]="disabled" >
         <!-- [disabled]="addForm.invalid" -->
         <input type="button" value="Отмена" class="btn btn-danger m-1 bg-info2 red" (click)="addFormActive(false)">
     </form>
@@ -73,29 +73,33 @@
 
 <router-outlet></router-outlet>
 <!-- вывод постов -->
-<div *ngIf="!detail">
-   <div *ngIf="posts?.length > 0; else noPosts" >
-        <mat-card class="m-1 shadow post" *ngFor="let post of posts" (click) = "detailPage(post.id)">
-            <mat-card-title-group>
-                <mat-card-title>{{post.title}}</mat-card-title>
-                <mat-card-subtitle>Large</mat-card-subtitle>
-                <img mat-card-lg-image src="{{post.img_url ? post.img_url : no_post_img}}" >
-            </mat-card-title-group>
-            <mat-card-content>
-                {{post.body}}
-            </mat-card-content>
+<div *ngIf="posts?.length !== 0; else noPosts">
+    <div *ngIf="detail === true">
+        <router-outlet></router-outlet>
+    </div>
 
-            <hr>
-            <small class="mx-2 cursor-pointer action-buttons" (click)="editForm(post.id)">Редактировать</small>
-            <small class="mx-2 cursor-pointer action-buttons " (click)="delete(post.id)" >Удалить</small>
+    <div *ngIf="detail !== true">
+        <div *ngFor="let post of posts" class="card m-2 p-3" (click)="detailPage()" >
+            <div  [routerLink]="['detail/', post.id]">
+                <picture *ngIf="post.img_url">
+                <source media='(min-width:0px)' srcset="{{post.img_url}}">
+                <img mat-card-image src="" alt="Photo of a Post" width="200" height="200">
+                </picture>
+                <div>{{post.title}}</div>
+                <div>{{post.body}}</div>
 
-            <hr>
-            <small class="mx-2">{{post.updated_at | date: 'longDate'}}</small>
-            <small class="mx-2">Категория:  {{post.category_name }}</small>
-            <small class="mx-2 cursor-pointer action-buttons">Активность : {{post.active === 1 ? 'Да' : 'Нет'}}</small>
+            </div>
+            <div>
+                <hr>
+                <small class="mx-2">{{post.updated_at | date: 'longDate'}}</small> |
+                <small class="mx-2">Категория: {{post.category_name }}</small>|
+                <small class="mx-2">Тип объявления: {{post.typeName}}</small>|
+                <small class="mx-2">Активность: {{post.active=== 1 ? 'Да' : 'Нет'}}</small>|
+                <small><i class="material-icons right darkred" (click)="delete(post.id)" >delete</i></small>
 
-        </mat-card>
-   </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!--/ вывод постов -->
 

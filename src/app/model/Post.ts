@@ -1,4 +1,4 @@
-export class Article {
+export class Post {
     id: number;
     title: string;
     body: string;
@@ -17,7 +17,6 @@ export class Article {
     // tslint:disable-next-line:variable-name
     user_id: number;
     // tslint:disable-next-line: variable-name
-    img_url: string;
     constructor(id: number, title: string, body: string, active: number, category_id: string, user_id: number, type: string) {
         this.id = id;
         this.title = title;

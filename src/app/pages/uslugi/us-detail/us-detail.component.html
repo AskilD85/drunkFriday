@@ -4,13 +4,22 @@
     <div class=" p-3 card">
         <div class="">
             <div class="">
+
             <small class="mx-1">создатель: {{detail?.author}}</small>
             <small class="mx-1">Категория: {{detail?.category_name}}</small>
-                <h4 class="card-title">{{detail?.title}}</h4>
-                <div class="secondary-content">свободен</div>
-            </div>
             
-            <p>{{detail?.body}}</p>
+            </div>
+            <div>
+                <picture *ngIf="detail?.img_url">
+                    <source media='(min-width:0px)' srcset="{{detail?.img_url}}">
+                    <img mat-card-image src="" alt="Photo of a Post" width="200" height="200">
+                </picture>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{detail?.title}}</h5>
+                <p class="card-text">{{detail?.body}}</p>
+              </div>
+            
             <div *ngIf="isAuth == true"> 
                 <div class="card-action2">
                     <input type="button"

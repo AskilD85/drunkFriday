@@ -122,6 +122,7 @@ export class AddArticleComponent implements OnInit, OnDestroy {
   }
 
   addPost() {
+    this.disabled = true;
     console.log('here -' + this.addForm);
     this.disabled = true;
     this.addPostSub = this.httpService.addPost(this.addForm.value).subscribe((add: Article) => {
@@ -132,11 +133,11 @@ export class AddArticleComponent implements OnInit, OnDestroy {
       this.addFormActive(false);
       this.posts.unshift(add);
     },
-      err => {
-        console.log(err),
+      err => { console.log(err),
+        this.disabled = false;
 
         console.log('here -' + this.addForm.value);
-      });
+        });
   }
 
   getPostTypes() {
@@ -207,11 +208,10 @@ export class AddArticleComponent implements OnInit, OnDestroy {
     const files = event.target.files;
     if (files.length > 0) {
       const file = files[0];
-      console.log(typeof files);
+        this.addForm.patchValue({
+          fileSource: file
+        });
 
-      this.addForm.patchValue({
-        fileSource: file
-      });
     }
     if (files) {
       for (const file of files) {
@@ -236,5 +236,8 @@ export class AddArticleComponent implements OnInit, OnDestroy {
     console.log(id);
     this.router.navigate([`/Cabinet/posts/${id}`]);
   }
+  editPost(id: number) {
+    console.log('edit post '+ id );
 
+  }
 }

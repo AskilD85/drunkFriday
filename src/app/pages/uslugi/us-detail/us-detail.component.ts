@@ -66,7 +66,7 @@ export class UsDetailComponent implements OnInit, OnDestroy {
 
   getDetailArticle() {
     this.showSpinner = true;
-    this.sArticle = this.http.getDetailArticle(this.id)
+    this.sArticle = this.http.getArticle(this.id)
       .subscribe(
         (detail: Article) => {
           this.detail = detail;
