@@ -1,5 +1,8 @@
     <h3>Раздел постов</h3>
-    <input type="button" (click)="addFormActive(true)" value="Добавить объявление" class="btn m-1 bg-info2 " >
+    <div>
+        <input type="button" (click)="addFormActive(true)" value="Добавить объявление" class="btn m-1 bg-info2 " >
+        <input type="button" (click)="getPosts()"  value="Список всех объявлений" class="btn m-1 bg-info2 " >
+   </div>
 <!-- форма добавления поста -->
     <form *ngIf="addFormFlag" [formGroup]="addForm" (ngSubmit)="addPost()">
         <h5 class="text-center">Добавить услугу</h5>
@@ -57,121 +60,45 @@
 
 
         <input type="button" value="Очистить" class="btn btn-danger m-1 bg-info2 grey" (click)="this.addForm.reset();clear()">
-        <input type="submit" value="Добавить" class="btn btn-success m-1 bg-info2" >
+        <input type="submit" value="Добавить" [disabled]="disabled" class="btn btn-success m-1 bg-info2" >
         <!-- [disabled]="addForm.invalid" -->
         <input type="button" value="Отмена" class="btn btn-danger m-1 bg-info2 red" (click)="addFormActive(false)">
     </form>
-
-     <form *ngFor="let post of posts" class="card m-2 p-3" [formGroup]="postForm" >
-        <!-- <h5 class="text-center">Добавить услугу</h5> -->
-        <mat-form-field class="full-width m-1">
-            <mat-label class="mat-label ">Город </mat-label>
-            <mat-select [(value)]="location"  formControlName="city_id" >
-                <mat-option *ngFor="let city of cities" value="{{city.id}}">{{city.name}}</mat-option>
-            </mat-select>
-        </mat-form-field>
-
-        <mat-form-field class="full-width m-1">
-            <mat-label class="mat-label ">Категория</mat-label>
-            <mat-select [(value)]="post.category_id" formControlName="category_id" >
-                <mat-option *ngFor="let categ of categories;" [value]="categ.id">
-                    {{ categ.name }}</mat-option>
-            </mat-select>
-        </mat-form-field>
-
-        <mat-form-field class="full-width m-1">
-            <mat-label class="mat-label ">Тип </mat-label>
-            <mat-select formControlName="type">
-                <mat-option value="">Не выбрано</mat-option>
-                <mat-option *ngFor="let types of postType" [value]="types.id">{{types.name}}</mat-option>
-            </mat-select>
-        </mat-form-field>
-
-        <div class="input-field">
-            <input type="text" class="form-control m-1"  formControlName="title" id="title">
-            <label for="title">Введите название</label>
-        </div>
-        <div><textarea type="text" class="form-control m-1"  formControlName="body"></textarea></div>
-
-        <div class="img-field">
-            <input type="file" class=" m-1"  formControlName="image" id="image"
-            (change)="handleFileInput($event)"
-            multiple
-            accept=".jpg, .jpeg, .png">
-
-            <div>
-                <img *ngFor="let url of imgUrls" [src]="url" class="rounded mb-3" width="180">
-            </div>
-        </div>
-
-        <div class=" m-2 p-3">
-            Активность
-            <mat-slide-toggle
-                [(ngModel)] = "checked"
-                color="primary"
-                formControlName="active"
-                class="mx-5">
-
-            </mat-slide-toggle>
-          </div>
-
-
-        <input type="button" value="Очистить" class="btn btn-danger m-1 bg-info2 grey" (click)="this.addForm.reset();clear()">
-        <input type="submit" value="Добавить" class="btn btn-success m-1 bg-info2" >
-        <!-- [disabled]="addForm.invalid" -->
-        <input type="button" value="Отмена" class="btn btn-danger m-1 bg-info2 red" (click)="addFormActive(false)">
-    </form>
-
 
     <div *ngIf="success" class="text-center">
         <span class="color-green">Услугуа добавлена!</span>
     </div>
+<!-- //форма добавления поста  -->
 
 
-
-
-
-
+<router-outlet></router-outlet>
 <!-- вывод постов -->
-<div *ngIf="posts?.length !== 0; else noPosts">
-    <div *ngIf="detail === true">
-        <router-outlet></router-outlet>
-    </div>
+<div *ngIf="!detail">
+   <div *ngIf="posts?.length > 0; else noPosts" >
+        <mat-card class="m-1 shadow post" *ngFor="let post of posts" (click) = "detailPage(post.id)">
+            <mat-card-title-group>
+                <mat-card-title>{{post.title}}</mat-card-title>
+                <mat-card-subtitle>Large</mat-card-subtitle>
+                <img mat-card-lg-image src="{{post.img_url ? post.img_url : no_post_img}}" >
+            </mat-card-title-group>
+            <mat-card-content>
+                {{post.body}}
+            </mat-card-content>
 
-    <div *ngIf="detail !== true">
-        <div *ngFor="let post of posts" class="card m-2 p-3" [routerLink]="['detail/', post.id]" (click)="detailPage()" >
+            <hr>
+            <small class="mx-2 cursor-pointer action-buttons" (click)="editForm(post.id)">Редактировать</small>
+            <small class="mx-2 cursor-pointer action-buttons " (click)="delete(post.id)" >Удалить</small>
 
-        <picture *ngIf="post.img_url">
-                <source media='(min-width:0px)' srcset="{{post.img_url}}">
-                <img mat-card-image src="" alt="Photo of a Post" width="200" height="200">
-             </picture>
-            <div>{{post.title}}</div>
-            <div>{{post.body}}
-                <i class="material-icons right darkred" (click)="delete(post.id)" >delete</i>
-                <i class="material-icons right darkgrey" (click)="edit(post.id) " >edit</i>
-            </div>
+            <hr>
+            <small class="mx-2">{{post.updated_at | date: 'longDate'}}</small>
+            <small class="mx-2">Категория:  {{post.category_name }}</small>
+            <small class="mx-2 cursor-pointer action-buttons">Активность : {{post.active === 1 ? 'Да' : 'Нет'}}</small>
 
-            <div>
-                <hr>
-                <small class="mx-2">{{post.updated_at | date: 'longDate'}}</small> |
-                <small class="mx-2">Категория: {{post.category_name }}</small>|
-                <small class="mx-2">Тип объявления: {{post.typeName}}</small>|
-                <small class="mx-2">Активность: {{post.active=== 1 ? 'Да' : 'Нет'}}</small>|
-            </div>
-        </div>
-    </div>
-    <div>
-      <small class="mx-2 cursor-pointer action-buttons" (click)="editForm(post.id)">Редактировать</small>
-      <small class="mx-2  action-buttons " (click)="delete(post.id)" >Удалить</small>
-        <hr>
-        <small class="mx-2">{{post.updated_at | date: 'longDate'}}</small>
-        <small class="mx-2">Категория:  {{post.category_name }}</small>
-        <small class="mx-2 cursor-pointer action-buttons">Активность : {{post.active === 1 ? 'Да' : 'Нет'}}</small>
-
-    </div>
-    </div>
+        </mat-card>
+   </div>
 </div>
 <!--/ вывод постов -->
+
 
 <ng-template #loading>
     <div class="container text-center">
@@ -180,11 +107,13 @@
         </div>
     </div>
 </ng-template>
+
 <ng-template #noPosts>
     <div class="container text-center">
         <span>У Вас пока нет постов</span>
     </div>
 </ng-template>
+
  <!--SPINNER-->
  <span class="spinner" aria-hidden="true">
     <mat-spinner  *ngIf="showSpinner" [diameter]="40"></mat-spinner>

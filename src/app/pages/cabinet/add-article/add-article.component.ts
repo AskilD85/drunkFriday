@@ -24,7 +24,7 @@ export class AddArticleComponent implements OnInit, OnDestroy {
               private authService: AuthService,
               private cabinetService: CabinetService,
               private activateRoute: ActivatedRoute,
-              ) { }
+  ) { }
 
   addForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
@@ -36,7 +36,6 @@ export class AddArticleComponent implements OnInit, OnDestroy {
     fileSource: new FormControl(''),
     city_id: new FormControl('', [Validators.required])
   });
-
   postForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
     body: new FormControl('', [Validators.required]),
@@ -58,32 +57,44 @@ export class AddArticleComponent implements OnInit, OnDestroy {
   cities: City[];
   addFormFlag = false;
   postType: ArticleType[];
-  location = '1';
+  location: string;
   sPosts: Subscription;
   sDeletePost: Subscription;
   fileToUpload: File = null;
   // tslint:disable-next-line:variable-name
   img_url: string;
   private url = environment.BackendDBUrl;
+  showSpinner = false;
   imgUrls = new Array<string>();
+  no_post_img = '../../../../assets/img/no-image.png';
   reader = new FileReader();
-  routeSubscription:Subscription;
+  routeSubscription: Subscription;
   route = '';
   detail: boolean;
+  disabled = false;
+
   ngOnInit() {
-  this.sAuth = this.authService.checkToken().subscribe(
-    (data) => { console.log(data);
-    }
-  );
-  this.getCategSub = this.httpService.getCategories()
-        .subscribe((categ: Categories) => {
-          this.categories = categ;
+    this.sAuth = this.authService.checkToken().subscribe(
+      (data: any) => {
+        console.log(data);
+        if (data.result === 'error') {
+          this.authService.logout();
+        }
+      }
+    );
+    this.getCategSub = this.httpService.getCategories()
+      .subscribe((categ: Categories) => {
+        this.categories = categ;
       });
 
 
-  this.getPostTypes();
-  this.getCities();
-  this.getPosts();
+    this.getPostTypes();
+    this.getCities();
+
+    this.getPosts();
+
+    console.log(this.detail);
+    console.log();
 
   }
 
@@ -112,18 +123,20 @@ export class AddArticleComponent implements OnInit, OnDestroy {
 
   addPost() {
     console.log('here -' + this.addForm);
+    this.disabled = true;
     this.addPostSub = this.httpService.addPost(this.addForm.value).subscribe((add: Article) => {
-
+      this.disabled = false;
       this.addForm.reset();
       this.success = true;
-      setTimeout(() => {this.success = false; }, 1000);
+      setTimeout(() => { this.success = false; }, 1000);
       this.addFormActive(false);
       this.posts.unshift(add);
     },
-      err => { console.log(err),
+      err => {
+        console.log(err),
 
         console.log('here -' + this.addForm.value);
-        });
+      });
   }
 
   getPostTypes() {
@@ -131,8 +144,8 @@ export class AddArticleComponent implements OnInit, OnDestroy {
       (data: ArticleType[]) => {
         this.postType = data;
       },
-      (err) => {console.log(err); }
-      );
+      (err) => { console.log(err); }
+    );
   }
 
   addAgain() {
@@ -157,28 +170,38 @@ export class AddArticleComponent implements OnInit, OnDestroy {
   }
 
   getPosts() {
-    this.posts=[];
+    this.posts = [];
     const userid = localStorage.getItem('user_id');
     this.showSpinner = true;
-    this.detail=false;
+    this.detail = false;
     this.router.navigate(['/Cabinet/posts']);
     this.sPosts = this.httpService.getPostsOfUser(userid).pipe(
-      map((v:any) => v.data)
+      map((v: any) => v.data)
     )
-    .subscribe(
-      ( posts: Article[]) => {
-        this.posts = posts;
-      }
-    );
+      .subscribe(
+        (posts: Article[]) => {
+          this.showSpinner = false;
+          this.posts = posts;
+        },
+        (err) => {
+          console.log(err);
+          this.showSpinner = false;
+        }
+      );
   }
 
   delete(id: number) {
     this.sDeletePost = this.httpService.delete(id).subscribe(() => {
-      this.posts = this.posts.filter( posts => posts.id !== id);
+      this.posts = this.posts.filter(posts => posts.id !== id);
     },
-    (err) => {console.log(err);
-    });
+      (err) => {
+        console.log(err);
+      });
   }
+  editForm(id: number) {
+    console.log(id);
+  }
+
 
   handleFileInput(event) {
     const files = event.target.files;
@@ -187,10 +210,9 @@ export class AddArticleComponent implements OnInit, OnDestroy {
       console.log(typeof files);
 
       this.addForm.patchValue({
-          fileSource: file
-        });
+        fileSource: file
+      });
     }
-
     if (files) {
       for (const file of files) {
         const reader = new FileReader();
@@ -199,15 +221,20 @@ export class AddArticleComponent implements OnInit, OnDestroy {
         };
         reader.readAsDataURL(file);
       }
+      this.fileToUpload = files[0];
     }
-    console.log();
-
-    this.fileToUpload = files[0];
-
+    if (!files) {
+      this.fileToUpload = null;
+    }
   }
 
 
 
-
+  detailPage(id: number) {
+    this.detail = true;
+    console.log(this.detail);
+    console.log(id);
+    this.router.navigate([`/Cabinet/posts/${id}`]);
+  }
 
 }

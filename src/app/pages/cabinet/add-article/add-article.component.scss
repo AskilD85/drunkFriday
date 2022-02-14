@@ -33,3 +33,8 @@
 .mat-spinner::ng-deep circle{
 stroke:  var(--bg-info2) !important;
 }
+
+.post:hover {
+  background-color: #d5f3f8;
+  cursor: pointer;
+}
