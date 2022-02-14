@@ -56,9 +56,6 @@ export class HttpService {
     if (body.active == null) {
       body.active = false;
     }
-    console.log(body);
-
-
     const endpoint = this.url;
     const headers = new HttpHeaders({});
     const formData: FormData = new FormData();
@@ -69,12 +66,14 @@ export class HttpService {
     formData.append('type', body.type);
     formData.append('city_id', body.city_id);
     formData.append('category_id', body.category_id);
-    formData.append('image', body.fileSource, body.fileSource.name);
+    if (body.fileSource) {
+      formData.append('image', body.fileSource, body.fileSource.name);
+    }
 
     return this.http.post(this.url + 'articles', formData, {headers});
 
 
-    return this.http.post(this.url + `articles`, body);
+    // return this.http.post(this.url + `articles`, body);
   }
 
   editArticle(body, id) {

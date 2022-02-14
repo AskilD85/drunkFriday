@@ -1,57 +1,79 @@
-<form  [formGroup]="form" (ngSubmit)="editPost()">
-<!--     
-    <mat-form-field class="full-width m-1">
-        <mat-label class="mat-label ">Город </mat-label>
-        <mat-select disabled [(value)]="location"  formControlName="city_id" >
-            <mat-option *ngFor="let city of cities" value="{{city.id}}">{{city.name}}</mat-option>
-        </mat-select>
-    </mat-form-field>
-
-    <mat-form-field class="full-width m-1">
-        <mat-label class="mat-label ">Категория</mat-label>
-        <mat-select formControlName="category_id" >
-            <mat-option value="">Не выбрано</mat-option>
-            <mat-option *ngFor="let categ of categories;" [value]="categ.id">
-                {{ categ.name }}</mat-option>
-        </mat-select>
-    </mat-form-field>
-
-    <mat-form-field class="full-width m-1">
-        <mat-label class="mat-label ">Тип </mat-label>
-        <mat-select formControlName="type">
-            <mat-option value="">Не выбрано</mat-option>
-            <mat-option *ngFor="let types of postType" [value]="types.id">{{types.name}}</mat-option>
-        </mat-select>
-    </mat-form-field> -->
-
-    <div class="input-field">
-        <input type="text" class="form-control m-1"  formControlName="title" id="title" >
-    </div>
-    <div><textarea type="text" class="form-control m-1"  formControlName="body">{{post.body}}</textarea></div>
-    
-    <div class="img-field">
-        <input type="file" class=" m-1"  formControlName="image" id="image"
-        (change)="handleFileInput($event)"
-        multiple 
-        accept=".jpg, .jpeg, .png">
-        
-        <div>
-            <img *ngFor="let url of imgUrls" [src]="url" class="rounded mb-3" width="180">
+<div *ngIf="showSpinner === true">
+    <div class="container text-center">
+        <div class="spinner-border text-info" role="status">
+            <span class="sr-only">Loading...</span>
         </div>
     </div>
+</div>
 
-    <div class=" m-2 p-3">
-        Активность
-        <mat-slide-toggle
-            [(ngModel)] = "checked"
-            color="primary"
-            formControlName="active"
-            class="mx-5">
+<div *ngIf="showSpinner === false">
+<form  [formGroup]="editForm" >
+        <h5 class="text-center">название</h5>
+        <!-- <mat-form-field class="full-width m-1">
+            <mat-label class="mat-label ">Город </mat-label>
+            <mat-select disabled [(value)]="location"  formControlName="city_id" >
+                <mat-option *ngFor="let city of cities" value="{{city.id}}">{{city.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
 
-        </mat-slide-toggle>
-      </div>
+        <mat-form-field class="full-width m-1">
+            <mat-label class="mat-label ">Категория</mat-label>
+            <mat-select formControlName="category_id" >
+                <mat-option value="">Не выбрано</mat-option>
+                <mat-option *ngFor="let categ of categories;" [value]="categ.id">
+                    {{ categ.name }}</mat-option>
+            </mat-select>
+        </mat-form-field> -->
+
+        <!-- <mat-form-field class="full-width m-1">
+            <mat-label class="mat-label ">Тип </mat-label>
+            <mat-select formControlName="type">
+                <mat-option value="">Не выбрано</mat-option>
+                <mat-option *ngFor="let types of postType" [value]="types.id">{{types.name}}</mat-option>
+            </mat-select>
+        </mat-form-field> -->
+        <div class="img-field">
+            <input type="file" class=" m-1"  formControlName="image" id="image"
+            (change)="handleFileInput($event)"
+            multiple
+            accept=".jpg, .jpeg, .png">
+
+            <div>
+                <img *ngFor="let url of imgUrls" [src]="url" class="rounded mb-3" width="180">
+            </div>
+        </div>
+        <div class="input-field">
+            <input type="text" class="form-control m-1"  formControlName="title" id="title">
+        </div>
+        <div><textarea type="text" class="form-control m-1"  formControlName="body"></textarea></div>
+
+        <!-- <div class="img-field">
+            <input type="file" class=" m-1"  formControlName="image" id="image"
+            (change)="handleFileInput($event)"
+            multiple
+            accept=".jpg, .jpeg, .png">
+
+            <div>
+                <img *ngFor="let url of imgUrls" [src]="url" class="rounded mb-3" width="180">
+            </div>
+        </div> -->
+
+        <div class=" m-2 p-3">
+            Активность
+            <mat-slide-toggle
+                [(ngModel)] = "checked"
+                color="primary"
+                formControlName="active"
+                class="mx-5">
+
+            </mat-slide-toggle>
+          </div>
 
 
-    <input type="button" value="Очистить" class="btn btn-danger m-1 bg-info2 grey" (click)="form.reset();clear()">
-    <input type="submit" value="Сохранить" [disabled]="form.invalid" class="btn btn-success m-1 bg-info2" >
-</form>
+        <input type="button" value="Очистить" class="btn btn-danger m-1 bg-info2 grey" (click)="this.editForm.reset();">
+        <!-- [disabled]="addForm.invalid" -->
+        <input type="button" value="Сохранить" [disabled]="!editForm.dirty" class="btn btn-danger m-1 bg-info2 red" (click)="saveForm()">
+    </form>
+
+<div>{{comments}}</div>
+</div>
