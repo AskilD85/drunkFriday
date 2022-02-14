@@ -24,7 +24,7 @@ import { DetailComponent } from './pages/cabinet/add-article/detail/detail.compo
 
 // определение дочерних маршрутов
 const itemRoutes: Routes = [
-  { path: 'detail/:id', component: DetailComponent},
+  { path: ':id', component: DetailComponent},
 ];
 
 const routes: Routes = [
