@@ -77,7 +77,8 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.showSpinner = true;
     console.log('Сохранили форму');
     console.log(this.editForm.value);
-    this.httpService.editArticle(this.editForm.value, this.id).subscribe(
+
+    this.httpService.editArticle1(this.editForm.value, this.id).subscribe(
       (data: Article) => {
         this.showSpinner = false;
         console.log(data);

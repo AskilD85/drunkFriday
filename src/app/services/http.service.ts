@@ -77,6 +77,32 @@ export class HttpService {
     // return this.http.post(this.url + `articles`, body);
   }
 
+  editArticle1(body, id) {
+    body.user_id = localStorage.getItem('user_id');
+    if (body.active == null) {
+      body.active = false;
+    }
+    const endpoint = this.url;
+    const headers = new HttpHeaders({});
+    const formData: FormData = new FormData();
+    formData.append('title', body.title);
+    formData.append('body', body.body);
+    formData.append('user_id', body.user_id);
+    formData.append('active', body.active === true ? '1' : '0');
+    // formData.append('type', body.type);
+    // formData.append('city_id', body.city_id);
+    // formData.append('category_id', body.category_id);
+    formData.append('_method', 'PUT');
+    if (body.fileSource) {
+      formData.append('image', body.fileSource, body.fileSource.name);
+    }
+
+    return this.http.post(this.url + `articles/${id}`, formData, { headers });
+    // return this.http.put(this.url + `articles/${id}`, body);
+
+    // return this.http.post(this.url + `articles`, body);
+  }
+
   editArticle(body, id) {
     if ( body.active === true) {
       body.active = 1;
