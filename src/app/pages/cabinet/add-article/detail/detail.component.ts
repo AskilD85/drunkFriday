@@ -55,7 +55,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   getDetailPost(id: number) {
     this.showSpinner = true;
     this.sgetPost = this.httpService.getArticle(this.id).pipe(
-      map(res => res.data)
+      // map(res => res.data)
     ).subscribe(
 
 

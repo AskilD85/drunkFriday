@@ -236,8 +236,11 @@ export class AddArticleComponent implements OnInit, OnDestroy {
     console.log(id);
     this.router.navigate([`/Cabinet/posts/${id}`]);
   }
+
   editPost(id: number) {
     console.log('edit post '+ id );
-
+    this.detail = true;
+    this.router.navigate([`/Cabinet/posts/${id}`]);
   }
+
 }
