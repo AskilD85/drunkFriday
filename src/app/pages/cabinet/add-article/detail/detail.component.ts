@@ -40,7 +40,6 @@ export class DetailComponent implements OnInit, OnDestroy {
   ngOnInit() {
     //console.log(this.id);
     this.routeSubscription = this.activateRoute.params.subscribe(params => this.id = params['id']);
-    console.log(this.id);
     this.getDetailPost(this.id);
   }
 
@@ -57,10 +56,7 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.sgetPost = this.httpService.getArticle(this.id).pipe(
       // map(res => res.data)
     ).subscribe(
-
-
       (data: Article) => {
-        console.log(data);
         this.post = data;
         this.showSpinner = false;
         this.editForm = new FormGroup(

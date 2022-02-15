@@ -72,7 +72,8 @@
 
 
 <!-- вывод постов -->
-<div *ngIf="posts?.length !== 0; else noPosts">
+<div *ngIf="showSpinner === false">
+<div *ngIf="posts?.length !== 0 ; else noPosts">
     <div *ngIf="detail === true">
         <router-outlet></router-outlet>
     </div>
@@ -98,6 +99,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 <!--/ вывод постов -->
 
