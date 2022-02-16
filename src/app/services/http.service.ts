@@ -79,16 +79,14 @@ export class HttpService {
 
   editArticle1(body, id) {
     body.user_id = localStorage.getItem('user_id');
-    if (body.active == null) {
-      body.active = false;
-    }
+
     const endpoint = this.url;
     const headers = new HttpHeaders({});
     const formData: FormData = new FormData();
     formData.append('title', body.title);
     formData.append('body', body.body);
     formData.append('user_id', body.user_id);
-    formData.append('active', body.active === true ? '1' : '0');
+    formData.append('active', body.active);
     // formData.append('type', body.type);
     // formData.append('city_id', body.city_id);
     // formData.append('category_id', body.category_id);
