@@ -29,6 +29,13 @@ jobs:
         run: npm run test:e2e
       - name: lint code
         run: npm run lint
+        - name: Deploy to Hosting
+      - uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir:  master702.askild.ru/public_html/
 
 
 
