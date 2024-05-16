@@ -5,13 +5,13 @@
 <div class="container">
 
 <div class="card p-3 form-div">
-    
+
 <form *ngIf="!addAppealResponse" [formGroup]="addAppealForm" (ngSubmit)="addAppeal()">
     <div class=" text-center"><h5>Предложения, пожелания и замечания можете отправить нам заполнив форму.</h5></div>
 
     <div class="input-field">
         <input type="text" class="p-2" formControlName="name" placeholder="Введите Ваше имя"  formControlName="name" id="name">
-        
+
         <div class="validation" *ngIf="addAppealForm.get('name').invalid && addAppealForm.get('name').touched">
             <small *ngIf="addAppealForm.get('name').errors.required">Поле Имя не может быть пустым!</small>
             <small *ngIf="addAppealForm.get('name').errors.minlength">
@@ -44,10 +44,10 @@
             </small>
         </div>
     </div>
-    
-        <re-captcha class="re-captcha" formControlName="recaptcha" siteKey="{{recaptchaSiteKey}}"></re-captcha>
-    
-    
+
+        <!-- <re-captcha class="re-captcha" formControlName="recaptcha" siteKey="{{recaptchaSiteKey}}"></re-captcha> -->
+
+
 
     <input type="button" value="Очистить" class="btn btn-danger m-1 red" (click)="clearFormAll(addAppealForm)">
     <input type="submit" value="Добавить" class="btn btn-success m-1 bg-info2" [disabled]="addAppealForm.invalid">

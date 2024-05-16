@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AlkousersComponent } from './alkousers/alkousers.component';
 import { RandomimgComponent } from './randomimg/randomimg.component';
 import { MenuComponent } from './menu/menu.component';
@@ -42,8 +41,6 @@ import { CabinetComponent } from './pages/cabinet/cabinet.component';
 import { AddArticleComponent } from './pages/cabinet/add-article/add-article.component';
 import { UsersComponent } from './pages/cabinet/users/users.component';
 import { UserDetailComponent } from './pages/cabinet/users/user-detail/user-detail.component';
-import { WebcamComponent } from './pages/webcam/webcam.component';
-import { WebcamModule } from 'ngx-webcam';
 import { VerificationEmailComponent } from './pages/verification-email/verification-email.component';
 import { SubscribeComponent } from './pages/cabinet/subscribe/subscribe.component';
 import { SubscribeService } from './services/subscribe.service';
@@ -54,6 +51,7 @@ import { BlogAdminComponent } from './pages/cabinet/blog-admin/blog-admin.compon
 import { CreateComponent } from './pages/cabinet/blog-admin/create/create.component';
 import { QuillModule } from 'ngx-quill-v2';
 import { AdminGuard } from './admin/admin.guards';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -78,7 +76,6 @@ registerLocaleData(localeRu, 'ru');
     AddArticleComponent,
     UsersComponent,
     UserDetailComponent,
-    WebcamComponent,
     VerificationEmailComponent,
     SubscribeComponent,
     DayCalculatorComponent,
@@ -107,12 +104,9 @@ registerLocaleData(localeRu, 'ru');
     MatIconModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    WebcamModule,
     MatProgressSpinnerModule,
     NgwWowModule,
-    QuillModule
-
-
+    QuillModule,
   ],
   exports: [
     MatSelectModule,
@@ -133,12 +127,12 @@ registerLocaleData(localeRu, 'ru');
     SharedModule,
     MatProgressSpinnerModule,
     NgwWowModule,
-    TextMaskModule
+    TextMaskModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'ru' },
     SubscribeService,
-    AdminGuard
+    AdminGuard,
   ],
 
   bootstrap: [AppComponent]

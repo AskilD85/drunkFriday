@@ -3,7 +3,7 @@ import { Article } from './../../../model/Article';
 import { Categories } from './../../../model/Categories';
 import { HttpService } from 'src/app/services/http.service';
 import { Subscription } from 'rxjs';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { City } from 'src/app/model/City';
 import { ArticleType } from 'src/app/model/ArticleTypes';
@@ -27,7 +27,7 @@ export class AddArticleComponent implements OnInit, OnDestroy {
     category_id: new FormControl('', [Validators.required]),
     type: new FormControl('', [Validators.required]),
     active: new FormControl(false),
-    city_id: new FormControl(localStorage.getItem('location')!== null ? '2' : '2', [Validators.required])
+    city_id: new FormControl(localStorage.getItem('location') !== null ? '2' : '2', [Validators.required])
   });
 
   getCategSub: Subscription;
@@ -98,12 +98,7 @@ export class AddArticleComponent implements OnInit, OnDestroy {
     this.checked = true;
   }
   clear() {
-    this.addForm.setValue({
-      active: true,
-      title: null,
-      body: null,
-      category_id: null
-    });
+    this.addForm.reset();
   }
 
 }

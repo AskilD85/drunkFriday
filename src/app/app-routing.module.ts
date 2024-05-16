@@ -14,7 +14,6 @@ import { InfoComponent } from './pages/info/info.component';
 import { CabinetComponent } from './pages/cabinet/cabinet.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { UserDetailComponent } from './pages/cabinet/users/user-detail/user-detail.component';
-import { WebcamComponent } from './pages/webcam/webcam.component';
 import { ProfileComponent } from './pages/cabinet/profile/profile.component';
 import { VerificationEmailComponent } from './pages/verification-email/verification-email.component';
 import { ResetPasswComponent } from './pages/reset-passw/reset-passw.component';
@@ -39,19 +38,17 @@ const routes: Routes = [
   { path: 'login', component: LoginPageComponent  },
   { path: 'verification/:token', component: VerificationEmailComponent },
   { path: 'resetPassw/:token', component: ResetPasswComponent },
-  { path: 'webcam', component: WebcamComponent },
   { path: 'Day-calculator', component: DayCalculatorComponent },
-  { path: 'Admin', loadChildren: './admin/admin.module#AdminModule', canActivate: [GeneralGuard,AdminGuard] },
-  { path: '**', component: NotFoundComponent }
+  // { path: 'Admin', loadChildren:  './admin/admin.module#AdminModule', canActivate: [GeneralGuard, AdminGuard] },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
   imports: [
-RouterModule.forRoot(routes, {useHash: true}),
-  SharedModule
+  RouterModule.forRoot(routes, {useHash: true}),
+  SharedModule,
   ],
 
-  providers: [GeneralGuard, AdminGuard],
   exports: [
     RouterModule,
     SharedModule,

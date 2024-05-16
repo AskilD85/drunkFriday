@@ -2,7 +2,6 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 
-import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 import { TokenInterceptor } from '../_helpers/token.interceptor';
 import { LoginPageComponent } from '../pages/login-page/login-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -15,19 +14,14 @@ import { RouterModule } from '@angular/router';
     declarations: [LoginPageComponent, ProfileComponent, ResetPasswComponent],
     imports: [
         HttpClientModule,
-        RecaptchaModule,
-        RecaptchaFormsModule,
         FormsModule,
         ReactiveFormsModule,
         CommonModule,
         MatCheckboxModule,
-        MatSlideToggleModule,
-        RouterModule
+        RouterModule,
     ],
     exports: [
         HttpClientModule,
-        RecaptchaModule,
-        RecaptchaFormsModule,
         LoginPageComponent,
         ProfileComponent,
         ResetPasswComponent,
@@ -35,8 +29,7 @@ import { RouterModule } from '@angular/router';
         ReactiveFormsModule,
         CommonModule,
         MatCheckboxModule,
-        MatSlideToggleModule,
-        RouterModule
+        RouterModule,
     ],
     schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
     providers: [
