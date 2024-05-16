@@ -14,7 +14,7 @@ export class DayCalculatorComponent implements OnInit {
    }
   form = new FormGroup({
     date1: new FormControl('', [ Validators.required]),
-    // date2: new FormControl('', [Validators.required]),
+    date2: new FormControl('', [Validators.required]),
     // recaptcha: new FormControl('', [Validators.required])
   });
   milliseconds: number;
@@ -41,7 +41,7 @@ export class DayCalculatorComponent implements OnInit {
     this.dayCalc(this.form.value.date1, this.form.value.date2);
   }
 
-  dayCalc(date1: Date, date2: Date) {
+  dayCalc(date1: Date | any, date2: any) {
 
     const date11 = new Date(date1);
     const date22 = new Date();

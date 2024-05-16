@@ -16,7 +16,7 @@ import { AuthService } from 'src/app/admin/auth.service';
 })
 export class AddArticleComponent implements OnInit, OnDestroy {
 
-  constructor(private httpService: HttpService, 
+  constructor(private httpService: HttpService,
               private router: Router,
               private authService: AuthService
               ) { }
@@ -89,7 +89,7 @@ export class AddArticleComponent implements OnInit, OnDestroy {
         this.articleType=data;
       },
       (err)=> {console.log(err)}
-      
+
     )
   }
 
