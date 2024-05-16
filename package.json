@@ -48,7 +48,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.901.15",
-    "@angular/cli": "^9.1.15",
+    "@angular/cli": "^8.3.29",
     "@angular/compiler-cli": "^9.1.13",
     "@angular/language-service": "^9.1.13",
     "@types/jasmine": "~3.3.8",
@@ -69,6 +69,6 @@
     "tslint": "~5.15.0",
     "typedoc": "^0.20.37",
     "typescript": "~3.8.3",
-    "webpack-dev-server": "^4.15.2"
+    "webpack-config": "^0.8.1"
   }
 }
